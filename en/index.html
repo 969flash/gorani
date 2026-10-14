@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UrbanSite — free Rhino plugin for site context models (buildings, roads, terrain)</title>
+<meta name="description" content="Pick a site and get the surrounding buildings, roads, terrain and water as 3D in your open Rhino 8 document, plus a layered Illustrator basemap. Free, installed from Rhino's Package Manager. Works wherever OpenStreetMap does; Korea adds cadastre, zoning and analysis maps.">
+<link rel="canonical" href="https://969flash.github.io/urbansite/en/">
+<link rel="alternate" hreflang="ko" href="https://969flash.github.io/urbansite/">
+<link rel="alternate" hreflang="en" href="https://969flash.github.io/urbansite/en/">
+<link rel="alternate" hreflang="x-default" href="https://969flash.github.io/urbansite/en/">
+<link rel="alternate" type="text/plain" title="llms.txt" href="https://969flash.github.io/urbansite/llms.txt">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="UrbanSite">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="UrbanSite — pick a site, get the neighborhood in Rhino">
+<meta property="og:description" content="Buildings, roads, terrain and water as 3D in Rhino 8, plus a layered basemap. A free Rhino plugin.">
+<meta property="og:url" content="https://969flash.github.io/urbansite/en/">
+<meta property="og:image" content="https://969flash.github.io/urbansite/assets/og-en.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F5F7FA">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "UrbanSite",
+  "alternateName": ["UrbanSite for Rhino", "대지검토"],
+  "description": "A free Rhino 8 plugin that builds a site context model: pick a site and the surrounding buildings, roads, terrain, water, green space and rail are created as 3D in the open Rhino document, together with a layered Illustrator basemap and urban analysis maps.",
+  "applicationCategory": "DesignApplication",
+  "applicationSubCategory": "Rhino 8 plugin",
+  "operatingSystem": "Windows, macOS",
+  "softwareRequirements": "Rhinoceros 8",
+  "softwareVersion": "0.1",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "inLanguage": "en",
+  "url": "https://969flash.github.io/urbansite/en/",
+  "author": { "@type": "Person", "name": "969flash", "url": "https://github.com/969flash" },
+  "featureList": [
+    "3D site context in Rhino: building masses, roads, terrain mesh, water, green space, rail",
+    "Layered Illustrator (.ai) basemap at 1:1,000 to 1:5,000",
+    "Urban analysis maps as SVG/AI (figure-ground, zoning, land use, street hierarchy and more; Korea)",
+    "Parcel and building tables as CSV",
+    "Worldwide via OpenStreetMap and terrain tiles; nationwide Korean cadastre, building and terrain data",
+    "Installed from the Rhino Package Manager (Yak); no Grasshopper or Python setup"
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-copy" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5.5" y="5.5" width="8" height="8"/><path d="M10.5 5.5v-3h-8v8h3"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-say" viewBox="0 0 16 16"><path d="M1.5 2.5h13v9h-7l-3.5 3v-3h-2.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"/></symbol>
+  <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="UrbanSite home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/><path d="M1 11h30M1 21h30M11 1v30M21 1v30" stroke="var(--hair)" stroke-width="1.5"/><path d="M11 11h10v10H11z" fill="var(--blue)"/></svg>
+      <b>UrbanSite</b><span>for Rhino 8</span>
+    </a>
+    <nav class="nav" aria-label="On this page">
+      <a href="#install">Install</a>
+      <a href="#outputs">Outputs</a>
+      <a href="#ai">With AI</a>
+      <a href="#free">Support</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="lang" href="../" hreflang="ko" lang="ko">한국어</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <article class="sheet" aria-labelledby="hero-title">
+      <div class="sheet-body">
+        <div class="pitch">
+          <h1 id="hero-title">Pick a site.<br>Get the <em>neighborhood</em><br>in Rhino.</h1>
+          <p class="lead">Surrounding buildings, roads, terrain and water arrive as 3D in the Rhino document you have open, with a layered Illustrator basemap in the same folder. <strong>Free. And it stays free.</strong></p>
+          <div class="acts">
+            <a class="btn go" href="#install">How to install</a>
+            <a class="btn" href="https://github.com/969flash/urbansite"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
+          </div>
+        </div>
+        <figure class="drawing">
+          <canvas id="axon" data-site="Site" data-radius="Radius {r}" role="img" aria-label="Axonometric diagram: a blue site lot in the middle, with the buildings, parcels, river and hill inside the chosen radius around it"></canvas>
+          <div class="drawing-bar">
+            <span class="label" id="range-label">Extent</span>
+            <div class="cells" role="group" aria-labelledby="range-label">
+              <button type="button" class="cell" data-r="200" aria-pressed="false">200 m</button>
+              <button type="button" class="cell" data-r="500" aria-pressed="true">500 m</button>
+              <button type="button" class="cell" data-r="1000" aria-pressed="false">1 km</button>
+            </div>
+            <figcaption>Diagram drawn from synthetic data</figcaption>
+          </div>
+        </figure>
+      </div>
+      <dl class="titleblock">
+        <div><dt>Use</dt><dd>Site context for urban design and architecture</dd></div>
+        <div><dt>Price</dt><dd>Free, runs on donations</dd></div>
+        <div><dt>Runs on</dt><dd>Rhino 8 · Windows · macOS</dd></div>
+        <div><dt>Worldwide</dt><dd>OpenStreetMap · terrain tiles</dd></div>
+        <div><dt>Korea</dt><dd>Nationwide cadastre, buildings, terrain, zoning</dd></div>
+        <div><dt>Install</dt><dd>Package Manager → UrbanSite</dd></div>
+      </dl>
+    </article>
+
+    <div class="without">
+      <span>Not needed</span>
+      <ul>
+        <li><span>An account</span></li>
+        <li><span>Payment or credits</span></li>
+        <li><span>Grasshopper definitions</span></li>
+        <li><span>Python installs</span></li>
+        <li><span>Download, then import</span></li>
+      </ul>
+    </div>
+
+    <section class="block" id="install" aria-labelledby="install-title">
+      <div class="head">
+        <div>
+          <h2 id="install-title">Install with one search</h2>
+          <p>All you need is Rhino 8. No other software, no Python packages, no Grasshopper definitions.</p>
+        </div>
+      </div>
+      <div class="module">
+        <ol class="steps">
+          <li>
+            <h3>Open Package Manager</h3>
+            <p>Type this in the Rhino command line.</p>
+            <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="PackageManager copied" aria-label="Copy PackageManager"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+          </li>
+          <li>
+            <h3>Install UrbanSite</h3>
+            <p>Search for UrbanSite, install it, then restart Rhino.</p>
+            <span class="cmd"><code>UrbanSite</code><button type="button" class="copy" data-copy="UrbanSite" data-done="UrbanSite copied" aria-label="Copy UrbanSite"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+          </li>
+          <li>
+            <h3>Open the panel</h3>
+            <p>Type <code>UrbanSite</code>. The panel docks next to Rhino. For a site outside Korea, press <span class="ui">DB 없이 해외 대상지로 계속</span> (continue without the Korean database).</p>
+          </li>
+          <li>
+            <h3>Pick and generate</h3>
+            <p>Drop a point (<span class="ui">위치</span>) or draw an area (<span class="ui">구역</span>), step through extent and options, then press <span class="ui">생성 시작</span> (Generate). The 3D lands in your document; drawings land in a folder.</p>
+          </li>
+        </ol>
+        <div class="module-foot">
+          <p class="status"><span>UrbanSite is not on the Rhino package server (Yak) yet. Watch <a href="https://github.com/969flash/urbansite/releases">GitHub Releases</a> for the launch.</span></p>
+          <p>Something broke? <a href="https://github.com/969flash/urbansite/issues">GitHub Issues</a></p>
+        </div>
+      </div>
+      <div class="glossary">
+        <h3>The panel is in Korean for now. These are the words you need.</h3>
+        <dl>
+          <div><dt lang="ko">대상지</dt><dd>Site</dd></div>
+          <div><dt lang="ko">범위</dt><dd>Extent</dd></div>
+          <div><dt lang="ko">옵션</dt><dd>Options</dd></div>
+          <div><dt lang="ko">결과</dt><dd>Results</dd></div>
+          <div><dt lang="ko">위치</dt><dd>Point</dd></div>
+          <div><dt lang="ko">구역</dt><dd>Area</dd></div>
+          <div><dt lang="ko">필지</dt><dd>Parcel (Korea)</dd></div>
+          <div><dt lang="ko">반경</dt><dd>Radius</dd></div>
+          <div><dt lang="ko">다음</dt><dd>Next</dd></div>
+          <div><dt lang="ko">뒤로</dt><dd>Back</dd></div>
+          <div><dt lang="ko">생성 시작</dt><dd>Generate</dd></div>
+          <div><dt lang="ko">폴더 열기</dt><dd>Open folder</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="block" id="panel" aria-labelledby="panel-title">
+      <div class="head">
+        <div>
+          <h2 id="panel-title">One panel, docked next to Rhino</h2>
+          <p>Four steps: site, extent, options, results. The defaults are set so that clicking straight through still gives you something you can use.</p>
+        </div>
+      </div>
+      <ul class="screens">
+        <li><figure><img src="../assets/panel-site.webp" width="720" height="1350" loading="lazy" alt="Site step of the panel: a parcel in Seongsu-dong, Seoul, selected in blue on the map, with its area of 5,586 square meters below."><figcaption><b>Site</b>Click parcels, draw an area, or drop a point. Search by address.</figcaption></figure></li>
+        <li><figure><img src="../assets/panel-extent.webp" width="720" height="1350" loading="lazy" alt="Extent step: a dashed 500 m circle around the site, with cells for radius, paper size and scale."><figcaption><b>Extent</b>Choose radius, paper size and scale. Everything inside is built.</figcaption></figure></li>
+        <li><figure><img src="../assets/panel-result.webp" width="720" height="1350" loading="lazy" alt="Results step: done in 8 seconds, 3,454 buildings placed in the Rhino document, and a grid of 23 drawings below."><figcaption><b>Results</b>3D goes into the open document; drawings go to a folder and open in Illustrator.</figcaption></figure></li>
+      </ul>
+    </section>
+
+    <section class="block" id="outputs" aria-labelledby="outputs-title">
+      <div class="head">
+        <div>
+          <h2 id="outputs-title">What you get</h2>
+          <p>Each run fills one folder, named by date and site. Take it straight to the kickoff meeting, the report, or the competition board.</p>
+        </div>
+      </div>
+      <div class="module outputs">
+        <div>
+          <h3>Result folder</h3>
+<pre class="tree"><span class="dir">result/20261014/&lt;site&gt;/</span>
+├─ context.3dm      <span class="note">3D context, also placed in the open document</span>
+├─ basemap_1000.ai  <span class="note">layered vector basemap</span>
+├─ <span class="dir">sheets/</span>          <span class="note">analysis maps, SVG · AI</span>
+├─ <span class="dir">tables/</span>          <span class="note">parcel and building tables, CSV</span>
+└─ log.txt          <span class="note">sources · reference dates · warnings</span></pre>
+          <p class="small">The basemap comes on A3 or A1 paper at 1:1,000, 1:3,000 or 1:5,000. The artboard is the paper, so it drops straight onto a board.</p>
+        </div>
+        <div>
+          <h3>Layers in your Rhino document</h3>
+          <ul class="layers">
+            <li><i style="background:var(--blue)"></i>Site<span>boundary</span></li>
+            <li><i></i>Parcels<span>Korea: ID, land category, zoning</span></li>
+            <li><i style="background:var(--wall-b)"></i>Buildings<span>height from floors or OSM tags</span></li>
+            <li><i style="background:var(--grid-major)"></i>Terrain<span>mesh</span></li>
+            <li><i style="background:var(--hair)"></i>Roads<span>surfaces</span></li>
+            <li><i style="background:var(--blue-wash)"></i>Water<span>rivers, streams, ponds</span></li>
+            <li><i style="background:var(--wall-a)"></i>Green · Rail<span>parks, tracks</span></li>
+          </ul>
+          <p class="small">Objects carry their attributes as User Text, so you can select and filter them in Rhino.</p>
+        </div>
+      </div>
+
+      <div class="catalog">
+        <h3>Analysis maps <span>Korea — they need parcel and zoning data</span></h3>
+        <ol>
+          <li><b>00</b><span>Base map</span><small lang="ko">베이스맵</small></li>
+          <li><b>01</b><span>Figure-ground</span><small lang="ko">도형-배경도</small></li>
+          <li><b>02</b><span>Parcel grain</span><small lang="ko">필지 규모</small></li>
+          <li><b>03</b><span>Block density</span><small lang="ko">블록 밀도</small></li>
+          <li><b>04</b><span>Transit catchment</span><small lang="ko">대중교통 역세권</small></li>
+          <li><b>05</b><span>Walking distance</span><small lang="ko">보행권</small></li>
+          <li><b>06</b><span>Green and blue</span><small lang="ko">녹지·수계</small></li>
+          <li><b>07</b><span>Community facilities</span><small lang="ko">생활 공공시설</small></li>
+          <li><b>08</b><span>Street hierarchy</span><small lang="ko">가로 위계</small></li>
+          <li><b>09</b><span>Land use</span><small lang="ko">토지이용현황</small></li>
+          <li><b>10</b><span>Land category</span><small lang="ko">지목 현황</small></li>
+          <li><b>11</b><span>Zoning</span><small lang="ko">용도지역</small></li>
+          <li><b>12</b><span>Districts</span><small lang="ko">용도지구·구역</small></li>
+          <li><b>13</b><span>Planning facilities</span><small lang="ko">도시계획시설·지구단위계획</small></li>
+          <li><b>14</b><span>Building use</span><small lang="ko">건축물 용도</small></li>
+          <li><b>15</b><span>Building height</span><small lang="ko">건축물 층수</small></li>
+          <li><b>16</b><span>Building age</span><small lang="ko">건축물 노후도</small></li>
+          <li><b>17</b><span>Land price</span><small lang="ko">공시지가</small></li>
+          <li><b>18</b><span>Elevation</span><small lang="ko">표고</small></li>
+          <li><b>19</b><span>Slope</span><small lang="ko">경사</small></li>
+          <li class="frame"><b>20</b><span>Views</span><small>frame to draw on</small></li>
+          <li class="frame"><b>21</b><span>Image of the city</span><small>frame to draw on</small></li>
+          <li class="frame"><b>22</b><span>Synthesis</span><small>frame to draw on</small></li>
+        </ol>
+      </div>
+      <ul class="facts">
+        <li>Outside Korea, the 3D model and the basemap are the main outputs. Parcel and zoning maps need Korean data.</li>
+        <li>Every drawing prints its sources and reference dates. Public datasets are updated on different schedules.</li>
+        <li>Colors, line weights and text sizes save to a style file (JSON) you can share with your team.</li>
+      </ul>
+    </section>
+
+    <section class="block" id="ai" aria-labelledby="ai-title">
+      <div class="head">
+        <div>
+          <h2 id="ai-title">Let your AI install it</h2>
+        </div>
+      </div>
+      <div class="module ai">
+        <div>
+          <p>If an AI assistant (Claude, ChatGPT and others) drives your Rhino through Rhino MCP, have it install UrbanSite before it starts modelling context by hand. Say:</p>
+          <p class="say"><svg aria-hidden="true"><use href="#i-say"/></svg>Install the UrbanSite plugin and open its panel.</p>
+          <p>You pick the site in the panel. A plain-text summary for AI tools lives at <a href="../llms.txt">llms.txt</a>.</p>
+        </div>
+        <div>
+          <div class="code-head"><span>Install commands for agents</span><button type="button" class="copy" data-copy="#agent-cmd" data-done="Install commands copied" aria-label="Copy install commands"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></div>
+<pre class="agent" id="agent-cmd"><span class="c"># Windows</span>
+"C:\Program Files\Rhino 8\System\Yak.exe" <span class="k">install UrbanSite</span>
+
+<span class="c"># macOS</span>
+"/Applications/Rhino 8.app/Contents/Resources/bin/yak" <span class="k">install UrbanSite</span>
+
+<span class="c"># after restarting Rhino, in the command line</span>
+<span class="k">_UrbanSite</span></pre>
+          <p class="code-note">Rhino has to restart before the plugin loads. Once the panel opens, the user picks the site on the map.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="blueprint" id="free" aria-labelledby="free-title">
+    <div class="wrap">
+      <div>
+        <h2 id="free-title">Free.<br>And it stays free.</h2>
+      </div>
+      <div>
+        <p>It is built on public data, so I see no reason to put a price on it. Paying for a context model, cutting an area out of a web map, downloading and importing, wiring up Grasshopper definitions: I would rather you spent that time designing.</p>
+        <p>If it saves you time, a donation keeps it going: data updates and the next features. Donors get the same tool as everyone else.</p>
+        <div class="give">
+          <a class="btn go" href="https://github.com/sponsors/969flash">Support on GitHub Sponsors</a>
+          <small>Made and given away by one person.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="block" id="faq" aria-labelledby="faq-title">
+      <div class="head"><div><h2 id="faq-title">Questions</h2></div></div>
+      <div class="faq">
+        <details>
+          <summary>Is it really free?</summary>
+          <div><p>Yes. No account, no payment. Donations are optional and unlock nothing.</p></div>
+        </details>
+        <details>
+          <summary>Can Rhino build the surrounding buildings and terrain of a site automatically?</summary>
+          <div><p>That is what UrbanSite does. Pick a site and the buildings (masses with heights), roads, terrain mesh, water, green space and rail within the radius arrive in the open document, layer by layer. The radius goes from 100 m to 2 km.</p></div>
+        </details>
+        <details>
+          <summary>Does it work outside Korea?</summary>
+          <div><p>Yes. Buildings and roads come from OpenStreetMap and terrain from public terrain tiles, downloaded when you generate (internet needed). Building heights use OSM height and level tags, with a default where they are missing. Parcel and zoning maps are Korea only.</p></div>
+        </details>
+        <details>
+          <summary>Do I need Grasshopper or Python?</summary>
+          <div><p>No. One Rhino command (<code>UrbanSite</code>) and the panel buttons. It uses only what ships inside Rhino 8; nothing else to install.</p></div>
+        </details>
+        <details>
+          <summary>Is the interface in English?</summary>
+          <div><p>Not yet; the panel is in Korean. There are only a few buttons, and the glossary in the install section covers them.</p></div>
+        </details>
+        <details>
+          <summary>Does it run on a Mac?</summary>
+          <div><p>Yes, on Rhino 8 for Mac. It is the same panel as on Windows.</p></div>
+        </details>
+        <details>
+          <summary>What data does it send?</summary>
+          <div><p>Usage statistics go to Google Analytics so the tool can be fixed and improved: a random ID made per install, panel and Rhino versions, OS, where you generated (parcel ID or center coordinates), extent, run time, building count, and error types. No names, file paths or drawing contents.</p><p>When downloading Korean regional data, the same random ID goes to the domestic data server to count the daily download limit.</p></div>
+        </details>
+        <details>
+          <summary>Can I use the results in reports and competition boards?</summary>
+          <div><p>Yes. Keep the source line printed on each drawing. For OpenStreetMap data, credit "© OpenStreetMap contributors". Korean contour and elevation data must not be published online.</p></div>
+        </details>
+        <details>
+          <summary>Something broke. Where do I report it?</summary>
+          <div><p>Open a <a href="https://github.com/969flash/urbansite/issues">GitHub issue</a> and attach <code>log.txt</code> from the result folder.</p></div>
+        </details>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <p><b>UrbanSite</b> for Rhino 8</p>
+      <p>Made and given away free by <a href="https://github.com/969flash">969flash</a>.</p>
+    </div>
+    <div>
+      <p>Data: © OpenStreetMap contributors (ODbL) · Korea: Ministry of Land, Infrastructure and Transport, National Geographic Information Institute, Seoul Metropolitan Government (KOGL Type 1 and others; terms printed on each drawing).</p>
+      <p>Rhino and Rhinoceros are trademarks of Robert McNeel &amp; Associates. This tool is not affiliated with McNeel.</p>
+    </div>
+    <div>
+      <p><a href="https://github.com/969flash/urbansite/issues">Contact · bugs</a></p>
+      <p><a href="../llms.txt">llms.txt</a> · <a href="../" hreflang="ko" lang="ko">한국어</a></p>
+    </div>
+  </div>
+</footer>
+<p id="live" class="skip" aria-live="polite"></p>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

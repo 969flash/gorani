@@ -5,7 +5,7 @@
 
 UrbanSite builds the surrounding buildings, roads, terrain, water, green space and rail of a site as 3D layers in your open Rhino 8 document, and writes a layered Illustrator basemap, urban analysis maps and CSV tables next to it. Free, no account. Windows and macOS.
 
-UrbanSite(대지검토)는 대상지를 고르면 주변 건물·도로·지형·수계·녹지·철도를 Rhino 8 문서에 3D로 만들고, 일러스트레이터 베이스맵과 도시설계 현황·분석도, 조서 CSV를 함께 내는 무료 플러그인입니다.
+UrbanSite는 대상지를 고르면 주변 건물·도로·지형·수계·녹지·철도를 Rhino 8 문서에 3D로 만들고, 일러스트레이터 베이스맵과 도시설계 현황·분석도, 조서 CSV를 함께 내는 무료 플러그인입니다.
 
 - Website: https://969flash.github.io/urbansite/ (한국어) · https://969flash.github.io/urbansite/en/ (English)
 - For AI tools: [llms.txt](https://969flash.github.io/urbansite/llms.txt)

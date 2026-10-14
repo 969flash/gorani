@@ -28,7 +28,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "UrbanSite",
-  "alternateName": ["UrbanSite for Rhino", "대지검토"],
+  "alternateName": ["UrbanSite for Rhino"],
   "description": "A free Rhino 8 plugin that builds a site context model: pick a site and the surrounding buildings, roads, terrain, water, green space and rail are created as 3D in the open Rhino document, together with a layered Illustrator basemap and urban analysis maps.",
   "applicationCategory": "DesignApplication",
   "applicationSubCategory": "Rhino 8 plugin",
@@ -71,7 +71,6 @@
       <a href="#outputs">Outputs</a>
       <a href="#ai">AI agents</a>
       <a href="#free">Support</a>
-      <a href="#faq">FAQ</a>
     </nav>
     <a class="lang" href="../" hreflang="ko" lang="ko">한국어</a>
   </div>
@@ -301,49 +300,6 @@
     </div>
   </section>
 
-  <div class="wrap">
-    <section class="block" id="faq" aria-labelledby="faq-title">
-      <div class="head"><div><h2 id="faq-title">Questions</h2></div></div>
-      <div class="faq">
-        <details>
-          <summary>Is it really free?</summary>
-          <div><p>Yes. No account and no payment. Donations are optional and don't unlock anything.</p></div>
-        </details>
-        <details>
-          <summary>Can Rhino build the surrounding buildings and terrain of a site automatically?</summary>
-          <div><p>Yes, that's what it's for. The buildings (masses with heights from floor counts or OSM tags), roads, terrain mesh, water, green space and rail within the radius go into your document on separate layers. The radius can be anywhere from 100 m to 2 km.</p></div>
-        </details>
-        <details>
-          <summary>Does it work outside Korea?</summary>
-          <div><p>Yes. Buildings and roads come from OpenStreetMap and terrain from public terrain tiles. They are downloaded when you generate, so you need an internet connection. Building heights use OSM tags, or a default where there are none. The parcel and zoning maps only work for sites in Korea.</p></div>
-        </details>
-        <details>
-          <summary>Do I need Grasshopper or Python?</summary>
-          <div><p>No. You use one command (<code>UrbanSite</code>) and the panel. There's nothing extra to install.</p></div>
-        </details>
-        <details>
-          <summary>Is the interface in English?</summary>
-          <div><p>Not yet. The panel is in Korean, but there are only a few buttons, and the word list in the install section covers them.</p></div>
-        </details>
-        <details>
-          <summary>Does it run on a Mac?</summary>
-          <div><p>Yes, it works the same on Rhino 8 for Mac.</p></div>
-        </details>
-        <details>
-          <summary>What data does it send?</summary>
-          <div><p>It sends usage statistics to Google Analytics so I can see how the tool is used and fix problems: a random ID per install, versions and OS, where you generated (parcel ID or center coordinates), radius, run time, building count and error types. No names, file paths or drawing contents.</p><p>When you download Korean regional data, the same random ID also goes to the Korean data server to count the daily download limit.</p></div>
-        </details>
-        <details>
-          <summary>Can I use the results in reports and competition boards?</summary>
-          <div><p>Yes. Please keep the source line on each drawing, and credit "© OpenStreetMap contributors" for OSM data. Korean contour and elevation data may not be published online.</p></div>
-        </details>
-        <details>
-          <summary>Something broke. Where do I report it?</summary>
-          <div><p>Open a <a href="https://github.com/969flash/urbansite/issues">GitHub issue</a> and attach <code>log.txt</code> from the result folder.</p></div>
-        </details>
-      </div>
-    </section>
-  </div>
 </main>
 
 <footer class="foot">
@@ -354,6 +310,8 @@
     </div>
     <div>
       <p>Data: © OpenStreetMap contributors (ODbL) · Korea: Ministry of Land, Infrastructure and Transport, National Geographic Information Institute, Seoul Metropolitan Government (KOGL Type 1 and others; terms printed on each drawing).</p>
+      <p>Usage statistics: a random ID per install, versions and OS, where you generated, radius, run time and error types go to Google Analytics. No names, file paths or drawing contents.</p>
+      <p>Korean contour and elevation results may not be published online (NGII security rules).</p>
       <p>Rhino and Rhinoceros are trademarks of Robert McNeel &amp; Associates. This tool is not affiliated with McNeel.</p>
     </div>
     <div>

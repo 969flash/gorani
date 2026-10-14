@@ -272,20 +272,9 @@ pre.agent .k { color: #8CB0FF; }
 .give .btn.go:hover { background: transparent; color: var(--on-blue); }
 .give small { font-size: 14px; opacity: .85; }
 
-/* FAQ */
-.faq { border: 1px solid var(--ink); background: var(--surface); }
-.faq details { border-top: 1px solid var(--hair); }
-.faq details:first-child { border-top: 0; }
-.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; font-size: 18px; font-weight: 650; cursor: pointer; list-style: none; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: ""; width: 12px; height: 12px; flex: none; border-right: 1.5px solid var(--ink-2); border-bottom: 1.5px solid var(--ink-2); transform: translateY(-3px) rotate(45deg); transition: transform .2s; }
-.faq details[open] summary::after { transform: translateY(3px) rotate(-135deg); }
-.faq summary:hover { color: var(--blue-ink); }
-.faq details > div { padding: 0 24px 20px; color: var(--ink-2); max-width: 46em; }
-.faq details > div p { margin: 0 0 8px; }
 
 /* 꼬리 */
-.foot { margin-top: 120px; border-top: 1px solid var(--ink); background: var(--surface); font-size: 14px; color: var(--ink-2); }
+.foot { margin-top: 0; border-top: 0; background: var(--surface); font-size: 14px; color: var(--ink-2); }
 .foot .wrap { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr); gap: 32px; padding-block: 40px 56px; }
 .foot p { margin: 0 0 8px; line-height: 1.6; }
 .foot b { color: var(--ink); }
@@ -337,7 +326,5 @@ pre.agent .k { color: #8CB0FF; }
   .ai > div { padding: 24px 20px; }
   .blueprint { margin-top: 88px; }
   .blueprint .wrap { padding-block: 64px; }
-  .faq summary { padding: 16px 20px; font-size: 17px; }
-  .faq details > div { padding: 0 20px 18px; }
   .foot .wrap { grid-template-columns: 1fr; }
 }

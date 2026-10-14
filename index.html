@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UrbanSite — Rhino 대지 컨텍스트 무료 플러그인 | 주변 건물·도로·지형 자동 생성</title>
-<meta name="description" content="필지를 고르면 주변 건물·도로·지형·수계가 Rhino 8 문서에 3D로 들어오고, 일러스트레이터 베이스맵과 현황·분석도까지 한 번에 나오는 무료 플러그인. 패키지 매니저에서 설치합니다. 국내는 전국, 해외는 OpenStreetMap.">
+<title>UrbanSite — Rhino 대지 주변 모델링 무료 플러그인 (건물·도로·지형 자동 생성)</title>
+<meta name="description" content="Rhino 8에서 대상지를 고르면 주변 건물·도로·지형·하천을 3D로 만들어 주는 무료 플러그인입니다. 일러스트레이터 베이스맵과 현황도도 같이 나옵니다. 패키지 매니저에서 설치합니다.">
 <link rel="canonical" href="https://969flash.github.io/urbansite/">
 <link rel="alternate" hreflang="ko" href="https://969flash.github.io/urbansite/">
 <link rel="alternate" hreflang="en" href="https://969flash.github.io/urbansite/en/">
@@ -13,8 +13,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="UrbanSite">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="UrbanSite — 필지 하나 고르면, 동네 하나가 Rhino에">
-<meta property="og:description" content="주변 건물·도로·지형·수계를 Rhino 8에 3D로, 베이스맵·현황도까지. 무료 Rhino 플러그인.">
+<meta property="og:title" content="UrbanSite: Rhino 대지 주변 모델링 무료 플러그인">
+<meta property="og:description" content="대상지를 고르면 주변 건물·도로·지형을 Rhino에 3D로 만들어 줍니다. 무료입니다.">
 <meta property="og:url" content="https://969flash.github.io/urbansite/">
 <meta property="og:image" content="https://969flash.github.io/urbansite/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -70,7 +70,7 @@
     <nav class="nav" aria-label="페이지 안">
       <a href="#install">설치</a>
       <a href="#outputs">결과물</a>
-      <a href="#ai">AI와 함께</a>
+      <a href="#ai">AI 에이전트</a>
       <a href="#free">후원</a>
       <a href="#faq">자주 묻는 질문</a>
     </nav>
@@ -83,15 +83,15 @@
     <article class="sheet" aria-labelledby="hero-title">
       <div class="sheet-body">
         <div class="pitch">
-          <h1 id="hero-title">필지 하나 고르면,<br><em>동네 하나</em>가<br>Rhino에.</h1>
-          <p class="lead">주변 건물·도로·지형·수계가 지금 열린 Rhino 문서에 3D로 들어오고, 일러스트레이터 베이스맵과 현황·분석도가 한 폴더에 쌓입니다. <strong>무료입니다. 앞으로도.</strong></p>
+          <h1 id="hero-title">필지를 고르면<br><em>주변 건물과 지형</em>이<br>Rhino에 들어옵니다.</h1>
+          <p class="lead">UrbanSite는 Rhino 8 플러그인입니다. 지도에서 대상지를 고르면 반경 안의 건물, 도로, 지형, 하천을 지금 열려 있는 문서에 3D로 만들고, 일러스트레이터 베이스맵과 현황도도 같이 뽑아 줍니다. <strong>무료입니다.</strong></p>
           <div class="acts">
             <a class="btn go" href="#install">설치 방법</a>
             <a class="btn" href="https://github.com/969flash/urbansite"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
           </div>
         </div>
         <figure class="drawing">
-          <canvas id="axon" data-site="대상지" data-radius="반경 {r}" role="img" aria-label="파란 대상지 필지를 가운데 두고 반경 안의 건물·필지·하천·언덕을 축측으로 그린 도해"></canvas>
+          <canvas id="axon" data-site="대상지" data-radius="반경 {r}" role="img" aria-label="파란 대상지 필지를 가운데 두고 반경 안의 건물·필지·하천·언덕을 축측으로 그린 예시 그림"></canvas>
           <div class="drawing-bar">
             <span class="label" id="range-label">범위</span>
             <div class="cells" role="group" aria-labelledby="range-label">
@@ -99,17 +99,17 @@
               <button type="button" class="cell" data-r="500" aria-pressed="true">500 m</button>
               <button type="button" class="cell" data-r="1000" aria-pressed="false">1 km</button>
             </div>
-            <figcaption>합성 데이터로 그린 도해입니다</figcaption>
+            <figcaption>가상 데이터로 그린 예시</figcaption>
           </div>
         </figure>
       </div>
       <dl class="titleblock">
-        <div><dt>용도</dt><dd>도시설계·건축 착수용 대지 컨텍스트</dd></div>
-        <div><dt>가격</dt><dd>0원, 후원으로 운영</dd></div>
-        <div><dt>환경</dt><dd>Rhino 8 · Windows · macOS</dd></div>
-        <div><dt>국내</dt><dd>전국 시군구 지적·건물·지형·용도지역</dd></div>
-        <div><dt>해외</dt><dd>OpenStreetMap · 지형 타일</dd></div>
-        <div><dt>설치</dt><dd>패키지 매니저 → UrbanSite</dd></div>
+        <div><dt>만드는 것</dt><dd>주변 3D 모델, 베이스맵, 현황도</dd></div>
+        <div><dt>가격</dt><dd>무료 (후원 받습니다)</dd></div>
+        <div><dt>환경</dt><dd>Rhino 8 (Windows, Mac)</dd></div>
+        <div><dt>국내</dt><dd>전국, 필지·용도지역 포함</dd></div>
+        <div><dt>해외</dt><dd>OpenStreetMap 건물·도로, 지형</dd></div>
+        <div><dt>설치</dt><dd>패키지 매니저에서 UrbanSite 검색</dd></div>
       </dl>
     </article>
 
@@ -117,44 +117,44 @@
       <span>필요 없는 것</span>
       <ul>
         <li><span>회원가입</span></li>
-        <li><span>결제·크레딧</span></li>
-        <li><span>그래스호퍼 정의 파일</span></li>
+        <li><span>결제</span></li>
+        <li><span>그래스호퍼</span></li>
         <li><span>파이썬 설치</span></li>
-        <li><span>웹에서 받아 Import</span></li>
+        <li><span>파일 받아서 Import</span></li>
       </ul>
     </div>
 
     <section class="block" id="install" aria-labelledby="install-title">
       <div class="head">
         <div>
-          <h2 id="install-title">설치는 검색 한 번</h2>
-          <p>Rhino 8만 있으면 됩니다. 다른 프로그램도, 파이썬 패키지도, 그래스호퍼 정의 파일도 필요 없습니다.</p>
+          <h2 id="install-title">설치 방법</h2>
+          <p>Rhino 8만 있으면 됩니다. 그래스호퍼나 파이썬은 몰라도 됩니다.</p>
         </div>
       </div>
       <div class="module">
         <ol class="steps">
           <li>
             <h3>패키지 매니저 열기</h3>
-            <p>Rhino 명령창에 입력합니다.</p>
+            <p>Rhino 명령창에 아래 명령을 입력합니다.</p>
             <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="PackageManager 복사됨" aria-label="PackageManager 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
           </li>
           <li>
             <h3>UrbanSite 설치</h3>
-            <p>검색칸에 UrbanSite를 넣고 설치한 뒤, Rhino를 껐다 켭니다.</p>
+            <p>UrbanSite를 검색해 설치하고 Rhino를 다시 켭니다.</p>
             <span class="cmd"><code>UrbanSite</code><button type="button" class="copy" data-copy="UrbanSite" data-done="UrbanSite 복사됨" aria-label="UrbanSite 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
           </li>
           <li>
             <h3>패널 열기</h3>
-            <p>명령창에 <code>UrbanSite</code>를 입력하면 대지검토 패널이 붙습니다. 국내 대상지는 처음 한 번 지역 데이터를 받습니다: <span class="ui">지도에서 지역 골라 받기</span>, 지도를 옮기고 <span class="ui">받기</span>. 시군구 하나에 수십 MB입니다.</p>
+            <p>명령창에 <code>UrbanSite</code>를 입력하면 대지검토 패널이 열립니다. 국내 대상지는 처음에 그 지역 데이터를 한 번 받아야 합니다. <span class="ui">지도에서 지역 골라 받기</span>를 누르고, 지도를 대상지 쪽으로 옮긴 다음 <span class="ui">받기</span>를 누르세요. 구 하나에 수십 MB입니다.</p>
           </li>
           <li>
-            <h3>고르고 생성</h3>
-            <p>필지를 누르거나, 구역을 그리거나, 위치를 찍습니다. 범위와 옵션을 지나 <span class="ui">생성 시작</span>을 누르면 3D가 문서에 들어오고 도면이 폴더에 쌓입니다.</p>
+            <h3>대상지 고르고 생성</h3>
+            <p>필지를 클릭하거나 구역을 그린 뒤 <span class="ui">생성 시작</span>을 누릅니다. 3D 모델은 지금 문서에 들어가고 도면은 결과 폴더에 저장됩니다.</p>
           </li>
         </ol>
         <div class="module-foot">
-          <p class="status"><span>지금은 Rhino 패키지 서버(Yak) 등록 전입니다. 등록되면 <a href="https://github.com/969flash/urbansite/releases">GitHub Releases</a>로 알립니다.</span></p>
-          <p>문제가 생기면 <a href="https://github.com/969flash/urbansite/issues">GitHub Issues</a></p>
+          <p class="status"><span>아직 Rhino 패키지 서버(Yak)에 올리기 전입니다. 올라가면 <a href="https://github.com/969flash/urbansite/releases">GitHub Releases</a>에 알리겠습니다.</span></p>
+          <p>버그는 <a href="https://github.com/969flash/urbansite/issues">GitHub Issues</a>에 남겨 주세요</p>
         </div>
       </div>
     </section>
@@ -162,37 +162,37 @@
     <section class="block" id="panel" aria-labelledby="panel-title">
       <div class="head">
         <div>
-          <h2 id="panel-title">Rhino 옆에 붙는 패널 하나</h2>
-          <p>단계는 넷, 대상지·범위·옵션·결과입니다. 기본값 그대로 끝까지 가도 바로 쓸 수 있는 결과가 나오게 맞춰 두었습니다.</p>
+          <h2 id="panel-title">이렇게 생겼습니다</h2>
+          <p>Rhino 옆에 패널로 붙고, 대상지 → 범위 → 옵션 → 결과 순서로 넘어갑니다. 옵션은 기본값으로 둬도 됩니다.</p>
         </div>
       </div>
       <ul class="screens">
-        <li><figure><img src="assets/panel-site.webp" width="720" height="1350" loading="lazy" alt="대지검토 패널의 대상지 단계. 지도에서 성수동2가 333-139 필지가 파랗게 선택되어 있고 아래에 면적 5,586 제곱미터가 보인다."><figcaption><b>대상지</b>필지를 누르거나, 구역을 그리거나, 위치를 찍습니다. 주소·지번·PNU로 찾을 수 있습니다.</figcaption></figure></li>
-        <li><figure><img src="assets/panel-extent.webp" width="720" height="1350" loading="lazy" alt="범위 단계. 대상지 둘레에 반경 500 m 원이 점선으로 그려져 있고 반경·용지·축척을 고르는 칸이 있다."><figcaption><b>범위</b>반경과 용지·축척을 고릅니다. 범위 안의 건물·지형·도로가 만들어집니다.</figcaption></figure></li>
-        <li><figure><img src="assets/panel-result.webp" width="720" height="1350" loading="lazy" alt="결과 단계. 생성 완료 8초, Rhino 문서에 건물 3,454동이 들어갔고 아래에 도면 23장 목록이 칸으로 나열되어 있다."><figcaption><b>결과</b>3D는 열린 문서에, 도면은 폴더에. 도면은 일러스트레이터에서 바로 열립니다.</figcaption></figure></li>
+        <li><figure><img src="assets/panel-site.webp" width="720" height="1350" loading="lazy" alt="대지검토 패널의 대상지 단계. 지도에서 성수동2가 333-139 필지가 파랗게 선택되어 있고 아래에 면적 5,586 제곱미터가 보인다."><figcaption><b>대상지</b>필지를 클릭하거나 구역을 그리거나 위치를 찍습니다. 주소나 지번으로 검색할 수 있습니다.</figcaption></figure></li>
+        <li><figure><img src="assets/panel-extent.webp" width="720" height="1350" loading="lazy" alt="범위 단계. 대상지 둘레에 반경 500 m 원이 점선으로 그려져 있고 반경·용지·축척을 고르는 칸이 있다."><figcaption><b>범위</b>반경, 용지, 축척을 정합니다. 점선 원 안쪽이 모델링됩니다.</figcaption></figure></li>
+        <li><figure><img src="assets/panel-result.webp" width="720" height="1350" loading="lazy" alt="결과 단계. 생성 완료 8초, Rhino 문서에 건물 3,454동이 들어갔고 아래에 도면 23장 목록이 칸으로 나열되어 있다."><figcaption><b>결과</b>3D 모델은 이미 문서에 들어가 있고, 도면은 결과 폴더에서 일러스트레이터로 열면 됩니다.</figcaption></figure></li>
       </ul>
     </section>
 
     <section class="block" id="outputs" aria-labelledby="outputs-title">
       <div class="head">
         <div>
-          <h2 id="outputs-title">나오는 것</h2>
-          <p>결과는 날짜·대상지별 폴더 하나에 모입니다. 착수 회의, 보고서, 공모전 보드에 그대로 가져가세요.</p>
+          <h2 id="outputs-title">결과물</h2>
+          <p>생성할 때마다 날짜와 대상지 이름으로 폴더가 하나 만들어집니다.</p>
         </div>
       </div>
       <div class="module outputs">
         <div>
           <h3>결과 폴더</h3>
 <pre class="tree"><span class="dir">result/20261014/성수동2가_333-139/</span>
-├─ context.3dm      <span class="note">3D 컨텍스트, 열린 문서에도 바로 들어갑니다</span>
-├─ basemap_1000.ai  <span class="note">레이어가 나뉜 벡터 베이스맵</span>
-├─ <span class="dir">sheets/</span>          <span class="note">현황·분석도 SVG · AI</span>
-├─ <span class="dir">tables/</span>          <span class="note">필지·건물 조서 CSV</span>
-└─ log.txt          <span class="note">출처 · 기준일 · 경고</span></pre>
-          <p class="small">베이스맵은 A3·A1 용지에 1:1,000·1:3,000·1:5,000. 아트보드가 곧 용지라서 일러스트레이터에서 열자마자 판에 얹을 수 있습니다.</p>
+├─ context.3dm      <span class="note">3D 모델 (문서에도 들어감)</span>
+├─ basemap_1000.ai  <span class="note">일러스트레이터 베이스맵</span>
+├─ <span class="dir">sheets/</span>          <span class="note">현황도·분석도 (SVG, AI)</span>
+├─ <span class="dir">tables/</span>          <span class="note">필지·건물 조서 (CSV)</span>
+└─ log.txt          <span class="note">데이터 출처와 기준일</span></pre>
+          <p class="small">베이스맵은 A3나 A1 용지, 1:1,000~1:5,000 축척으로 나옵니다. 아트보드 크기가 용지 크기와 같습니다.</p>
         </div>
         <div>
-          <h3>Rhino 문서의 레이어</h3>
+          <h3>Rhino에 들어오는 레이어</h3>
           <ul class="layers">
             <li><i style="background:var(--blue)"></i>대상지<span>필지 경계</span></li>
             <li><i></i>필지<span>PNU·지목·용도지역</span></li>
@@ -202,12 +202,12 @@
             <li><i style="background:var(--blue-wash)"></i>수계<span>하천·구거·유지</span></li>
             <li><i style="background:var(--wall-a)"></i>녹지 · 철도<span>공원·임야, 선로</span></li>
           </ul>
-          <p class="small">객체마다 속성이 User Text로 붙어 있어 Rhino에서 바로 골라 쓸 수 있습니다.</p>
+          <p class="small">건물과 필지에는 PNU, 층수, 용도 같은 속성이 User Text로 들어 있습니다.</p>
         </div>
       </div>
 
       <div class="catalog">
-        <h3>베이스맵 <span>모든 도면이 같은 바탕·같은 틀을 씁니다</span></h3>
+        <h3>베이스맵 <span>모든 도면의 바탕</span></h3>
         <ol>
           <li><b>00</b><span>베이스맵</span></li>
         </ol>
@@ -236,7 +236,7 @@
           <li><b>18</b><span>표고</span></li>
           <li><b>19</b><span>경사</span></li>
         </ol>
-        <h3>직접 그리는 틀 <span>바탕과 범례 자리만 깔아 둡니다</span></h3>
+        <h3>직접 그리는 틀 <span>바탕과 범례만 깔린 빈 도면</span></h3>
         <ol>
           <li class="frame"><b>20</b><span>경관·조망</span></li>
           <li class="frame"><b>21</b><span>이미지맵</span></li>
@@ -244,23 +244,23 @@
         </ol>
       </div>
       <ul class="facts">
-        <li>도면마다 출처와 기준일이 찍힙니다. 공공데이터는 자료마다 날짜가 달라서입니다.</li>
-        <li>용도지역·토지이용처럼 법·관행으로 정해진 색은 기본으로 잠겨 있습니다.</li>
-        <li>색·선 굵기·글자 크기는 스타일 파일(JSON)로 저장해 팀과 나눠 쓸 수 있습니다.</li>
+        <li>도면마다 데이터 출처와 기준일이 적힙니다.</li>
+        <li>용도지역·토지이용 색은 관행 색 그대로 고정돼 있습니다.</li>
+        <li>색, 선 굵기, 글자 크기를 바꿔 스타일 파일(JSON)로 저장할 수 있습니다.</li>
       </ul>
     </section>
 
     <section class="block" id="ai" aria-labelledby="ai-title">
       <div class="head">
         <div>
-          <h2 id="ai-title">AI에게 시켜도 됩니다</h2>
+          <h2 id="ai-title">AI 에이전트로 쓸 때</h2>
         </div>
       </div>
       <div class="module ai">
         <div>
-          <p>Rhino MCP로 AI(Claude, ChatGPT 등)에게 Rhino를 맡기고 있다면, 주변 건물을 하나씩 그리게 하기 전에 UrbanSite부터 설치하게 하세요. 이렇게 말하면 됩니다.</p>
-          <p class="say"><svg aria-hidden="true"><use href="#i-say"/></svg>UrbanSite 플러그인 설치하고 대지검토 패널 열어 줘.</p>
-          <p>대상지는 패널에서 직접 고릅니다. AI 도구가 읽기 좋게 정리한 요약은 <a href="llms.txt">llms.txt</a>에 있습니다.</p>
+          <p>Claude나 ChatGPT를 Rhino MCP로 연결해 쓰고 있다면, AI에게 주변 건물을 하나씩 그리게 하지 말고 이 플러그인을 설치하게 하세요. 그게 더 빠르고 정확합니다. 예를 들면 이렇게 말하면 됩니다.</p>
+          <p class="say"><svg aria-hidden="true"><use href="#i-say"/></svg>UrbanSite 플러그인 설치하고 대지검토 패널 열어 줘</p>
+          <p>대상지 선택은 패널에서 직접 합니다. AI가 읽을 설명은 <a href="llms.txt">llms.txt</a>에 따로 정리해 두었습니다.</p>
         </div>
         <div>
           <div class="code-head"><span>에이전트용 설치 명령</span><button type="button" class="copy" data-copy="#agent-cmd" data-done="설치 명령 복사됨" aria-label="설치 명령 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></div>
@@ -272,7 +272,7 @@
 
 <span class="c"># Rhino를 다시 켠 뒤 명령창에</span>
 <span class="k">_UrbanSite</span></pre>
-          <p class="code-note">설치는 Rhino를 다시 켜야 반영됩니다. 패널이 열리면 사용자가 지도에서 대상지를 고르면 됩니다.</p>
+          <p class="code-note">설치 후 Rhino를 재시작해야 플러그인이 로드됩니다.</p>
         </div>
       </div>
     </section>
@@ -281,15 +281,15 @@
   <section class="blueprint" id="free" aria-labelledby="free-title">
     <div class="wrap">
       <div>
-        <h2 id="free-title">무료입니다.<br>앞으로도.</h2>
+        <h2 id="free-title">무료입니다</h2>
       </div>
       <div>
-        <p>공공데이터로 만든 도구라 값을 매길 이유가 없다고 생각했습니다. 대지 주변 모델 하나 얻자고 결제하고, 웹에서 영역을 잘라 파일을 받아 Import하고, 그래스호퍼 정의를 이어 붙이는 시간. 그 시간을 설계에 쓰셨으면 합니다.</p>
-        <p>쓸 만했다면 후원으로 응원해 주세요. 데이터 갱신과 다음 기능을 만드는 데 씁니다. 후원해도, 안 해도 기능은 같습니다.</p>
+        <p>대지 주변 모델 하나 만드는 데 돈을 낼 이유는 없다고 생각합니다. 쓰는 데이터는 모두 공공데이터이고, 계산은 각자 컴퓨터의 Rhino 안에서 돌아갑니다. 그래서 무료로 공개했습니다.</p>
+        <p>써 보고 도움이 됐다면 후원해 주세요. 데이터 갱신과 기능 추가에 쓰겠습니다. 후원 여부와 관계없이 기능은 똑같습니다.</p>
         <div class="give">
           <a class="btn go" href="https://github.com/sponsors/969flash">GitHub Sponsors로 후원</a>
           <a class="btn" href="#todo-toss">토스로 후원</a>
-          <small>개인이 만들고 무료로 공개하는 도구입니다.</small>
+          <small>개인 프로젝트입니다.</small>
         </div>
       </div>
     </div>
@@ -301,39 +301,39 @@
       <div class="faq">
         <details>
           <summary>정말 무료인가요?</summary>
-          <div><p>네. 가입도 결제도 없습니다. 후원은 선택이고, 후원 여부로 기능이 달라지지 않습니다.</p></div>
+          <div><p>네. 가입이나 결제 없이 씁니다. 후원은 선택이고, 후원한다고 기능이 달라지지 않습니다.</p></div>
         </details>
         <details>
           <summary>그래스호퍼나 파이썬을 알아야 하나요?</summary>
-          <div><p>아니요. Rhino 명령 하나(<code>UrbanSite</code>)와 패널 버튼만 씁니다. 파이썬 패키지도 따로 깔지 않고, Rhino 8에 들어 있는 것만 씁니다.</p></div>
+          <div><p>아니요. 명령어 하나(<code>UrbanSite</code>)와 패널 버튼만 씁니다. 따로 설치할 파이썬 패키지도 없습니다.</p></div>
         </details>
         <details>
           <summary>Rhino에서 대지 주변 건물·지형을 자동으로 만들 수 있나요?</summary>
-          <div><p>그게 이 도구가 하는 일입니다. 대상지를 고르면 반경 안의 건물(층수로 높이를 잡은 매스), 도로, 지형 메시, 하천, 녹지, 철도가 열린 문서에 레이어별로 들어옵니다. 반경은 100 m부터 2 km까지 고릅니다.</p></div>
+          <div><p>네. 대상지를 고르면 반경 안의 건물(층수로 높이 계산), 도로, 지형 메시, 하천, 녹지, 철도가 레이어별로 들어옵니다. 반경은 100 m에서 2 km 사이로 정합니다.</p></div>
         </details>
         <details>
           <summary>해외 대상지도 되나요?</summary>
-          <div><p>됩니다. 건물·도로는 OpenStreetMap에서, 지형은 공개 지형 타일에서 생성할 때 받습니다(인터넷 필요). 건물 높이는 OSM의 높이·층수 태그를 쓰고, 없으면 기본값입니다. 필지·용도지역 도면은 국내만 나옵니다.</p></div>
+          <div><p>됩니다. 건물과 도로는 OpenStreetMap, 지형은 공개 지형 타일에서 생성할 때 받아 오기 때문에 인터넷이 필요합니다. 건물 높이는 OSM 태그를 쓰고, 태그가 없으면 기본값이 들어갑니다. 필지·용도지역 도면은 국내 대상지에서만 나옵니다.</p></div>
         </details>
         <details>
           <summary>Mac에서도 되나요?</summary>
-          <div><p>Rhino 8 for Mac에서 됩니다. Windows와 같은 패널입니다.</p></div>
+          <div><p>네. Rhino 8 for Mac에서도 Windows와 똑같이 씁니다.</p></div>
         </details>
         <details>
           <summary>데이터는 어디서 오고, 얼마나 최신인가요?</summary>
-          <div><p>국토교통부(GIS건물통합정보·토지특성정보·토지이용계획정보), 국토지리정보원(수치지형도 1:5,000), 서울특별시(UPIS)의 공개 데이터입니다. 자료마다 기준일이 달라서 패널과 모든 도면에 기준일을 함께 적습니다. 도면은 정보 제공용이며 법적 효력이 없습니다.</p></div>
+          <div><p>국토교통부(GIS건물통합정보, 토지특성정보, 토지이용계획정보), 국토지리정보원(수치지형도 1:5,000), 서울시(UPIS)의 공개 데이터입니다. 자료마다 기준일이 달라서 패널과 도면에 기준일을 같이 적어 둡니다. 법적 효력은 없습니다.</p></div>
         </details>
         <details>
           <summary>결과를 보고서나 공모전 패널에 써도 되나요?</summary>
-          <div><p>됩니다. 도면에 찍힌 출처 줄은 남겨 주세요. 다만 등고선·표고가 든 결과물(3dm·베이스맵)은 인터넷에 공개하지 마세요. 국토지리정보원 보안관리규정에 따른 제한입니다.</p></div>
+          <div><p>됩니다. 도면 아래 출처 표기만 지우지 말아 주세요. 다만 등고선이나 표고가 들어간 파일(3dm, 베이스맵)은 인터넷에 올리면 안 됩니다. 국토지리정보원 보안관리규정 때문입니다.</p></div>
         </details>
         <details>
           <summary>어떤 정보를 보내나요?</summary>
-          <div><p>도구를 고치려고 Google Analytics로 사용 통계를 보냅니다: 설치마다 만든 무작위 ID, 패널·Rhino 버전과 OS, 생성한 대상지 위치(필지 번호·중심 좌표), 범위·걸린 시간·건물 수, 오류 종류. 이름·파일 경로·도면 내용은 보내지 않습니다.</p><p>국내 지역 데이터를 받을 때는 하루 받기 한도를 세려고 같은 무작위 ID를 국내 서버에 함께 보냅니다.</p></div>
+          <div><p>어디서 어떻게 쓰이는지 보고 고치려고 Google Analytics로 사용 통계를 보냅니다. 보내는 것은 설치마다 만든 무작위 ID, 버전과 OS, 생성한 대상지 위치(필지 번호나 중심 좌표), 범위, 걸린 시간, 건물 수, 오류 종류입니다. 이름, 파일 경로, 도면 내용은 보내지 않습니다.</p><p>국내 데이터를 받을 때는 하루 다운로드 한도를 세려고 같은 ID를 국내 서버에도 보냅니다.</p></div>
         </details>
         <details>
           <summary>문제가 생기면 어디에 알리나요?</summary>
-          <div><p><a href="https://github.com/969flash/urbansite/issues">GitHub Issues</a>에 남겨 주세요. 결과 폴더의 <code>log.txt</code>를 붙여 주시면 빨리 고칠 수 있습니다.</p></div>
+          <div><p><a href="https://github.com/969flash/urbansite/issues">GitHub Issues</a>에 남겨 주세요. 결과 폴더의 <code>log.txt</code>를 같이 올려 주시면 원인을 찾기 쉽습니다.</p></div>
         </details>
       </div>
     </section>
@@ -344,7 +344,7 @@
   <div class="wrap">
     <div>
       <p><b>UrbanSite</b> · 대지검토</p>
-      <p>개인이 만들고 무료로 공개하는 Rhino 8 플러그인. 제작 <a href="https://github.com/969flash">969flash</a></p>
+      <p>Rhino 8 플러그인. 만든 사람 <a href="https://github.com/969flash">969flash</a></p>
     </div>
     <div>
       <p>데이터: 국토교통부 · 국토지리정보원 · 서울특별시(공공누리 제1유형 등, 이용 조건은 도면 출처 줄에 표기) · © OpenStreetMap contributors (ODbL)</p>

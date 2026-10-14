@@ -1,7 +1,7 @@
 # UrbanSite — free Rhino 8 plugin for site context models
 
-**Pick a site. Get the neighborhood in Rhino.**
-필지 하나 고르면, 동네 하나가 Rhino에.
+**The city around your site, modeled in Rhino.**
+필지를 고르면 주변 건물과 지형이 Rhino에 들어옵니다.
 
 UrbanSite builds the surrounding buildings, roads, terrain, water, green space and rail of a site as 3D layers in your open Rhino 8 document, and writes a layered Illustrator basemap, urban analysis maps and CSV tables next to it. Free, no account. Windows and macOS.
 

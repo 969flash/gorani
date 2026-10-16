@@ -2,6 +2,19 @@
 (function () {
   "use strict";
 
+  // ── 방문 통계 — 웹사이트 전용 GA4 속성(플러그인 속성과 섞지 않는다). 비면 보내지 않는다 ──
+  var GA_ID = "";
+  if (GA_ID) {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", GA_ID);
+    var tag = document.createElement("script");
+    tag.async = true;
+    tag.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+    document.head.appendChild(tag);
+  }
+
   // ── 복사 버튼 ───────────────────────────
   var live = document.getElementById("live");
   document.querySelectorAll("[data-copy]").forEach(function (btn) {

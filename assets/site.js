@@ -10,6 +10,7 @@
       var text = src.charAt(0) === "#" ? document.querySelector(src).textContent.trim() : src;
       navigator.clipboard.writeText(text).then(function () {
         btn.classList.add("done");
+        if (window.gtag) gtag("event", "copy_command", { command: src.replace("#", "") });   // 설치 명령 복사 = 설치 의도
         if (live) live.textContent = btn.getAttribute("data-done") || "Copied";
         setTimeout(function () { btn.classList.remove("done"); }, 1600);
       });

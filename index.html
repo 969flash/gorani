@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UrbanSite — Rhino 대지 주변 모델링 무료 플러그인 (건물·도로·지형 자동 생성)</title>
+<title>Gorani — Rhino 대지 주변 모델링 무료 플러그인 (건물·도로·지형 자동 생성)</title>
 <meta name="description" content="Rhino 8에서 대상지를 고르면 주변 건물·도로·지형·하천을 3D로 만들어 주는 무료 플러그인입니다. 일러스트레이터 베이스맵과 현황도도 같이 나옵니다. 패키지 매니저에서 설치합니다.">
-<link rel="canonical" href="https://969flash.github.io/urbansite/">
-<link rel="alternate" hreflang="ko" href="https://969flash.github.io/urbansite/">
-<link rel="alternate" hreflang="en" href="https://969flash.github.io/urbansite/en/">
-<link rel="alternate" hreflang="x-default" href="https://969flash.github.io/urbansite/en/">
-<link rel="alternate" type="text/plain" title="llms.txt" href="https://969flash.github.io/urbansite/llms.txt">
+<link rel="canonical" href="https://969flash.github.io/gorani/">
+<link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
+<link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
+<link rel="alternate" hreflang="x-default" href="https://969flash.github.io/gorani/en/">
+<link rel="alternate" type="text/plain" title="llms.txt" href="https://969flash.github.io/gorani/llms.txt">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="UrbanSite">
+<meta property="og:site_name" content="Gorani">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="UrbanSite: Rhino 대지 주변 모델링 무료 플러그인">
+<meta property="og:title" content="Gorani: Rhino 대지 주변 모델링 무료 플러그인">
 <meta property="og:description" content="대상지를 고르면 주변 건물·도로·지형을 Rhino에 3D로 만들어 줍니다. 무료입니다.">
-<meta property="og:url" content="https://969flash.github.io/urbansite/">
-<meta property="og:image" content="https://969flash.github.io/urbansite/assets/og.png">
+<meta property="og:url" content="https://969flash.github.io/gorani/">
+<meta property="og:image" content="https://969flash.github.io/gorani/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F5F7FA">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -27,8 +27,8 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "UrbanSite",
-  "alternateName": ["UrbanSite for Rhino"],
+  "name": "Gorani",
+  "alternateName": ["Gorani for Rhino"],
   "description": "필지나 위치를 고르면 주변 건물·도로·지형·수계를 Rhino 8 문서에 3D로 만들고, 일러스트레이터 베이스맵과 도시설계 현황·분석도를 함께 내는 무료 Rhino 플러그인.",
   "applicationCategory": "DesignApplication",
   "applicationSubCategory": "Rhino 8 plugin",
@@ -38,7 +38,7 @@
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
   "inLanguage": "ko",
-  "url": "https://969flash.github.io/urbansite/",
+  "url": "https://969flash.github.io/gorani/",
   "author": { "@type": "Person", "name": "969flash", "url": "https://github.com/969flash" },
   "featureList": [
     "주변 건물 매스(층수 기반 높이)·도로·지형 메시·수계·녹지·철도를 Rhino 문서에 3D로 생성",
@@ -63,9 +63,9 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="./" aria-label="UrbanSite 처음으로">
+    <a class="brand" href="./" aria-label="Gorani 처음으로">
       <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/><path d="M1 11h30M1 21h30M11 1v30M21 1v30" stroke="var(--hair)" stroke-width="1.5"/><path d="M11 11h10v10H11z" fill="var(--blue)"/></svg>
-      <b>UrbanSite</b><span>Rhino 8 플러그인</span>
+      <b>Gorani</b><span>Rhino 8 플러그인</span>
     </a>
     <nav class="nav" aria-label="페이지 안">
       <a href="#install">설치</a>
@@ -83,10 +83,10 @@
       <div class="sheet-body">
         <div class="pitch">
           <h1 id="hero-title">필지를 고르면<br><em>주변 건물과 지형</em>이<br>Rhino에 들어옵니다.</h1>
-          <p class="lead">UrbanSite는 Rhino 8 플러그인입니다. 지도에서 대상지를 고르면 반경 안의 건물, 도로, 지형, 하천을 지금 열려 있는 문서에 3D로 만들고, 일러스트레이터 베이스맵과 현황도도 같이 뽑아 줍니다. <strong>무료입니다.</strong></p>
+          <p class="lead">Gorani는 Rhino 8 플러그인입니다. 지도에서 대상지를 고르면 반경 안의 건물, 도로, 지형, 하천을 지금 열려 있는 문서에 3D로 만들고, 일러스트레이터 베이스맵과 현황도도 같이 뽑아 줍니다. <strong>무료입니다.</strong></p>
           <div class="acts">
             <a class="btn go" href="#install">설치 방법</a>
-            <a class="btn" href="https://github.com/969flash/urbansite"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
+            <a class="btn" href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
           </div>
         </div>
         <figure class="drawing">
@@ -108,7 +108,7 @@
         <div><dt>환경</dt><dd>Rhino 8 (Windows, Mac)</dd></div>
         <div><dt>국내</dt><dd>전국, 필지·용도지역 포함</dd></div>
         <div><dt>해외</dt><dd>OpenStreetMap 건물·도로, 지형</dd></div>
-        <div><dt>설치</dt><dd>패키지 매니저에서 UrbanSite 검색</dd></div>
+        <div><dt>설치</dt><dd>패키지 매니저에서 Gorani 검색</dd></div>
       </dl>
     </article>
 
@@ -138,13 +138,13 @@
             <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="PackageManager 복사됨" aria-label="PackageManager 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
           </li>
           <li>
-            <h3>UrbanSite 설치</h3>
-            <p>UrbanSite를 검색해 설치하고 Rhino를 다시 켭니다.</p>
-            <span class="cmd"><code>UrbanSite</code><button type="button" class="copy" data-copy="UrbanSite" data-done="UrbanSite 복사됨" aria-label="UrbanSite 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            <h3>Gorani 설치</h3>
+            <p>Gorani를 검색해 설치하고 Rhino를 다시 켭니다.</p>
+            <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Gorani 복사됨" aria-label="Gorani 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
           </li>
           <li>
             <h3>패널 열기</h3>
-            <p>명령창에 <code>UrbanSite</code>를 입력하면 UrbanSite 패널이 열립니다. 국내 대상지는 처음에 그 지역 데이터를 한 번 받아야 합니다. <span class="ui">지도에서 지역 골라 받기</span>를 누르고, 지도를 대상지 쪽으로 옮긴 다음 <span class="ui">받기</span>를 누르세요. 구 하나에 수십 MB입니다.</p>
+            <p>명령창에 <code>Gorani</code>를 입력하면 Gorani 패널이 열립니다. 국내 대상지는 처음에 그 지역 데이터를 한 번 받아야 합니다. <span class="ui">지도에서 지역 골라 받기</span>를 누르고, 지도를 대상지 쪽으로 옮긴 다음 <span class="ui">받기</span>를 누르세요. 구 하나에 수십 MB입니다.</p>
           </li>
           <li>
             <h3>대상지 고르고 생성</h3>
@@ -152,8 +152,8 @@
           </li>
         </ol>
         <div class="module-foot">
-          <p class="status"><span>아직 Rhino 패키지 서버(Yak)에 올리기 전입니다. 올라가면 <a href="https://github.com/969flash/urbansite/releases">GitHub Releases</a>에 알리겠습니다.</span></p>
-          <p>버그는 <a href="https://github.com/969flash/urbansite/issues">GitHub Issues</a>에 남겨 주세요</p>
+          <p class="status"><span>아직 Rhino 패키지 서버(Yak)에 올리기 전입니다. 올라가면 <a href="https://github.com/969flash/gorani/releases">GitHub Releases</a>에 알리겠습니다.</span></p>
+          <p>버그는 <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a>에 남겨 주세요</p>
         </div>
       </div>
     </section>
@@ -166,7 +166,7 @@
         </div>
       </div>
       <ul class="screens">
-        <li><figure><img src="assets/panel-site.webp" width="720" height="1350" loading="lazy" alt="UrbanSite 패널의 대상지 단계. 지도에서 성수동2가 333-139 필지가 파랗게 선택되어 있고 아래에 면적 5,586 제곱미터가 보인다."><figcaption><b>대상지</b>필지를 클릭하거나 구역을 그리거나 위치를 찍습니다. 주소나 지번으로 검색할 수 있습니다.</figcaption></figure></li>
+        <li><figure><img src="assets/panel-site.webp" width="720" height="1350" loading="lazy" alt="Gorani 패널의 대상지 단계. 지도에서 성수동2가 333-139 필지가 파랗게 선택되어 있고 아래에 면적 5,586 제곱미터가 보인다."><figcaption><b>대상지</b>필지를 클릭하거나 구역을 그리거나 위치를 찍습니다. 주소나 지번으로 검색할 수 있습니다.</figcaption></figure></li>
         <li><figure><img src="assets/panel-extent.webp" width="720" height="1350" loading="lazy" alt="범위 단계. 대상지 둘레에 반경 500 m 원이 점선으로 그려져 있고 반경·용지·축척을 고르는 칸이 있다."><figcaption><b>범위</b>반경, 용지, 축척을 정합니다. 점선 원 안쪽이 모델링됩니다.</figcaption></figure></li>
         <li><figure><img src="assets/panel-result.webp" width="720" height="1350" loading="lazy" alt="결과 단계. 생성 완료 8초, Rhino 문서에 건물 3,454동이 들어갔고 아래에 도면 23장 목록이 칸으로 나열되어 있다."><figcaption><b>결과</b>3D 모델은 이미 문서에 들어가 있고, 도면은 결과 폴더에서 일러스트레이터로 열면 됩니다.</figcaption></figure></li>
       </ul>
@@ -258,19 +258,19 @@
       <div class="module ai">
         <div>
           <p>Claude나 ChatGPT를 Rhino MCP로 연결해 쓰고 있다면, AI에게 주변 건물을 하나씩 그리게 하지 말고 이 플러그인을 설치하게 하세요. 그게 더 빠르고 정확합니다. 예를 들면 이렇게 말하면 됩니다.</p>
-          <p class="say"><svg aria-hidden="true"><use href="#i-say"/></svg>UrbanSite 플러그인 설치하고 패널 열어 줘</p>
+          <p class="say"><svg aria-hidden="true"><use href="#i-say"/></svg>Gorani 플러그인 설치하고 패널 열어 줘</p>
           <p>대상지 선택은 패널에서 직접 합니다. AI가 읽을 설명은 <a href="llms.txt">llms.txt</a>에 따로 정리해 두었습니다.</p>
         </div>
         <div>
           <div class="code-head"><span>에이전트용 설치 명령</span><button type="button" class="copy" data-copy="#agent-cmd" data-done="설치 명령 복사됨" aria-label="설치 명령 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></div>
 <pre class="agent" id="agent-cmd"><span class="c"># Windows</span>
-"C:\Program Files\Rhino 8\System\Yak.exe" <span class="k">install UrbanSite</span>
+"C:\Program Files\Rhino 8\System\Yak.exe" <span class="k">install Gorani</span>
 
 <span class="c"># macOS</span>
-"/Applications/Rhino 8.app/Contents/Resources/bin/yak" <span class="k">install UrbanSite</span>
+"/Applications/Rhino 8.app/Contents/Resources/bin/yak" <span class="k">install Gorani</span>
 
 <span class="c"># Rhino를 다시 켠 뒤 명령창에</span>
-<span class="k">_UrbanSite</span></pre>
+<span class="k">_Gorani</span></pre>
           <p class="code-note">설치 후 Rhino를 재시작해야 플러그인이 로드됩니다.</p>
         </div>
       </div>
@@ -299,7 +299,7 @@
 <footer class="foot">
   <div class="wrap">
     <div>
-      <p><b>UrbanSite</b></p>
+      <p><b>Gorani</b></p>
       <p>Rhino 8 플러그인. 만든 사람 <a href="https://github.com/969flash">969flash</a></p>
     </div>
     <div>
@@ -309,7 +309,7 @@
       <p>Rhino와 Rhinoceros는 Robert McNeel &amp; Associates의 상표입니다. 이 도구는 McNeel과 관계가 없습니다.</p>
     </div>
     <div>
-      <p><a href="https://github.com/969flash/urbansite/issues">문의 · 버그</a></p>
+      <p><a href="https://github.com/969flash/gorani/issues">문의 · 버그</a></p>
       <p><a href="llms.txt">llms.txt</a> · <a href="en/" hreflang="en" lang="en">English</a></p>
     </div>
   </div>

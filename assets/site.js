@@ -1,9 +1,9 @@
-// UrbanSite 소개 페이지 — 복사 버튼과 축측 도해(합성 데이터)
+// Gorani 소개 페이지 — 복사 버튼과 축측 도해(합성 데이터)
 (function () {
   "use strict";
 
   // ── 방문 통계 — 웹사이트 전용 GA4 속성(플러그인 속성과 섞지 않는다). 비면 보내지 않는다 ──
-  var GA_ID = "G-ZVM7EZPRPQ";   // 속성 "UrbanSite 웹", 스트림 16139144506
+  var GA_ID = "G-ZVM7EZPRPQ";   // 속성 "Gorani 웹", 스트림 16139144506
   if (GA_ID) {
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };

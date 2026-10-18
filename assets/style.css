@@ -212,6 +212,10 @@ h2 { margin: 0; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.2; font-weig
 .outputs > div { padding: 24px; }
 .outputs > div + div { border-left: 1px solid var(--ink); }
 .outputs h3 { margin: 0 0 16px; font-size: 18px; }
+.module + .module { margin-top: 16px; }
+.hosts h3 span { margin-left: 8px; font-weight: 400; font-size: 14px; color: var(--ink-2); }
+.hosts p { margin: 0; }
+.hosts p.small { margin-top: 12px; }
 .tree { margin: 0; font-size: 14px; line-height: 2; overflow-x: auto; }
 .tree .dir { color: var(--blue-ink); font-weight: 600; }
 .tree .note { color: var(--ink-2); font-family: "Pretendard Variable", Pretendard, sans-serif; }

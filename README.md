@@ -14,6 +14,8 @@ Gorani는 대상지를 고르면 주변 건물·도로·지형·수계·녹지·
 
 Rhino 8 → `PackageManager` → search `Gorani` → install → restart Rhino → run `Gorani`.
 
+SketchUp (2022+) and Blender (4.2+) versions: coming soon, after Extension Warehouse and Blender Extensions review.
+
 ## Coverage
 
 - **Korea, nationwide** — cadastre, buildings, 1:5,000 terrain, zoning; analysis maps (figure-ground, zoning, land use, street hierarchy, building age and more).

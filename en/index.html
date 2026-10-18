@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gorani — free Rhino plugin for site context models (buildings, roads, terrain)</title>
-<meta name="description" content="Pick a site and get the surrounding buildings, roads, terrain and water as 3D in your open Rhino 8 document, plus a layered Illustrator basemap. Free, installed from Rhino's Package Manager. Works wherever OpenStreetMap does; Korea adds cadastre, zoning and analysis maps.">
+<title>Gorani — free Rhino, SketchUp and Blender plugin for site context models (buildings, roads, terrain)</title>
+<meta name="description" content="Pick a site and get the surrounding buildings, roads, terrain and water as 3D in your open Rhino 8 document, plus a layered Illustrator basemap. Free, installed from Rhino's Package Manager. SketchUp and Blender versions are on the way. Works wherever OpenStreetMap does; Korea adds cadastre, zoning and analysis maps.">
 <link rel="canonical" href="https://969flash.github.io/gorani/en/">
 <link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
@@ -64,7 +64,7 @@
   <div class="wrap">
     <a class="brand" href="./" aria-label="Gorani home">
       <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/><path d="M1 11h30M1 21h30M11 1v30M21 1v30" stroke="var(--hair)" stroke-width="1.5"/><path d="M11 11h10v10H11z" fill="var(--blue)"/></svg>
-      <b>Gorani</b><span>for Rhino 8</span>
+      <b>Gorani</b><span>Rhino · SketchUp · Blender</span>
     </a>
     <nav class="nav" aria-label="On this page">
       <a href="#install">Install</a>
@@ -82,7 +82,7 @@
       <div class="sheet-body">
         <div class="pitch">
           <h1 id="hero-title"><em>The city around<br>your site</em>, modeled<br>in Rhino.</h1>
-          <p class="lead">Gorani is a Rhino 8 plugin. Pick a site on the map and it builds the buildings, roads, terrain and water within the radius in your open document, along with an Illustrator basemap. <strong>It's free.</strong></p>
+          <p class="lead">Gorani is a Rhino 8 plugin, with SketchUp and Blender versions on the way. Pick a site on the map and it builds the buildings, roads, terrain and water within the radius in your open document, along with an Illustrator basemap. <strong>It's free.</strong></p>
           <div class="acts">
             <a class="btn go" href="#install">How to install</a>
             <a class="btn" href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
@@ -104,7 +104,7 @@
       <dl class="titleblock">
         <div><dt>Makes</dt><dd>3D context, basemap, analysis maps</dd></div>
         <div><dt>Price</dt><dd>Free (donations welcome)</dd></div>
-        <div><dt>Runs on</dt><dd>Rhino 8 (Windows, Mac)</dd></div>
+        <div><dt>Runs on</dt><dd>Rhino 8; SketchUp, Blender soon</dd></div>
         <div><dt>Worldwide</dt><dd>OpenStreetMap buildings and roads, terrain</dd></div>
         <div><dt>Korea</dt><dd>Nationwide, with parcels and zoning</dd></div>
         <div><dt>Install</dt><dd>Search Gorani in Package Manager</dd></div>
@@ -126,7 +126,7 @@
       <div class="head">
         <div>
           <h2 id="install-title">Installing</h2>
-          <p>You need Rhino 8 and nothing else. No Grasshopper, no Python.</p>
+          <p>The Rhino 8 version is ready now. No Grasshopper, no Python.</p>
         </div>
       </div>
       <div class="module">
@@ -152,6 +152,18 @@
         </ol>
         <div class="module-foot">
           <p>Found a bug? <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a></p>
+        </div>
+      </div>
+      <div class="module outputs hosts">
+        <div>
+          <h3>SketchUp <span>coming soon</span></h3>
+          <p>An extension for SketchUp 2022 and later. Install steps go here once Extension Warehouse review is done.</p>
+          <p class="small">Same panel and result folder as the Rhino version. The 3D model comes in as one group per site.</p>
+        </div>
+        <div>
+          <h3>Blender <span>coming soon</span></h3>
+          <p>An extension for Blender 4.2 and later. Install steps go here once Blender Extensions review is done.</p>
+          <p class="small">The panel opens in a browser tab and the 3D model comes in as collections.</p>
         </div>
       </div>
       <div class="glossary">
@@ -181,9 +193,9 @@
         </div>
       </div>
       <ul class="screens">
-        <li><figure><img src="../assets/panel-site.webp" width="720" height="1350" loading="lazy" alt="Site step of the panel: a parcel in Seongsu-dong, Seoul, selected in blue on the map, with its area of 5,586 square meters below."><figcaption><b>Site</b>Click parcels, draw an area, or drop a point. You can search by address.</figcaption></figure></li>
-        <li><figure><img src="../assets/panel-extent.webp" width="720" height="1350" loading="lazy" alt="Extent step: a dashed 500 m circle around the site, with cells for radius, paper size and scale."><figcaption><b>Extent</b>Set the radius, paper size and scale. Everything inside the dashed circle gets modeled.</figcaption></figure></li>
-        <li><figure><img src="../assets/panel-result.webp" width="720" height="1350" loading="lazy" alt="Results step: done in 8 seconds, 3,454 buildings placed in the Rhino document, and a grid of 23 drawings below."><figcaption><b>Results</b>The 3D model is already in your document. Open the drawings from the result folder in Illustrator.</figcaption></figure></li>
+        <li><figure><img src="../assets/panel-site.webp" width="720" height="1350" loading="lazy" alt="Site step of the panel: two parcels in Seongsu-dong, Seoul, selected in blue on the map, with their total area of 1,234.5 square meters below."><figcaption><b>Site</b>Click parcels, draw an area, or drop a point. You can search by address.</figcaption></figure></li>
+        <li><figure><img src="../assets/panel-extent.webp" width="720" height="1350" loading="lazy" alt="Extent step: a dashed 500 m circle around the site, with cells for shape, radius and paper size."><figcaption><b>Extent</b>Set the radius, paper size and scale. Everything inside the dashed circle gets modeled.</figcaption></figure></li>
+        <li><figure><img src="../assets/panel-result.webp" width="720" height="1350" loading="lazy" alt="Results step: done in 41 seconds, 1,842 buildings placed in the Rhino document, and a grid of 23 drawings below."><figcaption><b>Results</b>The 3D model is already in your document. Open the drawings from the result folder in Illustrator.</figcaption></figure></li>
       </ul>
     </section>
 
@@ -289,7 +301,7 @@
         <h2 id="free-title">It's free</h2>
       </div>
       <div>
-        <p>I don't think anyone should have to pay for a context model of their site. The data is all public, and everything runs inside Rhino on your own machine, so I'm giving it away.</p>
+        <p>I don't think anyone should have to pay for a context model of their site. The data is all public, and everything runs on your own machine, so I'm giving it away.</p>
         <p>If it saved you time, you can chip in. Donations go toward data updates and new features. Everyone gets the same features either way.</p>
         <div class="give">
           <a class="btn go" href="https://github.com/sponsors/969flash">Support on GitHub Sponsors</a>
@@ -304,14 +316,14 @@
 <footer class="foot">
   <div class="wrap">
     <div>
-      <p><b>Gorani</b> for Rhino 8</p>
+      <p><b>Gorani</b> for Rhino 8. SketchUp and Blender soon.</p>
       <p>Made by <a href="https://github.com/969flash">969flash</a>.</p>
     </div>
     <div>
       <p>Data: © OpenStreetMap contributors (ODbL) · Korea: Ministry of Land, Infrastructure and Transport, National Geographic Information Institute, Seoul Metropolitan Government (KOGL Type 1 and others; terms printed on each drawing).</p>
       <p>This page counts visits with Google Analytics. Plugin usage statistics: a random ID per install, versions and OS, where you generated, radius, run time and error types go to Google Analytics. No names, file paths or drawing contents.</p>
       <p>Korean contour and elevation results may not be published online (NGII security rules).</p>
-      <p>Rhino and Rhinoceros are trademarks of Robert McNeel &amp; Associates. This tool is not affiliated with McNeel.</p>
+      <p>Rhino and Rhinoceros are trademarks of Robert McNeel &amp; Associates. SketchUp is a trademark of Trimble Inc. and Blender of the Blender Foundation. This tool is not affiliated with McNeel, Trimble or the Blender Foundation.</p>
     </div>
     <div>
       <p><a href="https://github.com/969flash/gorani/issues">Contact · bugs</a></p>

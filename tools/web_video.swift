@@ -1,6 +1,6 @@
-// 홍보 영상(~/Gorani/promo_export/gorani_rhino_full_4x5.mp4) → 웹용 assets/demo.mp4. 설치 없이 macOS 기본(AVFoundation)
-// swiftc -O -o /tmp/web_video tools/web_video.swift && /tmp/web_video <in.mp4> assets/demo.mp4 296 1050 720 700 900000 43.0
-// 인자: 자를 위 y, 자를 높이(위 자막 머리 빼기), 출력 폭·높이, 비트레이트, 끝 초(끝 카드 빼기). 자막은 site.js CAPTIONS
+// 작동 과정 영상(~/Gorani/promo_export/gorani_web_flow_1080x1350.mp4) → 웹용 assets/demo.mp4. 설치 없이 macOS 기본(AVFoundation)
+// swiftc -O -o /tmp/web_video tools/web_video.swift && /tmp/web_video <in.mp4> assets/demo.mp4 0 1224 720 816 1300000
+// 인자: 자를 위 y, 자를 높이(아래 단계 라벨 빼기), 출력 폭·높이, 비트레이트, [끝 초]. 자막·장면은 site.js CAPTIONS와 data-at
 import AVFoundation; import CoreImage
 let a = CommandLine.arguments
 let asset = AVURLAsset(url: URL(fileURLWithPath: a[1])), out = URL(fileURLWithPath: a[2])

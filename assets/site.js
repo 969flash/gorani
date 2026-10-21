@@ -86,30 +86,20 @@
   var cap = screen.querySelector(".cap");
   var chapters = [].slice.call(document.querySelectorAll("[data-at]"));
   var starts = chapters.map(function (b) { return +b.getAttribute("data-at"); });
-  var END = 43;   // 영상 길이(초)
+  var END = 22.9;   // 영상 길이(초)
 
   // 릴스식 자막 — [시작, 끝, 한국어, 영어], *강조*
   var CAPTIONS = [
-    [0.0, 2.2, "명령창에 *PackageManager*", "Type *PackageManager*"],
-    [2.2, 4.0, "*Gorani* 검색", "Search for *Gorani*"],
-    [4.0, 6.4, "고르고 *설치*", "Pick it, hit *Install*"],
-    [6.4, 7.5, "설치하는 중", "Installing"],
-    [7.5, 8.5, "*Rhino 다시 시작*", "*Restart Rhino*"],
-    [8.5, 10.0, "이제 명령창에 *Gorani*", "Now type *Gorani*"],
-    [10.0, 12.0, "패널이 열리면 준비 끝", "The panel opens"],
-    [12.0, 14.8, "주소나 지번으로 검색", "Search an address or parcel number"],
-    [14.8, 17.4, "필지를 눌러 *대상지* 선택", "Click parcels to set the *site*"],
-    [17.4, 20.4, "범위는 *원*이나 *사각형*으로", "Range as a *circle* or a *square*"],
-    [20.4, 21.4, "*3D 모델 만들기*", "Press *3D model*"],
-    [21.4, 23.0, "고라니가 달리는 동안 만드는 중", "Building while the gorani runs"],
-    [23.0, 25.0, "건물, 도로, 지형이 *레이어별로*", "Buildings, roads, terrain, *layer by layer*"],
-    [25.0, 27.0, "열려 있는 Rhino 문서 안에", "Inside the Rhino file you have open"],
-    [27.0, 29.6, "이어서 *2D 자료*", "Next, the *2D set*"],
-    [29.6, 32.0, "베이스맵과 다이어그램 만드는 중", "Making the basemap and diagrams"],
-    [32.0, 34.4, "*.ai* 도면과 현황도 완성", "*.ai* drawings and maps, done"],
-    [34.4, 39.4, "*토지이용현황*", "*Land use*"],
-    [39.4, 41.4, "*지목 현황*", "*Land category*"],
-    [41.4, 43.0, "*용도지역*", "*Zoning*"]
+    [0.0, 1.6, "Gorani 패널", "The Gorani panel"],
+    [1.6, 4.0, "주소나 *지번*으로 검색", "Search an address or *parcel number*"],
+    [4.0, 6.2, "결과를 누르면 *대상지*로", "Pick a result to set the *site*"],
+    [6.2, 9.0, "옆 필지를 눌러 *더하기*", "Click a neighbor to *add* it"],
+    [9.0, 11.0, "*3D 옵션* 확인", "Check the *3D options*"],
+    [11.0, 13.0, "기본값으로 둬도 충분", "The defaults are fine"],
+    [13.0, 14.0, "*3D 모델 만들기*", "Press *3D model*"],
+    [14.0, 17.4, "고라니가 달리는 동안 만드는 중", "Building while the gorani runs"],
+    [17.4, 20.0, "건물, 도로, 지형이 *레이어별로*", "Buildings, roads, terrain, *layer by layer*"],
+    [20.0, 22.9, "열려 있는 Rhino 문서 안에", "Inside the Rhino file you have open"]
   ];
   var ccLang = store("gorani-cc") || lang, shown = -2;
   function esc(s) { return s.replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }

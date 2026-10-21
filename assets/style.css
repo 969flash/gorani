@@ -11,7 +11,7 @@
   --blue-ink: #0047D6;
   --blue-wash: #E9F0FF;
   --on-ink: #FFFFFF;
-  --screen: #121418;            /* 영상 바탕과 같은 색 */
+  --screen: #EBF0F3;            /* 영상 바탕과 같은 색(밝은 판) */
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --mark: url(mark.svg);        /* 정면 마크(브랜드 원본) */
   --run: url(run.svg);          /* 달리는 고라니 8장 가로 띠(패널 RUN_FRAMES) */
@@ -121,13 +121,13 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .demo { min-width: 0; }
 .screen {
   position: relative; container-type: inline-size;
-  aspect-ratio: 720 / 700; border-radius: 12px; overflow: hidden; background: var(--screen);
+  aspect-ratio: 720 / 816; border-radius: 12px; overflow: hidden; background: var(--screen); border: 1px solid var(--hair);
 }
 .screen video { width: 100%; height: 100%; object-fit: cover; }
 .loading, .big-play {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
   display: grid; justify-items: center; gap: 4px; padding: 12px 16px; border-radius: 12px;
-  color: #E8ECF2; font-size: 13px; line-height: 20px; background: rgba(12, 16, 22, .82);
+  color: #E8ECF2; font-size: 13px; line-height: 20px; background: rgba(12, 16, 22, .82); border: 0;
 }
 .loading { opacity: 0; pointer-events: none; transition: opacity .2s; }
 .loading .run { --w: 48px; --h: 36px; }

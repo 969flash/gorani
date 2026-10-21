@@ -237,6 +237,7 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
   .top .wrap { gap: 12px; }
   .nav { display: none; }
   .lang { margin-left: auto; }
+  .lang ~ .lang { margin-left: 0; }
   .progress .run { transition: opacity .2s; }
   .progress.at-top .run { opacity: 0; }   /* 맨 위에선 로고와 겹치지 않게 숨긴다 */
   .hero { padding-top: 24px; }

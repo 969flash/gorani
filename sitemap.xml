@@ -5,11 +5,20 @@
     <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://969flash.github.io/gorani/ja/"/>
   </url>
   <url>
     <loc>https://969flash.github.io/gorani/en/</loc>
     <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://969flash.github.io/gorani/ja/"/>
+  </url>
+  <url>
+    <loc>https://969flash.github.io/gorani/ja/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://969flash.github.io/gorani/ja/"/>
   </url>
 </urlset>

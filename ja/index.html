@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gorani: 対象地の3Dモデリングと分析（Rhino、SketchUp、Blender向け無料プラグイン）</title>
+<meta name="description" content="対象地を選ぶと、周辺建物・道路・地形を3Dで作成し、ベースマップと現況図をIllustratorファイルとして保存します。Rhino 8、SketchUp、Blenderで使える無料プラグインです。">
+<link rel="canonical" href="https://969flash.github.io/gorani/ja/">
+<link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
+<link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
+<link rel="alternate" hreflang="ja" href="https://969flash.github.io/gorani/ja/">
+<link rel="alternate" hreflang="x-default" href="https://969flash.github.io/gorani/en/">
+<link rel="alternate" type="text/plain" title="llms.txt" href="https://969flash.github.io/gorani/llms.txt">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gorani">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="Gorani: 対象地の3Dモデリングと分析">
+<meta property="og:description" content="対象地を選ぶと、3D地形と2D分析資料を作成します。Rhino、SketchUp、Blenderで使える無料プラグインです。">
+<meta property="og:url" content="https://969flash.github.io/gorani/ja/">
+<meta property="og:image" content="https://969flash.github.io/gorani/assets/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F5F7FA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C1016" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="preload" href="../assets/demo-poster.webp" as="image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Gorani",
+      "description": "対象地を選ぶと、周辺建物・道路・地形・水系を3Dモデルとして作成し、レイヤー付きのIllustratorベースマップと都市分析図を保存します。Rhino 8、SketchUp、Blender向けの無料プラグインです。",
+      "applicationCategory": "DesignApplication",
+      "applicationSubCategory": "Rhino 8, SketchUp, Blender plugin",
+      "operatingSystem": "Windows, macOS",
+      "softwareRequirements": "Rhinoceros 8、SketchUp 2022以降、Blender 4.2以降",
+      "softwareVersion": "0.3.1",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+      "inLanguage": "ja",
+      "url": "https://969flash.github.io/gorani/ja/",
+      "image": "https://969flash.github.io/gorani/assets/og-en.png",
+      "author": { "@type": "Person", "name": "969flash", "url": "https://github.com/969flash" },
+      "featureList": [
+        "周辺建物（階数から高さ）、道路、地形、水系、緑地、鉄道を3Dモデルとして作成",
+        "レイヤー付きのIllustrator（.ai）ベースマップ",
+        "土地利用、用途地域、図と地などの現況図と分析図（SVG、AI）",
+        "区画と建物の調書（CSV）",
+        "韓国は全国、日本はPLATEAUの建物、その他の地域はOpenStreetMapのデータ"
+      ]
+    },
+    {
+      "@type": "VideoObject",
+      "name": "Goraniの動作の流れ",
+      "description": "Goraniのパネルで対象地を選び、3Dモデル、ベースマップ、現況図を作成する様子です。",
+      "thumbnailUrl": "https://969flash.github.io/gorani/assets/demo-poster.webp",
+      "contentUrl": "https://969flash.github.io/gorani/assets/demo.mp4",
+      "uploadDate": "2026-10-21",
+      "duration": "PT39S"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">本文へ</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-copy" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5V4a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 4v5A1.5 1.5 0 0 0 4 10.5h1.5"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 16 16"><path d="M4.5 2.8v10.4a.6.6 0 0 0 .9.5l8.2-5.2a.6.6 0 0 0 0-1L5.4 2.3a.6.6 0 0 0-.9.5z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/></symbol>
+  <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="Goraniのホーム"><span class="mark" aria-hidden="true"></span>Gorani</a>
+    <nav class="nav" aria-label="ページ内">
+      <a href="#install">インストール</a>
+      <a href="#flow">使い方</a>
+    </nav>
+    <a class="lang" href="../" hreflang="ko" lang="ko">한국어</a> <a class="lang" href="../en/" hreflang="en" lang="en">English</a>
+  </div>
+  <div class="progress" aria-hidden="true"><i></i><span class="run"></span></div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <h1 id="hero-title">対象地の3Dモデリングと分析</h1>
+        <p class="lead">対象地を選ぶと、3D地形と2D分析資料を作成します。Rhino、SketchUp、Blenderで使える無料プラグインです。</p>
+        <p class="story">学生のころに自分の作業を楽にするために作ったツールを、整えて公開しました。</p>
+        <div class="acts">
+          <a class="btn go" href="#install"><span class="run" aria-hidden="true"></span>インストール方法</a>
+          <a class="btn" href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
+        </div>
+        <ul class="hosts" aria-label="対応環境">
+          <li><b>Rhino</b> 8</li>
+          <li><b>SketchUp</b> 2022以降</li>
+          <li><b>Blender</b> 4.2以降</li>
+          <li>Windows、macOS</li>
+        </ul>
+      </div>
+
+      <figure class="demo" aria-label="デモ動画">
+        <div class="screen">
+          <video muted loop playsinline preload="none" width="720" height="816" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="39秒の動画: Goraniのパネルで住所から対象地を探し、区画を選んで、3Dモデル・ベースマップ・現況図を作成します"></video>
+          <p class="cap" aria-hidden="true"></p>
+          <div class="loading" aria-hidden="true"><span class="run go"></span>読み込み中</div>
+          <button type="button" class="big-play"><svg aria-hidden="true"><use href="#i-play"/></svg>動画を再生（39秒）</button>
+          <div class="screen-bar">
+            <button type="button" class="chip-btn toggle" aria-label="再生または一時停止"><svg class="i-play"><use href="#i-play"/></svg><svg class="i-pause"><use href="#i-pause"/></svg></button>
+            <div class="cc" role="group" aria-label="字幕">
+              <button type="button" data-cc="ko" lang="ko">한</button>
+              <button type="button" data-cc="en" lang="en">EN</button>
+              <button type="button" data-cc="off">オフ</button>
+            </div>
+          </div>
+        </div>
+        <ol class="chapters" aria-label="シーン">
+          <li><button type="button" data-at="0"><b>1</b>住所</button></li>
+          <li><button type="button" data-at="6.2"><b>2</b>区画</button></li>
+          <li><button type="button" data-at="9"><b>3</b>3D設定</button></li>
+          <li><button type="button" data-at="13"><b>4</b>作成</button></li>
+          <li><button type="button" data-at="17.4"><b>5</b>Rhino</button></li>
+          <li><button type="button" data-at="20"><b>6</b>2D資料</button></li>
+          <li><button type="button" data-at="27.6"><b>7</b>現況図</button></li>
+        </ol>
+      </figure>
+    </section>
+  </div>
+
+  <section class="block" id="install" aria-labelledby="install-title">
+    <div class="wrap">
+      <div class="block-head">
+        <h2 id="install-title">インストール</h2>
+        <div class="seg" role="tablist" aria-label="プログラム">
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 8</button>
+          <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
+          <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
+        </div>
+      </div>
+
+      <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
+        <ol class="steps">
+          <li>
+            <h3>パッケージマネージャーを開く</h3>
+            <p>Rhinoのコマンドラインに入力します</p>
+            <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="PackageManagerをコピーしました" aria-label="PackageManagerをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+          </li>
+          <li>
+            <h3>Goraniをインストール</h3>
+            <p>Goraniを検索して<span class="ui">インストール</span>を押します</p>
+          </li>
+          <li>
+            <h3>Rhinoを再起動</h3>
+            <p>再起動するとプラグインが読み込まれます。</p>
+          </li>
+          <li>
+            <h3>パネルを開く</h3>
+            <p>コマンドラインに入力します</p>
+            <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Goraniをコピーしました" aria-label="Goraniをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+          </li>
+        </ol>
+      </div>
+      <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
+        <ol class="steps" style="--n:3">
+          <li>
+            <h3>Extension Warehouseを開く</h3>
+            <p>メニュー <span class="ui">拡張機能 &gt; Extension Warehouse</span></p>
+          </li>
+          <li>
+            <h3>Goraniをインストール</h3>
+            <p>Goraniを検索して<span class="ui">インストール</span>を押します</p>
+          </li>
+          <li>
+            <h3>パネルを開く</h3>
+            <p>メニュー <span class="ui">拡張機能 &gt; Gorani</span>、またはツールバーのgoraniボタン</p>
+          </li>
+        </ol>
+      </div>
+      <div role="tabpanel" id="p-blender" aria-labelledby="tab-blender" hidden>
+        <ol class="steps" style="--n:3">
+          <li>
+            <h3>Get Extensionsを開く</h3>
+            <p>メニュー <span class="ui">Edit &gt; Preferences &gt; Get Extensions</span>。初回はオンラインアクセスを許可します。</p>
+          </li>
+          <li>
+            <h3>Goraniをインストール</h3>
+            <p>Goraniを検索して<span class="ui">Install</span>を押します</p>
+          </li>
+          <li>
+            <h3>パネルを開く</h3>
+            <p>3DビューでNキーを押し、サイドバーの<span class="ui">Gorani &gt; パネルを開く</span>を選びます。パネルはブラウザのタブで開きます。</p>
+          </li>
+        </ol>
+      </div>
+      <p class="note">初めての地域では、データのダウンロードに少し時間がかかります。問題があれば<a href="https://github.com/969flash/gorani/issues">GitHub Issues</a>にお知らせください。</p>
+    </div>
+  </section>
+
+  <section class="block" id="flow" aria-labelledby="flow-title">
+    <div class="wrap">
+      <div class="block-head">
+        <div>
+          <h2 id="flow-title">使い方</h2>
+          <p class="sub">パネルはモデリング画面の横に開きます。まずは既定のオプションのままで構いません。<br>英語、韓国語、スペイン語、日本語、簡体字中国語に対応しています。上部の地球儀ボタンで切り替えます。</p>
+        </div>
+      </div>
+      <ol class="flow">
+        <li>
+          <img src="../assets/step-site-en.webp" width="640" height="813" loading="lazy" alt="Goraniパネルの地図画面。2つの区画が青く選択され、その下に範囲の形状とサイズ、3Dモデル作成ボタンがある。">
+          <div>
+            <h3><b>1</b>対象地と範囲の選択</h3>
+            <p>地図で区画をクリックするか、エリアを描いて範囲を決めます。住所や地番で検索できます。韓国は全国の地籍・用途地域・等高線のデータを使います。日本では、建物は国土交通省PLATEAU（実測の高さと用途）、地形は国土地理院（GSI）の標高タイル、道路はOpenStreetMapを使います。その他の地域はOpenStreetMapのデータを使います。</p>
+          </div>
+        </li>
+        <li>
+          <img src="../assets/step-3d-en.webp" width="640" height="813" loading="lazy" alt="3Dモデルを作成中のパネル。進行バーの上をゴラニが走り、建物と地形の読み込み、モデルの作成、Rhinoファイルへの追加の各ステップが見える。">
+          <div>
+            <h3><b>2</b>3Dモデル作成</h3>
+            <p>建物、道路、地形、水系が、開いているドキュメントにレイヤー別に入ります。建物の高さは階数から決めます。</p>
+          </div>
+        </li>
+        <li>
+          <img src="../assets/step-2d-en.webp" width="640" height="813" loading="lazy" alt="2D資料の作成が終わった画面。ベースマップのファイル名、ほかの縮尺を作るボタン、その下にベースマップ・図と地・区画規模などのダイアグラムが並ぶ。">
+          <div>
+            <h3><b>3</b>2D資料作成</h3>
+            <p>ベースマップ（.ai）、現況図と分析図、調書（CSV）が、結果フォルダ<code>result/対象地_日付/</code>内の<code>2D/</code>に保存されます。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <p><span class="mark" aria-hidden="true"></span>無料です。役に立ったら、ご支援いただけると助かります。</p>
+      <a class="btn" href="https://github.com/sponsors/969flash">GitHub Sponsorsで支援</a>
+    </div>
+    <ul class="links" style="margin-top:16px">
+      <li><a href="https://github.com/969flash/gorani">GitHub</a></li>
+      <li><a href="https://github.com/969flash/gorani/issues">バグを報告</a></li>
+      <li><a href="../llms.txt">llms.txt</a></li>
+      <li><a href="../" hreflang="ko" lang="ko">한국어</a></li>
+      <li><a href="../en/" hreflang="en" lang="en">English</a></li>
+    </ul>
+    <div class="fine">
+      <p>制作 <a href="https://github.com/969flash">969flash</a>。バージョン 0.3.1。</p>
+      <p>データ: 韓国は国土交通部、国土地理情報院、ソウル特別市の公開データ（公共ヌリ第1類型ほか。利用条件は各図面に記載）で、全国の地籍・用途地域・等高線を使います。日本は国土交通省PLATEAU（建物。実測の高さと用途）、国土地理院（GSI）の標高タイル（地形）、OpenStreetMap（道路）を使います。その他の地域はOpenStreetMapを使います。© OpenStreetMap contributors（ODbL）</p>
+      <p>このページはGoogle Analyticsで訪問数を集計します。プラグインは、インストールごとに作られるランダムなID、バージョンとOS、対象地の位置と範囲、処理時間、エラーの種類をGoogle Analyticsに送信します（SketchUp版とBlender版は許可した場合のみ）。名前、ファイルパス、図面の内容は送信しません。</p>
+      <p>等高線や標高を含む韓国の成果物（3Dモデル、ベースマップ）は、インターネット上に公開しないでください。韓国国土地理情報院の保安管理規定による制限です。</p>
+      <p>RhinoとRhinocerosはRobert McNeel &amp; Associates、SketchUpはTrimble Inc.、BlenderはBlender Foundationの商標です。このツールはこれらの企業・団体とは関係ありません。</p>
+    </div>
+  </div>
+</footer>
+<p id="live" class="skip" aria-live="polite"></p>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

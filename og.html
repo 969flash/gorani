@@ -1,40 +1,45 @@
 <!doctype html>
-<!-- 공유 미리보기 이미지(1200×630) — 이름·문구를 바꾸면 다시 찍는다. 영어판은 ?en
+<!-- 공유 미리보기 이미지(1200×630) — 문구·영상 첫 장면을 바꾸면 다시 찍는다. 영어판은 ?en
      C="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
      "$C" --headless=new --force-prefers-reduced-motion --hide-scrollbars --window-size=1200,630 --screenshot=assets/og.png "file://$PWD/og.html"
      "$C" --headless=new --force-prefers-reduced-motion --hide-scrollbars --window-size=1200,630 --screenshot=assets/og-en.png "file://$PWD/og.html?en" -->
 <html lang="ko"><head><meta charset="utf-8"><meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="assets/style.css">
 <style>
   /* 맥이 다크 모드여도 밝은 색으로 찍는다 — style.css :root 밝은 값 */
-  :root { --paper: #F5F7FA; --grid: #E9EEF4; --grid-major: #DDE4EE; --surface: #FFFFFF; --ink: #111418; --ink-2: #465061; --ink-3: #7D8798; --hair: #C9D2DE; --line: #A9C0F2; --blue: #0057FF; --blue-dn: #0044CC; --blue-ink: #0047D6; --blue-wash: #E9F0FF; --wall-a: #E6EBF2; --wall-b: #CBD4E0; color-scheme: light; }
-  html, body { width: 1200px; height: 630px; overflow: hidden; }
-  .card { position: absolute; inset: 32px; border: 1.5px solid var(--ink); background: var(--surface); display: flex; align-items: center; padding: 0 0 0 48px; }
-  .text { flex: 0 0 540px; display: flex; flex-direction: column; height: 100%; padding: 52px 0 44px; box-sizing: border-box; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 21px; }
-  .brand svg { width: 28px; height: 28px; }
-  h1 { font-size: 60px; line-height: 1.22; letter-spacing: -0.02em; margin: auto 0; }
-  .lead { font-size: 18px; color: var(--ink-2); margin: 0; line-height: 1.6; }
-  .drawing { flex: 1; height: 440px; margin: 40px 0 0; border: 0; background: none; }
-  #axon { width: 100%; height: 100%; }
+  :root { --paper: #F5F7FA; --surface: #FFFFFF; --press: #EDF0F4; --ink: #111418; --ink-2: #465061; --ink-3: #7D8798; --hair: #E3E6EB; color-scheme: light; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; margin: 0; background: var(--paper); }
+  .og { display: flex; gap: 48px; height: 100%; padding: 56px 56px 56px 72px; box-sizing: border-box; }
+  .text { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .brand { font-size: 28px; gap: 12px; }
+  .brand .mark { --s: 44px; }
+  h1 { margin: auto 0 0; font-size: 60px; line-height: 72px; font-weight: 800; letter-spacing: -.03em; }
+  .lead { margin-top: 20px; font-size: 24px; line-height: 36px; }
+  .hosts { margin-top: 28px; }
+  .hosts li { font-size: 17px; line-height: 24px; padding: 6px 16px; }
+  .line { position: relative; margin-top: auto; height: 2px; background: var(--hair); }
+  .line i { position: absolute; inset: 0 40% 0 0; background: var(--ink); }
+  .line .run { --w: 48px; --h: 36px; position: absolute; bottom: 2px; left: calc(60% - 48px); color: var(--ink); }
+  .shot { flex: none; width: 530px; height: 518px; border-radius: 16px; overflow: hidden; background: #121418; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; }
 </style></head>
 <body>
-<div class="card">
+<div class="og">
   <div class="text">
-    <div class="brand"><svg viewBox="0 0 32 32"><rect x="1" y="1" width="30" height="30" fill="#fff" stroke="#111418" stroke-width="2"/><path d="M1 11h30M1 21h30M11 1v30M21 1v30" stroke="#C9D2DE" stroke-width="1.5"/><path d="M11 11h10v10H11z" fill="#0057FF"/></svg>Gorani</div>
-    <h1 id="title">필지를 고르면<br><em>주변 건물과 지형</em>이<br>Rhino에 들어옵니다.</h1>
-    <p class="lead" id="lead">무료 Rhino 8 플러그인 · 패키지 매니저에서 Gorani 검색</p>
+    <div class="brand"><span class="mark"></span>Gorani</div>
+    <h1 id="title">사이트 3D 모델링<br>및 분석</h1>
+    <p class="lead" id="lead">대상지를 고르면 3D 지형과 2D 분석 자료를 생성하는 무료 플러그인</p>
+    <ul class="hosts"><li><b>Rhino</b></li><li><b>SketchUp</b></li><li><b>Blender</b></li></ul>
+    <div class="line" style="margin-top:40px"><i></i><span class="run"></span></div>
   </div>
-  <figure class="drawing"><canvas id="axon" data-site="대상지" data-radius="반경 {r}"></canvas></figure>
+  <div class="shot"><img src="assets/demo-poster.webp" alt=""></div>
 </div>
 <script>
   if (location.search === "?en") {
     document.documentElement.lang = "en";
-    document.getElementById("title").innerHTML = "<em>The city around<br>your site</em>,<br>modeled in Rhino.";
-    document.getElementById("lead").textContent = "Free Rhino 8 plugin · search Gorani in Package Manager";
-    document.getElementById("axon").dataset.site = "Site";
-    document.getElementById("axon").dataset.radius = "Radius {r}";
+    document.getElementById("title").innerHTML = "Site 3D modeling<br>and analysis";
+    document.getElementById("lead").textContent = "Pick a site, get 3D terrain and 2D analysis drawings. Free plugin.";
   }
 </script>
-<script src="assets/site.js"></script>
 </body></html>

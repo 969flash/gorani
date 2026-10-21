@@ -1,28 +1,27 @@
-# Gorani — free Rhino 8 plugin for site context models
+# Gorani: free plugin for site 3D modeling and analysis
 
-**The city around your site, modeled in Rhino.**
-필지를 고르면 주변 건물과 지형이 Rhino에 들어옵니다.
+**Site 3D modeling and analysis.** 사이트 3D 모델링 및 분석.
 
-Gorani builds the surrounding buildings, roads, terrain, water, green space and rail of a site as 3D layers in your open Rhino 8 document, and writes a layered Illustrator basemap, urban analysis maps and CSV tables next to it. Free, no account. Windows and macOS.
+Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino 8, SketchUp and Blender, on Windows and macOS.
 
-Gorani는 대상지를 고르면 주변 건물·도로·지형·수계·녹지·철도를 Rhino 8 문서에 3D로 만들고, 일러스트레이터 베이스맵과 도시설계 현황·분석도, 조서 CSV를 함께 내는 무료 플러그인입니다.
+대상지를 고르면 3D 지형과 2D 분석 자료를 생성합니다. 라이노, 스케치업, 블렌더에서 작동하는 무료 플러그인입니다.
 
 - Website: https://969flash.github.io/gorani/ (한국어) · https://969flash.github.io/gorani/en/ (English)
 - For AI tools: [llms.txt](https://969flash.github.io/gorani/llms.txt)
 
 ## Install
 
-Rhino 8 → `PackageManager` → search `Gorani` → install → restart Rhino → run `Gorani`.
-
-SketchUp (2022+) and Blender (4.2+) versions: coming soon, after Extension Warehouse and Blender Extensions review.
+- Rhino 8: `PackageManager`, search `Gorani`, install, restart Rhino, run `Gorani`.
+- SketchUp 2022+: Extensions > Extension Warehouse, search `Gorani`, install.
+- Blender 4.2+: Edit > Preferences > Get Extensions, search `Gorani`, install.
 
 ## Coverage
 
-- **Korea, nationwide** — cadastre, buildings, 1:5,000 terrain, zoning; analysis maps (figure-ground, zoning, land use, street hierarchy, building age and more).
-- **Elsewhere** — OpenStreetMap buildings and roads, public terrain tiles.
+- **Korea, nationwide**: cadastre, buildings, 1:5,000 terrain, zoning; analysis maps (figure-ground, zoning, land use, street hierarchy, building age and more).
+- **Elsewhere**: OpenStreetMap buildings and roads, public terrain tiles.
 
 ## This repository
 
-This repository holds the website (GitHub Pages, plain HTML/CSS/JS, no build step) and is where issues and release notes live. Report problems in [Issues](https://github.com/969flash/gorani/issues) with `log.txt` from the result folder attached.
+This repository holds the website (GitHub Pages, plain HTML/CSS/JS, no build step) and is where issues and release notes live. Report problems in [Issues](https://github.com/969flash/gorani/issues) with `log.txt` from the result folder (`~/Gorani/result/<site>_<date>/`) attached.
 
-Data: © OpenStreetMap contributors (ODbL); Korean public data from MOLIT, NGII and Seoul Metropolitan Government, with sources printed on every drawing. Rhino is a trademark of Robert McNeel & Associates; this project is not affiliated with McNeel.
+Data: © OpenStreetMap contributors (ODbL); Korean public data from MOLIT, NGII and Seoul Metropolitan Government, with sources printed on every drawing. Rhino is a trademark of Robert McNeel & Associates, SketchUp of Trimble Inc., Blender of the Blender Foundation; this project is not affiliated with them.

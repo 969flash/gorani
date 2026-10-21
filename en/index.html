@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gorani — free Rhino, SketchUp and Blender plugin for site context models (buildings, roads, terrain)</title>
-<meta name="description" content="Pick a site and get the surrounding buildings, roads, terrain and water as 3D in your open Rhino 8 document, plus a layered Illustrator basemap. Free, installed from Rhino's Package Manager. SketchUp and Blender versions are on the way. Works wherever OpenStreetMap does; Korea adds cadastre, zoning and analysis maps.">
+<title>Gorani: site 3D modeling and analysis (free plugin for Rhino, SketchUp, Blender)</title>
+<meta name="description" content="Pick a site and Gorani builds the surrounding buildings, roads and terrain in 3D, and saves a basemap and analysis maps as Illustrator files. A free plugin for Rhino 8, SketchUp and Blender.">
 <link rel="canonical" href="https://969flash.github.io/gorani/en/">
 <link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
@@ -13,40 +13,56 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Gorani">
 <meta property="og:locale" content="en_US">
-<meta property="og:title" content="Gorani: free site context models in Rhino">
-<meta property="og:description" content="Pick a site and Gorani builds the buildings, roads and terrain around it in Rhino. Free.">
+<meta property="og:title" content="Gorani: site 3D modeling and analysis">
+<meta property="og:description" content="Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino, SketchUp and Blender.">
 <meta property="og:url" content="https://969flash.github.io/gorani/en/">
 <meta property="og:image" content="https://969flash.github.io/gorani/assets/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F5F7FA">
+<meta name="theme-color" content="#F5F7FA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C1016" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="../assets/style.css">
+<link rel="preload" href="../assets/demo-poster.webp" as="image">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Gorani",
-  "alternateName": ["Gorani for Rhino"],
-  "description": "A free Rhino 8 plugin that builds a site context model: pick a site and the surrounding buildings, roads, terrain, water, green space and rail are created as 3D in the open Rhino document, together with a layered Illustrator basemap and urban analysis maps.",
-  "applicationCategory": "DesignApplication",
-  "applicationSubCategory": "Rhino 8 plugin",
-  "operatingSystem": "Windows, macOS",
-  "softwareRequirements": "Rhinoceros 8",
-  "softwareVersion": "0.1",
-  "isAccessibleForFree": true,
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "inLanguage": "en",
-  "url": "https://969flash.github.io/gorani/en/",
-  "author": { "@type": "Person", "name": "969flash", "url": "https://github.com/969flash" },
-  "featureList": [
-    "3D site context in Rhino: building masses, roads, terrain mesh, water, green space, rail",
-    "Layered Illustrator (.ai) basemap at 1:1,000 to 1:5,000",
-    "Urban analysis maps as SVG/AI (figure-ground, zoning, land use, street hierarchy and more; Korea)",
-    "Parcel and building tables as CSV",
-    "Worldwide via OpenStreetMap and terrain tiles; nationwide Korean cadastre, building and terrain data",
-    "Installed from the Rhino Package Manager (Yak); no Grasshopper or Python setup"
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Gorani",
+      "description": "Pick a site and Gorani builds the surrounding buildings, roads, terrain and water as a 3D model, and saves a layered Illustrator basemap and urban analysis maps. Free plugin for Rhino 8, SketchUp and Blender.",
+      "applicationCategory": "DesignApplication",
+      "applicationSubCategory": "Rhino 8, SketchUp, Blender plugin",
+      "operatingSystem": "Windows, macOS",
+      "softwareRequirements": "Rhinoceros 8, SketchUp 2022 or later, Blender 4.2 or later",
+      "softwareVersion": "0.2.1",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "inLanguage": "en",
+      "url": "https://969flash.github.io/gorani/en/",
+      "image": "https://969flash.github.io/gorani/assets/og-en.png",
+      "author": { "@type": "Person", "name": "969flash", "url": "https://github.com/969flash" },
+      "featureList": [
+        "Surrounding buildings (height from floor count), roads, terrain, water, green space and rail as a 3D model",
+        "Layered Illustrator (.ai) basemap",
+        "Analysis maps such as land use, zoning and figure-ground (SVG, AI)",
+        "Parcel and building tables (CSV)",
+        "Korea nationwide; elsewhere from OpenStreetMap"
+      ]
+    },
+    {
+      "@type": "VideoObject",
+      "name": "Installing and using Gorani",
+      "description": "Installing Gorani in Rhino 8, picking a site, and making the 3D model, basemap and analysis maps.",
+      "thumbnailUrl": "https://969flash.github.io/gorani/assets/demo-poster.webp",
+      "contentUrl": "https://969flash.github.io/gorani/assets/demo.mp4",
+      "uploadDate": "2026-10-21",
+      "duration": "PT43S"
+    }
   ]
 }
 </script>
@@ -54,280 +70,192 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-copy" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5.5" y="5.5" width="8" height="8"/><path d="M10.5 5.5v-3h-8v8h3"/></g></symbol>
-  <symbol id="i-check" viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
-  <symbol id="i-say" viewBox="0 0 16 16"><path d="M1.5 2.5h13v9h-7l-3.5 3v-3h-2.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5V4a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 4v5A1.5 1.5 0 0 0 4 10.5h1.5"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 16 16"><path d="M4.5 2.8v10.4a.6.6 0 0 0 .9.5l8.2-5.2a.6.6 0 0 0 0-1L5.4 2.3a.6.6 0 0 0-.9.5z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/></symbol>
   <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 </svg>
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="./" aria-label="Gorani home">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/><path d="M1 11h30M1 21h30M11 1v30M21 1v30" stroke="var(--hair)" stroke-width="1.5"/><path d="M11 11h10v10H11z" fill="var(--blue)"/></svg>
-      <b>Gorani</b><span>Rhino · SketchUp · Blender</span>
-    </a>
+    <a class="brand" href="./" aria-label="Gorani home"><span class="mark" aria-hidden="true"></span>Gorani</a>
     <nav class="nav" aria-label="On this page">
       <a href="#install">Install</a>
-      <a href="#outputs">Outputs</a>
-      <a href="#ai">AI agents</a>
-      <a href="#free">Support</a>
+      <a href="#flow">How it works</a>
     </nav>
     <a class="lang" href="../" hreflang="ko" lang="ko">한국어</a>
   </div>
+  <div class="progress" aria-hidden="true"><i></i><span class="run"></span></div>
 </header>
 
 <main id="main">
   <div class="wrap">
-    <article class="sheet" aria-labelledby="hero-title">
-      <div class="sheet-body">
-        <div class="pitch">
-          <h1 id="hero-title"><em>The city around<br>your site</em>, modeled<br>in Rhino.</h1>
-          <p class="lead">Gorani is a Rhino 8 plugin, with SketchUp and Blender versions on the way. Pick a site on the map and it builds the buildings, roads, terrain and water within the radius in your open document, along with an Illustrator basemap. <strong>It's free.</strong></p>
-          <div class="acts">
-            <a class="btn go" href="#install">How to install</a>
-            <a class="btn" href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
-          </div>
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <h1 id="hero-title">Site 3D modeling and analysis</h1>
+        <p class="lead">Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino, SketchUp and Blender.</p>
+        <p class="story">I built this as a student to make my own work easier, then cleaned it up to share.</p>
+        <div class="acts">
+          <a class="btn go" href="#install"><span class="run" aria-hidden="true"></span>How to install</a>
+          <a class="btn" href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
         </div>
-        <figure class="drawing">
-          <canvas id="axon" data-site="Site" data-radius="Radius {r}" role="img" aria-label="Axonometric diagram: a blue site lot in the middle, with the buildings, parcels, river and hill inside the chosen radius around it"></canvas>
-          <div class="drawing-bar">
-            <span class="label" id="range-label">Extent</span>
-            <div class="cells" role="group" aria-labelledby="range-label">
-              <button type="button" class="cell" data-r="200" aria-pressed="false">200 m</button>
-              <button type="button" class="cell" data-r="500" aria-pressed="true">500 m</button>
-              <button type="button" class="cell" data-r="1000" aria-pressed="false">1 km</button>
+        <ul class="hosts" aria-label="Supported">
+          <li><b>Rhino</b> 8</li>
+          <li><b>SketchUp</b> 2022+</li>
+          <li><b>Blender</b> 4.2+</li>
+          <li>Windows, macOS</li>
+        </ul>
+      </div>
+
+      <figure class="demo" aria-label="Demo video">
+        <div class="screen">
+          <video muted loop playsinline preload="none" width="720" height="700" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="43-second video: installing Gorani in Rhino, picking a site, and making the 3D model and analysis maps"></video>
+          <p class="cap" aria-hidden="true"></p>
+          <div class="loading" aria-hidden="true"><span class="run go"></span>Loading</div>
+          <button type="button" class="big-play"><svg aria-hidden="true"><use href="#i-play"/></svg>Play video (43 s)</button>
+          <div class="screen-bar">
+            <button type="button" class="chip-btn toggle" aria-label="Play or pause"><svg class="i-play"><use href="#i-play"/></svg><svg class="i-pause"><use href="#i-pause"/></svg></button>
+            <div class="cc" role="group" aria-label="Captions">
+              <button type="button" data-cc="ko" lang="ko">한</button>
+              <button type="button" data-cc="en">EN</button>
+              <button type="button" data-cc="off">Off</button>
             </div>
-            <figcaption>Example drawn from made-up data</figcaption>
           </div>
-        </figure>
-      </div>
-      <dl class="titleblock">
-        <div><dt>Makes</dt><dd>3D context, basemap, analysis maps</dd></div>
-        <div><dt>Price</dt><dd>Free (donations welcome)</dd></div>
-        <div><dt>Runs on</dt><dd>Rhino 8; SketchUp, Blender soon</dd></div>
-        <div><dt>Worldwide</dt><dd>OpenStreetMap buildings and roads, terrain</dd></div>
-        <div><dt>Korea</dt><dd>Nationwide, with parcels and zoning</dd></div>
-        <div><dt>Install</dt><dd>Search Gorani in Package Manager</dd></div>
-      </dl>
-    </article>
+        </div>
+        <ol class="chapters" aria-label="Scenes">
+          <li><button type="button" data-at="0"><b>1</b>Install</button></li>
+          <li><button type="button" data-at="8.5"><b>2</b>Open</button></li>
+          <li><button type="button" data-at="12"><b>3</b>Site</button></li>
+          <li><button type="button" data-at="23"><b>4</b>3D model</button></li>
+          <li><button type="button" data-at="27"><b>5</b>2D set</button></li>
+        </ol>
+      </figure>
+    </section>
+  </div>
 
-    <div class="without">
-      <span>Not needed</span>
-      <ul>
-        <li><span>An account</span></li>
-        <li><span>Payment</span></li>
-        <li><span>Grasshopper</span></li>
-        <li><span>Python setup</span></li>
-        <li><span>Download, then import</span></li>
-      </ul>
-    </div>
-
-    <section class="block" id="install" aria-labelledby="install-title">
-      <div class="head">
-        <div>
-          <h2 id="install-title">Installing</h2>
-          <p>The Rhino 8 version is ready now. No Grasshopper, no Python.</p>
+  <section class="block" id="install" aria-labelledby="install-title">
+    <div class="wrap">
+      <div class="block-head">
+        <h2 id="install-title">Install</h2>
+        <div class="seg" role="tablist" aria-label="Program">
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 8</button>
+          <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
+          <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
         </div>
       </div>
-      <div class="module">
+
+      <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
         <ol class="steps">
           <li>
             <h3>Open Package Manager</h3>
-            <p>Type this in the Rhino command line.</p>
+            <p>Type in the Rhino command line</p>
             <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="PackageManager copied" aria-label="Copy PackageManager"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
           </li>
           <li>
             <h3>Install Gorani</h3>
-            <p>Search for Gorani, install it, and restart Rhino.</p>
-            <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Gorani copied" aria-label="Copy Gorani"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            <p>Search for Gorani and press <span class="ui">Install</span></p>
+          </li>
+          <li>
+            <h3>Restart Rhino</h3>
+            <p>The plugin loads after a restart.</p>
           </li>
           <li>
             <h3>Open the panel</h3>
-            <p>Type <code>Gorani</code> and the panel opens next to the viewport. For a site outside Korea, press <span class="ui">DB 없이 해외 대상지로 계속</span> (continue without the Korean data).</p>
+            <p>Type in the command line</p>
+            <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Gorani copied" aria-label="Copy Gorani"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+          </li>
+        </ol>
+      </div>
+      <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
+        <ol class="steps" style="--n:3">
+          <li>
+            <h3>Open Extension Warehouse</h3>
+            <p>Menu <span class="ui">Extensions &gt; Extension Warehouse</span></p>
           </li>
           <li>
-            <h3>Pick a site and generate</h3>
-            <p>Drop a point (<span class="ui">위치</span>) or draw an area (<span class="ui">구역</span>), click through to the end and press <span class="ui">생성 시작</span> (Generate). The 3D model goes into your document and the drawings into a result folder.</p>
+            <h3>Install Gorani</h3>
+            <p>Search for Gorani and press <span class="ui">Install</span></p>
+          </li>
+          <li>
+            <h3>Open the panel</h3>
+            <p>Menu <span class="ui">Extensions &gt; Gorani</span>, or the gorani button on the toolbar</p>
           </li>
         </ol>
-        <div class="module-foot">
-          <p>Found a bug? <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a></p>
-        </div>
       </div>
-      <div class="module outputs hosts">
-        <div>
-          <h3>SketchUp <span>coming soon</span></h3>
-          <p>An extension for SketchUp 2022 and later. Install steps go here once Extension Warehouse review is done.</p>
-          <p class="small">Same panel and result folder as the Rhino version. The 3D model comes in as one group per site.</p>
-        </div>
-        <div>
-          <h3>Blender <span>coming soon</span></h3>
-          <p>An extension for Blender 4.2 and later. Install steps go here once Blender Extensions review is done.</p>
-          <p class="small">The panel opens in a browser tab and the 3D model comes in as collections.</p>
-        </div>
-      </div>
-      <div class="glossary">
-        <h3>The panel is only in Korean for now. Here are the words you'll need.</h3>
-        <dl>
-          <div><dt lang="ko">대상지</dt><dd>Site</dd></div>
-          <div><dt lang="ko">범위</dt><dd>Extent</dd></div>
-          <div><dt lang="ko">옵션</dt><dd>Options</dd></div>
-          <div><dt lang="ko">결과</dt><dd>Results</dd></div>
-          <div><dt lang="ko">위치</dt><dd>Point</dd></div>
-          <div><dt lang="ko">구역</dt><dd>Area</dd></div>
-          <div><dt lang="ko">필지</dt><dd>Parcel (Korea)</dd></div>
-          <div><dt lang="ko">반경</dt><dd>Radius</dd></div>
-          <div><dt lang="ko">다음</dt><dd>Next</dd></div>
-          <div><dt lang="ko">뒤로</dt><dd>Back</dd></div>
-          <div><dt lang="ko">생성 시작</dt><dd>Generate</dd></div>
-          <div><dt lang="ko">폴더 열기</dt><dd>Open folder</dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="block" id="panel" aria-labelledby="panel-title">
-      <div class="head">
-        <div>
-          <h2 id="panel-title">What it looks like</h2>
-          <p>It docks next to Rhino as a panel and takes you through site, extent, options and results. You can leave the options at their defaults.</p>
-        </div>
-      </div>
-      <ul class="screens">
-        <li><figure><img src="../assets/panel-site.webp" width="720" height="1350" loading="lazy" alt="Site step of the panel: two parcels in Seongsu-dong, Seoul, selected in blue on the map, with their total area of 1,234.5 square meters below."><figcaption><b>Site</b>Click parcels, draw an area, or drop a point. You can search by address.</figcaption></figure></li>
-        <li><figure><img src="../assets/panel-extent.webp" width="720" height="1350" loading="lazy" alt="Extent step: a dashed 500 m circle around the site, with cells for shape, radius and paper size."><figcaption><b>Extent</b>Set the radius, paper size and scale. Everything inside the dashed circle gets modeled.</figcaption></figure></li>
-        <li><figure><img src="../assets/panel-result.webp" width="720" height="1350" loading="lazy" alt="Results step: done in 41 seconds, 1,842 buildings placed in the Rhino document, and a grid of 23 drawings below."><figcaption><b>Results</b>The 3D model is already in your document. Open the drawings from the result folder in Illustrator.</figcaption></figure></li>
-      </ul>
-    </section>
-
-    <section class="block" id="outputs" aria-labelledby="outputs-title">
-      <div class="head">
-        <div>
-          <h2 id="outputs-title">Output</h2>
-          <p>Each run creates one folder, named by date and site.</p>
-        </div>
-      </div>
-      <div class="module outputs">
-        <div>
-          <h3>Result folder</h3>
-<pre class="tree"><span class="dir">result/20261014/&lt;site&gt;/</span>
-├─ context.3dm      <span class="note">3D model (also placed in your document)</span>
-├─ basemap_1000.ai  <span class="note">Illustrator basemap</span>
-├─ <span class="dir">sheets/</span>          <span class="note">analysis maps (SVG, AI)</span>
-├─ <span class="dir">tables/</span>          <span class="note">parcel and building tables (CSV)</span>
-└─ log.txt          <span class="note">data sources and dates</span></pre>
-          <p class="small">Basemaps come on A3 or A1 paper at 1:1,000 to 1:5,000, with the artboard set to the paper size.</p>
-        </div>
-        <div>
-          <h3>Layers added to Rhino</h3>
-          <ul class="layers">
-            <li><i style="background:var(--blue)"></i>Site<span>boundary</span></li>
-            <li><i></i>Parcels<span>Korea: ID, land category, zoning</span></li>
-            <li><i style="background:var(--wall-b)"></i>Buildings<span>height from floors or OSM tags</span></li>
-            <li><i style="background:var(--grid-major)"></i>Terrain<span>mesh</span></li>
-            <li><i style="background:var(--hair)"></i>Roads<span>surfaces</span></li>
-            <li><i style="background:var(--blue-wash)"></i>Water<span>rivers, streams, ponds</span></li>
-            <li><i style="background:var(--wall-a)"></i>Green · Rail<span>parks, tracks</span></li>
-          </ul>
-          <p class="small">Buildings and parcels carry attributes such as floors and use as User Text.</p>
-        </div>
-      </div>
-
-      <div class="catalog">
-        <h3>Analysis maps <span>Korea only, since they need parcel and zoning data</span></h3>
-        <ol>
-          <li><b>00</b><span>Base map</span><small lang="ko">베이스맵</small></li>
-          <li><b>01</b><span>Figure-ground</span><small lang="ko">도형-배경도</small></li>
-          <li><b>02</b><span>Parcel grain</span><small lang="ko">필지 규모</small></li>
-          <li><b>03</b><span>Block density</span><small lang="ko">블록 밀도</small></li>
-          <li><b>04</b><span>Transit catchment</span><small lang="ko">대중교통 역세권</small></li>
-          <li><b>05</b><span>Walking distance</span><small lang="ko">보행권</small></li>
-          <li><b>06</b><span>Green and blue</span><small lang="ko">녹지·수계</small></li>
-          <li><b>07</b><span>Community facilities</span><small lang="ko">생활 공공시설</small></li>
-          <li><b>08</b><span>Street hierarchy</span><small lang="ko">가로 위계</small></li>
-          <li><b>09</b><span>Land use</span><small lang="ko">토지이용현황</small></li>
-          <li><b>10</b><span>Land category</span><small lang="ko">지목 현황</small></li>
-          <li><b>11</b><span>Zoning</span><small lang="ko">용도지역</small></li>
-          <li><b>12</b><span>Districts</span><small lang="ko">용도지구·구역</small></li>
-          <li><b>13</b><span>Planning facilities</span><small lang="ko">도시계획시설·지구단위계획</small></li>
-          <li><b>14</b><span>Building use</span><small lang="ko">건축물 용도</small></li>
-          <li><b>15</b><span>Building height</span><small lang="ko">건축물 층수</small></li>
-          <li><b>16</b><span>Building age</span><small lang="ko">건축물 노후도</small></li>
-          <li><b>17</b><span>Land price</span><small lang="ko">공시지가</small></li>
-          <li><b>18</b><span>Elevation</span><small lang="ko">표고</small></li>
-          <li><b>19</b><span>Slope</span><small lang="ko">경사</small></li>
-          <li class="frame"><b>20</b><span>Views</span><small>frame to draw on</small></li>
-          <li class="frame"><b>21</b><span>Image of the city</span><small>frame to draw on</small></li>
-          <li class="frame"><b>22</b><span>Synthesis</span><small>frame to draw on</small></li>
+      <div role="tabpanel" id="p-blender" aria-labelledby="tab-blender" hidden>
+        <ol class="steps" style="--n:3">
+          <li>
+            <h3>Open Get Extensions</h3>
+            <p>Menu <span class="ui">Edit &gt; Preferences &gt; Get Extensions</span>. Allow online access the first time.</p>
+          </li>
+          <li>
+            <h3>Install Gorani</h3>
+            <p>Search for Gorani and press <span class="ui">Install</span></p>
+          </li>
+          <li>
+            <h3>Open the panel</h3>
+            <p>Press N in the 3D view, then <span class="ui">Gorani &gt; Open panel</span> in the sidebar. The panel opens in a browser tab.</p>
+          </li>
         </ol>
       </div>
-      <ul class="facts">
-        <li>Outside Korea you get the 3D model and the basemap. The parcel and zoning maps need Korean data.</li>
-        <li>Each drawing lists its data sources and reference dates.</li>
-        <li>You can change colors, line weights and text sizes and save them as a style file (JSON).</li>
-      </ul>
-    </section>
-
-    <section class="block" id="ai" aria-labelledby="ai-title">
-      <div class="head">
-        <div>
-          <h2 id="ai-title">Using it from an AI agent</h2>
-        </div>
-      </div>
-      <div class="module ai">
-        <div>
-          <p>If you have Claude or ChatGPT connected to Rhino through Rhino MCP, ask it to install this plugin instead of drawing the surrounding buildings one by one. It's faster and more accurate. For example:</p>
-          <p class="say"><svg aria-hidden="true"><use href="#i-say"/></svg>Install the Gorani plugin and open its panel</p>
-          <p>You still pick the site in the panel yourself. There's a plain-text description for AI tools at <a href="../llms.txt">llms.txt</a>.</p>
-        </div>
-        <div>
-          <div class="code-head"><span>Install commands for agents</span><button type="button" class="copy" data-copy="#agent-cmd" data-done="Install commands copied" aria-label="Copy install commands"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></div>
-<pre class="agent" id="agent-cmd"><span class="c"># Windows</span>
-"C:\Program Files\Rhino 8\System\Yak.exe" <span class="k">install Gorani</span>
-
-<span class="c"># macOS</span>
-"/Applications/Rhino 8.app/Contents/Resources/bin/yak" <span class="k">install Gorani</span>
-
-<span class="c"># after restarting Rhino, in the command line</span>
-<span class="k">_Gorani</span></pre>
-          <p class="code-note">Rhino needs a restart before the plugin loads.</p>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <section class="blueprint" id="free" aria-labelledby="free-title">
-    <div class="wrap">
-      <div>
-        <h2 id="free-title">It's free</h2>
-      </div>
-      <div>
-        <p>I don't think anyone should have to pay for a context model of their site. The data is all public, and everything runs on your own machine, so I'm giving it away.</p>
-        <p>If it saved you time, you can chip in. Donations go toward data updates and new features. Everyone gets the same features either way.</p>
-        <div class="give">
-          <a class="btn go" href="https://github.com/sponsors/969flash">Support on GitHub Sponsors</a>
-          <small>A one-person project.</small>
-        </div>
-      </div>
+      <p class="note">The first run in a new area takes a little longer while it downloads data. If something breaks, please leave a note in <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a>.</p>
     </div>
   </section>
 
+  <section class="block" id="flow" aria-labelledby="flow-title">
+    <div class="wrap">
+      <div class="block-head">
+        <div>
+          <h2 id="flow-title">How it works</h2>
+          <p class="sub">The panel opens next to your modeling window. The default options are fine to start with.</p>
+        </div>
+      </div>
+      <ol class="flow">
+        <li>
+          <img src="../assets/step-site.webp" width="640" height="813" loading="lazy" alt="Gorani panel map view. Two parcels are selected in blue, with the range shape and size below and a button to make the 3D model.">
+          <div>
+            <h3><b>1</b>Pick a site and range</h3>
+            <p>Click parcels on the map or draw an area, then set the range. Search by address or parcel number. Outside Korea it uses OpenStreetMap data.</p>
+          </div>
+        </li>
+        <li>
+          <img src="../assets/step-3d.webp" width="640" height="813" loading="lazy" alt="Panel while the 3D model is being built. A gorani runs along the progress bar, with steps for loading buildings and terrain, building the model and adding it to the Rhino file.">
+          <div>
+            <h3><b>2</b>Make the 3D model</h3>
+            <p>Buildings, roads, terrain and water go into the open document on separate layers. Building heights come from floor counts.</p>
+          </div>
+        </li>
+        <li>
+          <img src="../assets/step-2d.webp" width="640" height="813" loading="lazy" alt="Panel after the 2D set is done: basemap file names, a button for other scales, and a grid of diagrams such as basemap, figure-ground and parcel size.">
+          <div>
+            <h3><b>3</b>Make the 2D set</h3>
+            <p>The basemap (.ai), analysis maps and tables (CSV) are saved in <code>2D/</code> inside the result folder <code>result/site_date/</code>.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <div>
-      <p><b>Gorani</b> for Rhino 8. SketchUp and Blender soon.</p>
-      <p>Made by <a href="https://github.com/969flash">969flash</a>.</p>
+    <div class="foot-top">
+      <p><span class="mark" aria-hidden="true"></span>It's free. If it helped, a sponsorship is welcome.</p>
+      <a class="btn" href="https://github.com/sponsors/969flash">Sponsor on GitHub</a>
     </div>
-    <div>
-      <p>Data: © OpenStreetMap contributors (ODbL) · Korea: Ministry of Land, Infrastructure and Transport, National Geographic Information Institute, Seoul Metropolitan Government (KOGL Type 1 and others; terms printed on each drawing).</p>
-      <p>This page counts visits with Google Analytics. Plugin usage statistics: a random ID per install, versions and OS, where you generated, radius, run time and error types go to Google Analytics. No names, file paths or drawing contents.</p>
-      <p>Korean contour and elevation results may not be published online (NGII security rules).</p>
-      <p>Rhino and Rhinoceros are trademarks of Robert McNeel &amp; Associates. SketchUp is a trademark of Trimble Inc. and Blender of the Blender Foundation. This tool is not affiliated with McNeel, Trimble or the Blender Foundation.</p>
-    </div>
-    <div>
-      <p><a href="https://github.com/969flash/gorani/issues">Contact · bugs</a></p>
-      <p><a href="../llms.txt">llms.txt</a> · <a href="../" hreflang="ko" lang="ko">한국어</a></p>
+    <ul class="links" style="margin-top:16px">
+      <li><a href="https://github.com/969flash/gorani">GitHub</a></li>
+      <li><a href="https://github.com/969flash/gorani/issues">Report a bug</a></li>
+      <li><a href="../llms.txt">llms.txt</a></li>
+      <li><a href="../" hreflang="ko" lang="ko">한국어</a></li>
+    </ul>
+    <div class="fine">
+      <p>Made by <a href="https://github.com/969flash">969flash</a>. Version 0.2.1.</p>
+      <p>Data: Ministry of Land, Infrastructure and Transport, National Geographic Information Institute, Seoul Metropolitan Government (KOGL Type 1 and others; terms are printed on each drawing), © OpenStreetMap contributors (ODbL)</p>
+      <p>This page counts visits with Google Analytics. The plugin sends a random install ID, version and OS, the site location and range, run time and error types to Google Analytics (the SketchUp and Blender versions only if you allow it). No names, file paths or drawing contents.</p>
+      <p>Do not publish Korean results that contain contours or elevations (3D model, basemap) online. This is a restriction under NGII security rules.</p>
+      <p>Rhino and Rhinoceros are trademarks of Robert McNeel &amp; Associates, SketchUp of Trimble Inc., and Blender of the Blender Foundation. This tool is not affiliated with them.</p>
     </div>
   </div>
 </footer>

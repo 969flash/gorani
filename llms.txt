@@ -22,7 +22,7 @@ For agents with shell access:
 "/Applications/Rhino 8.app/Contents/Resources/bin/yak" install Gorani
 ```
 
-Rhino must restart before the plugin loads. Then run the command `_Gorani` (for example through RhinoApp.RunScript) to open the panel. There is no scripted API yet: the user picks the site and range in the panel (map with search by address, parcel number or place name), presses the 3D model button (3D 모델 만들기), and optionally the 2D button (2D 자료 만들기) for the basemap and analysis maps.
+Rhino must restart before the plugin loads. Then run the command `_Gorani` (for example through RhinoApp.RunScript) to open the panel. There is no scripted API yet: the user picks the site and range in the panel (map with search by address, parcel number or place name), presses Create 3D model, and optionally Create 2D material for the basemap and analysis maps. The panel opens in English; Korean, Spanish, Japanese and Simplified Chinese are available from the globe button at the top (the choice is saved).
 
 No Grasshopper, no Python packages and no other software are required.
 

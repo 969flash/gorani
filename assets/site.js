@@ -86,7 +86,7 @@
   var cap = screen.querySelector(".cap");
   var chapters = [].slice.call(document.querySelectorAll("[data-at]"));
   var starts = chapters.map(function (b) { return +b.getAttribute("data-at"); });
-  var END = 22.9;   // 영상 길이(초)
+  var END = 39.3;   // 영상 길이(초)
 
   // 릴스식 자막 — [시작, 끝, 한국어, 영어], *강조*
   var CAPTIONS = [
@@ -98,8 +98,16 @@
     [11.0, 13.0, "기본값으로 둬도 충분", "The defaults are fine"],
     [13.0, 14.0, "*3D 모델 만들기*", "Press *3D model*"],
     [14.0, 17.4, "고라니가 달리는 동안 만드는 중", "Building while the gorani runs"],
-    [17.4, 20.0, "건물, 도로, 지형이 *레이어별로*", "Buildings, roads, terrain, *layer by layer*"],
-    [20.0, 22.9, "열려 있는 Rhino 문서 안에", "Inside the Rhino file you have open"]
+    [17.4, 20.0, "열려 있는 Rhino 문서에 *레이어별로*", "Into your open Rhino file, *layer by layer*"],
+    [20.0, 21.5, "이어서 *2D 자료*", "Next, the *2D set*"],
+    [21.5, 22.4, "베이스맵은 *.ai* 도면으로", "The basemap as an *.ai* drawing"],
+    [22.4, 23.4, "현황도와 분석도도 함께", "Plus analysis maps"],
+    [23.4, 26.0, "베이스맵과 다이어그램 만드는 중", "Making the basemap and diagrams"],
+    [26.0, 29.0, "*.ai* 도면과 현황도 완성", "*.ai* drawings and maps, done"],
+    [29.0, 31.0, "도면마다 미리보기", "Preview each drawing"],
+    [31.0, 35.8, "*토지이용현황*", "*Land use*"],
+    [35.8, 37.8, "*지목 현황*", "*Land category*"],
+    [37.8, 39.4, "*용도지역*", "*Zoning*"]
   ];
   var ccLang = store("gorani-cc") || lang, shown = -2;
   function esc(s) { return s.replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }

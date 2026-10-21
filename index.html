@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gorani — Rhino·SketchUp·Blender 대지 주변 모델링 무료 플러그인 (건물·도로·지형 자동 생성)</title>
-<meta name="description" content="Rhino 8에서 대상지를 고르면 주변 건물·도로·지형·하천을 3D로 만들어 주는 무료 플러그인입니다. 일러스트레이터 베이스맵과 현황도도 같이 나옵니다. 패키지 매니저에서 설치합니다. SketchUp·Blender판도 준비하고 있습니다.">
+<title>Gorani: 사이트 3D 모델링 및 분석 (Rhino, SketchUp, Blender 무료 플러그인)</title>
+<meta name="description" content="대상지를 고르면 주변 건물, 도로, 지형을 3D로 만들고 베이스맵과 현황도, 분석도를 일러스트레이터 파일로 저장하는 무료 플러그인입니다. Rhino 8, SketchUp, Blender에서 작동합니다.">
 <link rel="canonical" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
@@ -13,40 +13,56 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Gorani">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:title" content="Gorani: Rhino 대지 주변 모델링 무료 플러그인">
-<meta property="og:description" content="대상지를 고르면 주변 건물·도로·지형을 Rhino에 3D로 만들어 줍니다. 무료입니다.">
+<meta property="og:title" content="Gorani: 사이트 3D 모델링 및 분석">
+<meta property="og:description" content="대상지를 고르면 3D 지형과 2D 분석 자료를 생성합니다. 라이노, 스케치업, 블렌더에서 작동하는 무료 플러그인입니다.">
 <meta property="og:url" content="https://969flash.github.io/gorani/">
 <meta property="og:image" content="https://969flash.github.io/gorani/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F5F7FA">
+<meta name="theme-color" content="#F5F7FA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C1016" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="preload" href="assets/demo-poster.webp" as="image">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Gorani",
-  "alternateName": ["Gorani for Rhino"],
-  "description": "필지나 위치를 고르면 주변 건물·도로·지형·수계를 Rhino 8 문서에 3D로 만들고, 일러스트레이터 베이스맵과 도시설계 현황·분석도를 함께 내는 무료 Rhino 플러그인.",
-  "applicationCategory": "DesignApplication",
-  "applicationSubCategory": "Rhino 8 plugin",
-  "operatingSystem": "Windows, macOS",
-  "softwareRequirements": "Rhinoceros 8",
-  "softwareVersion": "0.1",
-  "isAccessibleForFree": true,
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
-  "inLanguage": "ko",
-  "url": "https://969flash.github.io/gorani/",
-  "author": { "@type": "Person", "name": "969flash", "url": "https://github.com/969flash" },
-  "featureList": [
-    "주변 건물 매스(층수 기반 높이)·도로·지형 메시·수계·녹지·철도를 Rhino 문서에 3D로 생성",
-    "레이어가 나뉜 일러스트레이터(.ai) 베이스맵, 1:1,000~1:5,000",
-    "도형-배경도·용도지역·토지이용·가로 위계 등 현황·분석도 SVG/AI",
-    "필지·건물 조서 CSV",
-    "국내 전국 시군구 지적·건물·지형 데이터, 해외는 OpenStreetMap과 지형 타일",
-    "Rhino 패키지 매니저(Yak)로 설치, 그래스호퍼·파이썬 설치 불필요"
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Gorani",
+      "description": "대상지를 고르면 주변 건물, 도로, 지형, 하천을 3D 모델로 만들고 베이스맵과 현황도, 분석도를 일러스트레이터 파일로 저장하는 무료 플러그인. Rhino 8, SketchUp, Blender에서 작동.",
+      "applicationCategory": "DesignApplication",
+      "applicationSubCategory": "Rhino 8, SketchUp, Blender plugin",
+      "operatingSystem": "Windows, macOS",
+      "softwareRequirements": "Rhinoceros 8, SketchUp 2022 이상, Blender 4.2 이상",
+      "softwareVersion": "0.2.1",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+      "inLanguage": "ko",
+      "url": "https://969flash.github.io/gorani/",
+      "image": "https://969flash.github.io/gorani/assets/og.png",
+      "author": { "@type": "Person", "name": "969flash", "url": "https://github.com/969flash" },
+      "featureList": [
+        "주변 건물(층수로 높이), 도로, 지형, 하천, 녹지, 철도를 3D 모델로 생성",
+        "레이어가 나뉜 일러스트레이터(.ai) 베이스맵",
+        "토지이용, 용도지역, 도형-배경도 등 현황도와 분석도(SVG, AI)",
+        "필지와 건축물 조서(CSV)",
+        "국내는 전국, 해외는 OpenStreetMap 자료"
+      ]
+    },
+    {
+      "@type": "VideoObject",
+      "name": "Gorani 작동 과정",
+      "description": "Gorani 패널에서 대상지를 고르고 3D 모델과 베이스맵, 현황도, 분석도를 만드는 과정.",
+      "thumbnailUrl": "https://969flash.github.io/gorani/assets/demo-poster.webp",
+      "contentUrl": "https://969flash.github.io/gorani/assets/demo.mp4",
+      "uploadDate": "2026-10-21",
+      "duration": "PT39S"
+    }
   ]
 }
 </script>
@@ -54,274 +70,194 @@
 <body>
 <a class="skip" href="#main">본문으로</a>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-copy" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5.5" y="5.5" width="8" height="8"/><path d="M10.5 5.5v-3h-8v8h3"/></g></symbol>
-  <symbol id="i-check" viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
-  <symbol id="i-say" viewBox="0 0 16 16"><path d="M1.5 2.5h13v9h-7l-3.5 3v-3h-2.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"/></symbol>
-  <symbol id="i-out" viewBox="0 0 16 16"><path d="M5 3.5h7.5V11M12.5 3.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5V4a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 4v5A1.5 1.5 0 0 0 4 10.5h1.5"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 16 16"><path d="M4.5 2.8v10.4a.6.6 0 0 0 .9.5l8.2-5.2a.6.6 0 0 0 0-1L5.4 2.3a.6.6 0 0 0-.9.5z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/></symbol>
   <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 </svg>
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="./" aria-label="Gorani 처음으로">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/><path d="M1 11h30M1 21h30M11 1v30M21 1v30" stroke="var(--hair)" stroke-width="1.5"/><path d="M11 11h10v10H11z" fill="var(--blue)"/></svg>
-      <b>Gorani</b><span>Rhino · SketchUp · Blender</span>
-    </a>
+    <a class="brand" href="./" aria-label="Gorani 처음으로"><span class="mark" aria-hidden="true"></span>Gorani</a>
     <nav class="nav" aria-label="페이지 안">
       <a href="#install">설치</a>
-      <a href="#outputs">결과물</a>
-      <a href="#ai">AI 에이전트</a>
-      <a href="#free">후원</a>
+      <a href="#flow">사용 순서</a>
     </nav>
     <a class="lang" href="en/" hreflang="en" lang="en">English</a>
   </div>
+  <div class="progress" aria-hidden="true"><i></i><span class="run"></span></div>
 </header>
 
 <main id="main">
   <div class="wrap">
-    <article class="sheet" aria-labelledby="hero-title">
-      <div class="sheet-body">
-        <div class="pitch">
-          <h1 id="hero-title">필지를 고르면<br><em>주변 건물과 지형</em>이<br>Rhino에 들어옵니다.</h1>
-          <p class="lead">Gorani는 Rhino 8 플러그인이고, SketchUp·Blender판을 준비하고 있습니다. 지도에서 대상지를 고르면 반경 안의 건물, 도로, 지형, 하천을 지금 열려 있는 문서에 3D로 만들고, 일러스트레이터 베이스맵과 현황도도 같이 뽑아 줍니다. <strong>무료입니다.</strong></p>
-          <div class="acts">
-            <a class="btn go" href="#install">설치 방법</a>
-            <a class="btn" href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
-          </div>
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <h1 id="hero-title">사이트 3D 모델링 및 분석</h1>
+        <p class="lead">대상지를 고르면 3D 지형과 2D 분석 자료를 생성합니다. 라이노, 스케치업, 블렌더에서 작동하는 무료 플러그인입니다.</p>
+        <p class="story">학생 시절 편하게 쓰려고 만들었던 툴을 다듬어 공개했습니다.</p>
+        <div class="acts">
+          <a class="btn go" href="#install"><span class="run" aria-hidden="true"></span>설치 방법</a>
+          <a class="btn" href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
         </div>
-        <figure class="drawing">
-          <canvas id="axon" data-site="대상지" data-radius="반경 {r}" role="img" aria-label="파란 대상지 필지를 가운데 두고 반경 안의 건물·필지·하천·언덕을 축측으로 그린 예시 그림"></canvas>
-          <div class="drawing-bar">
-            <span class="label" id="range-label">범위</span>
-            <div class="cells" role="group" aria-labelledby="range-label">
-              <button type="button" class="cell" data-r="200" aria-pressed="false">200 m</button>
-              <button type="button" class="cell" data-r="500" aria-pressed="true">500 m</button>
-              <button type="button" class="cell" data-r="1000" aria-pressed="false">1 km</button>
+        <ul class="hosts" aria-label="지원 환경">
+          <li><b>Rhino</b> 8</li>
+          <li><b>SketchUp</b> 2022 이상</li>
+          <li><b>Blender</b> 4.2 이상</li>
+          <li>Windows, macOS</li>
+        </ul>
+      </div>
+
+      <figure class="demo" aria-label="시연 영상">
+        <div class="screen">
+          <video muted loop playsinline preload="none" width="720" height="816" poster="assets/demo-poster.webp" data-src="assets/demo.mp4" aria-label="Gorani 패널에서 주소로 대상지를 찾고 필지를 고른 뒤 3D 모델과 베이스맵, 현황도를 만드는 39초 영상"></video>
+          <p class="cap" aria-hidden="true"></p>
+          <div class="loading" aria-hidden="true"><span class="run go"></span>불러오는 중</div>
+          <button type="button" class="big-play"><svg aria-hidden="true"><use href="#i-play"/></svg>영상 보기 (39초)</button>
+          <div class="screen-bar">
+            <button type="button" class="chip-btn toggle" aria-label="재생 또는 멈춤"><svg class="i-play"><use href="#i-play"/></svg><svg class="i-pause"><use href="#i-pause"/></svg></button>
+            <div class="cc" role="group" aria-label="자막">
+              <button type="button" data-cc="ko">한</button>
+              <button type="button" data-cc="en" lang="en">EN</button>
+              <button type="button" data-cc="off">끔</button>
             </div>
-            <figcaption>가상 데이터로 그린 예시</figcaption>
           </div>
-        </figure>
-      </div>
-      <dl class="titleblock">
-        <div><dt>만드는 것</dt><dd>주변 3D 모델, 베이스맵, 현황도</dd></div>
-        <div><dt>가격</dt><dd>무료 (후원 받습니다)</dd></div>
-        <div><dt>환경</dt><dd>Rhino 8, SketchUp·Blender 준비 중</dd></div>
-        <div><dt>국내</dt><dd>전국, 필지·용도지역 포함</dd></div>
-        <div><dt>해외</dt><dd>OpenStreetMap 건물·도로, 지형</dd></div>
-        <div><dt>설치</dt><dd>패키지 매니저에서 Gorani 검색</dd></div>
-      </dl>
-    </article>
+        </div>
+        <ol class="chapters" aria-label="장면">
+          <li><button type="button" data-at="0"><b>1</b>주소 입력</button></li>
+          <li><button type="button" data-at="6.2"><b>2</b>필지 선택</button></li>
+          <li><button type="button" data-at="9"><b>3</b>3D 옵션</button></li>
+          <li><button type="button" data-at="13"><b>4</b>생성</button></li>
+          <li><button type="button" data-at="17.4"><b>5</b>Rhino</button></li>
+          <li><button type="button" data-at="20"><b>6</b>2D 자료</button></li>
+          <li><button type="button" data-at="27.6"><b>7</b>현황도</button></li>
+        </ol>
+      </figure>
+    </section>
+  </div>
 
-    <div class="without">
-      <span>필요 없는 것</span>
-      <ul>
-        <li><span>회원가입</span></li>
-        <li><span>결제</span></li>
-        <li><span>그래스호퍼</span></li>
-        <li><span>파이썬 설치</span></li>
-        <li><span>파일 받아서 Import</span></li>
-      </ul>
-    </div>
-
-    <section class="block" id="install" aria-labelledby="install-title">
-      <div class="head">
-        <div>
-          <h2 id="install-title">설치 방법</h2>
-          <p>지금은 Rhino 8판을 받을 수 있습니다. 그래스호퍼나 파이썬은 몰라도 됩니다.</p>
+  <section class="block" id="install" aria-labelledby="install-title">
+    <div class="wrap">
+      <div class="block-head">
+        <h2 id="install-title">설치</h2>
+        <div class="seg" role="tablist" aria-label="프로그램">
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 8</button>
+          <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
+          <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
         </div>
       </div>
-      <div class="module">
+
+      <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
         <ol class="steps">
           <li>
             <h3>패키지 매니저 열기</h3>
-            <p>Rhino 명령창에 아래 명령을 입력합니다.</p>
+            <p>Rhino 명령창에 입력</p>
             <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="PackageManager 복사됨" aria-label="PackageManager 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
           </li>
           <li>
             <h3>Gorani 설치</h3>
-            <p>Gorani를 검색해 설치하고 Rhino를 다시 켭니다.</p>
-            <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Gorani 복사됨" aria-label="Gorani 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            <p>검색칸에 Gorani를 넣고 <span class="ui">설치</span></p>
+          </li>
+          <li>
+            <h3>Rhino 다시 시작</h3>
+            <p>다시 켜야 플러그인이 올라옵니다.</p>
           </li>
           <li>
             <h3>패널 열기</h3>
-            <p>명령창에 <code>Gorani</code>를 입력하면 Gorani 패널이 열립니다. 국내 대상지는 처음에 그 지역 데이터를 한 번 받아야 합니다. <span class="ui">지도에서 지역 골라 받기</span>를 누르고, 지도를 대상지 쪽으로 옮긴 다음 <span class="ui">받기</span>를 누르세요. 구 하나에 수십 MB입니다.</p>
+            <p>명령창에 입력</p>
+            <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Gorani 복사됨" aria-label="Gorani 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+          </li>
+        </ol>
+      </div>
+      <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
+        <ol class="steps" style="--n:3">
+          <li>
+            <h3>Extension Warehouse 열기</h3>
+            <p>메뉴 <span class="ui">확장 &gt; Extension Warehouse</span></p>
           </li>
           <li>
-            <h3>대상지 고르고 생성</h3>
-            <p>필지를 클릭하거나 구역을 그린 뒤 <span class="ui">생성 시작</span>을 누릅니다. 3D 모델은 지금 문서에 들어가고 도면은 결과 폴더에 저장됩니다.</p>
+            <h3>Gorani 설치</h3>
+            <p>Gorani를 검색하고 <span class="ui">설치</span></p>
+          </li>
+          <li>
+            <h3>패널 열기</h3>
+            <p>메뉴 <span class="ui">확장 &gt; Gorani</span>, 또는 도구 막대의 고라니 단추</p>
           </li>
         </ol>
-        <div class="module-foot">
-          <p>버그는 <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a>에 남겨 주세요</p>
-        </div>
       </div>
-      <div class="module outputs hosts">
-        <div>
-          <h3>SketchUp <span>준비 중</span></h3>
-          <p>SketchUp 2022 이상에서 쓰는 확장입니다. Extension Warehouse 심사를 마치면 여기에 설치 방법을 올리겠습니다.</p>
-          <p class="small">패널과 결과 폴더는 Rhino판과 같고, 3D 모델은 대상지마다 그룹 하나로 들어옵니다.</p>
-        </div>
-        <div>
-          <h3>Blender <span>준비 중</span></h3>
-          <p>Blender 4.2 이상에서 쓰는 확장입니다. Blender 확장 스토어 심사를 마치면 여기에 설치 방법을 올리겠습니다.</p>
-          <p class="small">패널은 브라우저 탭으로 열리고, 3D 모델은 컬렉션으로 들어옵니다.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" id="panel" aria-labelledby="panel-title">
-      <div class="head">
-        <div>
-          <h2 id="panel-title">이렇게 생겼습니다</h2>
-          <p>Rhino 옆에 패널로 붙고, 대상지 → 범위 → 옵션 → 결과 순서로 넘어갑니다. 옵션은 기본값으로 둬도 됩니다.</p>
-        </div>
-      </div>
-      <ul class="screens">
-        <li><figure><img src="assets/panel-site.webp" width="720" height="1350" loading="lazy" alt="Gorani 패널의 대상지 단계. 지도에서 성수동2가 277-17 외 1필지가 파랗게 선택되어 있고 아래에 합계 면적 1,234.5 제곱미터가 보인다."><figcaption><b>대상지</b>필지를 클릭하거나 구역을 그리거나 위치를 찍습니다. 주소나 지번으로 검색할 수 있습니다.</figcaption></figure></li>
-        <li><figure><img src="assets/panel-extent.webp" width="720" height="1350" loading="lazy" alt="범위 단계. 대상지 둘레에 반경 500 m 원이 점선으로 그려져 있고 형태·반경·용지를 고르는 칸이 있다."><figcaption><b>범위</b>반경, 용지, 축척을 정합니다. 점선 원 안쪽이 모델링됩니다.</figcaption></figure></li>
-        <li><figure><img src="assets/panel-result.webp" width="720" height="1350" loading="lazy" alt="결과 단계. 생성 완료 41초, Rhino 문서에 건물 1,842동이 들어갔고 아래에 도면 23장 목록이 칸으로 나열되어 있다."><figcaption><b>결과</b>3D 모델은 이미 문서에 들어가 있고, 도면은 결과 폴더에서 일러스트레이터로 열면 됩니다.</figcaption></figure></li>
-      </ul>
-    </section>
-
-    <section class="block" id="outputs" aria-labelledby="outputs-title">
-      <div class="head">
-        <div>
-          <h2 id="outputs-title">결과물</h2>
-          <p>생성할 때마다 날짜와 대상지 이름으로 폴더가 하나 만들어집니다.</p>
-        </div>
-      </div>
-      <div class="module outputs">
-        <div>
-          <h3>결과 폴더</h3>
-<pre class="tree"><span class="dir">result/20261014/성수동2가_333-139/</span>
-├─ context.3dm      <span class="note">3D 모델 (문서에도 들어감)</span>
-├─ basemap_1000.ai  <span class="note">일러스트레이터 베이스맵</span>
-├─ <span class="dir">sheets/</span>          <span class="note">현황도·분석도 (SVG, AI)</span>
-├─ <span class="dir">tables/</span>          <span class="note">필지·건물 조서 (CSV)</span>
-└─ log.txt          <span class="note">데이터 출처와 기준일</span></pre>
-          <p class="small">베이스맵은 A3나 A1 용지, 1:1,000~1:5,000 축척으로 나옵니다. 아트보드 크기가 용지 크기와 같습니다.</p>
-        </div>
-        <div>
-          <h3>Rhino에 들어오는 레이어</h3>
-          <ul class="layers">
-            <li><i style="background:var(--blue)"></i>대상지<span>필지 경계</span></li>
-            <li><i></i>필지<span>PNU·지목·용도지역</span></li>
-            <li><i style="background:var(--wall-b)"></i>건물<span>층수로 높이, 용도·사용승인일</span></li>
-            <li><i style="background:var(--grid-major)"></i>지형<span>등고선·표고점 TIN</span></li>
-            <li><i style="background:var(--hair)"></i>도로<span>포장면</span></li>
-            <li><i style="background:var(--blue-wash)"></i>수계<span>하천·구거·유지</span></li>
-            <li><i style="background:var(--wall-a)"></i>녹지 · 철도<span>공원·임야, 선로</span></li>
-          </ul>
-          <p class="small">건물과 필지에는 PNU, 층수, 용도 같은 속성이 User Text로 들어 있습니다.</p>
-        </div>
-      </div>
-
-      <div class="catalog">
-        <h3>베이스맵 <span>모든 도면의 바탕</span></h3>
-        <ol>
-          <li><b>00</b><span>베이스맵</span></li>
-        </ol>
-        <h3>분석도 <span>형태·조직·접근·녹지·시설</span></h3>
-        <ol>
-          <li><b>01</b><span>도형-배경도</span></li>
-          <li><b>02</b><span>필지 규모</span></li>
-          <li><b>03</b><span>블록 밀도</span></li>
-          <li><b>04</b><span>대중교통 역세권</span></li>
-          <li><b>05</b><span>보행권</span></li>
-          <li><b>06</b><span>녹지·수계</span></li>
-          <li><b>07</b><span>생활 공공시설</span></li>
-        </ol>
-        <h3>현황도 <span>가로·토지·규제·건축물·지가·지형</span></h3>
-        <ol>
-          <li><b>08</b><span>가로 위계</span></li>
-          <li><b>09</b><span>토지이용현황</span></li>
-          <li><b>10</b><span>지목 현황</span></li>
-          <li><b>11</b><span>용도지역</span></li>
-          <li><b>12</b><span>용도지구·구역</span></li>
-          <li><b>13</b><span>도시계획시설·지구단위계획</span></li>
-          <li><b>14</b><span>건축물 용도</span></li>
-          <li><b>15</b><span>건축물 층수</span></li>
-          <li><b>16</b><span>건축물 노후도</span></li>
-          <li><b>17</b><span>공시지가</span></li>
-          <li><b>18</b><span>표고</span></li>
-          <li><b>19</b><span>경사</span></li>
-        </ol>
-        <h3>직접 그리는 틀 <span>바탕과 범례만 깔린 빈 도면</span></h3>
-        <ol>
-          <li class="frame"><b>20</b><span>경관·조망</span></li>
-          <li class="frame"><b>21</b><span>이미지맵</span></li>
-          <li class="frame"><b>22</b><span>종합분석</span></li>
+      <div role="tabpanel" id="p-blender" aria-labelledby="tab-blender" hidden>
+        <ol class="steps" style="--n:3">
+          <li>
+            <h3>Get Extensions 열기</h3>
+            <p>메뉴 <span class="ui">Edit &gt; Preferences &gt; Get Extensions</span>. 처음이면 온라인 접근을 허용합니다.</p>
+          </li>
+          <li>
+            <h3>Gorani 설치</h3>
+            <p>Gorani를 검색하고 <span class="ui">Install</span></p>
+          </li>
+          <li>
+            <h3>패널 열기</h3>
+            <p>3D 뷰에서 N을 눌러 사이드바 <span class="ui">Gorani &gt; 패널 열기</span>. 패널은 브라우저 탭으로 열립니다.</p>
+          </li>
         </ol>
       </div>
-      <ul class="facts">
-        <li>도면마다 데이터 출처와 기준일이 적힙니다.</li>
-        <li>용도지역·토지이용 색은 관행 색 그대로 고정돼 있습니다.</li>
-        <li>색, 선 굵기, 글자 크기를 바꿔 스타일 파일(JSON)로 저장할 수 있습니다.</li>
-      </ul>
-    </section>
-
-    <section class="block" id="ai" aria-labelledby="ai-title">
-      <div class="head">
-        <div>
-          <h2 id="ai-title">AI 에이전트로 쓸 때</h2>
-        </div>
-      </div>
-      <div class="module ai">
-        <div>
-          <p>Claude나 ChatGPT를 Rhino MCP로 연결해 쓰고 있다면, AI에게 주변 건물을 하나씩 그리게 하지 말고 이 플러그인을 설치하게 하세요. 그게 더 빠르고 정확합니다. 예를 들면 이렇게 말하면 됩니다.</p>
-          <p class="say"><svg aria-hidden="true"><use href="#i-say"/></svg>Gorani 플러그인 설치하고 패널 열어 줘</p>
-          <p>대상지 선택은 패널에서 직접 합니다. AI가 읽을 설명은 <a href="llms.txt">llms.txt</a>에 따로 정리해 두었습니다.</p>
-        </div>
-        <div>
-          <div class="code-head"><span>에이전트용 설치 명령</span><button type="button" class="copy" data-copy="#agent-cmd" data-done="설치 명령 복사됨" aria-label="설치 명령 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></div>
-<pre class="agent" id="agent-cmd"><span class="c"># Windows</span>
-"C:\Program Files\Rhino 8\System\Yak.exe" <span class="k">install Gorani</span>
-
-<span class="c"># macOS</span>
-"/Applications/Rhino 8.app/Contents/Resources/bin/yak" <span class="k">install Gorani</span>
-
-<span class="c"># Rhino를 다시 켠 뒤 명령창에</span>
-<span class="k">_Gorani</span></pre>
-          <p class="code-note">설치 후 Rhino를 재시작해야 플러그인이 로드됩니다.</p>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <section class="blueprint" id="free" aria-labelledby="free-title">
-    <div class="wrap">
-      <div>
-        <h2 id="free-title">무료입니다</h2>
-      </div>
-      <div>
-        <p>대지 주변 모델 하나 만드는 데 돈을 낼 이유는 없다고 생각합니다. 쓰는 데이터는 모두 공공데이터이고, 계산은 각자 컴퓨터에서 돌아갑니다. 그래서 무료로 공개했습니다.</p>
-        <p>써 보고 도움이 됐다면 후원해 주세요. 데이터 갱신과 기능 추가에 쓰겠습니다. 후원 여부와 관계없이 기능은 똑같습니다.</p>
-        <div class="give">
-          <a class="btn go" href="https://github.com/sponsors/969flash">GitHub Sponsors로 후원</a>
-          <a class="btn" href="#todo-toss">토스로 후원</a>
-          <small>개인 프로젝트입니다.</small>
-        </div>
-      </div>
+      <p class="note">처음 쓰는 지역은 데이터를 받느라 시간이 조금 더 걸립니다. 문제가 생기면 <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a>에 남겨 주세요.</p>
     </div>
   </section>
 
+  <section class="block" id="flow" aria-labelledby="flow-title">
+    <div class="wrap">
+      <div class="block-head">
+        <div>
+          <h2 id="flow-title">사용 순서</h2>
+          <p class="sub">패널은 프로그램 옆에 붙어 열립니다. 옵션은 기본값으로 둬도 됩니다.</p>
+        </div>
+      </div>
+      <ol class="flow">
+        <li>
+          <img src="assets/step-site.webp" width="640" height="813" loading="lazy" alt="Gorani 패널의 지도 화면. 필지 두 개가 파랗게 선택되어 있고 아래에 범위(원, 사각형)와 한 변 길이를 고르는 칸, 3D 모델 만들기 버튼이 있다.">
+          <div>
+            <h3><b>1</b>대상지와 범위 고르기</h3>
+            <p>지도에서 필지를 누르거나 구역을 그리고 범위를 정합니다. 주소나 지번으로 찾을 수 있고, 해외는 OpenStreetMap 자료로 만듭니다.</p>
+          </div>
+        </li>
+        <li>
+          <img src="assets/step-3d.webp" width="640" height="813" loading="lazy" alt="3D 모델을 만드는 중인 패널. 진행 막대 위를 고라니가 달리고 있고 아래에 건물과 지형 불러오기, 3D 모델 만들기, Rhino 파일에 넣기 단계가 보인다.">
+          <div>
+            <h3><b>2</b>3D 모델 만들기</h3>
+            <p>건물, 도로, 지형, 하천이 열려 있는 문서에 레이어별로 들어갑니다. 건물 높이는 층수로 정합니다.</p>
+          </div>
+        </li>
+        <li>
+          <img src="assets/step-2d.webp" width="640" height="813" loading="lazy" alt="2D 자료 생성 완료 화면. 베이스맵 파일 이름과 다른 축척 받기 버튼, 그 아래 다이어그램 목록(베이스맵, 도형-배경도, 필지 규모 등)이 칸으로 나열되어 있다.">
+          <div>
+            <h3><b>3</b>2D 자료 만들기</h3>
+            <p>베이스맵(.ai), 현황도와 분석도, 조서(CSV)가 결과 폴더 <code>result/대상지_날짜/</code> 안의 <code>2D/</code>에 저장됩니다.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <div>
-      <p><b>Gorani</b></p>
-      <p>Rhino 8 플러그인, SketchUp·Blender판 준비 중. 만든 사람 <a href="https://github.com/969flash">969flash</a></p>
+    <div class="foot-top">
+      <p><span class="mark" aria-hidden="true"></span>무료입니다. 도움이 됐다면 후원해 주세요.</p>
+      <a class="btn" href="https://github.com/sponsors/969flash">GitHub Sponsors로 후원</a>
     </div>
-    <div>
-      <p>데이터: 국토교통부 · 국토지리정보원 · 서울특별시(공공누리 제1유형 등, 이용 조건은 도면 출처 줄에 표기) · © OpenStreetMap contributors (ODbL)</p>
-      <p>이 페이지는 방문 통계를 Google Analytics로 셉니다. 플러그인 사용 통계: 설치마다 만든 무작위 ID, 버전·OS, 생성한 대상지 위치·범위·걸린 시간·오류 종류를 Google Analytics로 보냅니다. 이름·파일 경로·도면 내용은 보내지 않습니다.</p>
-      <p>등고선·표고가 든 결과물(3dm, 베이스맵)은 인터넷에 올리지 마세요. 국토지리정보원 보안관리규정에 따른 제한입니다.</p>
-      <p>Rhino와 Rhinoceros는 Robert McNeel &amp; Associates의 상표입니다. SketchUp은 Trimble Inc., Blender는 Blender Foundation의 상표입니다. 이 도구는 McNeel·Trimble·Blender Foundation과 관계가 없습니다.</p>
-    </div>
-    <div>
-      <p><a href="https://github.com/969flash/gorani/issues">문의 · 버그</a></p>
-      <p><a href="llms.txt">llms.txt</a> · <a href="en/" hreflang="en" lang="en">English</a></p>
+    <ul class="links" style="margin-top:16px">
+      <li><a href="https://github.com/969flash/gorani">GitHub</a></li>
+      <li><a href="https://github.com/969flash/gorani/issues">버그 신고</a></li>
+      <li><a href="llms.txt">llms.txt</a></li>
+      <li><a href="en/" hreflang="en" lang="en">English</a></li>
+    </ul>
+    <div class="fine">
+      <p>만든 사람 <a href="https://github.com/969flash">969flash</a>. 버전 0.2.1.</p>
+      <p>데이터: 국토교통부, 국토지리정보원, 서울특별시(공공누리 제1유형 등, 이용 조건은 도면 출처 줄에 표기), © OpenStreetMap contributors (ODbL)</p>
+      <p>이 페이지는 방문 통계를 Google Analytics로 셉니다. 플러그인은 설치마다 만든 무작위 ID, 버전과 OS, 생성한 대상지 위치와 범위, 걸린 시간, 오류 종류를 Google Analytics로 보냅니다(SketchUp, Blender판은 허락한 경우에만). 이름, 파일 경로, 도면 내용은 보내지 않습니다.</p>
+      <p>등고선이나 표고가 든 결과물(3D 모델, 베이스맵)은 인터넷에 올리지 마세요. 국토지리정보원 보안관리규정에 따른 제한입니다.</p>
+      <p>Rhino와 Rhinoceros는 Robert McNeel &amp; Associates, SketchUp은 Trimble Inc., Blender는 Blender Foundation의 상표입니다. 이 도구는 이들과 관계가 없습니다.</p>
     </div>
   </div>
 </footer>

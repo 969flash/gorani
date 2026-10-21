@@ -37,6 +37,7 @@ Edit > Preferences > Get Extensions (allow online access), search `Gorani`, inst
 ## Coverage
 
 - Korea, nationwide: parcels (cadastre, PNU), buildings with floors, use and approval date, terrain from 1:5,000 contours and spot heights, roads, water, zoning. Regional data packs (per 시군구, tens of MB) are downloaded once from inside the panel.
+- Japan: buildings from PLATEAU (MLIT Japan, 3D city models with measured heights and use, 306 municipalities, downloaded once per municipality from inside the panel) with OpenStreetMap filling the gaps, roads and water from OpenStreetMap, terrain from GSI (Geospatial Information Authority of Japan) 5 m tiles.
 - Elsewhere: buildings and roads from OpenStreetMap, terrain from public terrain tiles, downloaded at generation time (internet required). Building heights come from OSM height/levels tags with a default where missing. Parcel and zoning maps are Korea only.
 - Radius 100 m to 2 km. Default units are meters; the model is scaled to the document units.
 
@@ -50,7 +51,7 @@ Edit > Preferences > Get Extensions (allow online access), search `Gorani`, inst
 
 - Korean data: Ministry of Land, Infrastructure and Transport (GIS building data, land characteristics, land use plans), National Geographic Information Institute (digital topographic map 1:5,000), Seoul Metropolitan Government (UPIS). Every drawing prints sources and reference dates; drawings have no legal effect.
 - Korean contour and elevation results must not be published online (NGII security rules).
-- OpenStreetMap data © OpenStreetMap contributors, ODbL.
+- OpenStreetMap data © OpenStreetMap contributors, ODbL. Japan: PLATEAU (MLIT Japan, CC BY 4.0) and GSI tiles (GSI terms, attribution).
 - The plugin sends anonymous usage statistics (random install ID, versions, OS, generated site location, extent, run time, error types) to Google Analytics; the SketchUp and Blender versions only with the user's consent. No names, file paths or drawing contents.
 
 ## Links

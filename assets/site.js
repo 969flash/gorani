@@ -160,6 +160,8 @@
   var cap = screen.querySelector(".cap");
   var chapters = [].slice.call(document.querySelectorAll("[data-at]"));
   var starts = chapters.map(function (b) { return +b.getAttribute("data-at"); });
+  var DEMO_START = 3.67;
+  var firstPlayback = true;
   var END = 52.33;   // 영상 길이(초)
 
   // 설명 자막 — [시작, 끝, 한국어, 영어], *강조*
@@ -216,6 +218,16 @@
   video.addEventListener("play", function () { screen.classList.remove("paused"); cancelAnimationFrame(frame); loop(); });
   video.addEventListener("pause", function () { screen.classList.add("paused"); cancelAnimationFrame(frame); render(); });
   video.addEventListener("seeked", render);
+  video.addEventListener("loadedmetadata", function () {
+    if (firstPlayback) video.currentTime = DEMO_START;
+    render();
+  });
+  video.addEventListener("ended", function () {
+    if (userPaused) return;
+    firstPlayback = false;
+    video.currentTime = 0;
+    play();
+  });
   video.addEventListener("waiting", function () { screen.classList.add("wait"); });
   video.addEventListener("playing", function () { screen.classList.remove("wait"); });
   video.addEventListener("canplay", function () { screen.classList.remove("wait"); });

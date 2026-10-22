@@ -32,8 +32,15 @@
     var revealObserver = new IntersectionObserver(function (entries, observer) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("in-view");
-        observer.unobserve(entry.target);
+        var el = entry.target;
+        el.classList.add("in-view");
+        observer.unobserve(el);
+        // 나타난 뒤에는 reveal 전환(지연 포함)을 떼어 호버 전환이 그 요소 것대로 돌게 한다
+        el.addEventListener("transitionend", function done(e) {
+          if (e.target !== el || e.propertyName !== "opacity") return;
+          el.removeEventListener("transitionend", done);
+          el.classList.remove("reveal", "in-view");
+        });
       });
     }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
     revealTargets.forEach(function (el) { revealObserver.observe(el); });

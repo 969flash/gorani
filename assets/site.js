@@ -8,6 +8,14 @@
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
     window.gtag("js", new Date());
+    // 개발자 표시 — localhost이거나 ?dev=1로 한 번 연 브라우저(?dev=0으로 해제). 관리자 대시보드 [내 테스트 제외]가 dev = 1인 방문을 뺀다
+    var dev = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+    try {
+      if (/[?&]dev=0\b/.test(location.search)) localStorage.removeItem("gorani_dev");
+      else if (/[?&]dev=1\b/.test(location.search)) localStorage.setItem("gorani_dev", "1");
+      dev = dev || localStorage.getItem("gorani_dev") === "1";
+    } catch (e) { /* 저장소를 막은 브라우저 — localhost만 본다 */ }
+    if (dev) window.gtag("set", { dev: "1" });
     window.gtag("config", GA_ID);
     var tag = document.createElement("script");
     tag.async = true;

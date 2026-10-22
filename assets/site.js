@@ -25,6 +25,49 @@
     try { if (value === undefined) return localStorage.getItem(key); localStorage.setItem(key, value); } catch (e) { return null; }
   }
 
+  // ── 머리줄 펼침 메뉴(언어, 좁은 화면 메뉴): 하나만 열고, 링크·바깥 누르기·Esc로 닫는다 ──
+  var pops = [].slice.call(document.querySelectorAll(".language-switch, .menu-switch"));
+  function closePops(except) { pops.forEach(function (d) { if (d !== except) d.open = false; }); }
+  pops.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (!d.open) return;
+      closePops(d);
+      if (d.classList.contains("menu-switch")) track("menu_open");
+    });
+    d.addEventListener("click", function (e) { if (e.target.closest("a")) d.open = false; });
+  });
+  document.addEventListener("click", function (e) { if (!e.target.closest(".language-switch, .menu-switch")) closePops(); });
+  document.addEventListener("keydown", function (e) {
+    var open = pops.filter(function (d) { return d.open; })[0];
+    if (e.key === "Escape" && open) { closePops(); open.querySelector("summary").focus(); }
+  });
+
+  // ── 행동 통계: 고른 프로그램, 설치 버튼, 바깥 링크, 언어 전환, 어느 섹션까지 봤는지 ──
+  var pageLang = document.documentElement.lang;
+  function place(el) { return el.closest("header") ? "header" : el.closest(".hero") ? "hero" : el.closest("footer") ? "footer" : "body"; }
+  document.addEventListener("click", function (e) {
+    var chip = e.target.closest(".support .host-link");
+    if (chip) return track("host_click", { host: chip.querySelector("b").textContent.trim().toLowerCase() });
+    var a = e.target.closest("a");
+    if (!a) return;
+    if (a.closest(".language-switch")) return track("language_switch", { from: pageLang, to: a.getAttribute("lang") });
+    if (a.getAttribute("href") === "#install") return track("install_cta", { place: place(a) });
+    var href = a.href;
+    var target = /\/gorani\/issues/.test(href) ? "review" : /github\.com\/sponsors\//.test(href) ? "sponsor"
+      : /github\.com\/969flash\/gorani\/?$/.test(href) ? "github" : /wikipedia\.org/.test(href) ? "wikipedia" : "";
+    if (target) track("outbound_click", { target: target, place: place(a) });
+  });
+  if ("IntersectionObserver" in window) {
+    var sectionObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        track("section_view", { section: entry.target.id });
+      });
+    }, { rootMargin: "0px 0px -40% 0px" });   // 섹션 머리가 화면 위쪽 60% 안에 들어오면 본 것으로 센다(긴 섹션도 잡히게)
+    document.querySelectorAll("#main > section[id]").forEach(function (s) { sectionObserver.observe(s); });
+  }
+
   // 긴 페이지의 기능 블록은 화면에 들어올 때 순차적으로 나타낸다.
   var revealTargets = [].slice.call(document.querySelectorAll(".feature, .usage li, .coverage article, .faq details, .final .wrap"));
   revealTargets.forEach(function (el) { el.classList.add("reveal"); });

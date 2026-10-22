@@ -3,13 +3,13 @@
   --paper: #FFFFFF;             /* 바탕은 흰색 */
   --soft: #FFFFFF;              /* 레퍼런스처럼 모든 섹션은 흰 바탕 */
   --surface: #FFFFFF;
-  --press: #EDF0F4;
-  --ink: #111418;
-  --ink-2: #465061;
-  --ink-3: #7D8798;
-  --hair: #E3E6EB;
+  --press: #F0F0F0;
+  --ink: #141414;
+  --ink-2: #4F4F4F;
+  --ink-3: #868686;
+  --hair: #E6E6E6;
   --on-ink: #FFFFFF;
-  --screen: #EBF0F3;            /* 영상 바탕과 같은 색(밝은 판) */
+  --screen: #EFEFEF;            /* 영상 바탕과 같은 색(밝은 판) */
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --mark: url(mark.svg);        /* 정면 마크(브랜드 원본) */
   --run: url(run.svg);          /* 달리는 고라니 8장 가로 띠(패널 RUN_FRAMES) */
@@ -70,14 +70,17 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .brand .mark { --s: 28px; }
 .nav { display: flex; gap: 4px; margin-left: auto; }
 .language-switch { position: relative; margin-left: 8px; }
-.language-switch summary { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--hair); border-radius: 8px; color: var(--ink-2); cursor: pointer; list-style: none; font-size: 20px; line-height: 1; }
-.language-switch summary::-webkit-details-marker { display: none; }
-.language-switch summary svg { width: 17px; height: 17px; }
-.language-switch summary:hover, .language-switch[open] summary { background: var(--press); color: var(--ink); }
-.language-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 6; display: grid; min-width: 116px; padding: 4px; border: 1px solid var(--hair); background: var(--surface); box-shadow: 0 12px 28px -18px rgba(17, 20, 24, .35); }
+.language-switch summary, .menu-switch summary { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--hair); border-radius: 8px; color: var(--ink-2); cursor: pointer; list-style: none; font-size: 20px; line-height: 1; }
+.language-switch summary::-webkit-details-marker, .menu-switch summary::-webkit-details-marker { display: none; }
+.language-switch summary svg, .menu-switch summary svg { width: 17px; height: 17px; }
+.language-switch summary:hover, .language-switch[open] summary, .menu-switch summary:hover, .menu-switch[open] summary { background: var(--press); color: var(--ink); }
+.language-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 6; display: grid; min-width: 116px; padding: 4px; border: 1px solid var(--hair); background: var(--surface); box-shadow: 0 12px 28px -18px rgba(20, 20, 20, .35); }
 .language-menu a, .language-menu span { padding: 7px 9px; color: var(--ink-2); text-decoration: none; font-size: 13px; white-space: nowrap; }
 .language-menu a:hover, .language-menu a[aria-current="page"] { background: var(--press); color: var(--ink); }
 .language-menu span[aria-disabled="true"] { color: var(--ink-3); cursor: not-allowed; }
+.menu-switch { display: none; position: relative; }   /* 좁은 화면에서만: 머리줄 링크를 접어 둔 메뉴 */
+.menu-list { min-width: 168px; }
+.menu-list a { padding: 10px 12px; font-size: 15px; }
 .nav a, .lang { color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: 15px; padding: 4px 12px; border-radius: 999px; }
 .nav a:hover, .lang:hover { background: var(--press); color: var(--ink); }
 .lang { border: 1px solid var(--hair); }
@@ -142,7 +145,7 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
 .support .hosts li { display: contents; }
 .support .hosts .host-link {
   position: relative; display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 10px;
-  border: 1px solid var(--hair); border-radius: 6px; background: rgba(17, 20, 24, .015);
+  border: 1px solid var(--hair); border-radius: 6px; background: rgba(20, 20, 20, .015);
   font-size: 13px; line-height: 1; color: var(--ink-3); white-space: nowrap; cursor: pointer;
   transition: border-color .6s cubic-bezier(.33,0,.45,1), background-color .6s cubic-bezier(.33,0,.45,1), color .6s cubic-bezier(.33,0,.45,1);
 }
@@ -151,7 +154,7 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
 .support .host-link > span { display: inline; }
 .support .hosts b { font-weight: 500; color: inherit; }
 .support .hosts small { margin-left: 4px; font-size: 13px; line-height: 1; color: var(--ink-3); opacity: .8; }
-.support .host-link:has(img):hover, .support a.host-link:focus-visible { border-color: #C9CED6; background: var(--press); color: var(--ink); }
+.support .host-link:has(img):hover, .support a.host-link:focus-visible { border-color: #CECECE; background: var(--press); color: var(--ink); }
 .support .host-link:has(img):hover img, .support a.host-link:focus-visible img { filter: none; opacity: 1; }
 .support .host-link:has(img):hover, .support a.host-link:focus-visible, .support .host-link:has(img):hover img, .support a.host-link:focus-visible img { transition-duration: .18s; }
 @media (prefers-reduced-motion: reduce) { .support .hosts .host-link, .support .hosts img { transition: none; } }
@@ -176,7 +179,7 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
 
 /* ── 시연 영상: Rhino와 패널을 함께 찍은 가로 16:9 화면 — 창이 낮으면 높이에 맞춰 줄인다 ── */
 .demo { min-width: 0; width: min(100%, var(--fold) * 16 / 9); justify-self: end; display: flex; flex-direction: column; gap: 8px; }
-.device { padding: 5px; border: 1px solid var(--hair); border-radius: 16px; background: var(--press); box-shadow: 0 8px 20px -16px rgba(17, 20, 24, .1); }
+.device { padding: 5px; border: 1px solid var(--hair); border-radius: 16px; background: var(--press); box-shadow: 0 8px 20px -16px rgba(20, 20, 20, .1); }
 .screen {
   position: relative; container-type: inline-size;
   aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: var(--screen);
@@ -185,14 +188,14 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
 .loading, .big-play {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
   display: grid; justify-items: center; gap: 4px; padding: 12px 16px; border-radius: 12px;
-  color: #E8ECF2; font-size: 13px; line-height: 20px; background: rgba(12, 16, 22, .82); border: 0;
+  color: #ECECEC; font-size: 13px; line-height: 20px; background: rgba(16, 16, 16, .82); border: 0;
 }
 .loading { opacity: 0; pointer-events: none; transition: opacity .2s; }
 .loading .run { --w: 48px; --h: 36px; }
 .screen.wait .loading { opacity: 1; }
 .big-play { display: none; align-items: center; gap: 8px; border: 0; cursor: pointer; font-weight: 600; font-size: 14px; padding: 16px 20px; }
 .big-play .mark { --s: 28px; }
-.big-play:hover { background: rgba(12, 16, 22, .94); }
+.big-play:hover { background: rgba(16, 16, 16, .94); }
 .screen.idle .big-play { display: grid; }
 .screen:not(.ready) .cap { display: none; }
 
@@ -203,7 +206,7 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
 }
 .cap span {
   display: inline-block; padding: .12em .5em; border-radius: 0; white-space: nowrap;
-  background: rgba(12, 16, 22, .86);
+  background: rgba(16, 16, 16, .86);
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
 .cap em { font-style: normal; font-weight: 700; color: #FFFFFF; }
@@ -213,16 +216,16 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
 .screen-bar .toggle { position: absolute; right: 0; bottom: 0; }
 .chip-btn {
   display: inline-grid; place-items: center; width: 32px; height: 32px; border: 0; border-radius: 8px; cursor: pointer;
-  background: rgba(12, 16, 22, .72); color: #fff;
+  background: rgba(16, 16, 16, .72); color: #fff;
 }
-.chip-btn:hover { background: rgba(12, 16, 22, .9); }
+.chip-btn:hover { background: rgba(16, 16, 16, .9); }
 .chip-btn svg { width: 16px; height: 16px; }
 .chip-btn .i-play { display: none; }
 .screen.paused .chip-btn .i-play { display: block; }
 .screen.paused .chip-btn .i-pause { display: none; }
-.cc { display: flex; padding: 2px; gap: 2px; border-radius: 8px; background: rgba(12, 16, 22, .72); }
-.cc button { border: 0; background: none; color: #A9B3C3; font-size: 12px; line-height: 18px; font-weight: 600; padding: 5px 8px; border-radius: 6px; cursor: pointer; }
-.cc button[aria-pressed="true"] { background: #fff; color: #111418; }
+.cc { display: flex; padding: 2px; gap: 2px; border-radius: 8px; background: rgba(16, 16, 16, .72); }
+.cc button { border: 0; background: none; color: #B2B2B2; font-size: 12px; line-height: 18px; font-weight: 600; padding: 5px 8px; border-radius: 6px; cursor: pointer; }
+.cc button[aria-pressed="true"] { background: #fff; color: #141414; }
 
 /* 장면: 스토리처럼 칸마다 채워지는 막대, 누르면 그 장면으로 */
 .chapters { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2px; min-width: 0; margin: 0; padding: 3px; list-style: none; overflow: hidden; border: 1px solid color-mix(in srgb, var(--hair) 72%, transparent); border-radius: 8px; background: color-mix(in srgb, var(--press) 72%, transparent); opacity: .82; }
@@ -231,7 +234,7 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
   font-size: 13px; line-height: 20px; color: var(--ink-2); font-weight: 500; white-space: nowrap; transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
 }
 .chapters button:hover { color: var(--ink); background: color-mix(in srgb, var(--surface) 72%, transparent); }
-.chapters button[aria-current="step"] { color: var(--ink); font-weight: 600; background: color-mix(in srgb, var(--surface) 76%, transparent); box-shadow: 0 1px 2px rgba(17, 20, 24, .05); }
+.chapters button[aria-current="step"] { color: var(--ink); font-weight: 600; background: color-mix(in srgb, var(--surface) 76%, transparent); box-shadow: 0 1px 2px rgba(20, 20, 20, .05); }
 .chapters b { font-weight: inherit; font-variant-numeric: tabular-nums; margin-right: 4px; color: inherit; }
 
 /* ── 섹션 ── */
@@ -263,7 +266,7 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
 .feature.flip { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
 .feature.flip > .shot { order: 2; }
 .shot { border-radius: 16px; overflow: hidden; background: var(--press); border: 1px solid var(--hair); transition: border-color .6s cubic-bezier(.33,0,.45,1), box-shadow .6s cubic-bezier(.33,0,.45,1); }
-.shot:hover { border-color: #C9CED6; box-shadow: 0 12px 32px -24px rgba(17, 20, 24, .35); transition-duration: .18s; }   /* 사용법 카드·지원 칩과 같은 결 */
+.shot:hover { border-color: #CECECE; box-shadow: 0 12px 32px -24px rgba(20, 20, 20, .35); transition-duration: .18s; }   /* 사용법 카드·지원 칩과 같은 결 */
 .shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .media-stack { display: grid; gap: 12px; padding: 12px; }
 .media-stack video, .media-stack img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; border-radius: 10px; background: var(--surface); }
@@ -277,7 +280,7 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
 /* 사용 순서: 패널과 Rhino 3D 뷰 화면 4장 */
 .usage { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 0; list-style: none; }
 .usage li { border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); overflow: hidden; transition: border-color .6s cubic-bezier(.33,0,.45,1), box-shadow .6s cubic-bezier(.33,0,.45,1); }
-.usage li:hover { border-color: #C9CED6; box-shadow: 0 12px 32px -24px rgba(17, 20, 24, .35); transition-duration: .18s; }   /* 지원 칩과 같은 결: 제자리에서 빠르게 켜지고 천천히 꺼짐 */
+.usage li:hover { border-color: #CECECE; box-shadow: 0 12px 32px -24px rgba(20, 20, 20, .35); transition-duration: .18s; }   /* 지원 칩과 같은 결: 제자리에서 빠르게 켜지고 천천히 꺼짐 */
 .usage img { width: 100%; height: auto; background: var(--press); }
 .usage div { padding: 20px 24px 24px; }
 .usage h3 { font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: -.01em; }
@@ -372,6 +375,7 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
   .faq-item p { padding: 0 0 20px; }
   .top .wrap { gap: 12px; }
   .nav { display: none; }
+  .menu-switch { display: block; }
   .language-switch { margin-left: auto; }
   .hero { padding-top: 40px; }
   .hero h1 { font-size: 34px; line-height: 42px; }

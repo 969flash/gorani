@@ -23,7 +23,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0C1016" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#101010" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -78,6 +78,7 @@
   <symbol id="i-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/></symbol>
   <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.75" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M2.5 8h11M8 2.25c1.55 1.55 2.25 3.35 2.25 5.75S9.55 12.2 8 13.75C6.45 12.2 5.75 10.4 5.75 8S6.45 3.8 8 2.25Z" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
   <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 </svg>
 
@@ -98,6 +99,15 @@
         <a href="../ja/" hreflang="ja" lang="ja" role="menuitem">日本語</a>
         <a href="../zh/" hreflang="zh" lang="zh" role="menuitem">简体中文</a>
         <a href="./" hreflang="es" lang="es" aria-current="page" role="menuitem">Español</a>
+      </div>
+    </details>
+    <details class="menu-switch">
+      <summary aria-label="Menú"><svg aria-hidden="true"><use href="#i-menu"/></svg></summary>
+      <div class="language-menu menu-list">
+        <a href="#install">Instalar</a>
+        <a href="#usage">Cómo usar</a>
+        <a href="#faq">Preguntas</a>
+        <a href="https://github.com/969flash/gorani/issues">Dejar una reseña</a>
       </div>
     </details>
   </div>
@@ -364,7 +374,7 @@
         </div>
         <div class="faq-item">
           <h3>Algo salió mal. ¿Qué hago?</h3>
-          <p>Si algo falla, revisa <code>log.txt</code> en la carpeta de resultados.</p>
+          <p>Primero revisa <code>log.txt</code> en la carpeta de resultados. Si no se resuelve, abre una incidencia en <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a> y adjunta <code>log.txt</code>.</p>
         </div>
       </div>
     </div>

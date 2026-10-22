@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gorani: 쉽고 빠른 3D 지형 생성과 다이어그램 제작 툴 (Rhino, SketchUp, Blender 무료 플러그인)</title>
-<meta name="description" content="Gorani는 라이노에서 지형과 콘타를 자동 생성하고, 대지 분석과 다이어그램까지 만드는 무료 플러그인입니다. 주변 건물·도로·지형을 3D로 만들고 Rhino 8, SketchUp, Blender에서 사용하세요.">
+<meta name="description" content="Gorani는 라이노, 스케치업, 블렌더에서 지형과 콘타를 자동 생성하고, 대지 분석과 다이어그램까지 만드는 무료 플러그인입니다. 주변 건물·도로·지형을 3D로 만들어 줍니다.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1, max-snippet:-1">
 <link rel="alternate" type="text/plain" href="https://969flash.github.io/gorani/llms.txt">
 <link rel="canonical" href="https://969flash.github.io/gorani/">
@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Gorani">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="Gorani: 쉽고 빠른 3D 지형 생성과 다이어그램 제작 툴">
-<meta property="og:description" content="라이노에서 지형과 콘타를 자동 생성하고 대지 분석과 22가지 다이어그램을 만드는 무료 오픈소스 플러그인입니다.">
+<meta property="og:description" content="라이노, 스케치업, 블렌더에서 지형과 콘타를 자동 생성하고 대지 분석과 22가지 다이어그램을 만드는 무료 오픈소스 플러그인입니다.">
 <meta property="og:url" content="https://969flash.github.io/gorani/">
 <meta property="og:image" content="https://969flash.github.io/gorani/assets/og.png">
 <meta property="og:image:width" content="1200">
@@ -80,6 +80,7 @@
   <symbol id="i-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/></symbol>
   <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.75" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M2.5 8h11M8 2.25c1.55 1.55 2.25 3.35 2.25 5.75S9.55 12.2 8 13.75C6.45 12.2 5.75 10.4 5.75 8S6.45 3.8 8 2.25Z" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
   <symbol id="i-menu" viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
   <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 </svg>
@@ -121,7 +122,7 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-text">
         <h1 id="hero-title">쉽고 빠른 <span class="nw">3D 지형 생성과</span> <span class="nw">다이어그램 제작 툴</span></h1>
-        <p class="lead">Gorani는 라이노에서 지형과 콘타를 자동 생성하고 대지 분석과 다이어그램까지 만드는 무료 오픈소스 플러그인입니다.</p>
+        <p class="lead">Gorani는 라이노, 스케치업, 블렌더에서 지형과 콘타를 자동 생성하고 대지 분석과 다이어그램까지 만드는 무료 오픈소스 플러그인입니다.</p>
         <div class="acts">
           <a class="btn go" href="#install">Gorani를 설치하세요<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="btn icon" href="https://github.com/969flash/gorani" aria-label="GitHub" title="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
@@ -164,7 +165,7 @@
       <div>
         <span class="eyebrow">3D 모델</span>
         <h2 id="model-title">주변 맥락을 레이어별로</h2>
-        <p class="sub">건물, 도로, 지형, 하천이 열려 있는 문서에 레이어별로 들어갑니다. Rhino 레이어 창에서 결과를 켜고 끄거나 숨길 수 있고, 건물 높이는 층수로 정합니다.</p>
+        <p class="sub">건물, 도로, 지형, 하천이 열려 있는 문서에 레이어별로 들어갑니다. 레이어 창에서 결과를 켜고 끄거나 숨길 수 있습니다.</p>
         <ul class="tags" aria-label="만드는 레이어">
           <li>건물</li><li>도로</li><li>지형</li><li>하천</li><li>녹지</li><li>철도</li><li>필지</li>
         </ul>
@@ -181,7 +182,7 @@
       </div>
       <div>
         <span class="eyebrow">2D 자료</span>
-        <h2 id="maps-title">대지 분석으로 밤새지 마세요.</h2>
+        <h2 id="maps-title">대지 분석으로 밤새지 마세요</h2>
         <p class="sub">도형-배경도, 용도지역, 토지이용현황 등 22가지 다이어그램을 편집 가능한 SVG로 제공합니다. 색과 스타일도 바꿀 수 있습니다.</p>
         <ul class="files">
           <li><b>베이스맵</b><code>basemap_축척.ai</code></li>
@@ -221,58 +222,85 @@
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
-        <ol class="steps">
-          <li>
-            <h3>패키지 매니저 열기</h3>
-            <p>Rhino 명령창에 입력</p>
-            <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="PackageManager 복사됨" aria-label="PackageManager 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-          </li>
-          <li>
-            <h3>Gorani 설치</h3>
-            <p>검색칸에 Gorani를 넣고 <span class="ui">설치</span></p>
-          </li>
-          <li>
-            <h3>Rhino 다시 시작</h3>
-            <p>다시 켜야 플러그인이 올라옵니다.</p>
-          </li>
-          <li>
-            <h3>패널 열기</h3>
-            <p>명령창에 입력</p>
-            <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Gorani 복사됨" aria-label="Gorani 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-          </li>
-        </ol>
+        <div class="install-quick">
+          <div>
+            <h3>바로 설치</h3>
+            <p>Rhino 8의 패키지 매니저가 Gorani 검색 결과로 열립니다.</p>
+          </div>
+          <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Rhino 8에서 설치<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>패키지 매니저 열기</h3>
+              <p>Rhino 명령창에 입력</p>
+              <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="PackageManager 복사됨" aria-label="PackageManager 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+            <li>
+              <h3>Gorani 설치</h3>
+              <p>검색칸에 Gorani를 넣고 <span class="ui">설치</span></p>
+            </li>
+            <li>
+              <h3>Rhino 다시 시작</h3>
+              <p>다시 켜야 플러그인이 올라옵니다.</p>
+            </li>
+            <li>
+              <h3>패널 열기</h3>
+              <p>명령창에 입력</p>
+              <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Gorani 복사됨" aria-label="Gorani 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+          </ol>
+        </div>
       </div>
       <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
-        <ol class="steps" style="--n:3">
-          <li>
-            <h3>Extension Warehouse 열기</h3>
-            <p>메뉴 <span class="ui">확장 &gt; Extension Warehouse</span></p>
-          </li>
-          <li>
-            <h3>Gorani 설치</h3>
-            <p>Gorani를 검색하고 <span class="ui">설치</span></p>
-          </li>
-          <li>
-            <h3>패널 열기</h3>
-            <p>메뉴 <span class="ui">확장 &gt; Gorani</span>, 또는 도구 막대의 고라니 단추</p>
-          </li>
-        </ol>
+        <div class="install-quick">
+          <div>
+            <h3>바로 설치</h3>
+            <p>Extension Warehouse의 Gorani 페이지로 연결됩니다.</p>
+          </div>
+          <a class="btn go install-cta" aria-disabled="true">SketchUp에서 설치<small>업로드 예정</small></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>Extension Warehouse 열기</h3>
+              <p>메뉴 <span class="ui">확장 &gt; Extension Warehouse</span></p>
+            </li>
+            <li>
+              <h3>Gorani 설치</h3>
+              <p>Gorani를 검색하고 <span class="ui">설치</span></p>
+            </li>
+            <li>
+              <h3>패널 열기</h3>
+              <p>메뉴 <span class="ui">확장 &gt; Gorani</span>, 또는 도구 막대의 고라니 단추</p>
+            </li>
+          </ol>
+        </div>
       </div>
       <div role="tabpanel" id="p-blender" aria-labelledby="tab-blender" hidden>
-        <ol class="steps" style="--n:3">
-          <li>
-            <h3>Get Extensions 열기</h3>
-            <p>메뉴 <span class="ui">Edit &gt; Preferences &gt; Get Extensions</span>. 처음이면 온라인 접근을 허용합니다.</p>
-          </li>
-          <li>
-            <h3>Gorani 설치</h3>
-            <p>Gorani를 검색하고 <span class="ui">Install</span></p>
-          </li>
-          <li>
-            <h3>패널 열기</h3>
-            <p>3D 뷰에서 N을 눌러 사이드바 <span class="ui">Gorani &gt; 패널 열기</span>. 패널은 브라우저 탭으로 열립니다.</p>
-          </li>
-        </ol>
+        <div class="install-quick">
+          <div>
+            <h3>바로 설치</h3>
+            <p>Blender Extensions의 Gorani 페이지로 연결됩니다.</p>
+          </div>
+          <a class="btn go install-cta" aria-disabled="true">Blender에서 설치<small>업로드 예정</small></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>Get Extensions 열기</h3>
+              <p>메뉴 <span class="ui">Edit &gt; Preferences &gt; Get Extensions</span>. 처음이면 온라인 접근을 허용합니다.</p>
+            </li>
+            <li>
+              <h3>Gorani 설치</h3>
+              <p>Gorani를 검색하고 <span class="ui">Install</span></p>
+            </li>
+            <li>
+              <h3>패널 열기</h3>
+              <p>3D 뷰에서 N을 눌러 사이드바 <span class="ui">Gorani &gt; 패널 열기</span>. 패널은 브라우저 탭으로 열립니다.</p>
+            </li>
+          </ol>
+        </div>
       </div>
     </div>
   </section>
@@ -321,36 +349,253 @@
   <section class="block soft" id="coverage" aria-labelledby="coverage-title">
     <div class="wrap">
       <div class="block-head">
-        <h2 id="coverage-title">지원 지역</h2>
+        <div>
+          <h2 id="coverage-title">지원 지역과 데이터 출처</h2>
+          <p class="sub">OpenStreetMap을 기반으로 전 세계를 지원합니다. 카드를 누르면 나라별 데이터 출처를 볼 수 있습니다.</p>
+        </div>
       </div>
+    </div>
+    <div class="country-marquee" role="region" aria-label="지원 국가">
+      <div class="country-track">
+        <div class="country-set">
+          <button type="button" class="country-card" data-country="kr" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇰🇷</span><b>대한민국</b>
+          </button>
+          <button type="button" class="country-card" data-country="jp" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇯🇵</span><b>일본</b>
+          </button>
+          <button type="button" class="country-card" data-country="cn" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇨🇳</span><b>중국</b>
+          </button>
+          <button type="button" class="country-card" data-country="us" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇺🇸</span><b>미국</b>
+          </button>
+          <button type="button" class="country-card" data-country="nl" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇳🇱</span><b>네덜란드</b>
+          </button>
+          <button type="button" class="country-card" data-country="fr" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇫🇷</span><b>프랑스</b>
+          </button>
+          <button type="button" class="country-card" data-country="ch" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇨🇭</span><b>스위스</b>
+          </button>
+          <button type="button" class="country-card" data-country="li" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇱🇮</span><b>리히텐슈타인</b>
+          </button>
+        </div>
+        <div class="country-set" aria-hidden="true">
+          <button type="button" class="country-card" data-country="kr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇰🇷</span><b>대한민국</b>
+          </button>
+          <button type="button" class="country-card" data-country="jp" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇯🇵</span><b>일본</b>
+          </button>
+          <button type="button" class="country-card" data-country="cn" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇳</span><b>중국</b>
+          </button>
+          <button type="button" class="country-card" data-country="us" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇺🇸</span><b>미국</b>
+          </button>
+          <button type="button" class="country-card" data-country="nl" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇳🇱</span><b>네덜란드</b>
+          </button>
+          <button type="button" class="country-card" data-country="fr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇫🇷</span><b>프랑스</b>
+          </button>
+          <button type="button" class="country-card" data-country="ch" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇭</span><b>스위스</b>
+          </button>
+          <button type="button" class="country-card" data-country="li" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇱🇮</span><b>리히텐슈타인</b>
+          </button>
+        </div>
+        <div class="country-set" aria-hidden="true">
+          <button type="button" class="country-card" data-country="kr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇰🇷</span><b>대한민국</b>
+          </button>
+          <button type="button" class="country-card" data-country="jp" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇯🇵</span><b>일본</b>
+          </button>
+          <button type="button" class="country-card" data-country="cn" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇳</span><b>중국</b>
+          </button>
+          <button type="button" class="country-card" data-country="us" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇺🇸</span><b>미국</b>
+          </button>
+          <button type="button" class="country-card" data-country="nl" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇳🇱</span><b>네덜란드</b>
+          </button>
+          <button type="button" class="country-card" data-country="fr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇫🇷</span><b>프랑스</b>
+          </button>
+          <button type="button" class="country-card" data-country="ch" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇭</span><b>스위스</b>
+          </button>
+          <button type="button" class="country-card" data-country="li" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇱🇮</span><b>리히텐슈타인</b>
+          </button>
+        </div>
+        <div class="country-set" aria-hidden="true">
+          <button type="button" class="country-card" data-country="kr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇰🇷</span><b>대한민국</b>
+          </button>
+          <button type="button" class="country-card" data-country="jp" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇯🇵</span><b>일본</b>
+          </button>
+          <button type="button" class="country-card" data-country="cn" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇳</span><b>중국</b>
+          </button>
+          <button type="button" class="country-card" data-country="us" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇺🇸</span><b>미국</b>
+          </button>
+          <button type="button" class="country-card" data-country="nl" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇳🇱</span><b>네덜란드</b>
+          </button>
+          <button type="button" class="country-card" data-country="fr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇫🇷</span><b>프랑스</b>
+          </button>
+          <button type="button" class="country-card" data-country="ch" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇭</span><b>스위스</b>
+          </button>
+          <button type="button" class="country-card" data-country="li" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇱🇮</span><b>리히텐슈타인</b>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
       <div class="coverage">
-        <article>
-          <h3>국내 전국</h3>
-          <p>공공 데이터로 필지와 건물, 지형, 용도지역까지 만듭니다. 시군구별 데이터는 패널에서 한 번 받아 둡니다.</p>
-          <ul>
-            <li>지적, 건물(층수·용도·사용승인일)</li>
-            <li>1:5,000 등고선과 표고점 지형</li>
-            <li>용도지역, 도형-배경도, 토지이용 등 분석도</li>
-          </ul>
-        </article>
-        <article>
-          <h3>해외</h3>
-          <p>생성할 때 인터넷에서 받아 만듭니다. 필지와 용도지역 도면은 국내만 됩니다. 일본은 PLATEAU 건물과 국토지리원(GSI) 지형, 네덜란드는 Kadaster 3D Basisvoorziening, 프랑스는 IGN BD TOPO, 스위스는 swisstopo swissBUILDINGS3D 건물(실측 높이)을 씁니다.</p>
-          <ul>
-            <li>OpenStreetMap 건물과 도로</li>
-            <li>공개 지형 타일</li>
-            <li>반경 100 m에서 2 km까지</li>
-          </ul>
-        </article>
-        <article>
-          <h3>패널 언어</h3>
-          <p>Gorani 플러그인 패널은 다섯 언어를 지원하며, 헤더에서 표시 언어를 바꿀 수 있습니다. 웹사이트도 같은 다섯 언어로 볼 수 있습니다.</p>
-          <ul>
-            <li>한국어 · English</li>
-            <li>日本語 · 简体中文 · Español</li>
-            <li>패널 위쪽 지구본 버튼에서 언제든 변경</li>
-          </ul>
-        </article>
+        <div class="country-detail" id="country-detail" aria-live="polite" hidden>
+          <article class="country-panel" data-country-panel="kr" aria-labelledby="country-kr-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇰🇷</span>
+              <span class="country-name"><h3 id="country-kr-title">대한민국</h3><small>전국</small></span>
+              <button type="button" class="country-close" aria-label="닫기"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>건물·도로면·등고선부터 필지와 용도지역까지, 공공 데이터로 모두 만듭니다.</p>
+            <h4>데이터 출처</h4>
+            <dl class="country-sources">
+              <div><dt>건물</dt><dd>건축물대장 + 수치지형도 건물 (층수·용도·준공일)</dd></div>
+              <div><dt>도로면</dt><dd>수치지형도 도로경계 면</dd></div>
+              <div><dt>지형</dt><dd>수치지형도 1:5,000 등고선·표고점</dd></div>
+              <div><dt>필지·용도지역</dt><dd>연속지적도·토지특성·토지이용계획(UPIS)</dd></div>
+              <div><dt>출처·라이선스</dt><dd>국토부·국토지리정보원·서울시 (공공누리 등). 등고선 팩은 국내 서버에서만 제공</dd></div>
+            </dl>
+            <small class="coverage-date">데이터 업데이트 확인일: 2026-10-23 · 원천 데이터 기준일은 결과 도면과 log.txt에 표시</small>
+          </article>
+          <article class="country-panel" data-country-panel="jp" aria-labelledby="country-jp-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇯🇵</span>
+              <span class="country-name"><h3 id="country-jp-title">일본</h3><small>306개 시구정촌</small></span>
+              <button type="button" class="country-close" aria-label="닫기"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>PLATEAU 실측 높이 건물과 도로면, 5 m 표고 타일로 만듭니다.</p>
+            <h4>데이터 출처</h4>
+            <dl class="country-sources">
+              <div><dt>건물</dt><dd>PLATEAU 건물 (실측 높이·층수·용도), 306개 시구정촌</dd></div>
+              <div><dt>도로면</dt><dd>PLATEAU tran 도로면 1,073만 면</dd></div>
+              <div><dt>지형</dt><dd>국토지리원 5 m 표고 타일</dd></div>
+              <div><dt>출처·라이선스</dt><dd>국토교통성 PLATEAU CC BY 4.0, GSI 출처 표기</dd></div>
+            </dl>
+            <small class="coverage-date">데이터 업데이트 확인일: 2026-10-23 · 원천 데이터 기준일은 결과 도면과 log.txt에 표시</small>
+          </article>
+          <article class="country-panel" data-country-panel="cn" aria-labelledby="country-cn-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇨🇳</span>
+              <span class="country-name"><h3 id="country-cn-title">중국</h3><small>추가 예정</small></span>
+              <button type="button" class="country-close" aria-label="닫기"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>전용 데이터는 추가 예정입니다. 지금은 OpenStreetMap을 기반으로 만듭니다.</p>
+            <h4>데이터 출처</h4>
+            <dl class="country-sources">
+              <div><dt>건물</dt><dd>OpenStreetMap 건물 (높이·층수 태그, 없으면 기본값)</dd></div>
+              <div><dt>도로면</dt><dd>OpenStreetMap 도로선 버퍼</dd></div>
+              <div><dt>지형</dt><dd>Terrain Tiles 공개 표고 타일</dd></div>
+              <div><dt>출처·라이선스</dt><dd>OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">데이터 업데이트 확인일: 2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="us" aria-labelledby="country-us-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇺🇸</span>
+              <span class="country-name"><h3 id="country-us-title">미국</h3><small>추가 예정</small></span>
+              <button type="button" class="country-close" aria-label="닫기"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>전용 데이터는 추가 예정입니다. 지금은 OpenStreetMap을 기반으로 만듭니다.</p>
+            <h4>데이터 출처</h4>
+            <dl class="country-sources">
+              <div><dt>건물</dt><dd>OpenStreetMap 건물 (높이·층수 태그, 없으면 기본값)</dd></div>
+              <div><dt>도로면</dt><dd>OpenStreetMap 도로선 버퍼</dd></div>
+              <div><dt>지형</dt><dd>Terrain Tiles 공개 표고 타일</dd></div>
+              <div><dt>출처·라이선스</dt><dd>OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">데이터 업데이트 확인일: 2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="nl" aria-labelledby="country-nl-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇳🇱</span>
+              <span class="country-name"><h3 id="country-nl-title">네덜란드</h3><small>1,328 도엽</small></span>
+              <button type="button" class="country-close" aria-label="닫기"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>Kadaster 3D 건물 1,460만 동을 lidar 실측 높이 그대로 올립니다.</p>
+            <h4>데이터 출처</h4>
+            <dl class="country-sources">
+              <div><dt>건물</dt><dd>Kadaster 3D Basisvoorziening 건물 1,460만 동 (lidar 실측 높이, 건축연도), 1,328 도엽</dd></div>
+              <div><dt>도로면</dt><dd>OpenStreetMap 도로선 버퍼</dd></div>
+              <div><dt>지형</dt><dd>Terrain Tiles 공개 표고 타일</dd></div>
+              <div><dt>출처·라이선스</dt><dd>CC BY 4.0, OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">데이터 업데이트 확인일: 2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="fr" aria-labelledby="country-fr-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇫🇷</span>
+              <span class="country-name"><h3 id="country-fr-title">프랑스</h3><small>96개 데파르트망</small></span>
+              <button type="button" class="country-close" aria-label="닫기"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>IGN BD TOPO 건물 6,470만 동, 처마 높이와 층수·용도까지 담습니다.</p>
+            <h4>데이터 출처</h4>
+            <dl class="country-sources">
+              <div><dt>건물</dt><dd>IGN BD TOPO 건물 6,470만 동 (처마 높이, 층수, 용도, 준공일), 96개 데파르트망</dd></div>
+              <div><dt>도로면</dt><dd>OpenStreetMap 도로선 버퍼</dd></div>
+              <div><dt>지형</dt><dd>Terrain Tiles 공개 표고 타일</dd></div>
+              <div><dt>출처·라이선스</dt><dd>Licence Ouverte 2.0, OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">데이터 업데이트 확인일: 2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="ch" aria-labelledby="country-ch-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇨🇭</span>
+              <span class="country-name"><h3 id="country-ch-title">스위스</h3><small>252 도엽</small></span>
+              <button type="button" class="country-close" aria-label="닫기"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>swisstopo swissBUILDINGS3D 건물을 실측 전체 높이로 만듭니다.</p>
+            <h4>데이터 출처</h4>
+            <dl class="country-sources">
+              <div><dt>건물</dt><dd>swisstopo swissBUILDINGS3D 건물 (실측 전체 높이, 종류), 252 도엽</dd></div>
+              <div><dt>도로면</dt><dd>OpenStreetMap 도로선 버퍼</dd></div>
+              <div><dt>지형</dt><dd>Terrain Tiles 공개 표고 타일</dd></div>
+              <div><dt>출처·라이선스</dt><dd>swisstopo OGD 약관, “©swisstopo” 표기, OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">데이터 업데이트 확인일: 2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="li" aria-labelledby="country-li-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇱🇮</span>
+              <span class="country-name"><h3 id="country-li-title">리히텐슈타인</h3><small>252 도엽</small></span>
+              <button type="button" class="country-close" aria-label="닫기"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>swisstopo swissBUILDINGS3D 건물을 실측 전체 높이로 만듭니다.</p>
+            <h4>데이터 출처</h4>
+            <dl class="country-sources">
+              <div><dt>건물</dt><dd>swisstopo swissBUILDINGS3D 건물 (실측 전체 높이, 종류), 252 도엽</dd></div>
+              <div><dt>도로면</dt><dd>OpenStreetMap 도로선 버퍼</dd></div>
+              <div><dt>지형</dt><dd>Terrain Tiles 공개 표고 타일</dd></div>
+              <div><dt>출처·라이선스</dt><dd>swisstopo OGD 약관, “©swisstopo” 표기, OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">데이터 업데이트 확인일: 2026-10-23</small>
+          </article>
+        </div>
       </div>
     </div>
   </section>

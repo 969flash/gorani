@@ -80,6 +80,7 @@
   <symbol id="i-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/></symbol>
   <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.75" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M2.5 8h11M8 2.25c1.55 1.55 2.25 3.35 2.25 5.75S9.55 12.2 8 13.75C6.45 12.2 5.75 10.4 5.75 8S6.45 3.8 8 2.25Z" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
   <symbol id="i-menu" viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
   <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 </svg>
@@ -164,7 +165,7 @@
       <div>
         <span class="eyebrow">3D model</span>
         <h2 id="model-title">Site context, layer by layer</h2>
-        <p class="sub">Buildings, roads, terrain and water go into the open document on separate layers. Toggle or hide the results from Rhino's Layers panel, and get building heights from floor counts.</p>
+        <p class="sub">Buildings, roads, terrain and water go into the open document on separate layers. Toggle or hide the results from the Layers panel.</p>
         <ul class="tags" aria-label="Layers it makes">
           <li>Buildings</li><li>Roads</li><li>Terrain</li><li>Water</li><li>Green space</li><li>Rail</li><li>Parcels</li>
         </ul>
@@ -181,7 +182,7 @@
       </div>
       <div>
         <span class="eyebrow">2D set</span>
-        <h2 id="maps-title">Don't pull all&#8209;nighters on site analysis.</h2>
+        <h2 id="maps-title">Don't pull all&#8209;nighters on site analysis</h2>
         <p class="sub">22 diagrams, from figure-ground and zoning to land use, come as editable SVG files. You can change their colors and style, too.</p>
         <ul class="files">
           <li><b>Basemap</b><code>basemap_scale.ai</code></li>
@@ -221,58 +222,85 @@
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
-        <ol class="steps">
-          <li>
-            <h3>Open Package Manager</h3>
-            <p>Type in the Rhino command line</p>
-            <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="PackageManager copied" aria-label="Copy PackageManager"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-          </li>
-          <li>
-            <h3>Install Gorani</h3>
-            <p>Search for Gorani and press <span class="ui">Install</span></p>
-          </li>
-          <li>
-            <h3>Restart Rhino</h3>
-            <p>The plugin loads after a restart.</p>
-          </li>
-          <li>
-            <h3>Open the panel</h3>
-            <p>Type in the command line</p>
-            <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Gorani copied" aria-label="Copy Gorani"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-          </li>
-        </ol>
+        <div class="install-quick">
+          <div>
+            <h3>Quick install</h3>
+            <p>Rhino 8’s Package Manager opens with Gorani already searched.</p>
+          </div>
+          <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Install in Rhino 8<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>Open Package Manager</h3>
+              <p>Type in the Rhino command line</p>
+              <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="PackageManager copied" aria-label="Copy PackageManager"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+            <li>
+              <h3>Install Gorani</h3>
+              <p>Search for Gorani and press <span class="ui">Install</span></p>
+            </li>
+            <li>
+              <h3>Restart Rhino</h3>
+              <p>The plugin loads after a restart.</p>
+            </li>
+            <li>
+              <h3>Open the panel</h3>
+              <p>Type in the command line</p>
+              <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Gorani copied" aria-label="Copy Gorani"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+          </ol>
+        </div>
       </div>
       <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
-        <ol class="steps" style="--n:3">
-          <li>
-            <h3>Open Extension Warehouse</h3>
-            <p>Menu <span class="ui">Extensions &gt; Extension Warehouse</span></p>
-          </li>
-          <li>
-            <h3>Install Gorani</h3>
-            <p>Search for Gorani and press <span class="ui">Install</span></p>
-          </li>
-          <li>
-            <h3>Open the panel</h3>
-            <p>Menu <span class="ui">Extensions &gt; Gorani</span>, or the gorani button on the toolbar</p>
-          </li>
-        </ol>
+        <div class="install-quick">
+          <div>
+            <h3>Quick install</h3>
+            <p>Opens the Gorani page on Extension Warehouse.</p>
+          </div>
+          <a class="btn go install-cta" aria-disabled="true">Install in SketchUp<small>Coming soon</small></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>Open Extension Warehouse</h3>
+              <p>Menu <span class="ui">Extensions &gt; Extension Warehouse</span></p>
+            </li>
+            <li>
+              <h3>Install Gorani</h3>
+              <p>Search for Gorani and press <span class="ui">Install</span></p>
+            </li>
+            <li>
+              <h3>Open the panel</h3>
+              <p>Menu <span class="ui">Extensions &gt; Gorani</span>, or the gorani button on the toolbar</p>
+            </li>
+          </ol>
+        </div>
       </div>
       <div role="tabpanel" id="p-blender" aria-labelledby="tab-blender" hidden>
-        <ol class="steps" style="--n:3">
-          <li>
-            <h3>Open Get Extensions</h3>
-            <p>Menu <span class="ui">Edit &gt; Preferences &gt; Get Extensions</span>. Allow online access the first time.</p>
-          </li>
-          <li>
-            <h3>Install Gorani</h3>
-            <p>Search for Gorani and press <span class="ui">Install</span></p>
-          </li>
-          <li>
-            <h3>Open the panel</h3>
-            <p>Press N in the 3D view, then <span class="ui">Gorani &gt; Open panel</span> in the sidebar. The panel opens in a browser tab.</p>
-          </li>
-        </ol>
+        <div class="install-quick">
+          <div>
+            <h3>Quick install</h3>
+            <p>Opens the Gorani page on Blender Extensions.</p>
+          </div>
+          <a class="btn go install-cta" aria-disabled="true">Install in Blender<small>Coming soon</small></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>Open Get Extensions</h3>
+              <p>Menu <span class="ui">Edit &gt; Preferences &gt; Get Extensions</span>. Allow online access the first time.</p>
+            </li>
+            <li>
+              <h3>Install Gorani</h3>
+              <p>Search for Gorani and press <span class="ui">Install</span></p>
+            </li>
+            <li>
+              <h3>Open the panel</h3>
+              <p>Press N in the 3D view, then <span class="ui">Gorani &gt; Open panel</span> in the sidebar. The panel opens in a browser tab.</p>
+            </li>
+          </ol>
+        </div>
       </div>
     </div>
   </section>
@@ -321,36 +349,253 @@
   <section class="block soft" id="coverage" aria-labelledby="coverage-title">
     <div class="wrap">
       <div class="block-head">
-        <h2 id="coverage-title">Coverage</h2>
+        <div>
+          <h2 id="coverage-title">Coverage and data sources</h2>
+          <p class="sub">Gorani works worldwide on top of OpenStreetMap. Click a card to see each country’s data sources.</p>
+        </div>
       </div>
+    </div>
+    <div class="country-marquee" role="region" aria-label="Supported countries">
+      <div class="country-track">
+        <div class="country-set">
+          <button type="button" class="country-card" data-country="kr" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇰🇷</span><b>South Korea</b>
+          </button>
+          <button type="button" class="country-card" data-country="jp" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇯🇵</span><b>Japan</b>
+          </button>
+          <button type="button" class="country-card" data-country="cn" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇨🇳</span><b>China</b>
+          </button>
+          <button type="button" class="country-card" data-country="us" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇺🇸</span><b>United States</b>
+          </button>
+          <button type="button" class="country-card" data-country="nl" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇳🇱</span><b>Netherlands</b>
+          </button>
+          <button type="button" class="country-card" data-country="fr" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇫🇷</span><b>France</b>
+          </button>
+          <button type="button" class="country-card" data-country="ch" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇨🇭</span><b>Switzerland</b>
+          </button>
+          <button type="button" class="country-card" data-country="li" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇱🇮</span><b>Liechtenstein</b>
+          </button>
+        </div>
+        <div class="country-set" aria-hidden="true">
+          <button type="button" class="country-card" data-country="kr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇰🇷</span><b>South Korea</b>
+          </button>
+          <button type="button" class="country-card" data-country="jp" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇯🇵</span><b>Japan</b>
+          </button>
+          <button type="button" class="country-card" data-country="cn" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇳</span><b>China</b>
+          </button>
+          <button type="button" class="country-card" data-country="us" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇺🇸</span><b>United States</b>
+          </button>
+          <button type="button" class="country-card" data-country="nl" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇳🇱</span><b>Netherlands</b>
+          </button>
+          <button type="button" class="country-card" data-country="fr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇫🇷</span><b>France</b>
+          </button>
+          <button type="button" class="country-card" data-country="ch" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇭</span><b>Switzerland</b>
+          </button>
+          <button type="button" class="country-card" data-country="li" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇱🇮</span><b>Liechtenstein</b>
+          </button>
+        </div>
+        <div class="country-set" aria-hidden="true">
+          <button type="button" class="country-card" data-country="kr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇰🇷</span><b>South Korea</b>
+          </button>
+          <button type="button" class="country-card" data-country="jp" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇯🇵</span><b>Japan</b>
+          </button>
+          <button type="button" class="country-card" data-country="cn" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇳</span><b>China</b>
+          </button>
+          <button type="button" class="country-card" data-country="us" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇺🇸</span><b>United States</b>
+          </button>
+          <button type="button" class="country-card" data-country="nl" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇳🇱</span><b>Netherlands</b>
+          </button>
+          <button type="button" class="country-card" data-country="fr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇫🇷</span><b>France</b>
+          </button>
+          <button type="button" class="country-card" data-country="ch" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇭</span><b>Switzerland</b>
+          </button>
+          <button type="button" class="country-card" data-country="li" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇱🇮</span><b>Liechtenstein</b>
+          </button>
+        </div>
+        <div class="country-set" aria-hidden="true">
+          <button type="button" class="country-card" data-country="kr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇰🇷</span><b>South Korea</b>
+          </button>
+          <button type="button" class="country-card" data-country="jp" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇯🇵</span><b>Japan</b>
+          </button>
+          <button type="button" class="country-card" data-country="cn" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇳</span><b>China</b>
+          </button>
+          <button type="button" class="country-card" data-country="us" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇺🇸</span><b>United States</b>
+          </button>
+          <button type="button" class="country-card" data-country="nl" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇳🇱</span><b>Netherlands</b>
+          </button>
+          <button type="button" class="country-card" data-country="fr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇫🇷</span><b>France</b>
+          </button>
+          <button type="button" class="country-card" data-country="ch" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇭</span><b>Switzerland</b>
+          </button>
+          <button type="button" class="country-card" data-country="li" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇱🇮</span><b>Liechtenstein</b>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
       <div class="coverage">
-        <article>
-          <h3>Korea, nationwide</h3>
-          <p>Parcels, buildings, terrain and zoning from public data. Regional data packs are downloaded once from inside the panel.</p>
-          <ul>
-            <li>Cadastre, buildings (floors, use, approval date)</li>
-            <li>Terrain from 1:5,000 contours and spot heights</li>
-            <li>Zoning, figure-ground, land use and more</li>
-          </ul>
-        </article>
-        <article>
-          <h3>Elsewhere</h3>
-          <p>Downloaded at generation time (internet required). Parcel and zoning maps are Korea only. In Japan, buildings come from PLATEAU and terrain from GSI. In the Netherlands, France and Switzerland, buildings with measured heights come from Kadaster 3D Basisvoorziening, IGN BD TOPO and swisstopo swissBUILDINGS3D.</p>
-          <ul>
-            <li>OpenStreetMap buildings and roads</li>
-            <li>Public terrain tiles</li>
-            <li>Radius 100 m to 2 km</li>
-          </ul>
-        </article>
-        <article>
-          <h3>Panel languages</h3>
-          <p>The Gorani plugin panel supports five languages and lets you change the UI from its header. This website is available in the same five languages.</p>
-          <ul>
-            <li>한국어 · English</li>
-            <li>日本語 · 简体中文 · Español</li>
-            <li>Switch any time with the globe button at the top of the panel</li>
-          </ul>
-        </article>
+        <div class="country-detail" id="country-detail" aria-live="polite" hidden>
+          <article class="country-panel" data-country-panel="kr" aria-labelledby="country-kr-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇰🇷</span>
+              <span class="country-name"><h3 id="country-kr-title">South Korea</h3><small>Nationwide</small></span>
+              <button type="button" class="country-close" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>Buildings, road surfaces, contours, parcels and zoning, all from public data.</p>
+            <h4>Data sources</h4>
+            <dl class="country-sources">
+              <div><dt>Buildings</dt><dd>Building register + digital topographic map buildings (floors, use, completion date)</dd></div>
+              <div><dt>Road surfaces</dt><dd>Road boundary surfaces from the digital topographic map</dd></div>
+              <div><dt>Terrain</dt><dd>1:5,000 digital topographic map contours and spot heights</dd></div>
+              <div><dt>Parcels & zoning</dt><dd>Continuous cadastral map, land characteristics, land-use plans (UPIS)</dd></div>
+              <div><dt>Source & license</dt><dd>MOLIT, NGII and Seoul (KOGL and others). Contour packs are served from Korean servers only</dd></div>
+            </dl>
+            <small class="coverage-date">Data update checked: 2026-10-23 · Source reference dates are shown in drawings and log.txt</small>
+          </article>
+          <article class="country-panel" data-country-panel="jp" aria-labelledby="country-jp-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇯🇵</span>
+              <span class="country-name"><h3 id="country-jp-title">Japan</h3><small>306 municipalities</small></span>
+              <button type="button" class="country-close" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>PLATEAU buildings with measured heights, road surfaces and 5 m elevation tiles.</p>
+            <h4>Data sources</h4>
+            <dl class="country-sources">
+              <div><dt>Buildings</dt><dd>PLATEAU buildings (measured height, floors, use), 306 municipalities</dd></div>
+              <div><dt>Road surfaces</dt><dd>PLATEAU tran road surfaces, 10.73 million polygons</dd></div>
+              <div><dt>Terrain</dt><dd>GSI 5 m elevation tiles</dd></div>
+              <div><dt>Source & license</dt><dd>MLIT PLATEAU CC BY 4.0, GSI attribution</dd></div>
+            </dl>
+            <small class="coverage-date">Data update checked: 2026-10-23 · Source reference dates are shown in drawings and log.txt</small>
+          </article>
+          <article class="country-panel" data-country-panel="cn" aria-labelledby="country-cn-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇨🇳</span>
+              <span class="country-name"><h3 id="country-cn-title">China</h3><small>Coming soon</small></span>
+              <button type="button" class="country-close" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>Dedicated data is coming soon. For now, models are built from OpenStreetMap.</p>
+            <h4>Data sources</h4>
+            <dl class="country-sources">
+              <div><dt>Buildings</dt><dd>OpenStreetMap buildings (height/levels tags, default when missing)</dd></div>
+              <div><dt>Road surfaces</dt><dd>OpenStreetMap road lines, buffered</dd></div>
+              <div><dt>Terrain</dt><dd>Terrain Tiles public elevation tiles</dd></div>
+              <div><dt>Source & license</dt><dd>OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">Data update checked: 2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="us" aria-labelledby="country-us-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇺🇸</span>
+              <span class="country-name"><h3 id="country-us-title">United States</h3><small>Coming soon</small></span>
+              <button type="button" class="country-close" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>Dedicated data is coming soon. For now, models are built from OpenStreetMap.</p>
+            <h4>Data sources</h4>
+            <dl class="country-sources">
+              <div><dt>Buildings</dt><dd>OpenStreetMap buildings (height/levels tags, default when missing)</dd></div>
+              <div><dt>Road surfaces</dt><dd>OpenStreetMap road lines, buffered</dd></div>
+              <div><dt>Terrain</dt><dd>Terrain Tiles public elevation tiles</dd></div>
+              <div><dt>Source & license</dt><dd>OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">Data update checked: 2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="nl" aria-labelledby="country-nl-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇳🇱</span>
+              <span class="country-name"><h3 id="country-nl-title">Netherlands</h3><small>1,328 map sheets</small></span>
+              <button type="button" class="country-close" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>14.6 million Kadaster 3D buildings with lidar-measured heights.</p>
+            <h4>Data sources</h4>
+            <dl class="country-sources">
+              <div><dt>Buildings</dt><dd>Kadaster 3D Basisvoorziening, 14.6 million buildings (lidar-measured height, construction year), 1,328 map sheets</dd></div>
+              <div><dt>Road surfaces</dt><dd>OpenStreetMap road lines, buffered</dd></div>
+              <div><dt>Terrain</dt><dd>Terrain Tiles public elevation tiles</dd></div>
+              <div><dt>Source & license</dt><dd>CC BY 4.0, OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">Data update checked: 2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="fr" aria-labelledby="country-fr-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇫🇷</span>
+              <span class="country-name"><h3 id="country-fr-title">France</h3><small>96 départements</small></span>
+              <button type="button" class="country-close" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>64.7 million IGN BD TOPO buildings with eave height, floors and use.</p>
+            <h4>Data sources</h4>
+            <dl class="country-sources">
+              <div><dt>Buildings</dt><dd>IGN BD TOPO, 64.7 million buildings (eave height, floors, use, completion date), 96 départements</dd></div>
+              <div><dt>Road surfaces</dt><dd>OpenStreetMap road lines, buffered</dd></div>
+              <div><dt>Terrain</dt><dd>Terrain Tiles public elevation tiles</dd></div>
+              <div><dt>Source & license</dt><dd>Licence Ouverte 2.0, OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">Data update checked: 2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="ch" aria-labelledby="country-ch-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇨🇭</span>
+              <span class="country-name"><h3 id="country-ch-title">Switzerland</h3><small>252 map sheets</small></span>
+              <button type="button" class="country-close" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>swisstopo swissBUILDINGS3D buildings with measured total heights.</p>
+            <h4>Data sources</h4>
+            <dl class="country-sources">
+              <div><dt>Buildings</dt><dd>swisstopo swissBUILDINGS3D buildings (measured total height, type), 252 map sheets</dd></div>
+              <div><dt>Road surfaces</dt><dd>OpenStreetMap road lines, buffered</dd></div>
+              <div><dt>Terrain</dt><dd>Terrain Tiles public elevation tiles</dd></div>
+              <div><dt>Source & license</dt><dd>swisstopo OGD terms, “©swisstopo”, OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">Data update checked: 2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="li" aria-labelledby="country-li-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇱🇮</span>
+              <span class="country-name"><h3 id="country-li-title">Liechtenstein</h3><small>252 map sheets</small></span>
+              <button type="button" class="country-close" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>swisstopo swissBUILDINGS3D buildings with measured total heights.</p>
+            <h4>Data sources</h4>
+            <dl class="country-sources">
+              <div><dt>Buildings</dt><dd>swisstopo swissBUILDINGS3D buildings (measured total height, type), 252 map sheets</dd></div>
+              <div><dt>Road surfaces</dt><dd>OpenStreetMap road lines, buffered</dd></div>
+              <div><dt>Terrain</dt><dd>Terrain Tiles public elevation tiles</dd></div>
+              <div><dt>Source & license</dt><dd>swisstopo OGD terms, “©swisstopo”, OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">Data update checked: 2026-10-23</small>
+          </article>
+        </div>
       </div>
     </div>
   </section>

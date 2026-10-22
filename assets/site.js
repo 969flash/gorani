@@ -76,14 +76,23 @@
     document.querySelectorAll("#main > section[id]").forEach(function (s) { sectionObserver.observe(s); });
   }
 
-  // 긴 페이지의 기능 블록은 화면에 들어올 때 순차적으로 나타낸다.
-  var revealTargets = [].slice.call(document.querySelectorAll(".feature, .usage li, .coverage article, .faq details, .final .wrap"));
+  // 섹션 머리·기능 블록·카드·줄은 화면에 들어올 때 나타낸다. 함께 들어온 것끼리 위에서부터 0.06초씩(최대 0.3초) 늦춘다.
+  var revealTargets = [].slice.call(document.querySelectorAll([
+    ".block-head h2", ".block-head .sub", ".block-head > .seg", ".block-head > .btn",
+    ".support .host-link", ".feature",
+    "#install [role=tabpanel]:not([hidden]) .install-quick", "#install [role=tabpanel]:not([hidden]) .install-card",
+    ".usage li", ".country-marquee", ".faq-item", ".final .wrap"
+  ].join(", ")));
   revealTargets.forEach(function (el) { el.classList.add("reveal"); });
   if ("IntersectionObserver" in window && !reduce.matches) {
     var revealObserver = new IntersectionObserver(function (entries, observer) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var el = entry.target;
+      var batch = entries.filter(function (entry) { return entry.isIntersecting; }).map(function (entry) { return entry.target; });
+      batch.sort(function (a, b) {
+        var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+        return (ra.top - rb.top) || (ra.left - rb.left);
+      });
+      batch.forEach(function (el, i) {
+        el.style.setProperty("--d", Math.min(i * 0.06, 0.3).toFixed(2) + "s");
         el.classList.add("in-view");
         observer.unobserve(el);
         // 나타난 뒤에는 reveal 전환(지연 포함)을 떼어 호버 전환이 그 요소 것대로 돌게 한다
@@ -91,6 +100,7 @@
           if (e.target !== el || e.propertyName !== "opacity") return;
           el.removeEventListener("transitionend", done);
           el.classList.remove("reveal", "in-view");
+          el.style.removeProperty("--d");
         });
       });
     }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
@@ -119,7 +129,12 @@
       var on = t === tab;
       t.setAttribute("aria-selected", String(on));
       t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      var panel = document.getElementById(t.getAttribute("aria-controls"));
+      var was = panel.hidden;
+      panel.hidden = !on;
+      if (on && was && !reduce.matches && panel.animate) {
+        panel.animate([{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 240, easing: "cubic-bezier(.2,.8,.2,1)" });
+      }
     });
     if (focus) tab.focus();
   }
@@ -159,6 +174,54 @@
     }, { passive: true });
     window.addEventListener("resize", update);
     update();
+  }
+
+  // ── 지원 국가: 흐르는 카드를 누르면 줄을 멈추고 그 나라의 데이터 출처를 연다(같은 카드·닫기·Esc로 닫고 다시 흐름) ──
+  var countryRow = document.querySelector(".country-marquee");
+  var countryDetail = document.getElementById("country-detail");
+  if (countryRow && countryDetail) {
+    var countryCards = [].slice.call(countryRow.querySelectorAll(".country-card"));
+    var countryOpen = "";
+    var countryTurn = 0;
+    var showCountry = function (code) {
+      countryOpen = code;
+      countryRow.classList.toggle("is-paused", !!code);
+      countryCards.forEach(function (c) { c.setAttribute("aria-expanded", String(c.getAttribute("data-country") === code)); });
+      var turn = ++countryTurn;   // 닫는 중에 다른 카드를 누르면 늦게 끝난 닫기가 새 패널을 숨기지 않게
+      var apply = function () {
+        if (turn !== countryTurn) return;
+        [].forEach.call(countryDetail.querySelectorAll("[data-country-panel]"), function (p) { p.hidden = p.getAttribute("data-country-panel") !== code; });
+        countryDetail.hidden = !code;
+      };
+      var shown = countryDetail.querySelector("[data-country-panel]:not([hidden])");
+      if (!code && shown && !countryDetail.hidden && !reduce.matches && shown.animate) {
+        var out = shown.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(8px)" }], { duration: 180, easing: "cubic-bezier(.4,0,1,1)", fill: "forwards" });
+        out.onfinish = function () { apply(); out.cancel(); };
+      } else {
+        apply();
+      }
+    };
+    var firstCard = function (code) { return countryRow.querySelector('.country-set:not([aria-hidden]) [data-country="' + code + '"]'); };
+    countryCards.forEach(function (card) {
+      card.addEventListener("click", function () {
+        var code = card.getAttribute("data-country");
+        if (code === countryOpen) return showCountry("");
+        showCountry(code);
+        track("coverage_country", { country: code });
+      });
+    });
+    countryDetail.addEventListener("click", function (e) {
+      if (!e.target.closest(".country-close")) return;
+      var code = countryOpen;
+      showCountry("");
+      firstCard(code).focus({ preventScroll: true });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape" || !countryOpen) return;
+      var code = countryOpen;
+      showCountry("");
+      if (countryDetail.contains(document.activeElement) || countryRow.contains(document.activeElement)) firstCard(code).focus({ preventScroll: true });
+    });
   }
 
   // ── 시연 영상 ───────────────────────────

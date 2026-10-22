@@ -69,7 +69,7 @@
   }
 
   // 긴 페이지의 기능 블록은 화면에 들어올 때 순차적으로 나타낸다.
-  var revealTargets = [].slice.call(document.querySelectorAll(".feature, .usage li, .coverage article, .faq details, .final .wrap"));
+  var revealTargets = [].slice.call(document.querySelectorAll(".feature, .usage li, .coverage article, .final .wrap"));
   revealTargets.forEach(function (el) { el.classList.add("reveal"); });
   if ("IntersectionObserver" in window && !reduce.matches) {
     var revealObserver = new IntersectionObserver(function (entries, observer) {

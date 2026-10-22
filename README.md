@@ -19,6 +19,7 @@ Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino
 
 - **Korea, nationwide**: cadastre, buildings, 1:5,000 terrain, zoning; analysis maps (figure-ground, zoning, land use, street hierarchy, building age and more).
 - **Japan**: PLATEAU buildings (MLIT), GSI 5 m terrain, OpenStreetMap roads.
+- **Europe (in progress)**: data coverage for the Netherlands, France and Switzerland is being collected and processed; sources and availability will be documented after validation.
 - **Elsewhere**: OpenStreetMap buildings and roads, public terrain tiles.
 
 ## This repository

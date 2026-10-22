@@ -321,25 +321,37 @@
   <section class="block soft" id="coverage" aria-labelledby="coverage-title">
     <div class="wrap">
       <div class="block-head">
-        <h2 id="coverage-title">対応地域</h2>
+        <h2 id="coverage-title">対応地域とデータソース</h2>
       </div>
       <div class="coverage">
         <article>
-          <h3>韓国全国</h3>
-          <p>公開データで区画、建物、地形、用途地域まで作成します。市区町村ごとのデータはパネルから一度ダウンロードします。</p>
+          <h3>韓国 · 全国</h3>
+          <p>韓国国土交通部・国土地理情報院・ソウル市UPISの公共データを使います。市区町村ごとのデータはパネルから一度ダウンロードします。</p>
           <ul>
-            <li>地籍、建物（階数・用途・使用承認日）</li>
-            <li>1:5,000等高線と標高点による地形</li>
-            <li>用途地域、図と地、土地利用などの分析図</li>
+            <li>国土交通部: 地籍・建物・土地特性・土地利用計画</li>
+            <li>国土地理情報院: 1:5,000数値地形図の等高線・標高点</li>
+            <li>ソウル市UPIS: 都市計画・用途地域</li>
+            <li>提供範囲: 筆地・用途地域・22種類の都市分析図</li>
           </ul>
         </article>
         <article>
-          <h3>韓国以外</h3>
-          <p>作成時にインターネットからダウンロードします。区画と用途地域の図面は韓国のみです。日本では、建物は国土交通省PLATEAU、地形は国土地理院（GSI）の標高タイルを使います。</p>
+          <h3>日本</h3>
+          <p>国土交通省PLATEAU、国土地理院（GSI）、OpenStreetMapを使います。地域データは作成時にダウンロードします。</p>
           <ul>
-            <li>OpenStreetMapの建物と道路</li>
-            <li>公開地形タイル</li>
-            <li>半径100 mから2 kmまで</li>
+            <li>国土交通省PLATEAU: 高さ・用途付き3D都市モデル建物</li>
+            <li>国土地理院GSI: 5 m地形タイル</li>
+            <li>OpenStreetMap: 建物の補完・道路・水系</li>
+            <li>提供範囲: 306自治体のPLATEAU建物、半径100 m〜2 km</li>
+          </ul>
+        </article>
+        <article>
+          <h3>その他の国・地域</h3>
+          <p>公開データを作成時にインターネットから取得します。国別の筆地・用途地域図は提供していません。</p>
+          <ul>
+            <li>OpenStreetMap: 建物・道路・水系</li>
+            <li>公開地形タイル: 地形・標高</li>
+            <li>建物の高さ: OSMの高さ・階数タグ、なければ既定値</li>
+            <li>提供範囲: 半径100 m〜2 km</li>
           </ul>
         </article>
         <article>

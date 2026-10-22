@@ -321,25 +321,37 @@
   <section class="block soft" id="coverage" aria-labelledby="coverage-title">
     <div class="wrap">
       <div class="block-head">
-        <h2 id="coverage-title">Coverage</h2>
+        <h2 id="coverage-title">Coverage and data sources</h2>
       </div>
       <div class="coverage">
         <article>
-          <h3>Korea, nationwide</h3>
-          <p>Parcels, buildings, terrain and zoning from public data. Regional data packs are downloaded once from inside the panel.</p>
+          <h3>South Korea · nationwide</h3>
+          <p>Uses public data from MOLIT, NGII and Seoul UPIS. Regional data packs are downloaded once from inside the panel.</p>
           <ul>
-            <li>Cadastre, buildings (floors, use, approval date)</li>
-            <li>Terrain from 1:5,000 contours and spot heights</li>
-            <li>Zoning, figure-ground, land use and more</li>
+            <li>MOLIT: cadastre, buildings, land characteristics and land-use plans</li>
+            <li>NGII: 1:5,000 digital topographic contours and spot heights</li>
+            <li>Seoul UPIS: urban planning and zoning data</li>
+            <li>Coverage: parcels, zoning and 22 urban analysis maps</li>
           </ul>
         </article>
         <article>
-          <h3>Elsewhere</h3>
-          <p>Downloaded at generation time (internet required). Parcel and zoning maps are Korea only. In Japan, buildings come from PLATEAU and terrain from GSI.</p>
+          <h3>Japan</h3>
+          <p>Uses MLIT PLATEAU, GSI and OpenStreetMap. Regional data is downloaded when a model is generated.</p>
           <ul>
-            <li>OpenStreetMap buildings and roads</li>
-            <li>Public terrain tiles</li>
-            <li>Radius 100 m to 2 km</li>
+            <li>MLIT PLATEAU: 3D city-model buildings with height and use</li>
+            <li>GSI: 5 m terrain tiles</li>
+            <li>OpenStreetMap: supplemental buildings, roads and water</li>
+            <li>Coverage: PLATEAU buildings in 306 municipalities, radius 100 m to 2 km</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Other countries and regions</h3>
+          <p>Public data is downloaded from the internet when generated. Country-specific parcel and zoning maps are not available.</p>
+          <ul>
+            <li>OpenStreetMap: buildings, roads and water</li>
+            <li>Public terrain tiles: terrain and elevation</li>
+            <li>Building height: OSM height/levels tags, with a default when missing</li>
+            <li>Coverage: radius 100 m to 2 km</li>
           </ul>
         </article>
         <article>

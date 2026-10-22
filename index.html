@@ -321,25 +321,37 @@
   <section class="block soft" id="coverage" aria-labelledby="coverage-title">
     <div class="wrap">
       <div class="block-head">
-        <h2 id="coverage-title">지원 지역</h2>
+        <h2 id="coverage-title">지원 지역과 데이터 출처</h2>
       </div>
       <div class="coverage">
         <article>
-          <h3>국내 전국</h3>
-          <p>공공 데이터로 필지와 건물, 지형, 용도지역까지 만듭니다. 시군구별 데이터는 패널에서 한 번 받아 둡니다.</p>
+          <h3>대한민국 · 전국</h3>
+          <p>국토교통부·국토지리정보원·서울시 공공 데이터를 사용합니다. 시군구별 데이터는 패널에서 한 번 받아 둡니다.</p>
           <ul>
-            <li>지적, 건물(층수·용도·사용승인일)</li>
-            <li>1:5,000 등고선과 표고점 지형</li>
-            <li>용도지역, 도형-배경도, 토지이용 등 분석도</li>
+            <li>국토교통부: 지적·건물(층수·용도·사용승인일)·토지특성·토지이용계획</li>
+            <li>국토지리정보원: 1:5,000 수치지형도 등고선·표고점</li>
+            <li>서울시 UPIS: 도시계획·용도지역 데이터</li>
+            <li>제공 범위: 필지·용도지역·22가지 대지 분석도</li>
           </ul>
         </article>
         <article>
-          <h3>해외</h3>
-          <p>생성할 때 인터넷에서 받아 만듭니다. 필지와 용도지역 도면은 국내만 됩니다. 일본은 PLATEAU 건물과 국토지리원(GSI) 지형을 씁니다.</p>
+          <h3>일본</h3>
+          <p>일본 국토교통성의 PLATEAU와 국토지리원(GSI), OpenStreetMap 데이터를 사용합니다. 지역별 데이터는 생성할 때 내려받습니다.</p>
           <ul>
-            <li>OpenStreetMap 건물과 도로</li>
-            <li>공개 지형 타일</li>
-            <li>반경 100 m에서 2 km까지</li>
+            <li>국토교통성 PLATEAU: 3D 도시 모델 건물(높이·용도)</li>
+            <li>국토지리원 GSI: 5 m 지형 타일</li>
+            <li>OpenStreetMap: 건물 보완·도로·하천</li>
+            <li>제공 범위: 306개 지자체 PLATEAU 건물, 반경 100 m~2 km</li>
+          </ul>
+        </article>
+        <article>
+          <h3>기타 국가·지역</h3>
+          <p>공개 데이터를 생성 시점에 인터넷에서 받아 주변 맥락을 만듭니다. 국가별 필지·용도지역 도면은 제공하지 않습니다.</p>
+          <ul>
+            <li>OpenStreetMap: 건물·도로·하천</li>
+            <li>공개 지형 타일: 지형·고도</li>
+            <li>건물 높이: OSM 높이·층수 태그, 없으면 기본값</li>
+            <li>제공 범위: 반경 100 m~2 km</li>
           </ul>
         </article>
         <article>

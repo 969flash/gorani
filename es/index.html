@@ -321,25 +321,37 @@
   <section class="block soft" id="coverage" aria-labelledby="coverage-title">
     <div class="wrap">
       <div class="block-head">
-        <h2 id="coverage-title">Cobertura</h2>
+        <h2 id="coverage-title">Cobertura y fuentes de datos</h2>
       </div>
       <div class="coverage">
         <article>
-          <h3>Corea, todo el país</h3>
-          <p>Parcelas, edificios, terreno y zonificación a partir de datos públicos. Los datos de cada región se descargan una vez desde el panel.</p>
+          <h3>Corea del Sur · nacional</h3>
+          <p>Usa datos públicos de MOLIT, NGII y Seoul UPIS. Los datos de cada región se descargan una vez desde el panel.</p>
           <ul>
-            <li>Catastro, edificios (plantas, uso, fecha de aprobación)</li>
-            <li>Terreno a partir de curvas 1:5.000 y puntos acotados</li>
-            <li>Zonificación, figura-fondo, uso del suelo y más</li>
+            <li>MOLIT: catastro, edificios, características del suelo y planes de uso</li>
+            <li>NGII: curvas de nivel y puntos de altura de mapas topográficos 1:5.000</li>
+            <li>Seoul UPIS: planificación urbana y zonificación</li>
+            <li>Cobertura: parcelas, zonificación y 22 mapas de análisis urbano</li>
           </ul>
         </article>
         <article>
-          <h3>Resto del mundo</h3>
-          <p>Se descarga al generar (requiere internet). Los mapas de parcelas y zonificación son solo para Corea. En Japón, los edificios vienen de PLATEAU y el terreno de GSI.</p>
+          <h3>Japón</h3>
+          <p>Usa PLATEAU del MLIT, GSI y OpenStreetMap. Los datos regionales se descargan al generar el modelo.</p>
           <ul>
-            <li>Edificios y calles de OpenStreetMap</li>
-            <li>Teselas de terreno públicas</li>
-            <li>Radio de 100 m a 2 km</li>
+            <li>MLIT PLATEAU: edificios de modelos urbanos 3D con altura y uso</li>
+            <li>GSI: teselas de terreno de 5 m</li>
+            <li>OpenStreetMap: edificios complementarios, carreteras y agua</li>
+            <li>Cobertura: edificios PLATEAU en 306 municipios, radio de 100 m a 2 km</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Otros países y regiones</h3>
+          <p>Los datos públicos se descargan de internet al generar el modelo. No se ofrecen mapas nacionales de parcelas y zonificación.</p>
+          <ul>
+            <li>OpenStreetMap: edificios, carreteras y agua</li>
+            <li>Teselas de terreno públicas: terreno y elevación</li>
+            <li>Altura de edificios: etiquetas de altura/niveles de OSM; valor predeterminado si faltan</li>
+            <li>Cobertura: radio de 100 m a 2 km</li>
           </ul>
         </article>
         <article>

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Keep the machine-readable product summary discoverable by AI assistants.
+Allow: /llms.txt
+
+Sitemap: https://969flash.github.io/gorani/sitemap.xml

@@ -6,7 +6,7 @@ Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino
 
 대상지를 고르면 3D 지형과 2D 분석 자료를 생성합니다. 라이노, 스케치업, 블렌더에서 작동하는 무료 플러그인입니다.
 
-- Website: https://969flash.github.io/gorani/ (한국어) · https://969flash.github.io/gorani/en/ (English) · https://969flash.github.io/gorani/ja/ (日本語)
+- Website: https://969flash.github.io/gorani/ (한국어) · https://969flash.github.io/gorani/en/ (English) · https://969flash.github.io/gorani/ja/ (日本語) · https://969flash.github.io/gorani/zh/ (简体中文) · https://969flash.github.io/gorani/es/ (Español)
 - For AI tools: [llms.txt](https://969flash.github.io/gorani/llms.txt)
 
 ## Install

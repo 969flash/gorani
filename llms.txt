@@ -59,4 +59,6 @@ Edit > Preferences > Get Extensions (allow online access), search `Gorani`, inst
 - Website (Korean): https://969flash.github.io/gorani/
 - Website (English): https://969flash.github.io/gorani/en/
 - Website (Japanese): https://969flash.github.io/gorani/ja/
+- Website (Simplified Chinese): https://969flash.github.io/gorani/zh/
+- Website (Spanish): https://969flash.github.io/gorani/es/
 - Issues and releases: https://github.com/969flash/gorani

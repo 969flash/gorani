@@ -18,10 +18,77 @@
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   var lang = document.documentElement.lang === "ko" ? "ko" : "en";
+  document.body.classList.add("motion-ready");
   var live = document.getElementById("live");
   function say(text) { if (live) live.textContent = text; }
   function store(key, value) {   // 브라우저 저장소는 막혀 있을 수 있다
     try { if (value === undefined) return localStorage.getItem(key); localStorage.setItem(key, value); } catch (e) { return null; }
+  }
+
+  // ── 머리줄 펼침 메뉴(언어, 좁은 화면 메뉴): 하나만 열고, 링크·바깥 누르기·Esc로 닫는다 ──
+  var pops = [].slice.call(document.querySelectorAll(".language-switch, .menu-switch"));
+  function closePops(except) { pops.forEach(function (d) { if (d !== except) d.open = false; }); }
+  pops.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (!d.open) return;
+      closePops(d);
+      if (d.classList.contains("menu-switch")) track("menu_open");
+    });
+    d.addEventListener("click", function (e) { if (e.target.closest("a")) d.open = false; });
+  });
+  document.addEventListener("click", function (e) { if (!e.target.closest(".language-switch, .menu-switch")) closePops(); });
+  document.addEventListener("keydown", function (e) {
+    var open = pops.filter(function (d) { return d.open; })[0];
+    if (e.key === "Escape" && open) { closePops(); open.querySelector("summary").focus(); }
+  });
+
+  // ── 행동 통계: 고른 프로그램, 설치 버튼, 바깥 링크, 언어 전환, 어느 섹션까지 봤는지 ──
+  var pageLang = document.documentElement.lang;
+  function place(el) { return el.closest("header") ? "header" : el.closest(".hero") ? "hero" : el.closest("footer") ? "footer" : "body"; }
+  document.addEventListener("click", function (e) {
+    var chip = e.target.closest(".support .host-link");
+    if (chip) return track("host_click", { host: chip.querySelector("b").textContent.trim().toLowerCase() });
+    var a = e.target.closest("a");
+    if (!a) return;
+    if (a.closest(".language-switch")) return track("language_switch", { from: pageLang, to: a.getAttribute("lang") });
+    if (a.getAttribute("href") === "#install") return track("install_cta", { place: place(a) });
+    var href = a.href;
+    var target = /\/gorani\/issues/.test(href) ? "review" : /github\.com\/sponsors\//.test(href) ? "sponsor"
+      : /github\.com\/969flash\/gorani\/?$/.test(href) ? "github" : /wikipedia\.org/.test(href) ? "wikipedia" : "";
+    if (target) track("outbound_click", { target: target, place: place(a) });
+  });
+  if ("IntersectionObserver" in window) {
+    var sectionObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        track("section_view", { section: entry.target.id });
+      });
+    }, { rootMargin: "0px 0px -40% 0px" });   // 섹션 머리가 화면 위쪽 60% 안에 들어오면 본 것으로 센다(긴 섹션도 잡히게)
+    document.querySelectorAll("#main > section[id]").forEach(function (s) { sectionObserver.observe(s); });
+  }
+
+  // 긴 페이지의 기능 블록은 화면에 들어올 때 순차적으로 나타낸다.
+  var revealTargets = [].slice.call(document.querySelectorAll(".feature, .usage li, .coverage article, .faq details, .final .wrap"));
+  revealTargets.forEach(function (el) { el.classList.add("reveal"); });
+  if ("IntersectionObserver" in window && !reduce.matches) {
+    var revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        el.classList.add("in-view");
+        observer.unobserve(el);
+        // 나타난 뒤에는 reveal 전환(지연 포함)을 떼어 호버 전환이 그 요소 것대로 돌게 한다
+        el.addEventListener("transitionend", function done(e) {
+          if (e.target !== el || e.propertyName !== "opacity") return;
+          el.removeEventListener("transitionend", done);
+          el.classList.remove("reveal", "in-view");
+        });
+      });
+    }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
+    revealTargets.forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    revealTargets.forEach(function (el) { el.classList.add("in-view"); });
   }
 
   // ── 복사 버튼 ───────────────────────────
@@ -55,6 +122,13 @@
       if (d) { e.preventDefault(); pick(tabs[(i + d + tabs.length) % tabs.length], true); }
     });
   });
+  // 지원 프로그램 칩: 설치의 그 프로그램 탭을 연다
+  document.querySelectorAll("[data-install-tab]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      var tab = document.getElementById("tab-" + link.getAttribute("data-install-tab"));
+      if (tab) pick(tab);
+    });
+  });
 
   // ── 스크롤 진행: 머리줄 아래 선을 고라니가 달린다(스크롤하는 동안만 다리가 움직임) ──
   var bar = document.querySelector(".progress"), runner = bar && bar.querySelector(".run");
@@ -86,28 +160,21 @@
   var cap = screen.querySelector(".cap");
   var chapters = [].slice.call(document.querySelectorAll("[data-at]"));
   var starts = chapters.map(function (b) { return +b.getAttribute("data-at"); });
-  var END = 39.3;   // 영상 길이(초)
+  var END = 52.33;   // 영상 길이(초)
 
-  // 릴스식 자막 — [시작, 끝, 한국어, 영어], *강조*
+  // 설명 자막 — [시작, 끝, 한국어, 영어], *강조*
   var CAPTIONS = [
-    [0.0, 1.6, "Gorani 패널", "The Gorani panel"],
-    [1.6, 4.0, "주소나 *지번*으로 검색", "Search an address or *parcel number*"],
-    [4.0, 6.2, "결과를 누르면 *대상지*로", "Pick a result to set the *site*"],
-    [6.2, 9.0, "옆 필지를 눌러 *더하기*", "Click a neighbor to *add* it"],
-    [9.0, 11.0, "*3D 옵션* 확인", "Check the *3D options*"],
-    [11.0, 13.0, "기본값으로 둬도 충분", "The defaults are fine"],
-    [13.0, 14.0, "*3D 모델 만들기*", "Press *3D model*"],
-    [14.0, 17.4, "고라니가 달리는 동안 만드는 중", "Building while the gorani runs"],
-    [17.4, 20.0, "열려 있는 Rhino 문서에 *레이어별로*", "Into your open Rhino file, *layer by layer*"],
-    [20.0, 21.5, "이어서 *2D 자료*", "Next, the *2D set*"],
-    [21.5, 22.4, "베이스맵은 *.ai* 도면으로", "The basemap as an *.ai* drawing"],
-    [22.4, 23.4, "현황도와 분석도도 함께", "Plus analysis maps"],
-    [23.4, 26.0, "베이스맵과 다이어그램 만드는 중", "Making the basemap and diagrams"],
-    [26.0, 29.0, "*.ai* 도면과 현황도 완성", "*.ai* drawings and maps, done"],
-    [29.0, 31.0, "도면마다 미리보기", "Preview each drawing"],
-    [31.0, 35.8, "*토지이용현황*", "*Land use*"],
-    [35.8, 37.8, "*지목 현황*", "*Land category*"],
-    [37.8, 39.4, "*용도지역*", "*Zoning*"]
+    [0.0, 3.67, "명령창에 *Gorani*를 입력해 패널을 엽니다.", "Type *Gorani* in the command line to open the panel."],
+    [3.67, 6.45, "대상지를 선택합니다.", "Select a site."],
+    [6.45, 9.5, "필지를 직접 선택하거나, 대상지의 경계를 그릴 수 있습니다.", "Choose parcels directly, or draw the site's boundary."],
+    [9.5, 12.5, "구역을 선택합니다.", "Select an area."],
+    [12.5, 17.17, "범위와 옵션을 정해 3D 모델을 만듭니다.", "Set the range and options to build the 3D model."],
+    [17.17, 20.37, "결과가 열린 Rhino 문서에 레이어별로 들어옵니다.", "The result lands in the open Rhino file, layer by layer."],
+    [20.37, 27.37, "베이스맵과 분석 자료를 생성합니다.", "Generate the basemap and analysis materials."],
+    [27.37, 34.87, "만든 도면을 패널에서 미리 봅니다.", "Preview the drawings in the panel."],
+    [34.87, 40.87, "다이어그램의 스타일을 변경하고 나만의 스타일을 저장할 수 있습니다.", "Change the diagram style and save your own style."],
+    [40.87, 46.37, "결과를 파일로 저장합니다.", "Save the results to files."],
+    [46.37, 49.93, "결과 폴더를 확인합니다.", "Check the result folder."]
   ];
   var ccLang = store("gorani-cc") || lang, shown = -2;
   function esc(s) { return s.replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
@@ -119,7 +186,7 @@
     if (idx < 0) { cap.innerHTML = ""; return; }
     var text = esc(CAPTIONS[idx][ccLang === "ko" ? 2 : 3]).replace(/\*(.+?)\*/g, "<em>$1</em>");
     cap.innerHTML = "<span>" + text + "</span>";
-    cap.classList.remove("pop"); void cap.offsetWidth; cap.classList.add("pop");
+    cap.classList.remove("pop");
   }
   document.querySelectorAll("[data-cc]").forEach(function (b) {
     b.setAttribute("aria-pressed", String(b.getAttribute("data-cc") === ccLang));
@@ -135,11 +202,14 @@
     chapters.forEach(function (b, i) {
       if (!loaded) return;
       var s = starts[i], e = i + 1 < starts.length ? starts[i + 1] : END;
-      b.style.setProperty("--f", Math.min(1, Math.max(0, (t - s) / (e - s))).toFixed(3));
       if (t >= s && t < e) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
     });
   }
-  function render() { var t = video.currentTime || 0; renderCaption(t); renderChapters(t); }
+  function render() {
+    var t = video.currentTime || 0;
+    renderCaption(t);
+    renderChapters(t);
+  }
 
   var frame = 0;
   function loop() { render(); frame = requestAnimationFrame(loop); }

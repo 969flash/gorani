@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gorani: 简单快速的3D地形生成与图表制作工具（Rhino、SketchUp、Blender 免费插件）</title>
+<meta name="description" content="选择场地后，Gorani 会生成周边建筑、道路和地形的3D模型，并将底图和分析图保存为 Illustrator 文件。适用于 Rhino 8、SketchUp 和 Blender 的免费插件。">
+<link rel="canonical" href="https://969flash.github.io/gorani/zh/">
+<link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
+<link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
+<link rel="alternate" hreflang="ja" href="https://969flash.github.io/gorani/ja/">
+<link rel="alternate" hreflang="zh" href="https://969flash.github.io/gorani/zh/">
+<link rel="alternate" hreflang="es" href="https://969flash.github.io/gorani/es/">
+<link rel="alternate" hreflang="x-default" href="https://969flash.github.io/gorani/en/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gorani">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="Gorani: 简单快速的3D地形生成与图表制作工具">
+<meta property="og:description" content="Gorani 是面向 Rhino、SketchUp 和 Blender 用户的免费开源插件，可生成场地3D地形和22种可编辑图表。">
+<meta property="og:url" content="https://969flash.github.io/gorani/zh/">
+<meta property="og:image" content="https://969flash.github.io/gorani/assets/og-zh.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#101010" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="preload" href="../assets/demo-poster.webp" as="image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Gorani",
+      "description": "选择场地后，Gorani 会将周边建筑、道路、地形和水系生成为3D模型，并保存分图层的 Illustrator 底图和城市分析图。适用于 Rhino 8、SketchUp 和 Blender 的免费插件。",
+      "applicationCategory": "DesignApplication",
+      "applicationSubCategory": "Rhino 8, SketchUp, Blender plugin",
+      "operatingSystem": "Windows, macOS",
+      "softwareRequirements": "Rhinoceros 8、SketchUp 2022 及以上、Blender 4.2 及以上",
+      "softwareVersion": "0.3.2",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "inLanguage": "zh",
+      "url": "https://969flash.github.io/gorani/zh/",
+      "image": "https://969flash.github.io/gorani/assets/og-zh.png",
+      "author": { "@type": "Person", "name": "969flash", "url": "https://github.com/969flash" },
+      "featureList": [
+        "周边建筑（按层数确定高度）、道路、地形、水系、绿地和铁路的3D模型",
+        "分图层的 Illustrator（.ai）底图",
+        "土地利用、用地分区、图底关系等分析图（SVG、AI）",
+        "地块与建筑统计表（CSV）",
+        "韩国全国；日本使用 PLATEAU 建筑；其他地区使用 OpenStreetMap"
+      ]
+    },
+    {
+      "@type": "VideoObject",
+      "name": "Gorani 使用演示",
+      "description": "在 Rhino 中打开 Gorani 面板，绘制区域，生成3D模型，再生成底图和分析图的过程。",
+      "thumbnailUrl": "https://969flash.github.io/gorani/assets/demo-poster.webp",
+      "contentUrl": "https://969flash.github.io/gorani/assets/demo.mp4",
+      "uploadDate": "2026-10-21",
+      "duration": "PT52S"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-copy" viewBox="0 0 16 16"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 5.5V4a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 4v5A1.5 1.5 0 0 0 4 10.5h1.5"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-play" viewBox="0 0 16 16"><path d="M4.5 2.8v10.4a.6.6 0 0 0 .9.5l8.2-5.2a.6.6 0 0 0 0-1L5.4 2.3a.6.6 0 0 0-.9.5z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.75" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M2.5 8h11M8 2.25c1.55 1.55 2.25 3.35 2.25 5.75S9.55 12.2 8 13.75C6.45 12.2 5.75 10.4 5.75 8S6.45 3.8 8 2.25Z" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="Gorani 首页"><span class="mark" aria-hidden="true"></span>Gorani</a>
+    <nav class="nav" aria-label="本页导航">
+      <a href="#install">安装</a>
+      <a href="#usage">使用方法</a>
+      <a href="#faq">常见问题</a>
+      <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>留下评价</a>
+    </nav>
+    <details class="language-switch">
+      <summary aria-label="语言"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
+      <div class="language-menu" role="menu">
+        <a href="../" hreflang="ko" lang="ko" role="menuitem">한국어</a>
+        <a href="../en/" hreflang="en" lang="en" role="menuitem">English</a>
+        <a href="../ja/" hreflang="ja" lang="ja" role="menuitem">日本語</a>
+        <a href="./" hreflang="zh" lang="zh" aria-current="page" role="menuitem">简体中文</a>
+        <a href="../es/" hreflang="es" lang="es" role="menuitem">Español</a>
+      </div>
+    </details>
+    <details class="menu-switch">
+      <summary aria-label="菜单"><svg aria-hidden="true"><use href="#i-menu"/></svg></summary>
+      <div class="language-menu menu-list">
+        <a href="#install">安装</a>
+        <a href="#usage">使用方法</a>
+        <a href="#faq">常见问题</a>
+        <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>留下评价</a>
+      </div>
+    </details>
+  </div>
+  <div class="progress" aria-hidden="true"><i></i><span class="run"></span></div>
+</header>
+
+<main id="main">
+  <div class="wrap hero-wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-text">
+        <h1 id="hero-title">简单快速的3D地形生成与图表制作工具</h1>
+        <p class="lead">Gorani 是面向 Rhino、SketchUp 和 Blender 用户的免费开源插件。</p>
+        <div class="acts">
+          <a class="btn go" href="#install">安装 Gorani<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn icon" href="https://github.com/969flash/gorani" aria-label="GitHub" title="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
+        </div>
+      </div>
+
+      <figure class="demo" id="product" aria-label="演示视频">
+        <div class="device">
+          <div class="screen">
+            <video muted loop playsinline preload="none" width="1600" height="900" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="使用 Rhino 和 Gorani 面板查找场地并生成3D模型和2D资料的52秒视频"></video>
+            <p class="cap" aria-hidden="true"></p>
+            <div class="loading" aria-hidden="true"><span class="run go"></span>加载中</div>
+            <button type="button" class="big-play"><span class="mark" aria-hidden="true"></span><span>Gorani</span></button>
+            <div class="screen-bar">
+              <button type="button" class="chip-btn toggle" aria-label="播放或暂停"><svg class="i-play"><use href="#i-play"/></svg><svg class="i-pause"><use href="#i-pause"/></svg></button>
+              <div class="cc" role="group" aria-label="字幕">
+                <button type="button" data-cc="ko" lang="ko">한</button>
+                <button type="button" data-cc="en" lang="en">EN</button>
+                <button type="button" data-cc="off">关</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ol class="chapters" aria-label="场景">
+          <li><button type="button" data-at="0"><b>1</b>打开 Gorani 面板</button></li>
+          <li><button type="button" data-at="3.67"><b>2</b>选择场地</button></li>
+          <li><button type="button" data-at="9.5"><b>3</b>生成3D模型</button></li>
+          <li><button type="button" data-at="20.37"><b>4</b>生成2D资料</button></li>
+          <li><button type="button" data-at="34.87"><b>5</b>更改样式</button></li>
+        </ol>
+      </figure>
+    </section>
+  </div>
+
+  <section class="block soft" id="model" aria-labelledby="model-title">
+    <div class="wrap feature">
+      <div class="shot">
+        <img src="../assets/detail-3d.webp" width="2888" height="1472" loading="lazy" alt="Rhino 透视视图中的 Gorani 3D模型和图层面板，建筑、道路、地形、水系和用地分区分别位于不同图层。">
+      </div>
+      <div>
+        <span class="eyebrow">3D模型</span>
+        <h2 id="model-title">周边环境，按图层生成</h2>
+        <p class="sub">建筑、道路、地形和水系会按图层放入当前打开的文件。可以在 Rhino 图层面板中开关或隐藏结果，建筑高度由层数确定。</p>
+        <ul class="tags" aria-label="生成的图层">
+          <li>建筑</li><li>道路</li><li>地形</li><li>水系</li><li>绿地</li><li>铁路</li><li>地块</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="maps" aria-labelledby="maps-title">
+    <div class="wrap feature flip">
+      <div class="shot media-stack">
+        <video muted autoplay loop playsinline preload="metadata" poster="../assets/detail-2d-demo-poster.jpg" width="1482" height="1136" aria-label="Gorani 面板生成底图和现状图的屏幕录像">
+          <source src="../assets/detail-2d-demo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div>
+        <span class="eyebrow">2D资料</span>
+        <h2 id="maps-title">别再为场地分析熬夜了。</h2>
+        <p class="sub">提供图底关系、用地分区、土地利用现状等22种图表，均为可编辑的 SVG 格式，还可以更改颜色和样式。</p>
+        <ul class="files">
+          <li><b>底图</b><code>basemap_比例尺.ai</code></li>
+          <li><b>现状图与分析图</b><code>sheets/*.svg, .ai</code></li>
+          <li><b>地块与建筑统计表</b><code>tables/*.csv</code></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block support" id="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <div class="block-head">
+        <div>
+          <h2 id="support-title">支持的软件</h2>
+          <p class="sub">Gorani 是面向 Rhino、SketchUp 和 Blender 用户的免费开源插件。</p>
+        </div>
+      </div>
+      <ul class="hosts" aria-label="支持的软件">
+        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="../assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>8 及以上</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 及以上</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 及以上</small></span></a></li>
+        <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
+        <li><span class="host-link"><b>Windows · macOS</b><small>支持的操作系统</small></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block soft" id="install" aria-labelledby="install-title">
+    <div class="wrap">
+      <div class="block-head">
+        <h2 id="install-title">安装</h2>
+        <div class="seg" role="tablist" aria-label="软件">
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 8</button>
+          <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
+          <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
+        </div>
+      </div>
+      <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
+        <ol class="steps">
+          <li>
+            <h3>打开 Package Manager</h3>
+            <p>在 Rhino 命令行中输入</p>
+            <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="已复制 PackageManager" aria-label="复制 PackageManager"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+          </li>
+          <li>
+            <h3>安装 Gorani</h3>
+            <p>搜索 Gorani 并点击<span class="ui">安装</span></p>
+          </li>
+          <li>
+            <h3>重启 Rhino</h3>
+            <p>重启后插件才会加载。</p>
+          </li>
+          <li>
+            <h3>打开面板</h3>
+            <p>在命令行中输入</p>
+            <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="已复制 Gorani" aria-label="复制 Gorani"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+          </li>
+        </ol>
+      </div>
+      <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
+        <ol class="steps" style="--n:3">
+          <li>
+            <h3>打开 Extension Warehouse</h3>
+            <p>菜单 <span class="ui">扩展程序 &gt; Extension Warehouse</span></p>
+          </li>
+          <li>
+            <h3>安装 Gorani</h3>
+            <p>搜索 Gorani 并点击<span class="ui">安装</span></p>
+          </li>
+          <li>
+            <h3>打开面板</h3>
+            <p>菜单 <span class="ui">扩展程序 &gt; Gorani</span>，或工具栏上的 Gorani 按钮</p>
+          </li>
+        </ol>
+      </div>
+      <div role="tabpanel" id="p-blender" aria-labelledby="tab-blender" hidden>
+        <ol class="steps" style="--n:3">
+          <li>
+            <h3>打开 Get Extensions</h3>
+            <p>菜单 <span class="ui">Edit &gt; Preferences &gt; Get Extensions</span>。首次使用需允许联网访问。</p>
+          </li>
+          <li>
+            <h3>安装 Gorani</h3>
+            <p>搜索 Gorani 并点击<span class="ui">Install</span></p>
+          </li>
+          <li>
+            <h3>打开面板</h3>
+            <p>在3D视图中按 N，然后在侧边栏选择<span class="ui">Gorani &gt; Open panel</span>。面板会在浏览器标签页中打开。</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="usage" aria-labelledby="usage-title">
+    <div class="wrap">
+      <div class="block-head">
+        <div>
+          <h2 id="usage-title">使用方法</h2>
+          <p class="sub">首次使用某个地区时，需要下载数据，会稍慢一些。如果出现问题，请查看结果文件夹中的 <code>log.txt</code>。</p>
+        </div>
+      </div>
+      <ol class="usage">
+        <li>
+          <img src="../assets/use-1-site.gif" width="1065" height="706" loading="lazy" alt="在 Gorani 面板中选择地块并绘制区域的动画，地图上的选择点和右侧场地信息依次变化。">
+          <div>
+            <h3><b>1</b>选择场地</h3>
+            <p>在地图上查找场地，或按地址、地块编号搜索。点击地块或绘制区域来确定场地。</p>
+          </div>
+        </li>
+        <li>
+          <img src="../assets/use-2-3d.webp" width="2130" height="1412" loading="lazy" alt="Rhino 上打开的 Gorani 面板3D设置界面，可见原点、地形台阶间距、场地平整和用地分区边界选项。">
+          <div>
+            <h3><b>2</b>生成3D模型</h3>
+            <p>设置范围和3D选项后点击生成，建筑、道路、地形和水系会按图层放入当前打开的 Rhino 文件。</p>
+          </div>
+        </li>
+        <li>
+          <img src="../assets/use-3-2d.webp" width="2130" height="1412" loading="lazy" alt="3D模型生成后，Gorani 面板打开2D资料选择界面，可见底图、图表、统计表选项和生成2D资料按钮。">
+          <div>
+            <h3><b>3</b>生成2D资料</h3>
+            <p>底图（.ai）、现状图、分析图和统计表（CSV）会保存到结果文件夹。也可以立即生成其他比例尺的底图。</p>
+          </div>
+        </li>
+        <li>
+          <img src="../assets/use-4-preview.webp" width="1738" height="1210" loading="lazy" alt="Gorani 生成的25张图表预览，包括底图、图底关系、地块规模、用地分区和建筑相关分析图。">
+          <div>
+            <h3><b>4</b>查看图纸</h3>
+            <p>生成的图纸可以直接在面板中放大预览。也可以更改图表颜色和样式后重新生成。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block soft" id="coverage" aria-labelledby="coverage-title">
+    <div class="wrap">
+      <div class="block-head">
+        <h2 id="coverage-title">支持地区</h2>
+      </div>
+      <div class="coverage">
+        <article>
+          <h3>韩国全国</h3>
+          <p>使用公共数据生成地块、建筑、地形和用地分区。各市郡区的数据只需在面板中下载一次。</p>
+          <ul>
+            <li>地籍、建筑（层数、用途、使用批准日期）</li>
+            <li>基于1:5,000等高线和高程点的地形</li>
+            <li>用地分区、图底关系、土地利用等分析图</li>
+          </ul>
+        </article>
+        <article>
+          <h3>其他地区</h3>
+          <p>生成时从网上下载数据（需联网）。地块和用地分区图仅限韩国。日本的建筑来自 PLATEAU，地形来自日本国土地理院（GSI）。</p>
+          <ul>
+            <li>OpenStreetMap 建筑和道路</li>
+            <li>公开地形瓦片</li>
+            <li>半径 100 m 至 2 km</li>
+          </ul>
+        </article>
+        <article>
+          <h3>面板语言</h3>
+          <p>Gorani 插件面板支持五种语言，可在面板顶部切换显示语言。本网站也提供相同的五种语言。</p>
+          <ul>
+            <li>한국어 · English</li>
+            <li>日本語 · 简体中文 · Español</li>
+            <li>随时可用面板顶部的地球按钮切换</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="block-head">
+        <h2 id="faq-title">常见问题</h2>
+        <a class="btn" href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>留下评价</a>
+      </div>
+      <div class="faq">
+        <div class="faq-item">
+          <h3>真的免费吗？</h3>
+          <p>是的，也不需要注册账号。项目依靠赞助运营。</p>
+        </div>
+        <div class="faq-item">
+          <h3>需要 Grasshopper 或其他软件吗？</h3>
+          <p>不需要。只要有 Rhino 8、SketchUp 2022 及以上或 Blender 4.2 及以上中的一个即可，支持 Windows 和 macOS。</p>
+        </div>
+        <div class="faq-item">
+          <h3>结果保存在哪里？</h3>
+          <p>3D模型会放入当前打开的文件，文件保存在 <code>~/Gorani/result/场地_日期/</code>，包括模型文件、<code>log.txt</code> 和 <code>2D/</code> 文件夹。</p>
+        </div>
+        <div class="faq-item">
+          <h3>出现问题怎么办？</h3>
+          <p>请先查看结果文件夹中的 <code>log.txt</code>。如果仍未解决，请在 <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a> 提交问题并附上 <code>log.txt</code>。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block soft final" aria-labelledby="final-title">
+    <div class="wrap">
+      <div class="water-deer-article">
+        <h2 id="final-title"><a href="https://ko.wikipedia.org/wiki/%EA%B3%A0%EB%9D%BC%EB%8B%88">[고라니]</a> <a href="https://zh.wikipedia.org/wiki/%E7%8D%90">[獐]</a></h2>
+        <div class="wiki-body">
+          <div>
+            <p class="wiki-lead"><b>獐</b>（<i>Hydropotes inermis</i>）是分布于朝鲜半岛和中国的小型鹿类。雄性没有鹿角，而是长有长长的獠牙，多栖息在河流和湿地附近。</p>
+            <section class="wiki-section">
+              <h3>分类 <span>Taxonomy</span></h3>
+              <p>獐属于鹿科，是獐属（<i>Hydropotes</i>）唯一的现存物种。由于没有鹿角、獠牙发达，形态独特，被单独列为一属。</p>
+            </section>
+            <section class="wiki-section">
+              <h3>词源 <span>Etymology</span></h3>
+              <p>属名 <i>Hydropotes</i> 源自表示“水”的词，指其栖息于河流和湿地附近的习性。种名 <i>inermis</i> 意为“无武装”，指其没有鹿角。</p>
+            </section>
+          </div>
+          <a class="wiki-infobox" href="https://zh.wikipedia.org/wiki/%E7%8D%90" aria-label="在维基百科上了解更多关于獐的信息">
+            <img src="../assets/water-deer.jpg" alt="站在草地上的雄性獐">
+            <span>雄性獐</span>
+            <span class="wiki-kicker">维基百科，自由的百科全书</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="fine">
+      <span class="mark" aria-hidden="true"></span>
+      <p>作者 <a href="https://github.com/969flash">Hoon</a> 和 <a href="https://wjcho.com">Cho</a>。版本 0.3.2。</p>
+      <p>我们是饿着肚子的研究生。如果 Gorani 帮到了你，请请我们喝杯咖啡。</p>
+      <a class="btn" href="https://github.com/sponsors/969flash">在 GitHub 上赞助</a>
+    </div>
+  </div>
+</footer>
+<p id="live" class="skip" aria-live="polite"></p>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

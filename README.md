@@ -21,7 +21,7 @@ Coverage status on the website was last checked on 2026-10-23. Dataset-specific 
 
 - **Korea, nationwide**: cadastre, buildings, 1:5,000 terrain, zoning; analysis maps (figure-ground, zoning, land use, street hierarchy, building age and more).
 - **Japan**: PLATEAU buildings (MLIT), GSI 5 m terrain, OpenStreetMap roads.
-- **Europe (in progress)**: data coverage for the Netherlands, France and Switzerland is being collected and processed; sources and availability will be documented after validation.
+- **Netherlands, France, Switzerland**: official building footprints with measured heights (Kadaster 3D Basisvoorziening, IGN BD TOPO, swisstopo swissBUILDINGS3D).
 - **Elsewhere**: OpenStreetMap buildings and roads, public terrain tiles.
 
 ## This repository

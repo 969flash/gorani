@@ -262,8 +262,8 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
 .feature { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: center; }
 .feature.flip { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
 .feature.flip > .shot { order: 2; }
-.shot { border-radius: 16px; overflow: hidden; background: var(--press); border: 1px solid var(--hair); transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease; }
-.shot:hover { transform: translateY(-8px) rotate(-.4deg); box-shadow: 0 24px 60px -34px rgba(17, 20, 24, .45); }
+.shot { border-radius: 16px; overflow: hidden; background: var(--press); border: 1px solid var(--hair); transition: border-color .6s cubic-bezier(.33,0,.45,1), box-shadow .6s cubic-bezier(.33,0,.45,1); }
+.shot:hover { border-color: #C9CED6; box-shadow: 0 12px 32px -24px rgba(17, 20, 24, .35); transition-duration: .18s; }   /* 사용법 카드·지원 칩과 같은 결 */
 .shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .media-stack { display: grid; gap: 12px; padding: 12px; }
 .media-stack video, .media-stack img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; border-radius: 10px; background: var(--surface); }

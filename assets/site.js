@@ -78,11 +78,12 @@
       var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
       if (d) { e.preventDefault(); pick(tabs[(i + d + tabs.length) % tabs.length], true); }
     });
-    document.querySelectorAll("[data-install-tab]").forEach(function (link) {
-      link.addEventListener("click", function () {
-        var tab = document.getElementById("tab-" + link.getAttribute("data-install-tab"));
-        if (tab) pick(tab);
-      });
+  });
+  // 지원 프로그램 칩: 설치의 그 프로그램 탭을 연다
+  document.querySelectorAll("[data-install-tab]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      var tab = document.getElementById("tab-" + link.getAttribute("data-install-tab"));
+      if (tab) pick(tab);
     });
   });
 

@@ -1,45 +1,52 @@
 <!doctype html>
-<!-- 공유 미리보기 이미지(1200×630) — 문구·영상 첫 장면을 바꾸면 다시 찍는다. 영어판은 ?en
+<!-- 공유 미리보기 이미지(1200×630) — 문구나 3D 장면을 바꾸면 다시 찍는다. 언어는 ?en ?ja ?zh ?es (없으면 한국어)
      C="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
      "$C" --headless=new --force-prefers-reduced-motion --hide-scrollbars --window-size=1200,630 --screenshot=assets/og.png "file://$PWD/og.html"
-     "$C" --headless=new --force-prefers-reduced-motion --hide-scrollbars --window-size=1200,630 --screenshot=assets/og-en.png "file://$PWD/og.html?en" -->
+     for l in en ja zh es; do "$C" --headless=new --force-prefers-reduced-motion --hide-scrollbars --window-size=1200,630 --screenshot=assets/og-$l.png "file://$PWD/og.html?$l"; done -->
 <html lang="ko"><head><meta charset="utf-8"><meta name="robots" content="noindex">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="assets/style.css">
 <style>
   /* 맥이 다크 모드여도 밝은 색으로 찍는다 — style.css :root 밝은 값 */
-  :root { --paper: #F5F7FA; --surface: #FFFFFF; --press: #EDF0F4; --ink: #111418; --ink-2: #465061; --ink-3: #7D8798; --hair: #E3E6EB; color-scheme: light; }
+  :root { --paper: #FFFFFF; --surface: #FFFFFF; --press: #EDF0F4; --ink: #111418; --ink-2: #465061; --ink-3: #7D8798; --hair: #E3E6EB; color-scheme: light; }
   html, body { width: 1200px; height: 630px; overflow: hidden; margin: 0; background: var(--paper); }
   .og { display: flex; gap: 48px; height: 100%; padding: 56px 56px 56px 72px; box-sizing: border-box; }
   .text { flex: 1; display: flex; flex-direction: column; min-width: 0; }
   .brand { font-size: 28px; gap: 12px; }
   .brand .mark { --s: 44px; }
-  h1 { margin: auto 0 0; font-size: 60px; line-height: 72px; font-weight: 800; letter-spacing: -.03em; }
-  .lead { margin-top: 20px; font-size: 24px; line-height: 36px; }
+  h1 { margin: auto 0 0; font-size: 52px; line-height: 62px; font-weight: 800; letter-spacing: -.03em; }
+  .lead { margin-top: 20px; font-size: 22px; line-height: 34px; }
   .hosts { margin-top: 28px; }
   .hosts li { font-size: 17px; line-height: 24px; padding: 6px 16px; }
   .line { position: relative; margin-top: auto; height: 2px; background: var(--hair); }
   .line i { position: absolute; inset: 0 40% 0 0; background: var(--ink); }
   .line .run { --w: 48px; --h: 36px; position: absolute; bottom: 2px; left: calc(60% - 48px); color: var(--ink); }
   .shot { flex: none; width: 458px; height: 518px; border-radius: 16px; overflow: hidden; background: #EBF0F3; border: 1px solid var(--hair); }
-  .shot img { width: 100%; height: 100%; object-fit: cover; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
 </style></head>
 <body>
 <div class="og">
   <div class="text">
     <div class="brand"><span class="mark"></span>Gorani</div>
-    <h1 id="title">사이트 3D 모델링<br>및 분석</h1>
-    <p class="lead" id="lead">대상지를 고르면 3D 지형과 2D 분석 자료를 생성하는 무료 플러그인</p>
+    <h1 id="title">쉽고 빠른<br>3D 지형 생성과<br>다이어그램 제작 툴</h1>
+    <p class="lead" id="lead">라이노, 스케치업, 블렌더 유저를 위한 무료 오픈소스 플러그인</p>
     <ul class="hosts"><li><b>Rhino</b></li><li><b>SketchUp</b></li><li><b>Blender</b></li></ul>
     <div class="line" style="margin-top:40px"><i></i><span class="run"></span></div>
   </div>
-  <div class="shot"><img src="assets/demo-poster.webp" alt=""></div>
+  <div class="shot"><img src="assets/detail-3d.webp" alt=""></div>
 </div>
 <script>
-  if (location.search === "?en") {
-    document.documentElement.lang = "en";
-    document.getElementById("title").innerHTML = "Site 3D modeling<br>and analysis";
-    document.getElementById("lead").textContent = "Pick a site, get 3D terrain and 2D analysis drawings. Free plugin.";
+  var T = {
+    en: ["Easy, fast 3D terrain<br>and diagram maker", "A free, open-source plugin for Rhino, SketchUp and Blender users"],
+    ja: ["3D地形と<br>ダイアグラムを、<br>すばやく作成", "Rhino・SketchUp・Blenderユーザーのための無料オープンソースプラグイン"],
+    zh: ["简单快速的<br>3D地形生成与<br>图表制作工具", "面向 Rhino、SketchUp 和 Blender 用户的免费开源插件"],
+    es: ["Terreno 3D<br>y diagramas,<br>fácil y rápido", "Plugin gratuito y de código abierto para usuarios de Rhino, SketchUp y Blender"]
+  };
+  var l = location.search.slice(1);
+  if (T[l]) {
+    document.documentElement.lang = l;
+    document.getElementById("title").innerHTML = T[l][0];
+    document.getElementById("lead").textContent = T[l][1];
   }
 </script>
 </body></html>

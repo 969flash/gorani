@@ -161,6 +161,7 @@
   var chapters = [].slice.call(document.querySelectorAll("[data-at]"));
   var starts = chapters.map(function (b) { return +b.getAttribute("data-at"); });
   var DEMO_START = 3.67;
+  var firstPlayback = true;
   var END = 52.33;   // 영상 길이(초)
 
   // 설명 자막 — [시작, 끝, 한국어, 영어], *강조*
@@ -218,12 +219,13 @@
   video.addEventListener("pause", function () { screen.classList.add("paused"); cancelAnimationFrame(frame); render(); });
   video.addEventListener("seeked", render);
   video.addEventListener("loadedmetadata", function () {
-    if (video.currentTime < DEMO_START) video.currentTime = DEMO_START;
+    if (firstPlayback) video.currentTime = DEMO_START;
     render();
   });
   video.addEventListener("ended", function () {
     if (userPaused) return;
-    video.currentTime = DEMO_START;
+    firstPlayback = false;
+    video.currentTime = 0;
     play();
   });
   video.addEventListener("waiting", function () { screen.classList.add("wait"); });

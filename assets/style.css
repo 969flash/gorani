@@ -100,6 +100,8 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 }
 .hero h1 { font-size: 48px; line-height: 58px; font-weight: 800; letter-spacing: -.035em; text-wrap: balance; }
 #hero-title, #install-title { font-weight: 700; }
+.hero h1 .nw { white-space: nowrap; }   /* 낱말 덩어리 안에서 줄이 끊기지 않게 */
+html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글자라 같은 크기에서 더 커 보인다 */
 .lead { margin-top: 16px; font-size: 18px; line-height: 29px; color: var(--ink-2); text-wrap: pretty; }
 .story { margin-top: 12px; font-size: 15px; line-height: 24px; color: var(--ink-3); }
 .acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
@@ -135,8 +137,8 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 /* 지원 프로그램 — onorca.dev "Bring your own agent"처럼 가운데 제목·설명 아래 낮은 칩 한 줄, 마우스를 올리면 빠르게 켜지고 뗄 때 천천히 꺼짐(레퍼런스 곡선) */
 .block.support { padding: 64px 0; text-align: center; }
 .support .block-head { display: block; margin: 0 auto; max-width: 768px; }
-.support .sub { margin: 20px auto 0; max-width: 768px; text-wrap: balance; }
-.support .hosts { justify-content: center; gap: 8px; margin: 40px auto 0; max-width: 1024px; }
+.support .sub { margin-inline: auto; max-width: 768px; text-wrap: balance; }
+.support .hosts { justify-content: center; gap: 8px; margin: 32px auto 0; max-width: 1024px; }
 .support .hosts li { display: contents; }
 .support .hosts .host-link {
   position: relative; display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 10px;
@@ -162,6 +164,10 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 }
 .btn:hover { background: var(--press); text-decoration: none; }
 .btn svg { width: 16px; height: 16px; }
+.btn.icon { width: 44px; padding: 0; justify-content: center; }   /* 로고만 있는 버튼 */
+.btn.icon svg { width: 20px; height: 20px; }
+.btn .i-arrow { margin-right: -4px; transition: transform .6s cubic-bezier(.33,0,.45,1); }
+.btn:hover .i-arrow { transform: translateX(3px); transition-duration: .18s; }   /* 칩·카드와 같은 결 */
 .btn.go { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
 .btn.go:hover { background: color-mix(in srgb, var(--ink) 86%, var(--paper)); }
 .btn svg { width: 16px; height: 16px; }
@@ -246,10 +252,11 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .block.soft { background: var(--soft); }
 .block h2 { font-size: clamp(34px, 4vw, 56px); line-height: 1.08; font-weight: 700; letter-spacing: -.045em; }
 .feature h2 { text-wrap: balance; }   /* 두 줄일 때 줄 길이를 고르게 */
-.block-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 40px; }
+/* 글 간격 규칙(4의 배수): 라벨→제목 16, 섹션 제목→부제 20, 부제→태그·목록 32, 섹션 머리→카드 48, 카드 제목→본문 8, 카드 본문→목록 16 */
+.block-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 48px; }
 .block-head > .hosts { margin-top: 0; }
-.eyebrow { display: block; margin-bottom: 12px; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--ink-3); letter-spacing: .02em; }
-.sub { margin-top: 12px; max-width: 560px; font-size: 17px; line-height: 28px; color: var(--ink-2); }
+.eyebrow { display: block; margin-bottom: 16px; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--ink-3); letter-spacing: .02em; }
+.sub { margin-top: 20px; max-width: 560px; font-size: 17px; line-height: 28px; color: var(--ink-2); }
 
 /* 기능: 패널 화면 + 설명(좌우), 2D는 좌우를 바꾼다 */
 .feature { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: center; }
@@ -260,9 +267,9 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .media-stack { display: grid; gap: 12px; padding: 12px; }
 .media-stack video, .media-stack img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; border-radius: 10px; background: var(--surface); }
-.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; padding: 0; list-style: none; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; padding: 0; list-style: none; }
 .tags li { font-size: 14px; line-height: 20px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--hair); color: var(--ink-2); background: var(--surface); }
-.files { margin-top: 24px; padding: 0; list-style: none; }
+.files { margin-top: 32px; padding: 0; list-style: none; }
 .files li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; font-size: 15px; line-height: 22px; color: var(--ink-2); }
 .files b { font-weight: 600; color: var(--ink); }
 .files code { color: var(--ink-3); font-size: 13px; white-space: nowrap; }
@@ -275,7 +282,7 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .usage div { padding: 20px 24px 24px; }
 .usage h3 { font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: -.01em; }
 .usage h3 b { color: var(--ink-3); font-weight: 700; margin-right: 10px; font-variant-numeric: tabular-nums; }
-.usage p { margin-top: 6px; font-size: 15px; line-height: 24px; color: var(--ink-2); }
+.usage p { margin-top: 8px; font-size: 15px; line-height: 24px; color: var(--ink-2); }
 
 /* 레퍼런스의 조용한 진입 모션: 스크립트가 켜진 경우에만 초기 상태를 숨긴다. */
 body.motion-ready .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
@@ -292,7 +299,7 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
 .coverage article { padding: 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
 .coverage h3 { font-size: 22px; line-height: 30px; font-weight: 700; }
 .coverage p { margin-top: 8px; color: var(--ink-2); }
-.coverage ul { margin-top: 20px; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 15px; line-height: 22px; color: var(--ink-2); }
+.coverage ul { margin-top: 16px; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 15px; line-height: 22px; color: var(--ink-2); }
 .coverage li::before { content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 10px 2px 0; border-radius: 999px; background: var(--ink-3); }
 
 /* FAQ: 얇은 선 아코디언 */
@@ -317,7 +324,7 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
   border-radius: 999px; background: var(--ink); color: var(--on-ink); font-weight: 700; font-size: 14px;
 }
 .steps h3 { font-size: 17px; line-height: 24px; font-weight: 700; }
-.steps p { margin-top: 4px; font-size: 15px; line-height: 22px; color: var(--ink-2); }
+.steps p { margin-top: 8px; font-size: 15px; line-height: 22px; color: var(--ink-2); }
 .cmd {
   display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 12px;
   height: 40px; padding: 0 4px 0 12px; border-radius: 8px; background: var(--press);
@@ -368,8 +375,10 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
   .language-switch { margin-left: auto; }
   .hero { padding-top: 40px; }
   .hero h1 { font-size: 34px; line-height: 42px; }
+  html[lang="ja"] .hero h1 { font-size: 30px; line-height: 40px; }
   .lead { font-size: 17px; line-height: 28px; }
   .acts .btn { flex: 1 1 auto; justify-content: center; }
+  .acts .btn.icon { flex: 0 0 44px; }
   .wrap, .hero-wrap, .top .wrap { width: min(1120px, 100% - 24px); }
   .device { padding: 4px; border-radius: 12px; }
   .screen { border-radius: 9px; }
@@ -380,7 +389,10 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
   .chapters b { display: inline; }
   .block { padding: 56px 0; }
   .block h2, .final h2 { font-size: 26px; line-height: 34px; }
-  .block-head { margin-bottom: 24px; }
+  .block-head { margin-bottom: 32px; }
+  .eyebrow { margin-bottom: 12px; }
+  .sub { margin-top: 12px; }
+  .tags, .files { margin-top: 24px; }
   .usage { grid-template-columns: 1fr; }
   .usage div { padding: 16px 20px 20px; }
   .coverage { grid-template-columns: 1fr; }
@@ -396,4 +408,5 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .run.go, .btn:hover .run { animation: none; }
+  .btn .i-arrow { transition: none; }
 }

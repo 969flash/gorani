@@ -300,8 +300,12 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
 }
 
 /* 지원 지역 */
-.coverage { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.coverage article { padding: 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
+.coverage-countries { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 16px; scroll-snap-type: x proximity; scrollbar-width: thin; }
+.coverage-countries article { display: flex; flex-direction: column; flex: 0 0 min(420px, calc(100vw - 48px)); padding: 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); scroll-snap-align: start; }
+.coverage-countries article ul { order: 2; }
+.coverage-countries .coverage-date { order: 3; margin-top: auto; padding-top: 16px; }
+.coverage-languages { margin-top: 12px; }
+.coverage-languages article { padding: 24px 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
 .coverage h3 { font-size: 22px; line-height: 30px; font-weight: 700; }
 .coverage p { margin-top: 8px; color: var(--ink-2); }
 .coverage-date { display: block; margin-top: 16px; color: var(--ink-3); font-size: 12px; line-height: 18px; }
@@ -402,7 +406,8 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
   .tags, .files { margin-top: 24px; }
   .usage { grid-template-columns: 1fr; }
   .usage div { padding: 16px 20px 20px; }
-  .coverage { grid-template-columns: 1fr; }
+  .coverage-countries article { padding: 24px; }
+  .coverage-languages article { padding: 20px 24px; }
   .coverage article { padding: 24px; }
   .seg { width: 100%; }
   .seg button { flex: 1; padding: 0 8px; }

@@ -1,4 +1,4 @@
-/* Gorani 소개 페이지 — 플러그인 패널(DESIGN.md)과 같은 색·모서리(6/8/12, 알약)·간격(4의 배수) */
+/* Gorani 소개 페이지 — 포인트 색 없이 모노톤. 플러그인 패널(DESIGN.md)과 같은 모서리(6/8/12, 알약)·간격(4의 배수) */
 :root {
   --paper: #FFFFFF;             /* 바탕은 흰색 */
   --soft: #FFFFFF;              /* 레퍼런스처럼 모든 섹션은 흰 바탕 */
@@ -8,9 +8,6 @@
   --ink-2: #465061;
   --ink-3: #7D8798;
   --hair: #E3E6EB;
-  --blue: #0057FF;
-  --blue-ink: #0047D6;
-  --blue-wash: #E9F0FF;
   --on-ink: #FFFFFF;
   --screen: #EBF0F3;            /* 영상 바탕과 같은 색(밝은 판) */
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -35,10 +32,10 @@ body {
 html[lang="ja"] body { word-break: normal; line-break: strict; font-family: "Pretendard Variable", Pretendard, -apple-system, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; }
 html[lang="ja"] :is(h1, h2, h3, .lead, .sub) { word-break: auto-phrase; }   /* 지원 브라우저에선 어절 단위로 줄바꿈 */
 html[lang="zh"] body { word-break: normal; font-family: "Pretendard Variable", Pretendard, -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; }
-::selection { background: var(--blue); color: #fff; }
-a { color: var(--blue-ink); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+::selection { background: var(--ink); color: #fff; }
+a { color: var(--ink); text-underline-offset: 3px; text-decoration-thickness: 1px; }
 a:hover { text-decoration-thickness: 2px; }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 img, video { display: block; max-width: 100%; height: auto; }
 button { font: inherit; color: inherit; }
 code { font-family: var(--mono); font-size: .9em; }
@@ -203,7 +200,7 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
   background: rgba(12, 16, 22, .86);
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
-.cap em { font-style: normal; color: #8CB0FF; }
+.cap em { font-style: normal; font-weight: 700; color: #FFFFFF; }
 
 .screen-bar { position: absolute; inset: 8px; display: flex; justify-content: flex-end; align-items: flex-start; gap: 8px; pointer-events: none; }
 .screen-bar > * { pointer-events: auto; }
@@ -251,7 +248,7 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .feature h2 { text-wrap: balance; }   /* 두 줄일 때 줄 길이를 고르게 */
 .block-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 40px; }
 .block-head > .hosts { margin-top: 0; }
-.eyebrow { display: block; margin-bottom: 12px; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--blue-ink); letter-spacing: .02em; }
+.eyebrow { display: block; margin-bottom: 12px; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--ink-3); letter-spacing: .02em; }
 .sub { margin-top: 12px; max-width: 560px; font-size: 17px; line-height: 28px; color: var(--ink-2); }
 
 /* 기능: 패널 화면 + 설명(좌우), 2D는 좌우를 바꾼다 */
@@ -277,7 +274,7 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .usage img { width: 100%; height: auto; background: var(--press); }
 .usage div { padding: 20px 24px 24px; }
 .usage h3 { font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: -.01em; }
-.usage h3 b { color: var(--blue-ink); font-weight: 700; margin-right: 10px; font-variant-numeric: tabular-nums; }
+.usage h3 b { color: var(--ink-3); font-weight: 700; margin-right: 10px; font-variant-numeric: tabular-nums; }
 .usage p { margin-top: 6px; font-size: 15px; line-height: 24px; color: var(--ink-2); }
 
 /* 레퍼런스의 조용한 진입 모션: 스크립트가 켜진 경우에만 초기 상태를 숨긴다. */
@@ -296,7 +293,7 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
 .coverage h3 { font-size: 22px; line-height: 30px; font-weight: 700; }
 .coverage p { margin-top: 8px; color: var(--ink-2); }
 .coverage ul { margin-top: 20px; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 15px; line-height: 22px; color: var(--ink-2); }
-.coverage li::before { content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 10px 2px 0; border-radius: 999px; background: var(--blue); }
+.coverage li::before { content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 10px 2px 0; border-radius: 999px; background: var(--ink-3); }
 
 /* FAQ: 얇은 선 아코디언 */
 .faq { max-width: none; }
@@ -330,7 +327,7 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
 .copy:hover { background: var(--surface); color: var(--ink); }
 .copy svg { width: 16px; height: 16px; }
 .copy .i-done, .copy.done .i-copy { display: none; }
-.copy.done .i-done { display: block; color: var(--blue-ink); }
+.copy.done .i-done { display: block; color: var(--ink); }
 .ui { font-weight: 600; color: var(--ink); white-space: nowrap; }
 .note { margin-top: 16px; font-size: 14px; line-height: 22px; color: var(--ink-3); }
 [role="tabpanel"][hidden] { display: none; }

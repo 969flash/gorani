@@ -8,6 +8,9 @@
 <link rel="canonical" href="https://969flash.github.io/gorani/en/">
 <link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
+<link rel="alternate" hreflang="ja" href="https://969flash.github.io/gorani/ja/">
+<link rel="alternate" hreflang="zh" href="https://969flash.github.io/gorani/zh/">
+<link rel="alternate" hreflang="es" href="https://969flash.github.io/gorani/es/">
 <link rel="alternate" hreflang="x-default" href="https://969flash.github.io/gorani/en/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Gorani">
@@ -38,7 +41,7 @@
       "applicationSubCategory": "Rhino 8, SketchUp, Blender plugin",
       "operatingSystem": "Windows, macOS",
       "softwareRequirements": "Rhinoceros 8, SketchUp 2022 or later, Blender 4.2 or later",
-      "softwareVersion": "0.2.1",
+      "softwareVersion": "0.3.2",
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "inLanguage": "en",
@@ -50,7 +53,7 @@
         "Layered Illustrator (.ai) basemap",
         "Analysis maps such as land use, zoning and figure-ground (SVG, AI)",
         "Parcel and building tables (CSV)",
-        "Korea nationwide; elsewhere from OpenStreetMap"
+        "Korea nationwide; Japan with PLATEAU buildings; elsewhere from OpenStreetMap"
       ]
     },
     {
@@ -89,11 +92,11 @@
     <details class="language-switch">
       <summary aria-label="Language"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
       <div class="language-menu" role="menu">
-        <a href="../" lang="ko" role="menuitem">한국어</a>
-        <a href="./" lang="en" aria-current="page" role="menuitem">English</a>
-        <span lang="zh" role="menuitem" aria-disabled="true">中文</span>
-        <span lang="ja" role="menuitem" aria-disabled="true">日本語</span>
-        <span lang="es" role="menuitem" aria-disabled="true">Español</span>
+        <a href="../" hreflang="ko" lang="ko" role="menuitem">한국어</a>
+        <a href="./" hreflang="en" lang="en" aria-current="page" role="menuitem">English</a>
+        <a href="../ja/" hreflang="ja" lang="ja" role="menuitem">日本語</a>
+        <a href="../zh/" hreflang="zh" lang="zh" role="menuitem">简体中文</a>
+        <a href="../es/" hreflang="es" lang="es" role="menuitem">Español</a>
       </div>
     </details>
   </div>
@@ -264,13 +267,15 @@
   <section class="block" id="usage" aria-labelledby="usage-title">
     <div class="wrap">
       <div class="block-head">
+        <div>
           <h2 id="usage-title">How to use</h2>
           <p class="sub">The first run in a new area takes a little longer while it downloads data. If something breaks, check <code>log.txt</code> in the result folder.</p>
         </div>
+      </div>
       <ol class="usage">
         <li>
           <img src="../assets/use-1-site.gif" width="1065" height="706" loading="lazy" alt="Animation of Gorani selecting parcels and drawing an area, with selection points and site information changing on the map.">
-            <div>
+          <div>
             <h3><b>1</b>Pick a site</h3>
             <p>Find the site on the map, or search by address or parcel number. Click parcels or draw an area to set the site.</p>
           </div>
@@ -317,7 +322,7 @@
         </article>
         <article>
           <h3>Elsewhere</h3>
-          <p>Downloaded at generation time (internet required). Parcel and zoning maps are Korea only.</p>
+          <p>Downloaded at generation time (internet required). Parcel and zoning maps are Korea only. In Japan, buildings come from PLATEAU and terrain from GSI.</p>
           <ul>
             <li>OpenStreetMap buildings and roads</li>
             <li>Public terrain tiles</li>
@@ -326,11 +331,11 @@
         </article>
         <article>
           <h3>Panel languages</h3>
-          <p>The Gorani plugin panel supports five languages and lets you change the UI from its header. This website is currently available in Korean and English.</p>
+          <p>The Gorani plugin panel supports five languages and lets you change the UI from its header. This website is available in the same five languages.</p>
           <ul>
             <li>한국어 · English</li>
             <li>日本語 · 简体中文 · Español</li>
-            <li>Five panel languages in total</li>
+            <li>Switch any time with the globe button at the top of the panel</li>
           </ul>
         </article>
       </div>
@@ -367,17 +372,17 @@
   <section class="block soft final" aria-labelledby="final-title">
     <div class="wrap">
       <div class="water-deer-article">
+        <h2 id="final-title"><a href="https://ko.wikipedia.org/wiki/%EA%B3%A0%EB%9D%BC%EB%8B%88">[고라니]</a> <a href="https://en.wikipedia.org/wiki/Water_deer">[Water deer]</a></h2>
         <div class="wiki-body">
           <div>
-          <h2 id="final-title"><a href="https://ko.wikipedia.org/wiki/%EA%B3%A0%EB%9D%BC%EB%8B%88">[고라니]</a> <a href="https://en.wikipedia.org/wiki/Water_deer">[Water deer]</a></h2>
-          <p class="wiki-lead"><b>The water deer</b> (<i>Hydropotes inermis</i>) is a small deer native to Korea and China. Males have long tusks instead of antlers, and usually live near rivers, reed beds and wetlands.</p>
+            <p class="wiki-lead"><b>The water deer</b> (<i>Hydropotes inermis</i>) is a small deer native to Korea and China. Males have long tusks instead of antlers, and usually live near rivers, reed beds and wetlands.</p>
             <section class="wiki-section">
-          <h3>Taxonomy <span>분류</span></h3>
-          <p>The water deer belongs to the deer family and is the only living species in the genus <i>Hydropotes</i>. Its lack of antlers and prominent tusks distinguish it from most other deer and give it a separate genus.</p>
+              <h3>Taxonomy <span>분류</span></h3>
+              <p>The water deer belongs to the deer family and is the only living species in the genus <i>Hydropotes</i>. Its lack of antlers and prominent tusks distinguish it from most other deer and give it a separate genus.</p>
             </section>
             <section class="wiki-section">
-          <h3>Etymology <span>어원</span></h3>
-          <p>The genus name <i>Hydropotes</i> refers to water, reflecting the animal's association with rivers and wetlands. The species name <i>inermis</i> means unarmed, referring to the absence of antlers.</p>
+              <h3>Etymology <span>어원</span></h3>
+              <p>The genus name <i>Hydropotes</i> refers to water, reflecting the animal's association with rivers and wetlands. The species name <i>inermis</i> means unarmed, referring to the absence of antlers.</p>
             </section>
           </div>
           <a class="wiki-infobox" href="https://en.wikipedia.org/wiki/Water_deer" aria-label="Read more about the water deer on Wikipedia">
@@ -395,7 +400,7 @@
   <div class="wrap">
     <div class="fine">
       <span class="mark" aria-hidden="true"></span>
-      <p>Made by <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a>. Version 0.2.1.</p>
+      <p>Made by <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a>. Version 0.3.2.</p>
       <p>I'm a hungry graduate student. If Gorani helped, please buy me a coffee.</p>
       <a class="btn" href="https://github.com/sponsors/969flash">Sponsor on GitHub</a>
     </div>

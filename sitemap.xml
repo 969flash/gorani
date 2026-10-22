@@ -2,14 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://969flash.github.io/gorani/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://969flash.github.io/gorani/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://969flash.github.io/gorani/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://969flash.github.io/gorani/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://969flash.github.io/gorani/en/"/>
   </url>
   <url>
     <loc>https://969flash.github.io/gorani/en/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://969flash.github.io/gorani/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://969flash.github.io/gorani/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://969flash.github.io/gorani/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://969flash.github.io/gorani/en/"/>
+  </url>
+  <url>
+    <loc>https://969flash.github.io/gorani/ja/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://969flash.github.io/gorani/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://969flash.github.io/gorani/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://969flash.github.io/gorani/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://969flash.github.io/gorani/en/"/>
+  </url>
+  <url>
+    <loc>https://969flash.github.io/gorani/zh/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://969flash.github.io/gorani/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://969flash.github.io/gorani/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://969flash.github.io/gorani/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://969flash.github.io/gorani/en/"/>
+  </url>
+  <url>
+    <loc>https://969flash.github.io/gorani/es/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://969flash.github.io/gorani/ja/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://969flash.github.io/gorani/zh/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://969flash.github.io/gorani/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://969flash.github.io/gorani/en/"/>
   </url>
 </urlset>

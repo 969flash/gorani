@@ -8,6 +8,9 @@
 <link rel="canonical" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
+<link rel="alternate" hreflang="ja" href="https://969flash.github.io/gorani/ja/">
+<link rel="alternate" hreflang="zh" href="https://969flash.github.io/gorani/zh/">
+<link rel="alternate" hreflang="es" href="https://969flash.github.io/gorani/es/">
 <link rel="alternate" hreflang="x-default" href="https://969flash.github.io/gorani/en/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Gorani">
@@ -38,7 +41,7 @@
       "applicationSubCategory": "Rhino 8, SketchUp, Blender plugin",
       "operatingSystem": "Windows, macOS",
       "softwareRequirements": "Rhinoceros 8, SketchUp 2022 이상, Blender 4.2 이상",
-      "softwareVersion": "0.2.1",
+      "softwareVersion": "0.3.2",
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
       "inLanguage": "ko",
@@ -50,7 +53,7 @@
         "레이어가 나뉜 일러스트레이터(.ai) 베이스맵",
         "토지이용, 용도지역, 도형-배경도 등 현황도와 분석도(SVG, AI)",
         "필지와 건축물 조서(CSV)",
-        "국내는 전국, 해외는 OpenStreetMap 자료"
+        "국내는 전국, 일본은 PLATEAU 건물, 해외는 OpenStreetMap 자료"
       ]
     },
     {
@@ -89,11 +92,11 @@
     <details class="language-switch">
       <summary aria-label="언어 선택"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
       <div class="language-menu" role="menu">
-        <a href="./" lang="ko" aria-current="page" role="menuitem">한국어</a>
-        <a href="en/" lang="en" role="menuitem">English</a>
-        <span lang="zh" role="menuitem" aria-disabled="true">中文</span>
-        <span lang="ja" role="menuitem" aria-disabled="true">日本語</span>
-        <span lang="es" role="menuitem" aria-disabled="true">Español</span>
+        <a href="./" hreflang="ko" lang="ko" aria-current="page" role="menuitem">한국어</a>
+        <a href="en/" hreflang="en" lang="en" role="menuitem">English</a>
+        <a href="ja/" hreflang="ja" lang="ja" role="menuitem">日本語</a>
+        <a href="zh/" hreflang="zh" lang="zh" role="menuitem">简体中文</a>
+        <a href="es/" hreflang="es" lang="es" role="menuitem">Español</a>
       </div>
     </details>
   </div>
@@ -319,7 +322,7 @@
         </article>
         <article>
           <h3>해외</h3>
-          <p>생성할 때 인터넷에서 받아 만듭니다. 필지와 용도지역 도면은 국내만 됩니다.</p>
+          <p>생성할 때 인터넷에서 받아 만듭니다. 필지와 용도지역 도면은 국내만 됩니다. 일본은 PLATEAU 건물과 국토지리원(GSI) 지형을 씁니다.</p>
           <ul>
             <li>OpenStreetMap 건물과 도로</li>
             <li>공개 지형 타일</li>
@@ -328,11 +331,11 @@
         </article>
         <article>
           <h3>패널 언어</h3>
-          <p>Gorani 플러그인 패널은 다섯 언어를 지원하며, 헤더에서 표시 언어를 바꿀 수 있습니다. 웹사이트는 현재 한국어와 영어로 제공됩니다.</p>
+          <p>Gorani 플러그인 패널은 다섯 언어를 지원하며, 헤더에서 표시 언어를 바꿀 수 있습니다. 웹사이트도 같은 다섯 언어로 볼 수 있습니다.</p>
           <ul>
             <li>한국어 · English</li>
             <li>日本語 · 简体中文 · Español</li>
-            <li>헤더의 언어 메뉴에서 언제든 변경</li>
+            <li>패널 위쪽 지구본 버튼에서 언제든 변경</li>
           </ul>
         </article>
       </div>
@@ -397,7 +400,7 @@
   <div class="wrap">
     <div class="fine">
       <span class="mark" aria-hidden="true"></span>
-      <p>만든 사람 <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a>. 버전 0.2.1.</p>
+      <p>만든 사람 <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a>. 버전 0.3.2.</p>
       <p>배고픈 대학원생입니다. 도움이 되었다면 커피 한 잔 부탁드립니다.</p>
       <a class="btn" href="https://github.com/sponsors/969flash">GitHub로 후원하기</a>
     </div>

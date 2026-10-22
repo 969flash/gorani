@@ -31,6 +31,9 @@ body {
   overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
 }
+/* 일본어·중국어: 띄어쓰기가 없어 글자 사이에서 줄을 바꾸고, 한자는 그 언어 글꼴로 */
+html[lang="ja"] body { word-break: normal; line-break: strict; font-family: "Pretendard Variable", Pretendard, -apple-system, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; }
+html[lang="zh"] body { word-break: normal; font-family: "Pretendard Variable", Pretendard, -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; }
 ::selection { background: var(--blue); color: #fff; }
 a { color: var(--blue-ink); text-underline-offset: 3px; text-decoration-thickness: 1px; }
 a:hover { text-decoration-thickness: 2px; }

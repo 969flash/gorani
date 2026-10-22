@@ -248,6 +248,7 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .final::after { content: ""; position: absolute; right: max(16px, calc((100% - 1200px) / 2)); bottom: 0; left: max(16px, calc((100% - 1200px) / 2)); height: 1px; background: var(--hair); }
 .block.soft { background: var(--soft); }
 .block h2 { font-size: clamp(34px, 4vw, 56px); line-height: 1.08; font-weight: 700; letter-spacing: -.045em; }
+.feature h2 { text-wrap: balance; }   /* 두 줄일 때 줄 길이를 고르게 */
 .block-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 40px; }
 .block-head > .hosts { margin-top: 0; }
 .eyebrow { display: block; margin-bottom: 12px; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--blue-ink); letter-spacing: .02em; }

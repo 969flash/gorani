@@ -364,7 +364,7 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
 @media (max-width: 960px) {
   .block { padding: 72px 0; }
   .water-deer-article { padding: 0; }
-  .wiki-body { grid-template-columns: 1fr; }
+  .wiki-body { grid-template-columns: 1fr; gap: 32px; }
   .wiki-infobox { max-width: 360px; }
   .block h2, .final h2 { font-size: 32px; line-height: 42px; }
   .feature { grid-template-columns: 1fr; gap: 32px; }
@@ -383,7 +383,7 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
   .hero h1 { font-size: 34px; line-height: 42px; }
   html[lang="ja"] .hero h1 { font-size: 30px; line-height: 40px; }
   .lead { font-size: 17px; line-height: 28px; }
-  .acts .btn { flex: 1 1 auto; justify-content: center; }
+  .acts .btn { flex: 0 1 auto; justify-content: center; }
   .acts .btn.icon { flex: 0 0 44px; }
   .wrap, .hero-wrap, .top .wrap { width: min(1120px, 100% - 24px); }
   .device { padding: 4px; border-radius: 12px; }
@@ -395,7 +395,7 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
   .chapters b { display: inline; }
   .block { padding: 56px 0; }
   .block h2, .final h2 { font-size: 26px; line-height: 34px; }
-  .block-head { margin-bottom: 32px; }
+  .block-head { align-items: center; margin-bottom: 32px; }
   .eyebrow { margin-bottom: 12px; }
   .sub { margin-top: 12px; }
   .tags, .files { margin-top: 24px; }
@@ -409,6 +409,14 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
   .steps li { display: grid; grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; padding: 16px; }
   .steps li::before { grid-row: span 3; margin: 0; }
   .steps li > * { grid-column: 2; }
+  .fine {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    align-items: start;
+    gap: 8px 12px;
+  }
+  .fine .mark { grid-row: 1 / span 2; }
+  .fine .btn { grid-column: 2; width: max-content; margin-left: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

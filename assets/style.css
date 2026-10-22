@@ -33,6 +33,7 @@ body {
 }
 /* 일본어·중국어: 띄어쓰기가 없어 글자 사이에서 줄을 바꾸고, 한자는 그 언어 글꼴로 */
 html[lang="ja"] body { word-break: normal; line-break: strict; font-family: "Pretendard Variable", Pretendard, -apple-system, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; }
+html[lang="ja"] :is(h1, h2, h3, .lead, .sub) { word-break: auto-phrase; }   /* 지원 브라우저에선 어절 단위로 줄바꿈 */
 html[lang="zh"] body { word-break: normal; font-family: "Pretendard Variable", Pretendard, -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; }
 ::selection { background: var(--blue); color: #fff; }
 a { color: var(--blue-ink); text-underline-offset: 3px; text-decoration-thickness: 1px; }

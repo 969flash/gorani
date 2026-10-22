@@ -83,6 +83,8 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .menu-list a { padding: 10px 12px; font-size: 15px; }
 .nav a, .lang { color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: 15px; padding: 4px 12px; border-radius: 999px; }
 .nav a:hover, .lang:hover { background: var(--press); color: var(--ink); }
+.nav a, .menu-list a { display: inline-flex; align-items: center; gap: 6px; }
+.nav a svg, .menu-list a svg { width: 15px; height: 15px; flex: none; }
 .lang { border: 1px solid var(--hair); }
 .progress { position: relative; height: 2px; background: var(--hair); }
 .progress i { position: absolute; inset: 0 auto 0 0; width: calc(var(--p, 0) * 100%); background: var(--ink); }

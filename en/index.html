@@ -9,7 +9,6 @@
 <link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
 <link rel="alternate" hreflang="x-default" href="https://969flash.github.io/gorani/en/">
-<link rel="alternate" type="text/plain" title="llms.txt" href="https://969flash.github.io/gorani/llms.txt">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Gorani">
 <meta property="og:locale" content="en_US">
@@ -20,7 +19,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F5F7FA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0C1016" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -57,11 +56,11 @@
     {
       "@type": "VideoObject",
       "name": "How Gorani works",
-      "description": "Picking a site in the Gorani panel and making the 3D model, basemap and analysis maps.",
+      "description": "Opening the Gorani panel in Rhino, drawing an area, making the 3D model, then the basemap and analysis maps.",
       "thumbnailUrl": "https://969flash.github.io/gorani/assets/demo-poster.webp",
       "contentUrl": "https://969flash.github.io/gorani/assets/demo.mp4",
       "uploadDate": "2026-10-21",
-      "duration": "PT39S"
+      "duration": "PT52S"
     }
   ]
 }
@@ -74,6 +73,7 @@
   <symbol id="i-check" viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-play" viewBox="0 0 16 16"><path d="M4.5 2.8v10.4a.6.6 0 0 0 .9.5l8.2-5.2a.6.6 0 0 0 0-1L5.4 2.3a.6.6 0 0 0-.9.5z" fill="currentColor"/></symbol>
   <symbol id="i-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.75" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M2.5 8h11M8 2.25c1.55 1.55 2.25 3.35 2.25 5.75S9.55 12.2 8 13.75C6.45 12.2 5.75 10.4 5.75 8S6.45 3.8 8 2.25Z" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
   <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 </svg>
 
@@ -82,61 +82,119 @@
     <a class="brand" href="./" aria-label="Gorani home"><span class="mark" aria-hidden="true"></span>Gorani</a>
     <nav class="nav" aria-label="On this page">
       <a href="#install">Install</a>
-      <a href="#flow">How it works</a>
+      <a href="#usage">How to use</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/969flash/gorani/issues">Leave a review</a>
     </nav>
-    <a class="lang" href="../" hreflang="ko" lang="ko">한국어</a>
+    <details class="language-switch">
+      <summary aria-label="Language"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
+      <div class="language-menu" role="menu">
+        <a href="../" lang="ko" role="menuitem">한국어</a>
+        <a href="./" lang="en" aria-current="page" role="menuitem">English</a>
+        <span lang="zh" role="menuitem" aria-disabled="true">中文</span>
+        <span lang="ja" role="menuitem" aria-disabled="true">日本語</span>
+        <span lang="es" role="menuitem" aria-disabled="true">Español</span>
+      </div>
+    </details>
   </div>
   <div class="progress" aria-hidden="true"><i></i><span class="run"></span></div>
 </header>
 
 <main id="main">
-  <div class="wrap">
+  <div class="wrap hero-wrap">
     <section class="hero" aria-labelledby="hero-title">
-      <div>
-        <h1 id="hero-title">Site 3D modeling and analysis</h1>
-        <p class="lead">Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino, SketchUp and Blender.</p>
-        <p class="story">I built this as a student to make my own work easier, then cleaned it up to share.</p>
+      <div class="hero-text">
+        <h1 id="hero-title">Easy, fast 3D terrain and site analysis</h1>
+        <p class="lead">Gorani is a free, open-source plugin for Rhino, SketchUp, and Blender users.</p>
         <div class="acts">
-          <a class="btn go" href="#install"><span class="run" aria-hidden="true"></span>How to install</a>
+          <a class="btn go" href="#install">Install</a>
           <a class="btn" href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
         </div>
-        <ul class="hosts" aria-label="Supported">
-          <li><b>Rhino</b> 8</li>
-          <li><b>SketchUp</b> 2022+</li>
-          <li><b>Blender</b> 4.2+</li>
-          <li>Windows, macOS</li>
-        </ul>
       </div>
 
-      <figure class="demo" aria-label="Demo video">
-        <div class="screen">
-          <video muted loop playsinline preload="none" width="720" height="816" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="39-second video: finding a site by address in the Gorani panel, picking parcels, and making the 3D model, basemap and analysis maps"></video>
-          <p class="cap" aria-hidden="true"></p>
-          <div class="loading" aria-hidden="true"><span class="run go"></span>Loading</div>
-          <button type="button" class="big-play"><svg aria-hidden="true"><use href="#i-play"/></svg>Play video (39 s)</button>
-          <div class="screen-bar">
-            <button type="button" class="chip-btn toggle" aria-label="Play or pause"><svg class="i-play"><use href="#i-play"/></svg><svg class="i-pause"><use href="#i-pause"/></svg></button>
-            <div class="cc" role="group" aria-label="Captions">
-              <button type="button" data-cc="ko" lang="ko">한</button>
-              <button type="button" data-cc="en">EN</button>
-              <button type="button" data-cc="off">Off</button>
+      <figure class="demo" id="product" aria-label="Demo video">
+        <div class="device">
+          <div class="screen">
+            <video muted loop playsinline preload="none" width="1600" height="900" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="52-second video of finding a site and making 3D and 2D materials with Rhino and the Gorani panel"></video>
+            <p class="cap" aria-hidden="true"></p>
+            <div class="loading" aria-hidden="true"><span class="run go"></span>Loading</div>
+            <button type="button" class="big-play"><span class="mark" aria-hidden="true"></span><span>Gorani</span></button>
+            <div class="screen-bar">
+              <button type="button" class="chip-btn toggle" aria-label="Play or pause"><svg class="i-play"><use href="#i-play"/></svg><svg class="i-pause"><use href="#i-pause"/></svg></button>
+              <div class="cc" role="group" aria-label="Captions">
+                <button type="button" data-cc="ko" lang="ko">한</button>
+                <button type="button" data-cc="en">EN</button>
+                <button type="button" data-cc="off">Off</button>
+              </div>
             </div>
           </div>
         </div>
         <ol class="chapters" aria-label="Scenes">
-          <li><button type="button" data-at="0"><b>1</b>Address</button></li>
-          <li><button type="button" data-at="6.2"><b>2</b>Parcels</button></li>
-          <li><button type="button" data-at="9"><b>3</b>3D options</button></li>
-          <li><button type="button" data-at="13"><b>4</b>Build</button></li>
-          <li><button type="button" data-at="17.4"><b>5</b>Rhino</button></li>
-          <li><button type="button" data-at="20"><b>6</b>2D set</button></li>
-          <li><button type="button" data-at="27.6"><b>7</b>Maps</button></li>
+          <li><button type="button" data-at="0"><b>1</b>Open Gorani panel</button></li>
+          <li><button type="button" data-at="3.67"><b>2</b>Pick a site</button></li>
+          <li><button type="button" data-at="9.5"><b>3</b>Make the 3D model</button></li>
+          <li><button type="button" data-at="20.37"><b>4</b>Make 2D materials</button></li>
+          <li><button type="button" data-at="34.87"><b>5</b>Change the style</button></li>
         </ol>
       </figure>
     </section>
   </div>
 
-  <section class="block" id="install" aria-labelledby="install-title">
+  <section class="block soft" id="model" aria-labelledby="model-title">
+    <div class="wrap feature">
+      <div class="shot">
+        <img src="../assets/detail-3d.webp" width="2888" height="1472" loading="lazy" alt="Gorani 3D model in Rhino Perspective with the Layers panel open, separating buildings, roads, terrain, water and zoning.">
+      </div>
+      <div>
+        <span class="eyebrow">3D model</span>
+        <h2 id="model-title">Site context, layer by layer</h2>
+        <p class="sub">Buildings, roads, terrain and water go into the open document on separate layers. Toggle or hide the results from Rhino's Layers panel, and get building heights from floor counts.</p>
+        <ul class="tags" aria-label="Layers it makes">
+          <li>Buildings</li><li>Roads</li><li>Terrain</li><li>Water</li><li>Green space</li><li>Rail</li><li>Parcels</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="maps" aria-labelledby="maps-title">
+    <div class="wrap feature flip">
+      <div class="shot media-stack">
+        <video muted autoplay loop playsinline preload="metadata" poster="../assets/detail-2d-demo-poster.jpg" width="1482" height="1136" aria-label="Screen recording of Gorani creating a basemap and current-state diagrams">
+          <source src="../assets/detail-2d-demo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div>
+        <span class="eyebrow">2D set</span>
+        <h2 id="maps-title">Basemaps and analysis maps</h2>
+        <p class="sub">A layered basemap, analysis maps and tables are saved to the result folder. Every drawing prints its sources and reference dates.</p>
+        <ul class="files">
+          <li><b>Basemap</b><code>basemap_scale.ai</code></li>
+          <li><b>Analysis maps</b><code>sheets/*.svg, .ai</code></li>
+          <li><b>Parcel and building tables</b><code>tables/*.csv</code></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block support" id="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <div class="block-head">
+        <div>
+          <h2 id="support-title">Supported tools</h2>
+          <p class="sub">Gorani is a free, open-source plugin for Rhino, SketchUp, and Blender users.</p>
+        </div>
+      </div>
+      <ul class="hosts" aria-label="Supported tools">
+        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="../assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>8+</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022+</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2+</small></span></a></li>
+        <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
+        <li><span class="host-link"><b>Windows · macOS</b><small>Operating systems</small></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block soft" id="install" aria-labelledby="install-title">
     <div class="wrap">
       <div class="block-head">
         <h2 id="install-title">Install</h2>
@@ -146,7 +204,6 @@
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
         </div>
       </div>
-
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
         <ol class="steps">
           <li>
@@ -201,63 +258,146 @@
           </li>
         </ol>
       </div>
-      <p class="note">The first run in a new area takes a little longer while it downloads data. If something breaks, please leave a note in <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a>.</p>
     </div>
   </section>
 
-  <section class="block" id="flow" aria-labelledby="flow-title">
+  <section class="block" id="usage" aria-labelledby="usage-title">
     <div class="wrap">
       <div class="block-head">
-        <div>
-          <h2 id="flow-title">How it works</h2>
-          <p class="sub">The panel opens next to your modeling window. The default options are fine to start with.</p>
+          <h2 id="usage-title">How to use</h2>
+          <p class="sub">The first run in a new area takes a little longer while it downloads data. If something breaks, check <code>log.txt</code> in the result folder.</p>
         </div>
-      </div>
-      <ol class="flow">
+      <ol class="usage">
         <li>
-          <img src="../assets/step-site.webp" width="640" height="813" loading="lazy" alt="Gorani panel map view. Two parcels are selected in blue, with the range shape and size below and a button to make the 3D model.">
-          <div>
-            <h3><b>1</b>Pick a site and range</h3>
-            <p>Click parcels on the map or draw an area, then set the range. Search by address or parcel number. Outside Korea it uses OpenStreetMap data.</p>
+          <img src="../assets/use-1-site.gif" width="1065" height="706" loading="lazy" alt="Animation of Gorani selecting parcels and drawing an area, with selection points and site information changing on the map.">
+            <div>
+            <h3><b>1</b>Pick a site</h3>
+            <p>Find the site on the map, or search by address or parcel number. Click parcels or draw an area to set the site.</p>
           </div>
         </li>
         <li>
-          <img src="../assets/step-3d.webp" width="640" height="813" loading="lazy" alt="Panel while the 3D model is being built. A gorani runs along the progress bar, with steps for loading buildings and terrain, building the model and adding it to the Rhino file.">
+          <img src="../assets/use-2-3d.webp" width="2130" height="1412" loading="lazy" alt="Gorani 3D settings over Rhino, showing the origin, terrain contour interval, site flattening and zoning boundary options.">
           <div>
             <h3><b>2</b>Make the 3D model</h3>
-            <p>Buildings, roads, terrain and water go into the open document on separate layers. Building heights come from floor counts.</p>
+            <p>Set the range and 3D options and press build. Buildings, roads, terrain and water go into your open Rhino file, layer by layer.</p>
           </div>
         </li>
         <li>
-          <img src="../assets/step-2d.webp" width="640" height="813" loading="lazy" alt="Panel after the 2D set is done: basemap file names, a button for other scales, and a grid of diagrams such as basemap, figure-ground and parcel size.">
+          <img src="../assets/use-3-2d.webp" width="2130" height="1412" loading="lazy" alt="After the 3D model is complete, Gorani shows the 2D set selection screen with basemap, diagrams, tables and the Make 2D set button.">
           <div>
             <h3><b>3</b>Make the 2D set</h3>
-            <p>The basemap (.ai), analysis maps and tables (CSV) are saved in <code>2D/</code> inside the result folder <code>result/site_date/</code>.</p>
+            <p>The basemap (.ai), analysis maps and tables (CSV) are saved to the result folder. Other basemap scales are one click away.</p>
+          </div>
+        </li>
+        <li>
+          <img src="../assets/use-4-preview.webp" width="1738" height="1210" loading="lazy" alt="Grid of 25 Gorani diagram previews, including basemap, figure-ground, parcel size, zoning and building analysis maps.">
+          <div>
+            <h3><b>4</b>Check the drawings</h3>
+            <p>Open any drawing large right in the panel. Change diagram colors and styles and make them again.</p>
           </div>
         </li>
       </ol>
+    </div>
+  </section>
+
+  <section class="block soft" id="coverage" aria-labelledby="coverage-title">
+    <div class="wrap">
+      <div class="block-head">
+        <h2 id="coverage-title">Coverage</h2>
+      </div>
+      <div class="coverage">
+        <article>
+          <h3>Korea, nationwide</h3>
+          <p>Parcels, buildings, terrain and zoning from public data. Regional data packs are downloaded once from inside the panel.</p>
+          <ul>
+            <li>Cadastre, buildings (floors, use, approval date)</li>
+            <li>Terrain from 1:5,000 contours and spot heights</li>
+            <li>Zoning, figure-ground, land use and more</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Elsewhere</h3>
+          <p>Downloaded at generation time (internet required). Parcel and zoning maps are Korea only.</p>
+          <ul>
+            <li>OpenStreetMap buildings and roads</li>
+            <li>Public terrain tiles</li>
+            <li>Radius 100 m to 2 km</li>
+          </ul>
+        </article>
+        <article>
+          <h3>Panel languages</h3>
+          <p>The Gorani plugin panel supports five languages and lets you change the UI from its header. This website is currently available in Korean and English.</p>
+          <ul>
+            <li>한국어 · English</li>
+            <li>日本語 · 简体中文 · Español</li>
+            <li>Five panel languages in total</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="block-head">
+        <h2 id="faq-title">FAQ</h2>
+        <a class="btn" href="https://github.com/969flash/gorani/issues">Leave a review</a>
+      </div>
+      <div class="faq">
+        <div class="faq-item">
+          <h3>Is it really free?</h3>
+          <p>Yes, and no account is needed. It runs on sponsorships.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do I need Grasshopper or other software?</h3>
+          <p>No. You only need Rhino 8, SketchUp 2022+ or Blender 4.2+, on Windows or macOS.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Where are the results saved?</h3>
+          <p>The 3D model goes into the open document. Files are saved to <code>~/Gorani/result/site_date/</code>: the model file, <code>log.txt</code> and the <code>2D/</code> folder.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Something went wrong. What should I do?</h3>
+          <p>If something breaks, check <code>log.txt</code> in the result folder.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block soft final" aria-labelledby="final-title">
+    <div class="wrap">
+      <div class="water-deer-article">
+        <div class="wiki-body">
+          <div>
+          <h2 id="final-title"><a href="https://ko.wikipedia.org/wiki/%EA%B3%A0%EB%9D%BC%EB%8B%88">[고라니]</a> <a href="https://en.wikipedia.org/wiki/Water_deer">[Water deer]</a></h2>
+          <p class="wiki-lead"><b>The water deer</b> (<i>Hydropotes inermis</i>) is a small deer native to Korea and China. Males have long tusks instead of antlers, and usually live near rivers, reed beds and wetlands.</p>
+            <section class="wiki-section">
+          <h3>Taxonomy <span>분류</span></h3>
+          <p>The water deer belongs to the deer family and is the only living species in the genus <i>Hydropotes</i>. Its lack of antlers and prominent tusks distinguish it from most other deer and give it a separate genus.</p>
+            </section>
+            <section class="wiki-section">
+          <h3>Etymology <span>어원</span></h3>
+          <p>The genus name <i>Hydropotes</i> refers to water, reflecting the animal's association with rivers and wetlands. The species name <i>inermis</i> means unarmed, referring to the absence of antlers.</p>
+            </section>
+          </div>
+          <a class="wiki-infobox" href="https://en.wikipedia.org/wiki/Water_deer" aria-label="Read more about the water deer on Wikipedia">
+            <img src="../assets/water-deer.jpg" alt="A male water deer standing in grass">
+            <span>Male water deer</span>
+            <span class="wiki-kicker">From Wikipedia, the free encyclopedia</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <div class="foot-top">
-      <p><span class="mark" aria-hidden="true"></span>It's free. If it helped, a sponsorship is welcome.</p>
-      <a class="btn" href="https://github.com/sponsors/969flash">Sponsor on GitHub</a>
-    </div>
-    <ul class="links" style="margin-top:16px">
-      <li><a href="https://github.com/969flash/gorani">GitHub</a></li>
-      <li><a href="https://github.com/969flash/gorani/issues">Report a bug</a></li>
-      <li><a href="../llms.txt">llms.txt</a></li>
-      <li><a href="../" hreflang="ko" lang="ko">한국어</a></li>
-    </ul>
     <div class="fine">
-      <p>Made by <a href="https://github.com/969flash">969flash</a>. Version 0.2.1.</p>
-      <p>Data: Ministry of Land, Infrastructure and Transport, National Geographic Information Institute, Seoul Metropolitan Government (KOGL Type 1 and others; terms are printed on each drawing), © OpenStreetMap contributors (ODbL)</p>
-      <p>This page counts visits with Google Analytics. The plugin sends a random install ID, version and OS, the site location and range, run time and error types to Google Analytics (the SketchUp and Blender versions only if you allow it). No names, file paths or drawing contents.</p>
-      <p>Do not publish Korean results that contain contours or elevations (3D model, basemap) online. This is a restriction under NGII security rules.</p>
-      <p>Rhino and Rhinoceros are trademarks of Robert McNeel &amp; Associates, SketchUp of Trimble Inc., and Blender of the Blender Foundation. This tool is not affiliated with them.</p>
+      <span class="mark" aria-hidden="true"></span>
+      <p>Made by <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a>. Version 0.2.1.</p>
+      <p>I'm a hungry graduate student. If Gorani helped, please buy me a coffee.</p>
+      <a class="btn" href="https://github.com/sponsors/969flash">Sponsor on GitHub</a>
     </div>
   </div>
 </footer>

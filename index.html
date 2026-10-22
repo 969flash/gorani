@@ -9,7 +9,6 @@
 <link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
 <link rel="alternate" hreflang="x-default" href="https://969flash.github.io/gorani/en/">
-<link rel="alternate" type="text/plain" title="llms.txt" href="https://969flash.github.io/gorani/llms.txt">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Gorani">
 <meta property="og:locale" content="ko_KR">
@@ -20,7 +19,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F5F7FA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0C1016" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -57,11 +56,11 @@
     {
       "@type": "VideoObject",
       "name": "Gorani 작동 과정",
-      "description": "Gorani 패널에서 대상지를 고르고 3D 모델과 베이스맵, 현황도, 분석도를 만드는 과정.",
+      "description": "Rhino에서 Gorani 패널을 열고 구역을 그려 3D 모델을 만든 뒤, 베이스맵과 현황도, 분석도까지 만드는 과정.",
       "thumbnailUrl": "https://969flash.github.io/gorani/assets/demo-poster.webp",
       "contentUrl": "https://969flash.github.io/gorani/assets/demo.mp4",
       "uploadDate": "2026-10-21",
-      "duration": "PT39S"
+      "duration": "PT52S"
     }
   ]
 }
@@ -74,6 +73,7 @@
   <symbol id="i-check" viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-play" viewBox="0 0 16 16"><path d="M4.5 2.8v10.4a.6.6 0 0 0 .9.5l8.2-5.2a.6.6 0 0 0 0-1L5.4 2.3a.6.6 0 0 0-.9.5z" fill="currentColor"/></symbol>
   <symbol id="i-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.75" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M2.5 8h11M8 2.25c1.55 1.55 2.25 3.35 2.25 5.75S9.55 12.2 8 13.75C6.45 12.2 5.75 10.4 5.75 8S6.45 3.8 8 2.25Z" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
   <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 </svg>
 
@@ -82,61 +82,119 @@
     <a class="brand" href="./" aria-label="Gorani 처음으로"><span class="mark" aria-hidden="true"></span>Gorani</a>
     <nav class="nav" aria-label="페이지 안">
       <a href="#install">설치</a>
-      <a href="#flow">사용 순서</a>
+      <a href="#usage">사용법</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/969flash/gorani/issues">리뷰 남기기</a>
     </nav>
-    <a class="lang" href="en/" hreflang="en" lang="en">English</a>
+    <details class="language-switch">
+      <summary aria-label="언어 선택"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
+      <div class="language-menu" role="menu">
+        <a href="./" lang="ko" aria-current="page" role="menuitem">한국어</a>
+        <a href="en/" lang="en" role="menuitem">English</a>
+        <span lang="zh" role="menuitem" aria-disabled="true">中文</span>
+        <span lang="ja" role="menuitem" aria-disabled="true">日本語</span>
+        <span lang="es" role="menuitem" aria-disabled="true">Español</span>
+      </div>
+    </details>
   </div>
   <div class="progress" aria-hidden="true"><i></i><span class="run"></span></div>
 </header>
 
 <main id="main">
-  <div class="wrap">
+  <div class="wrap hero-wrap">
     <section class="hero" aria-labelledby="hero-title">
-      <div>
-        <h1 id="hero-title">사이트 3D 모델링 및 분석</h1>
-        <p class="lead">대상지를 고르면 3D 지형과 2D 분석 자료를 생성합니다. 라이노, 스케치업, 블렌더에서 작동하는 무료 플러그인입니다.</p>
-        <p class="story">학생 시절 편하게 쓰려고 만들었던 툴을 다듬어 공개했습니다.</p>
+      <div class="hero-text">
+        <h1 id="hero-title">쉽고 빠른 3D 지형과 사이트 분석 툴</h1>
+        <p class="lead">Gorani는 라이노, 스케치업, 블렌더 유저를 위한 무료 오픈소스 플러그인입니다.</p>
         <div class="acts">
-          <a class="btn go" href="#install"><span class="run" aria-hidden="true"></span>설치 방법</a>
+          <a class="btn go" href="#install">설치</a>
           <a class="btn" href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
         </div>
-        <ul class="hosts" aria-label="지원 환경">
-          <li><b>Rhino</b> 8</li>
-          <li><b>SketchUp</b> 2022 이상</li>
-          <li><b>Blender</b> 4.2 이상</li>
-          <li>Windows, macOS</li>
-        </ul>
       </div>
 
-      <figure class="demo" aria-label="시연 영상">
-        <div class="screen">
-          <video muted loop playsinline preload="none" width="720" height="816" poster="assets/demo-poster.webp" data-src="assets/demo.mp4" aria-label="Gorani 패널에서 주소로 대상지를 찾고 필지를 고른 뒤 3D 모델과 베이스맵, 현황도를 만드는 39초 영상"></video>
-          <p class="cap" aria-hidden="true"></p>
-          <div class="loading" aria-hidden="true"><span class="run go"></span>불러오는 중</div>
-          <button type="button" class="big-play"><svg aria-hidden="true"><use href="#i-play"/></svg>영상 보기 (39초)</button>
-          <div class="screen-bar">
-            <button type="button" class="chip-btn toggle" aria-label="재생 또는 멈춤"><svg class="i-play"><use href="#i-play"/></svg><svg class="i-pause"><use href="#i-pause"/></svg></button>
-            <div class="cc" role="group" aria-label="자막">
-              <button type="button" data-cc="ko">한</button>
-              <button type="button" data-cc="en" lang="en">EN</button>
-              <button type="button" data-cc="off">끔</button>
+      <figure class="demo" id="product" aria-label="시연 영상">
+        <div class="device">
+          <div class="screen">
+            <video muted loop playsinline preload="none" width="1600" height="900" poster="assets/demo-poster.webp" data-src="assets/demo.mp4" aria-label="Rhino와 Gorani 패널에서 대상지를 찾고 3D 모델과 2D 자료를 만드는 52초 영상"></video>
+            <p class="cap" aria-hidden="true"></p>
+            <div class="loading" aria-hidden="true"><span class="run go"></span>불러오는 중</div>
+            <button type="button" class="big-play"><span class="mark" aria-hidden="true"></span><span>Gorani</span></button>
+            <div class="screen-bar">
+              <button type="button" class="chip-btn toggle" aria-label="재생 또는 멈춤"><svg class="i-play"><use href="#i-play"/></svg><svg class="i-pause"><use href="#i-pause"/></svg></button>
+              <div class="cc" role="group" aria-label="자막">
+                <button type="button" data-cc="ko">한</button>
+                <button type="button" data-cc="en" lang="en">EN</button>
+                <button type="button" data-cc="off">끔</button>
+              </div>
             </div>
           </div>
         </div>
         <ol class="chapters" aria-label="장면">
-          <li><button type="button" data-at="0"><b>1</b>주소 입력</button></li>
-          <li><button type="button" data-at="6.2"><b>2</b>필지 선택</button></li>
-          <li><button type="button" data-at="9"><b>3</b>3D 옵션</button></li>
-          <li><button type="button" data-at="13"><b>4</b>생성</button></li>
-          <li><button type="button" data-at="17.4"><b>5</b>Rhino</button></li>
-          <li><button type="button" data-at="20"><b>6</b>2D 자료</button></li>
-          <li><button type="button" data-at="27.6"><b>7</b>현황도</button></li>
+          <li><button type="button" data-at="0"><b>1</b>Gorani 패널 열기</button></li>
+          <li><button type="button" data-at="3.67"><b>2</b>대상지 고르기</button></li>
+          <li><button type="button" data-at="9.5"><b>3</b>3D 모델 만들기</button></li>
+          <li><button type="button" data-at="20.37"><b>4</b>2D 자료 만들기</button></li>
+          <li><button type="button" data-at="34.87"><b>5</b>스타일 변경하기</button></li>
         </ol>
       </figure>
     </section>
   </div>
 
-  <section class="block" id="install" aria-labelledby="install-title">
+  <section class="block soft" id="model" aria-labelledby="model-title">
+    <div class="wrap feature">
+      <div class="shot">
+        <img src="assets/detail-3d.webp" width="2888" height="1472" loading="lazy" alt="Rhino Perspective 뷰의 Gorani 3D 모델과 레이어 창. 건물, 도로, 지형, 하천과 용도지역 레이어가 분리되어 있다.">
+      </div>
+      <div>
+        <span class="eyebrow">3D 모델</span>
+        <h2 id="model-title">주변 맥락을 레이어별로</h2>
+        <p class="sub">건물, 도로, 지형, 하천이 열려 있는 문서에 레이어별로 들어갑니다. Rhino 레이어 창에서 결과를 켜고 끄거나 숨길 수 있고, 건물 높이는 층수로 정합니다.</p>
+        <ul class="tags" aria-label="만드는 레이어">
+          <li>건물</li><li>도로</li><li>지형</li><li>하천</li><li>녹지</li><li>철도</li><li>필지</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="maps" aria-labelledby="maps-title">
+    <div class="wrap feature flip">
+      <div class="shot media-stack">
+        <video muted autoplay loop playsinline preload="metadata" poster="assets/detail-2d-demo-poster.jpg" width="1482" height="1136" aria-label="베이스맵과 현황 다이어그램을 만드는 Gorani 패널 화면 녹화">
+          <source src="assets/detail-2d-demo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div>
+        <span class="eyebrow">2D 자료</span>
+        <h2 id="maps-title">베이스맵과 분석도까지</h2>
+        <p class="sub">레이어가 나뉜 베이스맵과 현황도, 분석도, 조서를 결과 폴더에 저장합니다. 도면마다 출처와 기준일이 적혀 있습니다.</p>
+        <ul class="files">
+          <li><b>베이스맵</b><code>basemap_축척.ai</code></li>
+          <li><b>현황도·분석도</b><code>sheets/*.svg, .ai</code></li>
+          <li><b>필지·건축물 조서</b><code>tables/*.csv</code></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block support" id="support" aria-labelledby="support-title">
+    <div class="wrap">
+      <div class="block-head">
+        <div>
+          <h2 id="support-title">지원 프로그램</h2>
+          <p class="sub">Gorani는 라이노, 스케치업, 블렌더 유저를 위한 무료 오픈소스 플러그인입니다.</p>
+        </div>
+      </div>
+      <ul class="hosts" aria-label="지원 프로그램">
+        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>8 이상</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 이상</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="blender"><img src="assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 이상</small></span></a></li>
+        <li><span class="host-link"><img src="assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
+        <li><span class="host-link"><b>Windows · macOS</b><small>지원 운영체제</small></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block soft" id="install" aria-labelledby="install-title">
     <div class="wrap">
       <div class="block-head">
         <h2 id="install-title">설치</h2>
@@ -146,7 +204,6 @@
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
         </div>
       </div>
-
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
         <ol class="steps">
           <li>
@@ -201,63 +258,148 @@
           </li>
         </ol>
       </div>
-      <p class="note">처음 쓰는 지역은 데이터를 받느라 시간이 조금 더 걸립니다. 문제가 생기면 <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a>에 남겨 주세요.</p>
     </div>
   </section>
 
-  <section class="block" id="flow" aria-labelledby="flow-title">
+  <section class="block" id="usage" aria-labelledby="usage-title">
     <div class="wrap">
       <div class="block-head">
         <div>
-          <h2 id="flow-title">사용 순서</h2>
-          <p class="sub">패널은 프로그램 옆에 붙어 열립니다. 옵션은 기본값으로 둬도 됩니다.</p>
+          <h2 id="usage-title">사용법</h2>
+          <p class="sub">처음 쓰는 지역은 데이터를 받느라 시간이 조금 더 걸립니다. 문제가 생기면 결과 폴더의 <code>log.txt</code>를 확인해 주세요.</p>
         </div>
       </div>
-      <ol class="flow">
+      <ol class="usage">
         <li>
-          <img src="assets/step-site.webp" width="640" height="813" loading="lazy" alt="Gorani 패널의 지도 화면. 필지 두 개가 파랗게 선택되어 있고 아래에 범위(원, 사각형)와 한 변 길이를 고르는 칸, 3D 모델 만들기 버튼이 있다.">
+          <img src="assets/use-1-site.gif" width="1065" height="706" loading="lazy" alt="Gorani 패널에서 필지를 선택하고 구역을 그리는 과정을 보여주는 애니메이션. 지도 위 선택 지점과 오른쪽 대상지 정보가 단계별로 바뀐다.">
           <div>
-            <h3><b>1</b>대상지와 범위 고르기</h3>
-            <p>지도에서 필지를 누르거나 구역을 그리고 범위를 정합니다. 주소나 지번으로 찾을 수 있고, 해외는 OpenStreetMap 자료로 만듭니다.</p>
+            <h3><b>1</b>대상지 고르기</h3>
+            <p>지도에서 직접 대상지를 찾거나, 주소와 지번으로 검색합니다. 필지를 누르거나 구역을 그려 대상지를 정합니다.</p>
           </div>
         </li>
         <li>
-          <img src="assets/step-3d.webp" width="640" height="813" loading="lazy" alt="3D 모델을 만드는 중인 패널. 진행 막대 위를 고라니가 달리고 있고 아래에 건물과 지형 불러오기, 3D 모델 만들기, Rhino 파일에 넣기 단계가 보인다.">
+          <img src="assets/use-2-3d.webp" width="2130" height="1412" loading="lazy" alt="Rhino 위에 열린 Gorani 패널의 3D 설정 화면. 원점, 지형 계단 간격, 대상지 평탄화와 용도지역 경계선 옵션이 보인다.">
           <div>
             <h3><b>2</b>3D 모델 만들기</h3>
-            <p>건물, 도로, 지형, 하천이 열려 있는 문서에 레이어별로 들어갑니다. 건물 높이는 층수로 정합니다.</p>
+            <p>범위와 3D 옵션을 정하고 만들기를 누르면, 건물과 도로, 지형, 하천이 열려 있는 Rhino 문서에 레이어별로 들어옵니다.</p>
           </div>
         </li>
         <li>
-          <img src="assets/step-2d.webp" width="640" height="813" loading="lazy" alt="2D 자료 생성 완료 화면. 베이스맵 파일 이름과 다른 축척 받기 버튼, 그 아래 다이어그램 목록(베이스맵, 도형-배경도, 필지 규모 등)이 칸으로 나열되어 있다.">
+          <img src="assets/use-3-2d.webp" width="2130" height="1412" loading="lazy" alt="3D 모델 생성 완료 후 Gorani 패널에 2D 자료 선택 화면이 열려 있다. 베이스맵, 다이어그램, 조서 항목과 2D 자료 만들기 버튼이 보인다.">
           <div>
             <h3><b>3</b>2D 자료 만들기</h3>
-            <p>베이스맵(.ai), 현황도와 분석도, 조서(CSV)가 결과 폴더 <code>result/대상지_날짜/</code> 안의 <code>2D/</code>에 저장됩니다.</p>
+            <p>베이스맵(.ai)과 현황도, 분석도, 조서(CSV)를 결과 폴더에 저장합니다. 다른 축척 베이스맵도 바로 받을 수 있습니다.</p>
+          </div>
+        </li>
+        <li>
+          <img src="assets/use-4-preview.webp" width="1738" height="1210" loading="lazy" alt="Gorani가 만든 다이어그램 25장의 미리보기. 베이스맵, 도형-배경도, 필지 규모, 용도지역과 건물 관련 분석도가 격자로 정리되어 있다.">
+          <div>
+            <h3><b>4</b>도면 확인하기</h3>
+            <p>만든 도면은 패널에서 바로 크게 미리 봅니다. 다이어그램 색과 스타일도 바꿔 다시 만들 수 있습니다.</p>
           </div>
         </li>
       </ol>
+    </div>
+  </section>
+
+  <section class="block soft" id="coverage" aria-labelledby="coverage-title">
+    <div class="wrap">
+      <div class="block-head">
+        <h2 id="coverage-title">지원 지역</h2>
+      </div>
+      <div class="coverage">
+        <article>
+          <h3>국내 전국</h3>
+          <p>공공 데이터로 필지와 건물, 지형, 용도지역까지 만듭니다. 시군구별 데이터는 패널에서 한 번 받아 둡니다.</p>
+          <ul>
+            <li>지적, 건물(층수·용도·사용승인일)</li>
+            <li>1:5,000 등고선과 표고점 지형</li>
+            <li>용도지역, 도형-배경도, 토지이용 등 분석도</li>
+          </ul>
+        </article>
+        <article>
+          <h3>해외</h3>
+          <p>생성할 때 인터넷에서 받아 만듭니다. 필지와 용도지역 도면은 국내만 됩니다.</p>
+          <ul>
+            <li>OpenStreetMap 건물과 도로</li>
+            <li>공개 지형 타일</li>
+            <li>반경 100 m에서 2 km까지</li>
+          </ul>
+        </article>
+        <article>
+          <h3>패널 언어</h3>
+          <p>Gorani 플러그인 패널은 다섯 언어를 지원하며, 헤더에서 표시 언어를 바꿀 수 있습니다. 웹사이트는 현재 한국어와 영어로 제공됩니다.</p>
+          <ul>
+            <li>한국어 · English</li>
+            <li>日本語 · 简体中文 · Español</li>
+            <li>헤더의 언어 메뉴에서 언제든 변경</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="block-head">
+        <h2 id="faq-title">자주 묻는 질문</h2>
+        <a class="btn" href="https://github.com/969flash/gorani/issues">리뷰 남기기</a>
+      </div>
+      <div class="faq">
+        <div class="faq-item">
+          <h3>정말 무료인가요?</h3>
+          <p>네. 계정도 필요 없습니다. 후원으로 운영합니다.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Grasshopper나 다른 프로그램이 필요한가요?</h3>
+          <p>아니요. Rhino 8, SketchUp 2022 이상, Blender 4.2 이상 중 하나만 있으면 됩니다. Windows와 macOS에서 작동합니다.</p>
+        </div>
+        <div class="faq-item">
+          <h3>결과물은 어디에 저장되나요?</h3>
+          <p>3D 모델은 열려 있는 문서에 들어가고, 파일은 <code>~/Gorani/result/대상지_날짜/</code>에 모델 파일, <code>log.txt</code>, <code>2D/</code> 폴더로 저장됩니다.</p>
+        </div>
+        <div class="faq-item">
+          <h3>문제가 생기면 어떻게 하나요?</h3>
+          <p>문제가 생기면 결과 폴더의 <code>log.txt</code>를 확인해 주세요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block soft final" aria-labelledby="final-title">
+    <div class="wrap">
+      <div class="water-deer-article">
+        <h2 id="final-title"><a href="https://ko.wikipedia.org/wiki/%EA%B3%A0%EB%9D%BC%EB%8B%88">[고라니]</a> <a href="https://en.wikipedia.org/wiki/Water_deer">[Water deer]</a></h2>
+        <div class="wiki-body">
+          <div>
+            <p class="wiki-lead"><b>고라니</b> (<i>Hydropotes inermis</i>)는 한국과 중국에 분포하는 작은 사슴이다. 수컷은 뿔 대신 길게 자란 송곳니를 가지고 있으며, 강과 하천 주변의 물가와 습지에서 주로 살아간다.</p>
+            <section class="wiki-section">
+              <h3>분류 <span>Taxonomy</span></h3>
+              <p>고라니는 사슴과에 속하며, 고라니속(<i>Hydropotes</i>)을 이루는 유일한 현존 종이다. 겉모습은 작은 사슴과 비슷하지만 뿔이 없고 송곳니가 발달한 독특한 형태 때문에 별도의 속으로 분류된다.</p>
+            </section>
+            <section class="wiki-section">
+              <h3>어원 <span>Etymology</span></h3>
+              <p>학명 <i>Hydropotes</i>는 물을 뜻하는 말에서 유래했으며, 물가와 습지에 가까이 사는 생태적 특징을 가리킨다. 종명 <i>inermis</i>는 무장하지 않았다는 뜻으로, 뿔이 없는 특징과 관련된다.</p>
+            </section>
+          </div>
+          <a class="wiki-infobox" href="https://en.wikipedia.org/wiki/Water_deer" aria-label="위키백과에서 고라니 자세히 보기">
+            <img src="assets/water-deer.jpg" alt="풀밭에 서 있는 수컷 고라니">
+            <span>수컷 고라니</span>
+            <span class="wiki-kicker">위키백과, 우리 모두의 백과사전</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <div class="foot-top">
-      <p><span class="mark" aria-hidden="true"></span>무료입니다. 도움이 됐다면 후원해 주세요.</p>
-      <a class="btn" href="https://github.com/sponsors/969flash">GitHub Sponsors로 후원</a>
-    </div>
-    <ul class="links" style="margin-top:16px">
-      <li><a href="https://github.com/969flash/gorani">GitHub</a></li>
-      <li><a href="https://github.com/969flash/gorani/issues">버그 신고</a></li>
-      <li><a href="llms.txt">llms.txt</a></li>
-      <li><a href="en/" hreflang="en" lang="en">English</a></li>
-    </ul>
     <div class="fine">
-      <p>만든 사람 <a href="https://github.com/969flash">969flash</a>. 버전 0.2.1.</p>
-      <p>데이터: 국토교통부, 국토지리정보원, 서울특별시(공공누리 제1유형 등, 이용 조건은 도면 출처 줄에 표기), © OpenStreetMap contributors (ODbL)</p>
-      <p>이 페이지는 방문 통계를 Google Analytics로 셉니다. 플러그인은 설치마다 만든 무작위 ID, 버전과 OS, 생성한 대상지 위치와 범위, 걸린 시간, 오류 종류를 Google Analytics로 보냅니다(SketchUp, Blender판은 허락한 경우에만). 이름, 파일 경로, 도면 내용은 보내지 않습니다.</p>
-      <p>등고선이나 표고가 든 결과물(3D 모델, 베이스맵)은 인터넷에 올리지 마세요. 국토지리정보원 보안관리규정에 따른 제한입니다.</p>
-      <p>Rhino와 Rhinoceros는 Robert McNeel &amp; Associates, SketchUp은 Trimble Inc., Blender는 Blender Foundation의 상표입니다. 이 도구는 이들과 관계가 없습니다.</p>
+      <span class="mark" aria-hidden="true"></span>
+      <p>만든 사람 <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a>. 버전 0.2.1.</p>
+      <p>배고픈 대학원생입니다. 도움이 되었다면 커피 한 잔 부탁드립니다.</p>
+      <a class="btn" href="https://github.com/sponsors/969flash">GitHub로 후원하기</a>
     </div>
   </div>
 </footer>

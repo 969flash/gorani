@@ -301,9 +301,10 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
 
 /* 지원 지역 */
 .coverage-countries { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 16px; scroll-snap-type: x proximity; scrollbar-width: thin; }
-.coverage-countries article { display: flex; flex-direction: column; flex: 0 0 min(420px, calc(100vw - 48px)); padding: 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); scroll-snap-align: start; }
-.coverage-countries article ul { order: 2; }
-.coverage-countries .coverage-date { order: 3; margin-top: auto; padding-top: 16px; }
+.coverage-card { flex: 0 0 min(420px, calc(100vw - 48px)); }
+.coverage-countries article { display: flex; flex-direction: column; min-height: 100%; padding: 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); scroll-snap-align: start; }
+.coverage-countries article ul { margin-bottom: 0; }
+.coverage-card .coverage-date { margin: 8px 4px 0; }
 .coverage-languages { margin-top: 12px; }
 .coverage-languages article { padding: 24px 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
 .coverage h3 { font-size: 22px; line-height: 30px; font-weight: 700; }

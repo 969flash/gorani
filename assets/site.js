@@ -153,6 +153,35 @@
     update();
   }
 
+  // 지원 지역 카드는 사용자가 멈추지 않는 동안 한 장씩 천천히 넘긴다.
+  var coverageScroller = document.querySelector(".coverage-countries");
+  if (coverageScroller && !reduce.matches) {
+    var coverageTimer, coveragePaused = false;
+    function advanceCoverage() {
+      if (coveragePaused) return;
+      var card = coverageScroller.querySelector(".coverage-card");
+      if (!card) return;
+      var next = coverageScroller.scrollLeft + card.offsetWidth + 12;
+      if (next + coverageScroller.clientWidth >= coverageScroller.scrollWidth - 2) next = 0;
+      coverageScroller.scrollTo({ left: next, behavior: "smooth" });
+    }
+    function startCoverageTimer() {
+      clearInterval(coverageTimer);
+      coverageTimer = setInterval(advanceCoverage, 4200);
+    }
+    ["mouseenter", "focusin", "touchstart", "pointerdown"].forEach(function (event) {
+      coverageScroller.addEventListener(event, function () { coveragePaused = true; });
+    });
+    ["mouseleave", "focusout", "touchend", "pointerup"].forEach(function (event) {
+      coverageScroller.addEventListener(event, function () { coveragePaused = false; });
+    });
+    document.addEventListener("visibilitychange", function () {
+      coveragePaused = document.hidden;
+      if (!coveragePaused) startCoverageTimer();
+    });
+    startCoverageTimer();
+  }
+
   // ── 시연 영상 ───────────────────────────
   var screen = document.querySelector(".screen");
   if (!screen) return;

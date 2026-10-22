@@ -15,6 +15,12 @@
   --run: url(run.svg);          /* 달리는 고라니 8장 가로 띠(패널 RUN_FRAMES) */
   color-scheme: light;
 }
+@font-face {   /* Windows는 국기 이모지가 없어 Twemoji 국기만 담은 글꼴로 채운다(country-flag-emoji-polyfill, 그림 CC BY 4.0 Twitter) */
+  font-family: "Twemoji Country Flags";
+  unicode-range: U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;
+  src: url(https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.10/dist/TwemojiCountryFlags.woff2) format("woff2");
+  font-display: swap;
+}
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 body {
@@ -290,23 +296,61 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
 .usage p { margin-top: 8px; font-size: 15px; line-height: 24px; color: var(--ink-2); }
 
 /* 레퍼런스의 조용한 진입 모션: 스크립트가 켜진 경우에만 초기 상태를 숨긴다. */
-body.motion-ready .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+/* 섹션 머리·카드·줄 모두 같은 결로 올라온다. 함께 화면에 들어온 것끼리 위에서부터 0.06초씩(최대 0.3초) 늦게(--d는 스크립트가 넣는다) */
+body.motion-ready .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s cubic-bezier(.2,.8,.2,1), transform .6s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0s); }
 body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
-body.motion-ready .reveal:nth-child(2) { transition-delay: .08s; }
-body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
 @media (prefers-reduced-motion: reduce) {
   body.motion-ready .reveal { opacity: 1; transform: none; transition: none; }
   .shot, .usage li { transition: none; }
 }
 
 /* 지원 지역 */
-.coverage-countries { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 16px; scroll-snap-type: x proximity; scrollbar-width: thin; }
-.coverage-card { flex: 0 0 min(420px, calc(100vw - 48px)); }
-.coverage-countries article { display: flex; flex-direction: column; min-height: 100%; padding: 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); scroll-snap-align: start; }
-.coverage-countries article ul { margin-bottom: 0; }
-.coverage-card .coverage-date { margin: 8px 4px 0; }
-.coverage-languages { margin-top: 12px; }
-.coverage-languages article { padding: 24px 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
+/* 지원 국가: 끝없이 흐르는 카드 줄(impeccable.style 후기 카드 결). 카드를 누르면 멈추고 아래에 데이터 출처를 연다 */
+.country-marquee { --gap: 12px; overflow: hidden; padding: 4px 0 8px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 64px, #000 calc(100% - 64px), transparent); mask-image: linear-gradient(90deg, transparent, #000 64px, #000 calc(100% - 64px), transparent); }
+.country-track { display: flex; width: max-content; animation: country-marquee 40s linear infinite; }
+.country-marquee:hover .country-track, .country-marquee:has(:focus-visible) .country-track, .country-marquee.is-paused .country-track { animation-play-state: paused; }
+.country-set { display: flex; gap: var(--gap); padding-right: var(--gap); }
+@keyframes country-marquee { to { transform: translateX(-25%); } }   /* 같은 목록 4벌 중 1벌만큼 돌면 이음매 없이 반복(넓은 화면도 덮도록 4벌) */
+.country-card {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; flex: none;
+  width: 168px; height: 120px; padding: 0 12px; font: inherit; font-size: 15px; line-height: 20px; font-weight: 700; text-align: center; color: var(--ink); cursor: pointer;
+  border-radius: 12px; background: var(--surface); border: 1px solid var(--hair);
+  transition: transform .6s cubic-bezier(.33,0,.45,1), border-color .6s cubic-bezier(.33,0,.45,1), box-shadow .6s cubic-bezier(.33,0,.45,1);
+}
+.country-card:hover { border-color: #CECECE; transform: translateY(-1px); transition-duration: .18s; }
+.country-card:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.country-card[aria-expanded="true"] { border-color: var(--ink); box-shadow: 0 12px 32px -24px rgba(20, 20, 20, .45); }
+.country-flag { flex: none; font-family: "Apple Color Emoji", "Twemoji Country Flags", "Noto Color Emoji", sans-serif; font-size: 40px; line-height: 1; font-weight: 400; }   /* 국기 이모지. Windows(국기 이모지 없음)에선 Twemoji 국기 글꼴로 */
+.country-name { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+.country-name h3 { font-size: 14px; line-height: 20px; font-weight: 700; }
+.country-name small { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; line-height: 18px; color: var(--ink-3); }
+.country-detail { margin-top: 16px; }
+.country-panel {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-areas: "head label" "text sources" "date sources"; grid-template-rows: auto auto 1fr; gap: 0 48px;
+  position: relative; padding: 28px 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--ink);
+  animation: country-panel-in .28s cubic-bezier(.2,.8,.2,1);
+}
+.country-panel[hidden] { display: none; }
+@keyframes country-panel-in { from { opacity: 0; transform: translateY(8px); } }
+.country-panel header { grid-area: head; display: flex; align-items: center; gap: 12px; }
+.country-panel header .country-flag { font-size: 40px; }
+.country-panel .country-name h3 { font-size: 20px; line-height: 28px; }
+.country-close { transition: background-color .6s cubic-bezier(.33,0,.45,1), color .6s cubic-bezier(.33,0,.45,1); position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 32px; height: 32px; border: 0; border-radius: 8px; background: none; color: var(--ink-2); cursor: pointer; }
+.country-close:hover { background: var(--press); color: var(--ink); transition-duration: .18s; }
+.country-close svg { width: 16px; height: 16px; }
+.country-panel > p { grid-area: text; margin-top: 16px; font-size: 15px; line-height: 24px; }
+.country-panel > .coverage-date { grid-area: date; align-self: end; }   /* 확인일은 카드 왼쪽 아래 */
+.country-panel h4 { grid-area: label; align-self: end; margin: 0 40px 8px 0; font-size: 12px; line-height: 18px; font-weight: 600; letter-spacing: .02em; color: var(--ink-3); }
+.country-sources { grid-area: sources; align-self: start; margin: 0; }
+.country-sources div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 16px; padding: 12px 0; border-top: 1px solid var(--hair); font-size: 15px; line-height: 22px; }
+.country-sources dt { font-weight: 600; color: var(--ink); }
+.country-sources dd { margin: 0; color: var(--ink-2); }
+@media (prefers-reduced-motion: reduce) {   /* 움직임 줄이기: 흐르지 않고 손으로 넘기는 한 줄 */
+  .country-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .country-track { animation: none; padding-inline: max(16px, calc((100% - 1200px) / 2)); }
+  .country-set[aria-hidden="true"] { display: none; }
+  .country-card, .country-panel { transition: none; animation: none; }
+}
 .coverage h3 { font-size: 22px; line-height: 30px; font-weight: 700; }
 .coverage p { margin-top: 8px; color: var(--ink-2); }
 .coverage-date { display: block; margin-top: 16px; color: var(--ink-3); font-size: 12px; line-height: 18px; }
@@ -326,7 +370,7 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
 
 /* 설치: 프로그램 고르기(세그먼트) + 단계 카드 */
 .seg { display: inline-flex; gap: 2px; padding: 2px; border-radius: 8px; background: var(--press); }
-.seg button { border: 0; background: none; height: 36px; padding: 0 16px; border-radius: 6px; font-weight: 500; font-size: 15px; color: var(--ink-2); cursor: pointer; }
+.seg button { transition: background-color .6s cubic-bezier(.33,0,.45,1), color .6s cubic-bezier(.33,0,.45,1), box-shadow .6s cubic-bezier(.33,0,.45,1); border: 0; background: none; height: 36px; padding: 0 16px; border-radius: 6px; font-weight: 500; font-size: 15px; color: var(--ink-2); cursor: pointer; }
 .seg button[aria-selected="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
 .steps { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 12px; padding: 0; list-style: none; counter-reset: s; }
 .steps li { counter-increment: s; padding: 24px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
@@ -342,13 +386,30 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
 }
 .cmd code { font-size: 15px; font-weight: 600; color: var(--ink); }
 .copy { display: grid; place-items: center; width: 32px; height: 32px; border: 0; border-radius: 6px; background: none; color: var(--ink-2); cursor: pointer; }
-.copy:hover { background: var(--surface); color: var(--ink); }
+.copy { transition: background-color .6s cubic-bezier(.33,0,.45,1), color .6s cubic-bezier(.33,0,.45,1); }
+.copy:hover { background: var(--surface); color: var(--ink); transition-duration: .18s; }
 .copy svg { width: 16px; height: 16px; }
 .copy .i-done, .copy.done .i-copy { display: none; }
-.copy.done .i-done { display: block; color: var(--ink); }
+.copy.done .i-done { display: block; color: var(--ink); animation: copy-done .32s cubic-bezier(.2,.8,.2,1); }   /* 복사됨: 체크가 살짝 튀어나온다 */
+@keyframes copy-done { from { opacity: 0; transform: scale(.6); } }
 .ui { font-weight: 600; color: var(--ink); white-space: nowrap; }
 .note { margin-top: 16px; font-size: 14px; line-height: 22px; color: var(--ink-3); }
 [role="tabpanel"][hidden] { display: none; }
+/* 설치 카드: 세 프로그램 모두 같은 번호 목록(명령은 줄 오른쪽). Rhino만 맨 위에 바로 설치 한 줄을 더한다 */
+.install-card { padding: 8px 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
+.install-quick { display: flex; align-items: center; justify-content: space-between; gap: 16px 32px; margin-bottom: 12px; padding: 20px 24px 20px 32px; border-radius: 16px; background: var(--press); }
+.install-quick h3 { font-size: 17px; line-height: 24px; font-weight: 700; }
+.install-quick p { margin-top: 2px; font-size: 14px; line-height: 20px; color: var(--ink-2); }
+.install-cta { flex: none; }   /* food4rhino Install과 같은 rhino8:// 링크 */
+.install-cta[aria-disabled="true"], .install-cta[aria-disabled="true"]:hover { gap: 8px; background: var(--hair); border-color: var(--hair); color: var(--ink-3); cursor: not-allowed; }   /* SketchUp·Blender: 스토어 업로드 전까지 누를 수 없음 */
+.install-cta small { padding: 2px 8px; border-radius: 999px; background: var(--surface); font-size: 12px; line-height: 16px; font-weight: 600; }
+.steps.install-list { display: block; }
+.steps.install-list li { display: grid; grid-template-columns: 28px minmax(0, 1fr) 260px; column-gap: 16px; align-items: center; padding: 20px 0; border: 0; border-radius: 0; background: none; }
+.steps.install-list li + li { border-top: 1px solid var(--hair); }
+.steps.install-list li::before { grid-row: span 2; margin: 0; }
+.steps.install-list h3, .steps.install-list p { grid-column: 2; }
+.steps.install-list p { margin-top: 2px; }
+.steps.install-list .cmd { grid-column: 3; grid-row: 1 / span 2; margin: 0; }
 
 /* ── 꼬리말 ── */
 .foot { position: relative; background: var(--soft); padding: 40px 0 48px; font-size: 14px; line-height: 22px; color: var(--ink-2); }
@@ -375,7 +436,6 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
   .block h2, .final h2 { font-size: 32px; line-height: 42px; }
   .feature { grid-template-columns: 1fr; gap: 32px; }
   .feature.flip > .shot { order: 0; }   /* 화면을 먼저, 설명은 아래 */
-  .steps { --n: 2; }
   .feature.flip { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
@@ -407,15 +467,20 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
   .tags, .files { margin-top: 24px; }
   .usage { grid-template-columns: 1fr; }
   .usage div { padding: 16px 20px 20px; }
-  .coverage-countries article { padding: 24px; }
-  .coverage-languages article { padding: 20px 24px; }
-  .coverage article { padding: 24px; }
+  .country-marquee { -webkit-mask-image: none; mask-image: none; }
+  .country-card { width: 132px; height: 100px; gap: 8px; font-size: 14px; }
+  .country-flag { font-size: 32px; }
+  .country-panel { grid-template-columns: 1fr; grid-template-areas: "head" "text" "label" "sources" "date"; grid-template-rows: none; padding: 20px; }
+  .country-panel h4 { margin-top: 24px; }
+  .country-sources div { grid-template-columns: 1fr; gap: 2px; }
   .seg { width: 100%; }
   .seg button { flex: 1; padding: 0 8px; }
-  .steps { grid-template-columns: 1fr; }
-  .steps li { display: grid; grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; padding: 16px; }
-  .steps li::before { grid-row: span 3; margin: 0; }
-  .steps li > * { grid-column: 2; }
+  .install-card { padding: 4px 20px; }
+  .install-quick { flex-direction: column; align-items: stretch; padding: 20px; }
+  .install-cta { justify-content: center; }
+  .steps.install-list li { grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; align-items: start; padding: 16px 0; }
+  .steps.install-list li::before { grid-row: span 3; }
+  .steps.install-list .cmd { grid-column: 2; grid-row: auto; margin-top: 10px; }
   .fine {
     display: grid;
     grid-template-columns: 24px minmax(0, 1fr);
@@ -429,5 +494,6 @@ body.motion-ready .reveal:nth-child(3) { transition-delay: .16s; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .run.go, .btn:hover .run { animation: none; }
-  .btn .i-arrow { transition: none; }
+  .btn .i-arrow, .seg button, .copy, .country-close { transition: none; }
+  .copy.done .i-done { animation: none; }
 }

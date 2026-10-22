@@ -80,6 +80,7 @@
   <symbol id="i-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/></symbol>
   <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.75" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M2.5 8h11M8 2.25c1.55 1.55 2.25 3.35 2.25 5.75S9.55 12.2 8 13.75C6.45 12.2 5.75 10.4 5.75 8S6.45 3.8 8 2.25Z" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
   <symbol id="i-menu" viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
   <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 </svg>
@@ -164,7 +165,7 @@
       <div>
         <span class="eyebrow">3D模型</span>
         <h2 id="model-title">周边环境，按图层生成</h2>
-        <p class="sub">建筑、道路、地形和水系会按图层放入当前打开的文件。可以在 Rhino 图层面板中开关或隐藏结果，建筑高度由层数确定。</p>
+        <p class="sub">建筑、道路、地形和水系会按图层放入当前打开的文件。可以在图层面板中开关或隐藏结果。</p>
         <ul class="tags" aria-label="生成的图层">
           <li>建筑</li><li>道路</li><li>地形</li><li>水系</li><li>绿地</li><li>铁路</li><li>地块</li>
         </ul>
@@ -181,7 +182,7 @@
       </div>
       <div>
         <span class="eyebrow">2D资料</span>
-        <h2 id="maps-title">别再为场地分析熬夜了。</h2>
+        <h2 id="maps-title">别再为场地分析熬夜了</h2>
         <p class="sub">提供图底关系、用地分区、土地利用现状等22种图表，均为可编辑的 SVG 格式，还可以更改颜色和样式。</p>
         <ul class="files">
           <li><b>底图</b><code>basemap_比例尺.ai</code></li>
@@ -221,58 +222,85 @@
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
-        <ol class="steps">
-          <li>
-            <h3>打开 Package Manager</h3>
-            <p>在 Rhino 命令行中输入</p>
-            <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="已复制 PackageManager" aria-label="复制 PackageManager"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-          </li>
-          <li>
-            <h3>安装 Gorani</h3>
-            <p>搜索 Gorani 并点击<span class="ui">安装</span></p>
-          </li>
-          <li>
-            <h3>重启 Rhino</h3>
-            <p>重启后插件才会加载。</p>
-          </li>
-          <li>
-            <h3>打开面板</h3>
-            <p>在命令行中输入</p>
-            <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="已复制 Gorani" aria-label="复制 Gorani"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-          </li>
-        </ol>
+        <div class="install-quick">
+          <div>
+            <h3>快速安装</h3>
+            <p>Rhino 8 的 Package Manager 会打开并显示 Gorani 的搜索结果。</p>
+          </div>
+          <a class="btn go install-cta" href="rhino8://package/search?name=gorani">在 Rhino 8 中安装<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>打开 Package Manager</h3>
+              <p>在 Rhino 命令行中输入</p>
+              <span class="cmd"><code>PackageManager</code><button type="button" class="copy" data-copy="PackageManager" data-done="已复制 PackageManager" aria-label="复制 PackageManager"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+            <li>
+              <h3>安装 Gorani</h3>
+              <p>搜索 Gorani 并点击<span class="ui">安装</span></p>
+            </li>
+            <li>
+              <h3>重启 Rhino</h3>
+              <p>重启后插件才会加载。</p>
+            </li>
+            <li>
+              <h3>打开面板</h3>
+              <p>在命令行中输入</p>
+              <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="已复制 Gorani" aria-label="复制 Gorani"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+          </ol>
+        </div>
       </div>
       <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
-        <ol class="steps" style="--n:3">
-          <li>
-            <h3>打开 Extension Warehouse</h3>
-            <p>菜单 <span class="ui">扩展程序 &gt; Extension Warehouse</span></p>
-          </li>
-          <li>
-            <h3>安装 Gorani</h3>
-            <p>搜索 Gorani 并点击<span class="ui">安装</span></p>
-          </li>
-          <li>
-            <h3>打开面板</h3>
-            <p>菜单 <span class="ui">扩展程序 &gt; Gorani</span>，或工具栏上的 Gorani 按钮</p>
-          </li>
-        </ol>
+        <div class="install-quick">
+          <div>
+            <h3>快速安装</h3>
+            <p>打开 Extension Warehouse 上的 Gorani 页面。</p>
+          </div>
+          <a class="btn go install-cta" aria-disabled="true">在 SketchUp 中安装<small>即将上线</small></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>打开 Extension Warehouse</h3>
+              <p>菜单 <span class="ui">扩展程序 &gt; Extension Warehouse</span></p>
+            </li>
+            <li>
+              <h3>安装 Gorani</h3>
+              <p>搜索 Gorani 并点击<span class="ui">安装</span></p>
+            </li>
+            <li>
+              <h3>打开面板</h3>
+              <p>菜单 <span class="ui">扩展程序 &gt; Gorani</span>，或工具栏上的 Gorani 按钮</p>
+            </li>
+          </ol>
+        </div>
       </div>
       <div role="tabpanel" id="p-blender" aria-labelledby="tab-blender" hidden>
-        <ol class="steps" style="--n:3">
-          <li>
-            <h3>打开 Get Extensions</h3>
-            <p>菜单 <span class="ui">Edit &gt; Preferences &gt; Get Extensions</span>。首次使用需允许联网访问。</p>
-          </li>
-          <li>
-            <h3>安装 Gorani</h3>
-            <p>搜索 Gorani 并点击<span class="ui">Install</span></p>
-          </li>
-          <li>
-            <h3>打开面板</h3>
-            <p>在3D视图中按 N，然后在侧边栏选择<span class="ui">Gorani &gt; Open panel</span>。面板会在浏览器标签页中打开。</p>
-          </li>
-        </ol>
+        <div class="install-quick">
+          <div>
+            <h3>快速安装</h3>
+            <p>打开 Blender Extensions 上的 Gorani 页面。</p>
+          </div>
+          <a class="btn go install-cta" aria-disabled="true">在 Blender 中安装<small>即将上线</small></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>打开 Get Extensions</h3>
+              <p>菜单 <span class="ui">Edit &gt; Preferences &gt; Get Extensions</span>。首次使用需允许联网访问。</p>
+            </li>
+            <li>
+              <h3>安装 Gorani</h3>
+              <p>搜索 Gorani 并点击<span class="ui">Install</span></p>
+            </li>
+            <li>
+              <h3>打开面板</h3>
+              <p>在3D视图中按 N，然后在侧边栏选择<span class="ui">Gorani &gt; Open panel</span>。面板会在浏览器标签页中打开。</p>
+            </li>
+          </ol>
+        </div>
       </div>
     </div>
   </section>
@@ -321,73 +349,252 @@
   <section class="block soft" id="coverage" aria-labelledby="coverage-title">
     <div class="wrap">
       <div class="block-head">
-        <h2 id="coverage-title">支持地区与数据来源</h2>
+        <div>
+          <h2 id="coverage-title">支持地区与数据来源</h2>
+          <p class="sub">基于 OpenStreetMap 支持全球。点击卡片可查看各国的数据来源。</p>
+        </div>
       </div>
+    </div>
+    <div class="country-marquee" role="region" aria-label="支持的国家">
+      <div class="country-track">
+        <div class="country-set">
+          <button type="button" class="country-card" data-country="kr" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇰🇷</span><b>韩国</b>
+          </button>
+          <button type="button" class="country-card" data-country="jp" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇯🇵</span><b>日本</b>
+          </button>
+          <button type="button" class="country-card" data-country="cn" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇨🇳</span><b>中国</b>
+          </button>
+          <button type="button" class="country-card" data-country="us" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇺🇸</span><b>美国</b>
+          </button>
+          <button type="button" class="country-card" data-country="nl" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇳🇱</span><b>荷兰</b>
+          </button>
+          <button type="button" class="country-card" data-country="fr" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇫🇷</span><b>法国</b>
+          </button>
+          <button type="button" class="country-card" data-country="ch" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇨🇭</span><b>瑞士</b>
+          </button>
+          <button type="button" class="country-card" data-country="li" aria-controls="country-detail" aria-expanded="false">
+            <span class="country-flag" aria-hidden="true">🇱🇮</span><b>列支敦士登</b>
+          </button>
+        </div>
+        <div class="country-set" aria-hidden="true">
+          <button type="button" class="country-card" data-country="kr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇰🇷</span><b>韩国</b>
+          </button>
+          <button type="button" class="country-card" data-country="jp" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇯🇵</span><b>日本</b>
+          </button>
+          <button type="button" class="country-card" data-country="cn" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇳</span><b>中国</b>
+          </button>
+          <button type="button" class="country-card" data-country="us" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇺🇸</span><b>美国</b>
+          </button>
+          <button type="button" class="country-card" data-country="nl" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇳🇱</span><b>荷兰</b>
+          </button>
+          <button type="button" class="country-card" data-country="fr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇫🇷</span><b>法国</b>
+          </button>
+          <button type="button" class="country-card" data-country="ch" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇭</span><b>瑞士</b>
+          </button>
+          <button type="button" class="country-card" data-country="li" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇱🇮</span><b>列支敦士登</b>
+          </button>
+        </div>
+        <div class="country-set" aria-hidden="true">
+          <button type="button" class="country-card" data-country="kr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇰🇷</span><b>韩国</b>
+          </button>
+          <button type="button" class="country-card" data-country="jp" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇯🇵</span><b>日本</b>
+          </button>
+          <button type="button" class="country-card" data-country="cn" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇳</span><b>中国</b>
+          </button>
+          <button type="button" class="country-card" data-country="us" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇺🇸</span><b>美国</b>
+          </button>
+          <button type="button" class="country-card" data-country="nl" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇳🇱</span><b>荷兰</b>
+          </button>
+          <button type="button" class="country-card" data-country="fr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇫🇷</span><b>法国</b>
+          </button>
+          <button type="button" class="country-card" data-country="ch" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇭</span><b>瑞士</b>
+          </button>
+          <button type="button" class="country-card" data-country="li" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇱🇮</span><b>列支敦士登</b>
+          </button>
+        </div>
+        <div class="country-set" aria-hidden="true">
+          <button type="button" class="country-card" data-country="kr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇰🇷</span><b>韩国</b>
+          </button>
+          <button type="button" class="country-card" data-country="jp" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇯🇵</span><b>日本</b>
+          </button>
+          <button type="button" class="country-card" data-country="cn" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇳</span><b>中国</b>
+          </button>
+          <button type="button" class="country-card" data-country="us" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇺🇸</span><b>美国</b>
+          </button>
+          <button type="button" class="country-card" data-country="nl" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇳🇱</span><b>荷兰</b>
+          </button>
+          <button type="button" class="country-card" data-country="fr" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇫🇷</span><b>法国</b>
+          </button>
+          <button type="button" class="country-card" data-country="ch" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇨🇭</span><b>瑞士</b>
+          </button>
+          <button type="button" class="country-card" data-country="li" aria-controls="country-detail" aria-expanded="false" tabindex="-1">
+            <span class="country-flag" aria-hidden="true">🇱🇮</span><b>列支敦士登</b>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
       <div class="coverage">
-        <div class="coverage-countries">
-        <div class="coverage-card">
-        <article>
-          <h3>韩国 · 全国</h3>
-          <p>使用韩国国土交通部、国土地理信息院和首尔市 UPIS 的公共数据。各市郡区的数据只需在面板中下载一次。</p>
-          <ul>
-            <li>国土交通部：地籍、建筑、土地特性和土地利用规划</li>
-            <li>国土地理信息院：1:5,000 数字地形图等高线和高程点</li>
-            <li>首尔市 UPIS：城市规划和分区数据</li>
-            <li>范围：地块、分区和 22 种城市分析图</li>
-          </ul>
-        </article>
-        <small class="coverage-date">数据更新确认日：2026-10-23 · 数据基准日显示在图纸和 log.txt 中</small>
-        </div>
-        <div class="coverage-card">
-        <article>
-          <h3>日本</h3>
-          <p>使用国土交通省 PLATEAU、国土地理院（GSI）和 OpenStreetMap。区域数据在生成时下载。</p>
-          <ul>
-            <li>国土交通省 PLATEAU：包含高度和用途的 3D 城市模型建筑</li>
-            <li>国土地理院 GSI：5 m 地形图块</li>
-            <li>OpenStreetMap：补充建筑、道路和水系</li>
-            <li>范围：306 个自治体的 PLATEAU 建筑，半径 100 m 至 2 km</li>
-          </ul>
-        </article>
-        <small class="coverage-date">数据更新确认日：2026-10-23 · 数据基准日显示在图纸和 log.txt 中</small>
-        </div>
-        <div class="coverage-card">
-        <article>
-          <h3>欧洲 · 开发中</h3>
-          <p>正在收集荷兰、法国和瑞士地区的数据并准备支持范围。数据来源和可用范围将在验证后公布。</p>
-          <ul>
-            <li>荷兰</li>
-            <li>法国</li>
-            <li>瑞士</li>
-            <li>数据收集与处理进行中</li>
-          </ul>
-        </article>
-        <small class="coverage-date">数据更新确认日：2026-10-23 · 正在收集与处理</small>
-        </div>
-        <div class="coverage-card">
-        <article>
-          <h3>其他国家和地区</h3>
-          <p>生成时从互联网下载公开数据。不提供各国专属的地块和分区图。</p>
-          <ul>
-            <li>OpenStreetMap：建筑、道路和水系</li>
-            <li>公开地形图块：地形和高程</li>
-            <li>建筑高度：OSM 高度/楼层标签，缺失时使用默认值</li>
-            <li>范围：半径 100 m 至 2 km</li>
-          </ul>
-        </article>
-        <small class="coverage-date">数据更新确认日：2026-10-23 · 在生成时确认数据来源</small>
-        </div>
-        </div>
-        <div class="coverage-languages">
-        <article>
-          <h3>面板语言</h3>
-          <p>Gorani 插件面板支持五种语言，可在面板顶部切换显示语言。本网站也提供相同的五种语言。</p>
-          <ul>
-            <li>한국어 · English</li>
-            <li>日本語 · 简体中文 · Español</li>
-            <li>随时可用面板顶部的地球按钮切换</li>
-          </ul>
-        </article>
+        <div class="country-detail" id="country-detail" aria-live="polite" hidden>
+          <article class="country-panel" data-country-panel="kr" aria-labelledby="country-kr-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇰🇷</span>
+              <span class="country-name"><h3 id="country-kr-title">韩国</h3><small>全国</small></span>
+              <button type="button" class="country-close" aria-label="关闭"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>从建筑、道路面、等高线到地块与分区，全部使用公共数据生成。</p>
+            <h4>数据来源</h4>
+            <dl class="country-sources">
+              <div><dt>建筑</dt><dd>建筑物台账 + 数字地形图建筑（层数、用途、竣工日期）</dd></div>
+              <div><dt>道路面</dt><dd>数字地形图道路边界面</dd></div>
+              <div><dt>地形</dt><dd>1:5,000 数字地形图等高线和高程点</dd></div>
+              <div><dt>地块·分区</dt><dd>连续地籍图、土地特性、土地利用规划（UPIS）</dd></div>
+              <div><dt>来源·许可</dt><dd>国土交通部、国土地理信息院、首尔市（公共Nuri 等）。等高线数据包仅由韩国境内服务器提供</dd></div>
+            </dl>
+            <small class="coverage-date">数据更新确认日：2026-10-23 · 数据基准日显示在图纸和 log.txt 中</small>
+          </article>
+          <article class="country-panel" data-country-panel="jp" aria-labelledby="country-jp-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇯🇵</span>
+              <span class="country-name"><h3 id="country-jp-title">日本</h3><small>306 个市区町村</small></span>
+              <button type="button" class="country-close" aria-label="关闭"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>使用 PLATEAU 实测高度建筑、道路面和 5 m 高程图块。</p>
+            <h4>数据来源</h4>
+            <dl class="country-sources">
+              <div><dt>建筑</dt><dd>PLATEAU 建筑（实测高度、层数、用途），306 个市区町村</dd></div>
+              <div><dt>道路面</dt><dd>PLATEAU tran 道路面 1,073 万个</dd></div>
+              <div><dt>地形</dt><dd>国土地理院 5 m 高程图块</dd></div>
+              <div><dt>来源·许可</dt><dd>国土交通省 PLATEAU CC BY 4.0，标注 GSI 来源</dd></div>
+            </dl>
+            <small class="coverage-date">数据更新确认日：2026-10-23 · 数据基准日显示在图纸和 log.txt 中</small>
+          </article>
+          <article class="country-panel" data-country-panel="cn" aria-labelledby="country-cn-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇨🇳</span>
+              <span class="country-name"><h3 id="country-cn-title">中国</h3><small>即将添加</small></span>
+              <button type="button" class="country-close" aria-label="关闭"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>专属数据即将添加。目前基于 OpenStreetMap 生成。</p>
+            <h4>数据来源</h4>
+            <dl class="country-sources">
+              <div><dt>建筑</dt><dd>OpenStreetMap 建筑（高度/楼层标签，缺失时使用默认值）</dd></div>
+              <div><dt>道路面</dt><dd>OpenStreetMap 道路线缓冲</dd></div>
+              <div><dt>地形</dt><dd>Terrain Tiles 公开高程图块</dd></div>
+              <div><dt>来源·许可</dt><dd>OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">数据更新确认日：2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="us" aria-labelledby="country-us-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇺🇸</span>
+              <span class="country-name"><h3 id="country-us-title">美国</h3><small>即将添加</small></span>
+              <button type="button" class="country-close" aria-label="关闭"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>专属数据即将添加。目前基于 OpenStreetMap 生成。</p>
+            <h4>数据来源</h4>
+            <dl class="country-sources">
+              <div><dt>建筑</dt><dd>OpenStreetMap 建筑（高度/楼层标签，缺失时使用默认值）</dd></div>
+              <div><dt>道路面</dt><dd>OpenStreetMap 道路线缓冲</dd></div>
+              <div><dt>地形</dt><dd>Terrain Tiles 公开高程图块</dd></div>
+              <div><dt>来源·许可</dt><dd>OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">数据更新确认日：2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="nl" aria-labelledby="country-nl-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇳🇱</span>
+              <span class="country-name"><h3 id="country-nl-title">荷兰</h3><small>1,328 个图幅</small></span>
+              <button type="button" class="country-close" aria-label="关闭"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>Kadaster 3D 的 1,460 万栋建筑，采用激光雷达实测高度。</p>
+            <h4>数据来源</h4>
+            <dl class="country-sources">
+              <div><dt>建筑</dt><dd>Kadaster 3D Basisvoorziening 建筑 1,460 万栋（激光雷达实测高度、建造年份），1,328 个图幅</dd></div>
+              <div><dt>道路面</dt><dd>OpenStreetMap 道路线缓冲</dd></div>
+              <div><dt>地形</dt><dd>Terrain Tiles 公开高程图块</dd></div>
+              <div><dt>来源·许可</dt><dd>CC BY 4.0，OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">数据更新确认日：2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="fr" aria-labelledby="country-fr-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇫🇷</span>
+              <span class="country-name"><h3 id="country-fr-title">法国</h3><small>96 个省</small></span>
+              <button type="button" class="country-close" aria-label="关闭"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>IGN BD TOPO 的 6,470 万栋建筑，包含檐口高度、层数和用途。</p>
+            <h4>数据来源</h4>
+            <dl class="country-sources">
+              <div><dt>建筑</dt><dd>IGN BD TOPO 建筑 6,470 万栋（檐口高度、层数、用途、竣工日期），96 个省</dd></div>
+              <div><dt>道路面</dt><dd>OpenStreetMap 道路线缓冲</dd></div>
+              <div><dt>地形</dt><dd>Terrain Tiles 公开高程图块</dd></div>
+              <div><dt>来源·许可</dt><dd>Licence Ouverte 2.0，OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">数据更新确认日：2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="ch" aria-labelledby="country-ch-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇨🇭</span>
+              <span class="country-name"><h3 id="country-ch-title">瑞士</h3><small>252 个图幅</small></span>
+              <button type="button" class="country-close" aria-label="关闭"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>使用 swisstopo swissBUILDINGS3D 建筑及其实测总高度。</p>
+            <h4>数据来源</h4>
+            <dl class="country-sources">
+              <div><dt>建筑</dt><dd>swisstopo swissBUILDINGS3D 建筑（实测总高度、类型），252 个图幅</dd></div>
+              <div><dt>道路面</dt><dd>OpenStreetMap 道路线缓冲</dd></div>
+              <div><dt>地形</dt><dd>Terrain Tiles 公开高程图块</dd></div>
+              <div><dt>来源·许可</dt><dd>swisstopo OGD 条款，标注“©swisstopo”，OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">数据更新确认日：2026-10-23</small>
+          </article>
+          <article class="country-panel" data-country-panel="li" aria-labelledby="country-li-title" hidden>
+            <header>
+              <span class="country-flag" aria-hidden="true">🇱🇮</span>
+              <span class="country-name"><h3 id="country-li-title">列支敦士登</h3><small>252 个图幅</small></span>
+              <button type="button" class="country-close" aria-label="关闭"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+            </header>
+            <p>使用 swisstopo swissBUILDINGS3D 建筑及其实测总高度。</p>
+            <h4>数据来源</h4>
+            <dl class="country-sources">
+              <div><dt>建筑</dt><dd>swisstopo swissBUILDINGS3D 建筑（实测总高度、类型），252 个图幅</dd></div>
+              <div><dt>道路面</dt><dd>OpenStreetMap 道路线缓冲</dd></div>
+              <div><dt>地形</dt><dd>Terrain Tiles 公开高程图块</dd></div>
+              <div><dt>来源·许可</dt><dd>swisstopo OGD 条款，标注“©swisstopo”，OpenStreetMap ODbL</dd></div>
+            </dl>
+            <small class="coverage-date">数据更新确认日：2026-10-23</small>
+          </article>
         </div>
       </div>
     </div>

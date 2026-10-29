@@ -400,7 +400,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .install-quick { display: flex; align-items: center; justify-content: space-between; gap: 16px 32px; margin-bottom: 12px; padding: 20px 24px 20px 32px; border-radius: 16px; background: var(--press); }
 .install-quick h3 { font-size: 17px; line-height: 24px; font-weight: 700; }
 .install-quick p { margin-top: 2px; font-size: 14px; line-height: 20px; color: var(--ink-2); }
-.install-cta { flex: none; }   /* food4rhino Install과 같은 rhino8:// 링크 */
+.install-cta { flex: none; }   /* food4rhino Install과 같은 rhino:// 링크(Rhino 7·8 패키지 매니저) */
 .install-cta[aria-disabled="true"], .install-cta[aria-disabled="true"]:hover { gap: 8px; background: var(--hair); border-color: var(--hair); color: var(--ink-3); cursor: not-allowed; }   /* SketchUp·Blender: 스토어 업로드 전까지 누를 수 없음 */
 .install-cta small { padding: 2px 8px; border-radius: 999px; background: var(--surface); font-size: 12px; line-height: 16px; font-weight: 600; }
 .steps.install-list { display: block; }

@@ -6,7 +6,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1, max-snippet:-1">
 <link rel="alternate" type="text/plain" href="https://969flash.github.io/gorani/llms.txt">
 <title>Gorani: Terreno 3D y diagramas, fácil y rápido (plugin gratuito para Rhino, SketchUp y Blender)</title>
-<meta name="description" content="Elige un sitio y Gorani crea en 3D los edificios, calles y terreno del entorno, y guarda un plano base y mapas de análisis como archivos de Illustrator. Plugin gratuito para Rhino 8, SketchUp y Blender.">
+<meta name="description" content="Elige un sitio y Gorani crea en 3D los edificios, calles y terreno del entorno, y guarda un plano base y mapas de análisis como archivos de Illustrator. Plugin gratuito para Rhino 7 o posterior, SketchUp y Blender.">
 <link rel="canonical" href="https://969flash.github.io/gorani/es/">
 <link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
@@ -38,12 +38,12 @@
     {
       "@type": "SoftwareApplication",
       "name": "Gorani",
-      "description": "Elige un sitio y Gorani crea un modelo 3D de los edificios, calles, terreno y agua del entorno, y guarda un plano base de Illustrator por capas y mapas de análisis urbano. Plugin gratuito para Rhino 8, SketchUp y Blender.",
+      "description": "Elige un sitio y Gorani crea un modelo 3D de los edificios, calles, terreno y agua del entorno, y guarda un plano base de Illustrator por capas y mapas de análisis urbano. Plugin gratuito para Rhino 7 o posterior, SketchUp y Blender.",
       "applicationCategory": "DesignApplication",
-      "applicationSubCategory": "Rhino 8, SketchUp, Blender plugin",
+      "applicationSubCategory": "Rhino 7+, SketchUp, Blender plugin",
       "operatingSystem": "Windows, macOS",
-      "softwareRequirements": "Rhinoceros 8, SketchUp 2022 o posterior, Blender 4.2 o posterior",
-      "softwareVersion": "0.3.4",
+      "softwareRequirements": "Rhinoceros 7 o posterior, SketchUp 2022 o posterior, Blender 4.2 o posterior",
+      "softwareVersion": "0.3.7",
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "inLanguage": "es",
@@ -55,7 +55,7 @@
         "Plano base de Illustrator (.ai) por capas",
         "Mapas de análisis como uso del suelo, zonificación y figura-fondo (SVG, AI)",
         "Tablas de parcelas y edificios (CSV)",
-        "Corea en todo el país; datos oficiales de edificios 3D en Japón, Países Bajos, Francia y Suiza; resto del mundo con OpenStreetMap"
+        "Corea en todo el país; datos oficiales de edificios 3D en Japón, Países Bajos, Francia y Suiza; edificios de Overture Maps en Estados Unidos; resto del mundo con OpenStreetMap"
       ]
     },
     {
@@ -202,7 +202,7 @@
         </div>
       </div>
       <ul class="hosts" aria-label="Programas compatibles">
-        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="../assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>8 o posterior</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="../assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>7 o posterior</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 o posterior</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 o posterior</small></span></a></li>
         <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
@@ -216,7 +216,7 @@
       <div class="block-head">
         <h2 id="install-title">Instalar</h2>
         <div class="seg" role="tablist" aria-label="Programa">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 8</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
         </div>
@@ -225,9 +225,9 @@
         <div class="install-quick">
           <div>
             <h3>Instalación rápida</h3>
-            <p>El Package Manager de Rhino 8 se abre con Gorani ya buscado.</p>
+            <p>El Package Manager de Rhino 7 u 8 se abre con Gorani ya buscado.</p>
           </div>
-          <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Instalar en Rhino 8<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn go install-cta" href="rhino://package/search?name=gorani">Instalar en Rhino<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -518,16 +518,16 @@
           <article class="country-panel" data-country-panel="us" aria-labelledby="country-us-title" hidden>
             <header>
               <span class="country-flag" aria-hidden="true">🇺🇸</span>
-              <span class="country-name"><h3 id="country-us-title">Estados Unidos</h3><small>Próximamente</small></span>
+              <span class="country-name"><h3 id="country-us-title">Estados Unidos</h3><small>3.234 condados</small></span>
               <button type="button" class="country-close" aria-label="Cerrar"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
             </header>
-            <p>Los datos propios llegarán pronto. Por ahora, el modelo se genera con OpenStreetMap.</p>
+            <p>161,6 millones de edificios de Overture Maps cubren todo el país (territorio continental, Alaska, Hawái y Puerto Rico). Las alturas son en su mayoría estimaciones por aprendizaje automático.</p>
             <h4>Fuentes de datos</h4>
             <dl class="country-sources">
-              <div><dt>Edificios</dt><dd>Edificios de OpenStreetMap (etiquetas de altura/niveles; valor predeterminado si faltan)</dd></div>
+              <div><dt>Edificios</dt><dd>Edificios de Overture Maps, 161,6 millones (Microsoft ML Buildings, OpenStreetMap y Esri combinados; alturas en su mayoría estimadas por ML), 3.234 condados</dd></div>
               <div><dt>Superficie vial</dt><dd>Líneas viales de OpenStreetMap con búfer</dd></div>
               <div><dt>Terreno</dt><dd>Teselas de elevación públicas Terrain Tiles</dd></div>
-              <div><dt>Fuente y licencia</dt><dd>OpenStreetMap ODbL</dd></div>
+              <div><dt>Fuente y licencia</dt><dd>ODbL 1.0 (Overture Maps Foundation, © OpenStreetMap contributors, Microsoft)</dd></div>
             </dl>
             <small class="coverage-date">Actualización de datos comprobada: 2026-10-23</small>
           </article>
@@ -613,7 +613,7 @@
         </div>
         <div class="faq-item">
           <h3>¿Necesito Grasshopper u otro programa?</h3>
-          <p>No. Solo necesitas Rhino 8, SketchUp 2022 o posterior, o Blender 4.2 o posterior, en Windows o macOS.</p>
+          <p>No. Solo necesitas Rhino 7 o posterior, SketchUp 2022 o posterior, o Blender 4.2 o posterior, en Windows o macOS.</p>
         </div>
         <div class="faq-item">
           <h3>¿Dónde se guardan los resultados?</h3>
@@ -658,7 +658,7 @@
   <div class="wrap">
     <div class="fine">
       <span class="mark" aria-hidden="true"></span>
-      <p>Hecho por <a href="https://github.com/969flash">Hoon</a> y <a href="https://wjcho.com">Cho</a>. Versión 0.3.4.</p>
+      <p>Hecho por <a href="https://github.com/969flash">Hoon</a> y <a href="https://wjcho.com">Cho</a>. Versión 0.3.7.</p>
       <p>Somos estudiantes de posgrado con hambre. Si Gorani te ayudó, invítanos a un café.</p>
       <a class="btn" href="https://github.com/sponsors/969flash">Patrocinar en GitHub</a>
     </div>

@@ -6,7 +6,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1, max-snippet:-1">
 <link rel="alternate" type="text/plain" href="https://969flash.github.io/gorani/llms.txt">
 <title>Gorani: 3D地形とダイアグラムを、すばやく作成（Rhino、SketchUp、Blender向け無料プラグイン）</title>
-<meta name="description" content="対象地を選ぶと、周辺の建物・道路・地形を3Dで作成し、ベースマップと分析図をIllustratorファイルとして保存します。Rhino 8、SketchUp、Blenderで使える無料プラグインです。">
+<meta name="description" content="対象地を選ぶと、周辺の建物・道路・地形を3Dで作成し、ベースマップと分析図をIllustratorファイルとして保存します。Rhino 7以降、SketchUp、Blenderで使える無料プラグインです。">
 <link rel="canonical" href="https://969flash.github.io/gorani/ja/">
 <link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
@@ -38,12 +38,12 @@
     {
       "@type": "SoftwareApplication",
       "name": "Gorani",
-      "description": "対象地を選ぶと、周辺の建物・道路・地形・水系を3Dモデルとして作成し、レイヤー分けしたIllustratorのベースマップと都市分析図を保存します。Rhino 8、SketchUp、Blender向けの無料プラグイン。",
+      "description": "対象地を選ぶと、周辺の建物・道路・地形・水系を3Dモデルとして作成し、レイヤー分けしたIllustratorのベースマップと都市分析図を保存します。Rhino 7以降、SketchUp、Blender向けの無料プラグイン。",
       "applicationCategory": "DesignApplication",
-      "applicationSubCategory": "Rhino 8, SketchUp, Blender plugin",
+      "applicationSubCategory": "Rhino 7+, SketchUp, Blender plugin",
       "operatingSystem": "Windows, macOS",
-      "softwareRequirements": "Rhinoceros 8、SketchUp 2022以降、Blender 4.2以降",
-      "softwareVersion": "0.3.4",
+      "softwareRequirements": "Rhinoceros 7以降、SketchUp 2022以降、Blender 4.2以降",
+      "softwareVersion": "0.3.7",
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "inLanguage": "ja",
@@ -55,7 +55,7 @@
         "レイヤー分けしたIllustrator（.ai）ベースマップ",
         "土地利用、用途地域、図と地などの分析図（SVG、AI）",
         "区画と建物の調書（CSV）",
-        "韓国全国、日本・オランダ・フランス・スイスは公式の3D建物データ、その他の地域はOpenStreetMap"
+        "韓国全国、日本・オランダ・フランス・スイスは公式の3D建物データ、アメリカはOverture Mapsの建物、その他の地域はOpenStreetMap"
       ]
     },
     {
@@ -202,7 +202,7 @@
         </div>
       </div>
       <ul class="hosts" aria-label="対応ソフト">
-        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="../assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>8以降</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="../assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>7以降</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022以降</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2以降</small></span></a></li>
         <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
@@ -216,7 +216,7 @@
       <div class="block-head">
         <h2 id="install-title">インストール</h2>
         <div class="seg" role="tablist" aria-label="プログラム">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 8</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
         </div>
@@ -225,9 +225,9 @@
         <div class="install-quick">
           <div>
             <h3>すぐにインストール</h3>
-            <p>Rhino 8のパッケージマネージャーがGoraniの検索結果で開きます。</p>
+            <p>Rhino 7・8のパッケージマネージャーがGoraniの検索結果で開きます。</p>
           </div>
-          <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Rhino 8でインストール<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn go install-cta" href="rhino://package/search?name=gorani">Rhinoでインストール<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -518,16 +518,16 @@
           <article class="country-panel" data-country-panel="us" aria-labelledby="country-us-title" hidden>
             <header>
               <span class="country-flag" aria-hidden="true">🇺🇸</span>
-              <span class="country-name"><h3 id="country-us-title">アメリカ</h3><small>追加予定</small></span>
+              <span class="country-name"><h3 id="country-us-title">アメリカ</h3><small>3,234郡</small></span>
               <button type="button" class="country-close" aria-label="閉じる"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
             </header>
-            <p>専用データは追加予定です。現在はOpenStreetMapをもとに作成します。</p>
+            <p>Overture Mapsの建物1億6,161万棟で、アメリカ全域（本土・アラスカ・ハワイ・プエルトリコ）を作ります。高さの多くは機械学習による推定値です。</p>
             <h4>データソース</h4>
             <dl class="country-sources">
-              <div><dt>建物</dt><dd>OpenStreetMap建物（高さ・階数タグ、なければ既定値）</dd></div>
+              <div><dt>建物</dt><dd>Overture Maps 建物1億6,161万棟（Microsoft ML Buildings・OpenStreetMap・Esriの統合、高さは主にML推定）、3,234郡</dd></div>
               <div><dt>道路面</dt><dd>OpenStreetMap道路線のバッファ</dd></div>
               <div><dt>地形</dt><dd>Terrain Tiles 公開標高タイル</dd></div>
-              <div><dt>出典・ライセンス</dt><dd>OpenStreetMap ODbL</dd></div>
+              <div><dt>出典・ライセンス</dt><dd>ODbL 1.0（Overture Maps Foundation、© OpenStreetMap contributors、Microsoft）</dd></div>
             </dl>
             <small class="coverage-date">データ更新確認日: 2026-10-23</small>
           </article>
@@ -613,7 +613,7 @@
         </div>
         <div class="faq-item">
           <h3>Grasshopperやほかのソフトは必要ですか？</h3>
-          <p>いいえ。Rhino 8、SketchUp 2022以降、Blender 4.2以降のいずれかがあれば使えます。WindowsとmacOSで動作します。</p>
+          <p>いいえ。Rhino 7以降、SketchUp 2022以降、Blender 4.2以降のいずれかがあれば使えます。WindowsとmacOSで動作します。</p>
         </div>
         <div class="faq-item">
           <h3>結果はどこに保存されますか？</h3>
@@ -658,7 +658,7 @@
   <div class="wrap">
     <div class="fine">
       <span class="mark" aria-hidden="true"></span>
-      <p>制作 <a href="https://github.com/969flash">Hoon</a>、<a href="https://wjcho.com">Cho</a>。バージョン 0.3.4。</p>
+      <p>制作 <a href="https://github.com/969flash">Hoon</a>、<a href="https://wjcho.com">Cho</a>。バージョン 0.3.7。</p>
       <p>お腹をすかせた大学院生です。役に立ったら、コーヒーを一杯おごってください。</p>
       <a class="btn" href="https://github.com/sponsors/969flash">GitHubで支援する</a>
     </div>

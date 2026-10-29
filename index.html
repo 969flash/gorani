@@ -38,12 +38,12 @@
     {
       "@type": "SoftwareApplication",
       "name": "Gorani",
-      "description": "대상지를 고르면 주변 건물, 도로, 지형, 하천을 3D 모델로 만들고 베이스맵과 현황도, 분석도를 일러스트레이터 파일로 저장하는 무료 플러그인. Rhino 8, SketchUp, Blender에서 작동.",
+      "description": "대상지를 고르면 주변 건물, 도로, 지형, 하천을 3D 모델로 만들고 베이스맵과 현황도, 분석도를 일러스트레이터 파일로 저장하는 무료 플러그인. Rhino 7 이상, SketchUp, Blender에서 작동.",
       "applicationCategory": "DesignApplication",
-      "applicationSubCategory": "Rhino 8, SketchUp, Blender plugin",
+      "applicationSubCategory": "Rhino 7+, SketchUp, Blender plugin",
       "operatingSystem": "Windows, macOS",
-      "softwareRequirements": "Rhinoceros 8, SketchUp 2022 이상, Blender 4.2 이상",
-      "softwareVersion": "0.3.4",
+      "softwareRequirements": "Rhinoceros 7 이상, SketchUp 2022 이상, Blender 4.2 이상",
+      "softwareVersion": "0.3.7",
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
       "inLanguage": "ko",
@@ -55,7 +55,7 @@
         "레이어가 나뉜 일러스트레이터(.ai) 베이스맵",
         "토지이용, 용도지역, 도형-배경도 등 현황도와 분석도(SVG, AI)",
         "필지와 건축물 조서(CSV)",
-        "국내는 전국, 일본·네덜란드·프랑스·스위스는 공식 3D 건물 데이터, 해외는 OpenStreetMap 자료"
+        "국내는 전국, 일본·네덜란드·프랑스·스위스는 공식 3D 건물 데이터, 미국은 Overture Maps 건물, 그 밖의 해외는 OpenStreetMap 자료"
       ]
     },
     {
@@ -202,7 +202,7 @@
         </div>
       </div>
       <ul class="hosts" aria-label="지원 프로그램">
-        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>8 이상</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>7 이상</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 이상</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 이상</small></span></a></li>
         <li><span class="host-link"><img src="assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
@@ -216,7 +216,7 @@
       <div class="block-head">
         <h2 id="install-title">설치</h2>
         <div class="seg" role="tablist" aria-label="프로그램">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 8</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
         </div>
@@ -225,9 +225,9 @@
         <div class="install-quick">
           <div>
             <h3>바로 설치</h3>
-            <p>Rhino 8의 패키지 매니저가 Gorani 검색 결과로 열립니다.</p>
+            <p>Rhino 7·8의 패키지 매니저가 Gorani 검색 결과로 열립니다.</p>
           </div>
-          <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Rhino 8에서 설치<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn go install-cta" href="rhino://package/search?name=gorani">Rhino에서 설치<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -518,16 +518,16 @@
           <article class="country-panel" data-country-panel="us" aria-labelledby="country-us-title" hidden>
             <header>
               <span class="country-flag" aria-hidden="true">🇺🇸</span>
-              <span class="country-name"><h3 id="country-us-title">미국</h3><small>추가 예정</small></span>
+              <span class="country-name"><h3 id="country-us-title">미국</h3><small>3,234개 카운티</small></span>
               <button type="button" class="country-close" aria-label="닫기"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
             </header>
-            <p>전용 데이터는 추가 예정입니다. 지금은 OpenStreetMap을 기반으로 만듭니다.</p>
+            <p>Overture Maps 건물 1억 6,161만 동으로 미국 전역(본토·알래스카·하와이·푸에르토리코)을 만듭니다. 높이는 대부분 머신러닝 추정값입니다.</p>
             <h4>데이터 출처</h4>
             <dl class="country-sources">
-              <div><dt>건물</dt><dd>OpenStreetMap 건물 (높이·층수 태그, 없으면 기본값)</dd></div>
+              <div><dt>건물</dt><dd>Overture Maps 건물 1억 6,161만 동 (Microsoft ML Buildings·OpenStreetMap·Esri 합본, 높이 대부분 ML 추정), 3,234개 카운티</dd></div>
               <div><dt>도로면</dt><dd>OpenStreetMap 도로선 버퍼</dd></div>
               <div><dt>지형</dt><dd>Terrain Tiles 공개 표고 타일</dd></div>
-              <div><dt>출처·라이선스</dt><dd>OpenStreetMap ODbL</dd></div>
+              <div><dt>출처·라이선스</dt><dd>ODbL 1.0 (Overture Maps Foundation, © OpenStreetMap contributors, Microsoft)</dd></div>
             </dl>
             <small class="coverage-date">데이터 업데이트 확인일: 2026-10-23</small>
           </article>
@@ -613,7 +613,7 @@
         </div>
         <div class="faq-item">
           <h3>Grasshopper나 다른 프로그램이 필요한가요?</h3>
-          <p>아니요. Rhino 8, SketchUp 2022 이상, Blender 4.2 이상 중 하나만 있으면 됩니다. Windows와 macOS에서 작동합니다.</p>
+          <p>아니요. Rhino 7 이상, SketchUp 2022 이상, Blender 4.2 이상 중 하나만 있으면 됩니다. Windows와 macOS에서 작동합니다.</p>
         </div>
         <div class="faq-item">
           <h3>결과물은 어디에 저장되나요?</h3>
@@ -658,7 +658,7 @@
   <div class="wrap">
     <div class="fine">
       <span class="mark" aria-hidden="true"></span>
-      <p>만든 사람 <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a>. 버전 0.3.4.</p>
+      <p>만든 사람 <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a>. 버전 0.3.7.</p>
       <p>배고픈 대학원생입니다. 도움이 되었다면 커피 한 잔 부탁드립니다.</p>
       <a class="btn" href="https://github.com/sponsors/969flash">GitHub로 후원하기</a>
     </div>

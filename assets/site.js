@@ -24,7 +24,7 @@
   }
   function track(name, params) { if (window.gtag) window.gtag("event", name, params); }
   // 문의 받는 곳 — 구글 앱스 스크립트 웹 앱 주소(tools/contact/README.md). 비면 폼이 '준비 중'을 띄운다
-  var CONTACT_URL = "";
+  var CONTACT_URL = "https://script.google.com/macros/s/AKfycbxjfiwvtAXoDbKTjeiVvg6TosK3SA5i_ZzoPk6XkdI4sLhQQOAP_uqWzPQMKTynry-E/exec";
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   var lang = document.documentElement.lang === "ko" ? "ko" : "en";

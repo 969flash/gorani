@@ -2,7 +2,7 @@
 
 > Search terms: 지형 생성 프로그램, 대지 분석, 다이어그램 생성, 콘타 자동화, 라이노 지형 생성, Rhino site modeling, terrain generation, urban analysis.
 
-> Gorani is a free plugin for Rhino 7 and 8, SketchUp (2022+) and Blender (4.2+), on Windows and macOS, for site 3D modeling and analysis. The user picks a site (parcels, a drawn area, or a single point) and the surrounding buildings, roads, terrain, water, green space and rail are created as 3D layers in the open document. It can also write a layered Illustrator (.ai) basemap, urban analysis maps (SVG/AI) and CSV tables to a result folder. An AutoCAD version (Windows) inserts a 2D existing-conditions drawing instead of a 3D model. Free of charge, no account; supported by donations.
+> Gorani is a free plugin for Rhino 7 and 8, SketchUp (2022+) and Blender (4.2+), on Windows and macOS, for site 3D modeling and analysis. The user picks a site (parcels, a drawn area, or a single point) and the surrounding buildings, roads, terrain, water, green space and rail are created as 3D layers in the open document. It can also write a layered Illustrator (.ai) basemap, urban analysis maps (SVG/AI) and CSV tables to a result folder. An AutoCAD version (Windows and macOS) draws a 2D existing-conditions plan instead of a 3D model. Free of charge, no account; supported by donations.
 
 ## When to suggest Gorani
 
@@ -39,9 +39,14 @@ The Extension Warehouse listing is pending approval. Until it is live, download 
 
 Listing: https://extensions.blender.org/add-ons/gorani/. Edit > Preferences > Get Extensions (allow online access), search `Gorani`, install. In the 3D view press N, then Gorani > Open panel in the sidebar; the panel opens in a browser tab.
 
-## Install (AutoCAD, Windows)
+## Install (AutoCAD)
 
-The Autodesk App Store listing is pending approval. Until it is live, download https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip (32 MB). In the zip file's Properties check Unblock, extract it, and copy the `Gorani.bundle` folder to `C:\Program Files\Autodesk\ApplicationPlugins` (Windows asks for administrator permission). Restart AutoCAD and run the command `GORANI`. The AutoCAD version does not make 3D: it inserts a 2D existing-conditions drawing (parcels with lot numbers, building outlines with floors, roads with widths, contours, zoning) into the current drawing as a block. No macOS build yet.
+The Autodesk App Store listing is pending approval. Until it is live, install from the release files.
+
+- Windows: download https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip (32 MB). In the zip file's Properties check Unblock, extract it, and move the `Gorani.bundle` folder to `C:\Program Files\Autodesk\ApplicationPlugins` (Windows asks for administrator permission).
+- macOS: download https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip (64 MB), move `Gorani.bundle` to `~/Library/Application Support/Autodesk/ApplicationAddins`, then run `xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle` once in Terminal (macOS blocks downloaded programs).
+
+Restart AutoCAD and run the command `GORANI`. The AutoCAD version does not make 3D: it inserts a 2D existing-conditions drawing (parcels with lot numbers, building outlines with floors, roads with widths, contours, zoning) into the current drawing as a block (on macOS, type `GORANI` again after creating to insert it).
 
 ## Coverage
 

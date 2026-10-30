@@ -206,7 +206,7 @@
         <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="../assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>7 o posterior</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 o posterior</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 o posterior</small></span></a></li>
-        <li><a class="host-link" href="#install" data-install-tab="autocad"><span><b>AutoCAD</b><small>Windows</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="autocad"><span><b>AutoCAD</b><small>Plano 2D</small></span></a></li>
         <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
         <li><span class="host-link"><b>Windows · macOS</b><small>Sistemas operativos</small></span></li>
       </ul>
@@ -261,8 +261,8 @@
       <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
         <div class="install-quick">
           <div>
-            <h3>Instalador</h3>
-            <p>Descárgalo aquí mientras termina la revisión en Extension Warehouse (92 MB).</p>
+            <h3>Instalar desde archivo</h3>
+            <p>La ficha en Extension Warehouse aún está en revisión, así que por ahora se instala desde el archivo.</p>
           </div>
           <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz">Descargar instalador<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
@@ -274,7 +274,7 @@
             </li>
             <li>
               <h3>Instalar Gorani</h3>
-              <p>Pulsa <span class="ui">Instalar extensión</span> y elige el archivo .rbz descargado. Si pregunta, responde <span class="ui">Sí</span>.</p>
+              <p>Pulsa <span class="ui">Instalar extensión</span>, elige el archivo .rbz y confirma con <span class="ui">Sí</span>.</p>
             </li>
             <li>
               <h3>Abrir el panel</h3>
@@ -311,21 +311,34 @@
       <div role="tabpanel" id="p-autocad" aria-labelledby="tab-autocad" hidden>
         <div class="install-quick">
           <div>
-            <h3>Instalador</h3>
-            <p>Solo Windows. Descárgalo aquí mientras termina la revisión en Autodesk App Store (32 MB).</p>
+            <h3>Instalar desde archivo</h3>
+            <p>La ficha en Autodesk App Store aún está en revisión, así que por ahora se instala desde el archivo.</p>
           </div>
-          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Descargar para Windows<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <div class="install-ctas">
+            <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Descargar para Windows<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip">Descargar para macOS<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
             <li>
-              <h3>Desbloquear y descomprimir</h3>
-              <p>En las <span class="ui">Propiedades</span> del zip, marca <span class="ui">Desbloquear</span> y descomprímelo.</p>
+              <h3>Descomprimir</h3>
+              <p>En Windows, haz clic derecho en el zip, abre <span class="ui">Propiedades</span> y marca <span class="ui">Desbloquear</span> antes de descomprimir.</p>
             </li>
             <li>
-              <h3>Copiar la carpeta</h3>
-              <p>Pon la carpeta <code>Gorani.bundle</code> aquí. Si Windows pide permiso de administrador, pulsa <span class="ui">Continuar</span>.</p>
+              <h3>Windows: mover la carpeta</h3>
+              <p>Mueve la carpeta <code>Gorani.bundle</code> a esta ubicación. Si Windows pide permiso de administrador, pulsa <span class="ui">Continuar</span>.</p>
               <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="Ruta copiada" aria-label="Copiar ruta"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+            <li>
+              <h3>macOS: mover la carpeta</h3>
+              <p>En Finder, abre <span class="ui">Ir &gt; Ir a la carpeta</span>, pega esta ruta y mueve <code>Gorani.bundle</code> a la carpeta que se abre.</p>
+              <span class="cmd path"><code>~/Library/Application Support/<wbr>Autodesk/<wbr>ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="Ruta copiada" aria-label="Copiar ruta"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+            <li>
+              <h3>macOS: permitir que se ejecute</h3>
+              <p>macOS bloquea los programas descargados de internet. Ejecuta esto una vez en Terminal para quitar el bloqueo.</p>
+              <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/<wbr>Application\ Support/<wbr>Autodesk/<wbr>ApplicationAddins/<wbr>Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="xattr copiado" aria-label="Copiar xattr"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
               <h3>Reiniciar AutoCAD</h3>
@@ -338,7 +351,7 @@
             </li>
           </ol>
         </div>
-        <p class="note">La versión para AutoCAD inserta un plano 2D del entorno en el dibujo actual, no un modelo 3D. La versión para macOS llegará pronto.</p>
+        <p class="note">La versión para AutoCAD dibuja un plano 2D del estado actual, no un modelo 3D, y lo inserta como bloque en el dibujo en el que trabajas.</p>
       </div>
     </div>
   </section>

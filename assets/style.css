@@ -375,6 +375,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .faq-item summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 4px; }
 .faq-item h3 { margin: 0; font-size: 17px; line-height: 26px; font-weight: 600; }
 .faq-item p { margin: 0; padding: 0 32px 20px 0; font-size: 15px; line-height: 24px; color: var(--ink-2); }
+.faq-act { padding: 0 32px 20px 0; }
 .faq-item[open] p { animation: faq-open .32s cubic-bezier(.2,.8,.2,1); }
 @keyframes faq-open { from { opacity: 0; transform: translateY(-4px); } }
 
@@ -486,6 +487,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 }
 @media (max-width: 640px) {
   .faq-item p { padding: 0 0 20px; }
+  .faq-act { padding: 0 0 20px; }
   .top .wrap { gap: 12px; }
   .nav { display: none; }
   .menu-switch { display: block; }

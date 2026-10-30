@@ -12,7 +12,7 @@ const APPS = {
 };
 
 // 주제 코드 → 시트에 적는 이름(관리자가 읽는 말)
-const TOPICS = { usage: '사용 방법', bug: '오류 신고', data: '지역·데이터 요청', idea: '기능 제안', other: '기타' };
+const TOPICS = { usage: '사용 방법', bug: '오류 신고', data: '지역·데이터 요청', idea: '기능 제안', review: '사용자 리뷰', other: '기타' };
 
 const HEADERS = ['문의 번호', '받은 시각', '앱', '주제', '이름', '이메일', '내용', '언어', '페이지', '상태', '담당', '메모', '답장한 날'];
 const NOTIFY_DEFAULT = 'gorani.3d@gmail.com';   // 알림 받는 주소 — 스크립트 속성 NOTIFY_EMAIL이 있으면 그것(쉼표로 여러 개)

@@ -38,11 +38,11 @@
     {
       "@type": "SoftwareApplication",
       "name": "Gorani",
-      "description": "대상지를 고르면 주변 건물, 도로, 지형, 하천을 3D 모델로 만들고 베이스맵과 현황도, 분석도를 일러스트레이터 파일로 저장하는 무료 플러그인. Rhino 8, SketchUp, Blender에서 작동.",
+      "description": "대상지를 고르면 주변 건물, 도로, 지형, 하천을 3D 모델로 만들고 베이스맵과 현황도, 분석도를 일러스트레이터 파일로 저장하는 무료 플러그인. Rhino 7·8, SketchUp, Blender에서 작동.",
       "applicationCategory": "DesignApplication",
-      "applicationSubCategory": "Rhino 8, SketchUp, Blender plugin",
+      "applicationSubCategory": "Rhino 7/8, SketchUp, Blender plugin",
       "operatingSystem": "Windows, macOS",
-      "softwareRequirements": "Rhinoceros 8, SketchUp 2022 이상, Blender 4.2 이상",
+      "softwareRequirements": "Rhinoceros 7 이상, SketchUp 2022 이상, Blender 4.2 이상",
       "softwareVersion": "0.3.4",
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
@@ -202,7 +202,7 @@
         </div>
       </div>
       <ul class="hosts" aria-label="지원 프로그램">
-        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>8 이상</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>7 이상</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 이상</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 이상</small></span></a></li>
         <li><span class="host-link"><img src="assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
@@ -216,7 +216,7 @@
       <div class="block-head">
         <h2 id="install-title">설치</h2>
         <div class="seg" role="tablist" aria-label="프로그램">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 8</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7·8</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
         </div>
@@ -613,7 +613,11 @@
         </div>
         <div class="faq-item">
           <h3>Grasshopper나 다른 프로그램이 필요한가요?</h3>
-          <p>아니요. Rhino 8, SketchUp 2022 이상, Blender 4.2 이상 중 하나만 있으면 됩니다. Windows와 macOS에서 작동합니다.</p>
+          <p>아니요. Rhino 7 이상, SketchUp 2022 이상, Blender 4.2 이상 중 하나만 있으면 됩니다. Windows와 macOS에서 작동합니다.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Rhino 7에서도 되나요?</h3>
+          <p>네. 설치 방법은 같고, PackageManager가 Rhino 7용 판을 골라 받습니다. Windows에서는 패널이 Edge 창으로 열리고, DWG 저장은 없습니다.</p>
         </div>
         <div class="faq-item">
           <h3>결과물은 어디에 저장되나요?</h3>

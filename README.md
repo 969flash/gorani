@@ -2,7 +2,7 @@
 
 **Site 3D modeling and analysis.** 사이트 3D 모델링 및 분석.
 
-Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino 8, SketchUp and Blender, on Windows and macOS.
+Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino 7 and 8, SketchUp and Blender, on Windows and macOS.
 
 대상지를 고르면 3D 지형과 2D 분석 자료를 생성합니다. 라이노, 스케치업, 블렌더에서 작동하는 무료 플러그인입니다.
 
@@ -11,7 +11,7 @@ Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino
 
 ## Install
 
-- Rhino 8: `PackageManager`, search `Gorani`, install, restart Rhino, run `Gorani`.
+- Rhino 7 and 8: `PackageManager`, search `Gorani`, install, restart Rhino, run `Gorani`.
 - SketchUp 2022+: Extensions > Extension Warehouse, search `Gorani`, install.
 - Blender 4.2+: Edit > Preferences > Get Extensions, search `Gorani`, install.
 

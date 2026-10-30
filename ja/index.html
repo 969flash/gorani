@@ -6,7 +6,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1, max-snippet:-1">
 <link rel="alternate" type="text/plain" href="https://969flash.github.io/gorani/llms.txt">
 <title>Gorani: 3D地形とダイアグラムを、すばやく作成（Rhino、SketchUp、Blender向け無料プラグイン）</title>
-<meta name="description" content="対象地を選ぶと、周辺の建物・道路・地形を3Dで作成し、ベースマップと分析図をIllustratorファイルとして保存します。Rhino 8、SketchUp、Blenderで使える無料プラグインです。">
+<meta name="description" content="対象地を選ぶと、周辺の建物・道路・地形を3Dで作成し、ベースマップと分析図をIllustratorファイルとして保存します。Rhino 7・8、SketchUp、Blenderで使える無料プラグインです。">
 <link rel="canonical" href="https://969flash.github.io/gorani/ja/">
 <link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
@@ -38,11 +38,11 @@
     {
       "@type": "SoftwareApplication",
       "name": "Gorani",
-      "description": "対象地を選ぶと、周辺の建物・道路・地形・水系を3Dモデルとして作成し、レイヤー分けしたIllustratorのベースマップと都市分析図を保存します。Rhino 8、SketchUp、Blender向けの無料プラグイン。",
+      "description": "対象地を選ぶと、周辺の建物・道路・地形・水系を3Dモデルとして作成し、レイヤー分けしたIllustratorのベースマップと都市分析図を保存します。Rhino 7・8、SketchUp、Blender向けの無料プラグイン。",
       "applicationCategory": "DesignApplication",
-      "applicationSubCategory": "Rhino 8, SketchUp, Blender plugin",
+      "applicationSubCategory": "Rhino 7/8, SketchUp, Blender plugin",
       "operatingSystem": "Windows, macOS",
-      "softwareRequirements": "Rhinoceros 8、SketchUp 2022以降、Blender 4.2以降",
+      "softwareRequirements": "Rhinoceros 7以降、SketchUp 2022以降、Blender 4.2以降",
       "softwareVersion": "0.3.4",
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -202,7 +202,7 @@
         </div>
       </div>
       <ul class="hosts" aria-label="対応ソフト">
-        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="../assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>8以降</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="../assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>7以降</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022以降</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2以降</small></span></a></li>
         <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
@@ -216,7 +216,7 @@
       <div class="block-head">
         <h2 id="install-title">インストール</h2>
         <div class="seg" role="tablist" aria-label="プログラム">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 8</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7・8</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
         </div>
@@ -613,7 +613,11 @@
         </div>
         <div class="faq-item">
           <h3>Grasshopperやほかのソフトは必要ですか？</h3>
-          <p>いいえ。Rhino 8、SketchUp 2022以降、Blender 4.2以降のいずれかがあれば使えます。WindowsとmacOSで動作します。</p>
+          <p>いいえ。Rhino 7以降、SketchUp 2022以降、Blender 4.2以降のいずれかがあれば使えます。WindowsとmacOSで動作します。</p>
+        </div>
+        <div class="faq-item">
+          <h3>Rhino 7でも使えますか？</h3>
+          <p>はい。インストール方法は同じで、PackageManagerがRhino 7用の版を選んで入れます。WindowsではパネルがEdgeのウィンドウで開き、DWG保存はありません。</p>
         </div>
         <div class="faq-item">
           <h3>結果はどこに保存されますか？</h3>

@@ -83,7 +83,7 @@
     ".block-head h2", ".block-head .sub", ".block-head > .seg", ".block-head > .btn",
     ".support .host-link", ".feature",
     "#install [role=tabpanel]:not([hidden]) .install-quick", "#install [role=tabpanel]:not([hidden]) .install-card",
-    ".usage li", ".country-marquee", ".faq-item", ".contact-head h2", ".contact-head .sub", ".contact-form", ".final .wrap"
+    ".usage li", ".country-marquee", ".faq", ".contact", ".final .wrap"
   ].join(", ")));
   revealTargets.forEach(function (el) { el.classList.add("reveal"); });
   if ("IntersectionObserver" in window && !reduce.matches) {

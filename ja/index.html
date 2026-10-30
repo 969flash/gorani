@@ -93,7 +93,7 @@
       <a href="#usage">使い方</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">お問い合わせ</a>
-      <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>レビューを書く</a>
+      <a class="nav-github" href="https://github.com/969flash/gorani" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
     </nav>
     <details class="language-switch">
       <summary aria-label="言語"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
@@ -112,7 +112,7 @@
         <a href="#usage">使い方</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">お問い合わせ</a>
-        <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>レビューを書く</a>
+        <a href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
       </div>
     </details>
   </div>
@@ -606,71 +606,70 @@
     <div class="wrap">
       <div class="block-head">
         <h2 id="faq-title">よくある質問</h2>
-        <a class="btn" href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>レビューを書く</a>
       </div>
-      <div class="faq">
-        <div class="faq-item">
-          <h3>本当に無料ですか？</h3>
-          <p>はい。アカウントも不要です。支援によって運営しています。</p>
+      <div class="faq-contact">
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>本当に無料ですか？</h3></summary>
+            <p>はい。アカウントも不要です。支援によって運営しています。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Grasshopperやほかのソフトは必要ですか？</h3></summary>
+            <p>いいえ。Rhino 7以降、SketchUp 2022以降、Blender 4.2以降のいずれかがあれば使えます。WindowsとmacOSで動作します。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>結果はどこに保存されますか？</h3></summary>
+            <p>3Dモデルは開いているドキュメントに入り、ファイルは<code>~/Gorani/result/対象地_日付/</code>にモデルファイル、<code>log.txt</code>、<code>2D/</code>フォルダとして保存されます。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>問題が起きたらどうすればいいですか？</h3></summary>
+            <p>まず結果フォルダの<code>log.txt</code>を確認してください。解決しない場合は<a href="#contact">お問い合わせ</a>ください。<code>log.txt</code>の内容を貼り付けていただくと、原因をすぐに確認できます。</p>
+          </details>
         </div>
-        <div class="faq-item">
-          <h3>Grasshopperやほかのソフトは必要ですか？</h3>
-          <p>いいえ。Rhino 7以降、SketchUp 2022以降、Blender 4.2以降のいずれかがあれば使えます。WindowsとmacOSで動作します。</p>
-        </div>
-        <div class="faq-item">
-          <h3>結果はどこに保存されますか？</h3>
-          <p>3Dモデルは開いているドキュメントに入り、ファイルは<code>~/Gorani/result/対象地_日付/</code>にモデルファイル、<code>log.txt</code>、<code>2D/</code>フォルダとして保存されます。</p>
-        </div>
-        <div class="faq-item">
-          <h3>問題が起きたらどうすればいいですか？</h3>
-          <p>まず結果フォルダの<code>log.txt</code>を確認してください。解決しない場合は、<code>log.txt</code>を添付して<a href="https://github.com/969flash/gorani/issues">GitHub Issues</a>でお知らせください。</p>
+        <div class="contact" id="contact" aria-labelledby="contact-title">
+          <div class="contact-head">
+            <h3 id="contact-title">お問い合わせ</h3>
+            <p>使い方、不具合、データのご要望、ご提案など、お気軽にどうぞ。ご入力のメールアドレスに返信します。</p>
+          </div>
+          <form class="contact-form" novalidate data-sending="送信中…" data-sent="送信しました。{email} に返信します。" data-error="送信できませんでした。しばらくしてから再度お試しいただくか、GitHub Issues にご投稿ください。" data-unready="お問い合わせフォームは準備中です。今は GitHub Issues をご利用ください。">
+            <div class="field">
+              <label for="c-name">お名前</label>
+              <input id="c-name" name="name" type="text" autocomplete="name" maxlength="60" required>
+            </div>
+            <div class="field">
+              <label for="c-email">メールアドレス</label>
+              <input id="c-email" name="email" type="email" autocomplete="email" maxlength="120" required>
+            </div>
+            <div class="field wide">
+              <label for="c-topic">お問い合わせの種類</label>
+              <select id="c-topic" name="topic" required>
+                <option value="" disabled selected>種類を選んでください</option>
+                  <option value="usage">使い方</option>
+                  <option value="bug">不具合の報告</option>
+                  <option value="data">地域・データのご要望</option>
+                  <option value="idea">機能のご提案</option>
+                  <option value="other">その他</option>
+              </select>
+            </div>
+            <div class="field wide">
+              <label for="c-message">内容</label>
+              <textarea id="c-message" name="message" rows="6" maxlength="4000" placeholder="不具合の場合は、何をしていてどのメッセージが出たかをお書きください。" required></textarea>
+            </div>
+            <div class="field trap" aria-hidden="true">
+              <label for="c-website">Website</label>
+              <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <label class="consent wide"><input name="consent" type="checkbox" required><span>返信のためにお名前とメールアドレスをお預かりし、返信から1年後に削除します。同意します。</span></label>
+            <div class="contact-send wide">
+              <button class="btn go" type="submit">送信<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+              <p class="contact-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block soft" id="contact" aria-labelledby="contact-title">
-    <div class="wrap contact">
-      <div class="contact-head">
-        <h2 id="contact-title">お問い合わせ</h2>
-        <p class="sub">使い方、不具合、データのご要望、ご提案など、お気軽にどうぞ。ご入力のメールアドレスに返信します。</p>
-      </div>
-      <form class="contact-form" novalidate data-sending="送信中…" data-sent="送信しました。{email} に返信します。" data-error="送信できませんでした。しばらくしてから再度お試しいただくか、GitHub Issues にご投稿ください。" data-unready="お問い合わせフォームは準備中です。今は GitHub Issues をご利用ください。">
-        <div class="field">
-          <label for="c-name">お名前</label>
-          <input id="c-name" name="name" type="text" autocomplete="name" maxlength="60" required>
-        </div>
-        <div class="field">
-          <label for="c-email">メールアドレス</label>
-          <input id="c-email" name="email" type="email" autocomplete="email" maxlength="120" required>
-        </div>
-        <div class="field wide">
-          <label for="c-topic">お問い合わせの種類</label>
-          <select id="c-topic" name="topic" required>
-            <option value="" disabled selected>種類を選んでください</option>
-              <option value="usage">使い方</option>
-              <option value="bug">不具合の報告</option>
-              <option value="data">地域・データのご要望</option>
-              <option value="idea">機能のご提案</option>
-              <option value="other">その他</option>
-          </select>
-        </div>
-        <div class="field wide">
-          <label for="c-message">内容</label>
-          <textarea id="c-message" name="message" rows="6" maxlength="4000" placeholder="不具合の場合は、何をしていてどのメッセージが出たかをお書きください。" required></textarea>
-        </div>
-        <div class="field trap" aria-hidden="true">
-          <label for="c-website">Website</label>
-          <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off">
-        </div>
-        <label class="consent wide"><input name="consent" type="checkbox" required><span>返信のためにお名前とメールアドレスをお預かりし、返信から1年後に削除します。同意します。</span></label>
-        <div class="contact-send wide">
-          <button class="btn go" type="submit">送信<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          <p class="contact-status" role="status" aria-live="polite"></p>
-        </div>
-      </form>
-    </div>
-  </section>
 
   <section class="block soft final" aria-labelledby="final-title">
     <div class="wrap">

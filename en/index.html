@@ -93,7 +93,7 @@
       <a href="#usage">How to use</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
-      <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>Leave a review</a>
+      <a class="nav-github" href="https://github.com/969flash/gorani" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
     </nav>
     <details class="language-switch">
       <summary aria-label="Language"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
@@ -112,7 +112,7 @@
         <a href="#usage">How to use</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
-        <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>Leave a review</a>
+        <a href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
       </div>
     </details>
   </div>
@@ -606,71 +606,70 @@
     <div class="wrap">
       <div class="block-head">
         <h2 id="faq-title">FAQ</h2>
-        <a class="btn" href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>Leave a review</a>
       </div>
-      <div class="faq">
-        <div class="faq-item">
-          <h3>Is it really free?</h3>
-          <p>Yes, and no account is needed. It runs on sponsorships.</p>
+      <div class="faq-contact">
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>Is it really free?</h3></summary>
+            <p>Yes, and no account is needed. It runs on sponsorships.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Do I need Grasshopper or other software?</h3></summary>
+            <p>No. You only need Rhino 7+, SketchUp 2022+ or Blender 4.2+, on Windows or macOS.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Where are the results saved?</h3></summary>
+            <p>The 3D model goes into the open document. Files are saved to <code>~/Gorani/result/site_date/</code>: the model file, <code>log.txt</code> and the <code>2D/</code> folder.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Something went wrong. What should I do?</h3></summary>
+            <p>First check <code>log.txt</code> in the result folder. If that doesn't solve it, <a href="#contact">send us a message</a>. Pasting the contents of <code>log.txt</code> helps us find the cause quickly.</p>
+          </details>
         </div>
-        <div class="faq-item">
-          <h3>Do I need Grasshopper or other software?</h3>
-          <p>No. You only need Rhino 7+, SketchUp 2022+ or Blender 4.2+, on Windows or macOS.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Where are the results saved?</h3>
-          <p>The 3D model goes into the open document. Files are saved to <code>~/Gorani/result/site_date/</code>: the model file, <code>log.txt</code> and the <code>2D/</code> folder.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Something went wrong. What should I do?</h3>
-          <p>First check <code>log.txt</code> in the result folder. If that doesn't solve it, open an issue on <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a> and attach <code>log.txt</code>.</p>
+        <div class="contact" id="contact" aria-labelledby="contact-title">
+          <div class="contact-head">
+            <h3 id="contact-title">Contact</h3>
+            <p>Questions, bugs, data requests or ideas: leave a note and we will reply by email.</p>
+          </div>
+          <form class="contact-form" novalidate data-sending="Sending…" data-sent="Sent. We will reply to {email}." data-error="Could not send. Try again in a moment, or post on GitHub Issues." data-unready="The contact form is not ready yet. Please use GitHub Issues for now.">
+            <div class="field">
+              <label for="c-name">Name</label>
+              <input id="c-name" name="name" type="text" autocomplete="name" maxlength="60" required>
+            </div>
+            <div class="field">
+              <label for="c-email">Email</label>
+              <input id="c-email" name="email" type="email" autocomplete="email" maxlength="120" required>
+            </div>
+            <div class="field wide">
+              <label for="c-topic">Topic</label>
+              <select id="c-topic" name="topic" required>
+                <option value="" disabled selected>Choose a topic</option>
+                  <option value="usage">How to use</option>
+                  <option value="bug">Bug report</option>
+                  <option value="data">Region or data request</option>
+                  <option value="idea">Feature idea</option>
+                  <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="field wide">
+              <label for="c-message">Message</label>
+              <textarea id="c-message" name="message" rows="6" maxlength="4000" placeholder="For a bug, tell us what you were doing and what message appeared." required></textarea>
+            </div>
+            <div class="field trap" aria-hidden="true">
+              <label for="c-website">Website</label>
+              <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <label class="consent wide"><input name="consent" type="checkbox" required><span>We keep your name and email only to reply, and delete them one year after replying. I agree.</span></label>
+            <div class="contact-send wide">
+              <button class="btn go" type="submit">Send<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+              <p class="contact-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block soft" id="contact" aria-labelledby="contact-title">
-    <div class="wrap contact">
-      <div class="contact-head">
-        <h2 id="contact-title">Contact</h2>
-        <p class="sub">Questions, bugs, data requests or ideas: leave a note and we will reply by email.</p>
-      </div>
-      <form class="contact-form" novalidate data-sending="Sending…" data-sent="Sent. We will reply to {email}." data-error="Could not send. Try again in a moment, or post on GitHub Issues." data-unready="The contact form is not ready yet. Please use GitHub Issues for now.">
-        <div class="field">
-          <label for="c-name">Name</label>
-          <input id="c-name" name="name" type="text" autocomplete="name" maxlength="60" required>
-        </div>
-        <div class="field">
-          <label for="c-email">Email</label>
-          <input id="c-email" name="email" type="email" autocomplete="email" maxlength="120" required>
-        </div>
-        <div class="field wide">
-          <label for="c-topic">Topic</label>
-          <select id="c-topic" name="topic" required>
-            <option value="" disabled selected>Choose a topic</option>
-              <option value="usage">How to use</option>
-              <option value="bug">Bug report</option>
-              <option value="data">Region or data request</option>
-              <option value="idea">Feature idea</option>
-              <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="field wide">
-          <label for="c-message">Message</label>
-          <textarea id="c-message" name="message" rows="6" maxlength="4000" placeholder="For a bug, tell us what you were doing and what message appeared." required></textarea>
-        </div>
-        <div class="field trap" aria-hidden="true">
-          <label for="c-website">Website</label>
-          <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off">
-        </div>
-        <label class="consent wide"><input name="consent" type="checkbox" required><span>We keep your name and email only to reply, and delete them one year after replying. I agree.</span></label>
-        <div class="contact-send wide">
-          <button class="btn go" type="submit">Send<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          <p class="contact-status" role="status" aria-live="polite"></p>
-        </div>
-      </form>
-    </div>
-  </section>
 
   <section class="block soft final" aria-labelledby="final-title">
     <div class="wrap">

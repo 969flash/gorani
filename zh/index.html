@@ -93,7 +93,7 @@
       <a href="#usage">使用方法</a>
       <a href="#faq">常见问题</a>
       <a href="#contact">联系</a>
-      <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>留下评价</a>
+      <a class="nav-github" href="https://github.com/969flash/gorani" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
     </nav>
     <details class="language-switch">
       <summary aria-label="语言"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
@@ -112,7 +112,7 @@
         <a href="#usage">使用方法</a>
         <a href="#faq">常见问题</a>
         <a href="#contact">联系</a>
-        <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>留下评价</a>
+        <a href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
       </div>
     </details>
   </div>
@@ -606,71 +606,70 @@
     <div class="wrap">
       <div class="block-head">
         <h2 id="faq-title">常见问题</h2>
-        <a class="btn" href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>留下评价</a>
       </div>
-      <div class="faq">
-        <div class="faq-item">
-          <h3>真的免费吗？</h3>
-          <p>是的，也不需要注册账号。项目依靠赞助运营。</p>
+      <div class="faq-contact">
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>真的免费吗？</h3></summary>
+            <p>是的，也不需要注册账号。项目依靠赞助运营。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>需要 Grasshopper 或其他软件吗？</h3></summary>
+            <p>不需要。只要有 Rhino 7 及以上、SketchUp 2022 及以上或 Blender 4.2 及以上中的一个即可，支持 Windows 和 macOS。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>结果保存在哪里？</h3></summary>
+            <p>3D模型会放入当前打开的文件，文件保存在 <code>~/Gorani/result/场地_日期/</code>，包括模型文件、<code>log.txt</code> 和 <code>2D/</code> 文件夹。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>出现问题怎么办？</h3></summary>
+            <p>请先查看结果文件夹中的 <code>log.txt</code>。如果仍未解决，请<a href="#contact">联系我们</a>。附上 <code>log.txt</code> 的内容，能帮助我们更快找到原因。</p>
+          </details>
         </div>
-        <div class="faq-item">
-          <h3>需要 Grasshopper 或其他软件吗？</h3>
-          <p>不需要。只要有 Rhino 7 及以上、SketchUp 2022 及以上或 Blender 4.2 及以上中的一个即可，支持 Windows 和 macOS。</p>
-        </div>
-        <div class="faq-item">
-          <h3>结果保存在哪里？</h3>
-          <p>3D模型会放入当前打开的文件，文件保存在 <code>~/Gorani/result/场地_日期/</code>，包括模型文件、<code>log.txt</code> 和 <code>2D/</code> 文件夹。</p>
-        </div>
-        <div class="faq-item">
-          <h3>出现问题怎么办？</h3>
-          <p>请先查看结果文件夹中的 <code>log.txt</code>。如果仍未解决，请在 <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a> 提交问题并附上 <code>log.txt</code>。</p>
+        <div class="contact" id="contact" aria-labelledby="contact-title">
+          <div class="contact-head">
+            <h3 id="contact-title">联系我们</h3>
+            <p>使用方法、错误、数据需求或建议，都欢迎留言。我们会回复到您填写的邮箱。</p>
+          </div>
+          <form class="contact-form" novalidate data-sending="发送中…" data-sent="已发送。我们会回复到 {email}。" data-error="发送失败。请稍后再试，或在 GitHub Issues 留言。" data-unready="联系表单正在准备中，目前请使用 GitHub Issues。">
+            <div class="field">
+              <label for="c-name">姓名</label>
+              <input id="c-name" name="name" type="text" autocomplete="name" maxlength="60" required>
+            </div>
+            <div class="field">
+              <label for="c-email">邮箱</label>
+              <input id="c-email" name="email" type="email" autocomplete="email" maxlength="120" required>
+            </div>
+            <div class="field wide">
+              <label for="c-topic">主题</label>
+              <select id="c-topic" name="topic" required>
+                <option value="" disabled selected>选择主题</option>
+                  <option value="usage">使用方法</option>
+                  <option value="bug">错误报告</option>
+                  <option value="data">地区·数据需求</option>
+                  <option value="idea">功能建议</option>
+                  <option value="other">其他</option>
+              </select>
+            </div>
+            <div class="field wide">
+              <label for="c-message">内容</label>
+              <textarea id="c-message" name="message" rows="6" maxlength="4000" placeholder="如果是错误，请写下当时在做什么、出现了什么提示。" required></textarea>
+            </div>
+            <div class="field trap" aria-hidden="true">
+              <label for="c-website">Website</label>
+              <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <label class="consent wide"><input name="consent" type="checkbox" required><span>我们仅为回复收集姓名和邮箱，回复一年后删除。我同意。</span></label>
+            <div class="contact-send wide">
+              <button class="btn go" type="submit">发送<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+              <p class="contact-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block soft" id="contact" aria-labelledby="contact-title">
-    <div class="wrap contact">
-      <div class="contact-head">
-        <h2 id="contact-title">联系我们</h2>
-        <p class="sub">使用方法、错误、数据需求或建议，都欢迎留言。我们会回复到您填写的邮箱。</p>
-      </div>
-      <form class="contact-form" novalidate data-sending="发送中…" data-sent="已发送。我们会回复到 {email}。" data-error="发送失败。请稍后再试，或在 GitHub Issues 留言。" data-unready="联系表单正在准备中，目前请使用 GitHub Issues。">
-        <div class="field">
-          <label for="c-name">姓名</label>
-          <input id="c-name" name="name" type="text" autocomplete="name" maxlength="60" required>
-        </div>
-        <div class="field">
-          <label for="c-email">邮箱</label>
-          <input id="c-email" name="email" type="email" autocomplete="email" maxlength="120" required>
-        </div>
-        <div class="field wide">
-          <label for="c-topic">主题</label>
-          <select id="c-topic" name="topic" required>
-            <option value="" disabled selected>选择主题</option>
-              <option value="usage">使用方法</option>
-              <option value="bug">错误报告</option>
-              <option value="data">地区·数据需求</option>
-              <option value="idea">功能建议</option>
-              <option value="other">其他</option>
-          </select>
-        </div>
-        <div class="field wide">
-          <label for="c-message">内容</label>
-          <textarea id="c-message" name="message" rows="6" maxlength="4000" placeholder="如果是错误，请写下当时在做什么、出现了什么提示。" required></textarea>
-        </div>
-        <div class="field trap" aria-hidden="true">
-          <label for="c-website">Website</label>
-          <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off">
-        </div>
-        <label class="consent wide"><input name="consent" type="checkbox" required><span>我们仅为回复收集姓名和邮箱，回复一年后删除。我同意。</span></label>
-        <div class="contact-send wide">
-          <button class="btn go" type="submit">发送<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          <p class="contact-status" role="status" aria-live="polite"></p>
-        </div>
-      </form>
-    </div>
-  </section>
 
   <section class="block soft final" aria-labelledby="final-title">
     <div class="wrap">

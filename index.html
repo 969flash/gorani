@@ -93,7 +93,7 @@
       <a href="#usage">사용법</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">문의</a>
-      <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>리뷰 남기기</a>
+      <a class="nav-github" href="https://github.com/969flash/gorani" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
     </nav>
     <details class="language-switch">
       <summary aria-label="언어 선택"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
@@ -112,7 +112,7 @@
         <a href="#usage">사용법</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">문의</a>
-        <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>리뷰 남기기</a>
+        <a href="https://github.com/969flash/gorani"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
       </div>
     </details>
   </div>
@@ -606,71 +606,70 @@
     <div class="wrap">
       <div class="block-head">
         <h2 id="faq-title">자주 묻는 질문</h2>
-        <a class="btn" href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>리뷰 남기기</a>
       </div>
-      <div class="faq">
-        <div class="faq-item">
-          <h3>정말 무료인가요?</h3>
-          <p>네. 계정도 필요 없습니다. 후원으로 운영합니다.</p>
+      <div class="faq-contact">
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>정말 무료인가요?</h3></summary>
+            <p>네. 계정도 필요 없습니다. 후원으로 운영합니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Grasshopper나 다른 프로그램이 필요한가요?</h3></summary>
+            <p>아니요. Rhino 7 이상, SketchUp 2022 이상, Blender 4.2 이상 중 하나만 있으면 됩니다. Windows와 macOS에서 작동합니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>결과물은 어디에 저장되나요?</h3></summary>
+            <p>3D 모델은 열려 있는 문서에 들어가고, 파일은 <code>~/Gorani/result/대상지_날짜/</code>에 모델 파일, <code>log.txt</code>, <code>2D/</code> 폴더로 저장됩니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>문제가 생기면 어떻게 하나요?</h3></summary>
+            <p>먼저 결과 폴더의 <code>log.txt</code>를 확인해 주세요. 해결되지 않으면 <a href="#contact">문의</a>를 남겨 주세요. <code>log.txt</code> 내용을 붙여 주시면 원인을 빨리 찾을 수 있습니다.</p>
+          </details>
         </div>
-        <div class="faq-item">
-          <h3>Grasshopper나 다른 프로그램이 필요한가요?</h3>
-          <p>아니요. Rhino 7 이상, SketchUp 2022 이상, Blender 4.2 이상 중 하나만 있으면 됩니다. Windows와 macOS에서 작동합니다.</p>
-        </div>
-        <div class="faq-item">
-          <h3>결과물은 어디에 저장되나요?</h3>
-          <p>3D 모델은 열려 있는 문서에 들어가고, 파일은 <code>~/Gorani/result/대상지_날짜/</code>에 모델 파일, <code>log.txt</code>, <code>2D/</code> 폴더로 저장됩니다.</p>
-        </div>
-        <div class="faq-item">
-          <h3>문제가 생기면 어떻게 하나요?</h3>
-          <p>먼저 결과 폴더의 <code>log.txt</code>를 확인해 주세요. 해결되지 않으면 <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a>에 <code>log.txt</code>를 첨부해 남겨 주세요.</p>
+        <div class="contact" id="contact" aria-labelledby="contact-title">
+          <div class="contact-head">
+            <h3 id="contact-title">문의하기</h3>
+            <p>사용 방법, 오류, 데이터 요청, 제안 무엇이든 남겨 주세요. 적어 주신 메일로 답장합니다.</p>
+          </div>
+          <form class="contact-form" novalidate data-sending="보내는 중…" data-sent="보냈습니다. {email} 주소로 답장드리겠습니다." data-error="보내지 못했습니다. 잠시 뒤 다시 보내거나 GitHub Issues에 남겨 주세요." data-unready="문의창을 준비하고 있습니다. 지금은 GitHub Issues에 남겨 주세요.">
+            <div class="field">
+              <label for="c-name">이름</label>
+              <input id="c-name" name="name" type="text" autocomplete="name" maxlength="60" required>
+            </div>
+            <div class="field">
+              <label for="c-email">이메일</label>
+              <input id="c-email" name="email" type="email" autocomplete="email" maxlength="120" required>
+            </div>
+            <div class="field wide">
+              <label for="c-topic">문의 주제</label>
+              <select id="c-topic" name="topic" required>
+                <option value="" disabled selected>주제를 고르세요</option>
+                  <option value="usage">사용 방법</option>
+                  <option value="bug">오류 신고</option>
+                  <option value="data">지역·데이터 요청</option>
+                  <option value="idea">기능 제안</option>
+                  <option value="other">기타</option>
+              </select>
+            </div>
+            <div class="field wide">
+              <label for="c-message">내용</label>
+              <textarea id="c-message" name="message" rows="6" maxlength="4000" placeholder="오류라면 무엇을 하다가 어떤 메시지가 떴는지 적어 주세요." required></textarea>
+            </div>
+            <div class="field trap" aria-hidden="true">
+              <label for="c-website">Website</label>
+              <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <label class="consent wide"><input name="consent" type="checkbox" required><span>답장을 위해 이름과 이메일을 받고, 답장 후 1년이 지나면 지웁니다. 이에 동의합니다.</span></label>
+            <div class="contact-send wide">
+              <button class="btn go" type="submit">보내기<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+              <p class="contact-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block soft" id="contact" aria-labelledby="contact-title">
-    <div class="wrap contact">
-      <div class="contact-head">
-        <h2 id="contact-title">문의하기</h2>
-        <p class="sub">사용 방법, 오류, 데이터 요청, 제안 무엇이든 남겨 주세요. 적어 주신 메일로 답장합니다.</p>
-      </div>
-      <form class="contact-form" novalidate data-sending="보내는 중…" data-sent="보냈습니다. {email} 주소로 답장드리겠습니다." data-error="보내지 못했습니다. 잠시 뒤 다시 보내거나 GitHub Issues에 남겨 주세요." data-unready="문의창을 준비하고 있습니다. 지금은 GitHub Issues에 남겨 주세요.">
-        <div class="field">
-          <label for="c-name">이름</label>
-          <input id="c-name" name="name" type="text" autocomplete="name" maxlength="60" required>
-        </div>
-        <div class="field">
-          <label for="c-email">이메일</label>
-          <input id="c-email" name="email" type="email" autocomplete="email" maxlength="120" required>
-        </div>
-        <div class="field wide">
-          <label for="c-topic">문의 주제</label>
-          <select id="c-topic" name="topic" required>
-            <option value="" disabled selected>주제를 고르세요</option>
-              <option value="usage">사용 방법</option>
-              <option value="bug">오류 신고</option>
-              <option value="data">지역·데이터 요청</option>
-              <option value="idea">기능 제안</option>
-              <option value="other">기타</option>
-          </select>
-        </div>
-        <div class="field wide">
-          <label for="c-message">내용</label>
-          <textarea id="c-message" name="message" rows="6" maxlength="4000" placeholder="오류라면 무엇을 하다가 어떤 메시지가 떴는지 적어 주세요." required></textarea>
-        </div>
-        <div class="field trap" aria-hidden="true">
-          <label for="c-website">Website</label>
-          <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off">
-        </div>
-        <label class="consent wide"><input name="consent" type="checkbox" required><span>답장을 위해 이름과 이메일을 받고, 답장 후 1년이 지나면 지웁니다. 이에 동의합니다.</span></label>
-        <div class="contact-send wide">
-          <button class="btn go" type="submit">보내기<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          <p class="contact-status" role="status" aria-live="polite"></p>
-        </div>
-      </form>
-    </div>
-  </section>
 
   <section class="block soft final" aria-labelledby="final-title">
     <div class="wrap">

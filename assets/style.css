@@ -91,6 +91,8 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .nav a:hover, .lang:hover { background: var(--press); color: var(--ink); }
 .nav a, .menu-list a { display: inline-flex; align-items: center; gap: 6px; }
 .nav a svg, .menu-list a svg { width: 15px; height: 15px; flex: none; }
+.nav .nav-github { padding: 4px 8px; }   /* 저장소 로고만 */
+.nav .nav-github svg { width: 18px; height: 18px; }
 .lang { border: 1px solid var(--hair); }
 .progress { position: relative; height: 2px; background: var(--hair); }
 .progress i { position: absolute; inset: 0 auto 0 0; width: calc(var(--p, 0) * 100%); background: var(--ink); }
@@ -255,8 +257,7 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
 #main > #maps { order: 3; }
 #main > #coverage { order: 7; }
 #main > #faq { order: 8; }
-#main > #contact { order: 9; }
-#main > .final { order: 10; }
+#main > .final { order: 9; }
 .block { position: relative; padding: 128px 0; }
 .block::before { content: ""; position: absolute; top: 0; left: max(16px, calc((100% - 1200px) / 2)); right: max(16px, calc((100% - 1200px) / 2)); height: 1px; background: var(--hair); }
 .final::before { left: 0; right: 0; }
@@ -359,14 +360,30 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .coverage li::before { content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 10px 2px 0; border-radius: 999px; background: var(--ink-3); }
 
 /* FAQ: 얇은 선 아코디언 */
-.faq { max-width: none; }
-.faq-item { display: grid; grid-template-columns: minmax(260px, 38%) minmax(0, 1fr); }
-.faq-item h3 { margin: 0; padding: 20px 0; font-size: 17px; line-height: 26px; font-weight: 600; }
-.faq-item p { align-self: center; margin: 0; padding: 20px 0 20px 32px; font-size: 15px; line-height: 24px; color: var(--ink-2); }
+/* 자주 묻는 질문 + 문의: 왼쪽 접고 펴는 질문, 오른쪽 문의 카드(스크롤해도 따라온다) */
+.faq-contact { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 48px; align-items: start; }
+.faq { max-width: none; border-bottom: 1px solid var(--hair); }
+.faq-item { border-top: 1px solid var(--hair); }
+.faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; cursor: pointer; list-style: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {   /* + 가 펴면 − 로 */
+  content: ""; flex: none; width: 14px; height: 14px; opacity: .55;
+  background: linear-gradient(currentColor, currentColor) center / 14px 1.5px no-repeat, linear-gradient(currentColor, currentColor) center / 1.5px 14px no-repeat;
+  transition: transform .6s cubic-bezier(.33,0,.45,1), background-size .32s cubic-bezier(.2,.8,.2,1), opacity .6s cubic-bezier(.33,0,.45,1);
+}
+.faq-item[open] summary::after { transform: rotate(180deg); background-size: 14px 1.5px, 1.5px 0; }
+.faq-item summary:hover::after { opacity: 1; transition-duration: .18s; }
+.faq-item summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 4px; }
+.faq-item h3 { margin: 0; font-size: 17px; line-height: 26px; font-weight: 600; }
+.faq-item p { margin: 0; padding: 0 32px 20px 0; font-size: 15px; line-height: 24px; color: var(--ink-2); }
+.faq-item[open] p { animation: faq-open .32s cubic-bezier(.2,.8,.2,1); }
+@keyframes faq-open { from { opacity: 0; transform: translateY(-4px); } }
 
 /* 문의: 왼쪽 머리, 오른쪽 폼 카드 — 보내면 구글 앱스 스크립트(tools/contact)가 시트에 적고 메일로 알린다 */
-.contact { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: start; }
-.contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
+.contact { position: sticky; top: 88px; display: grid; gap: 16px; }
+.contact-head h3 { font-size: 22px; line-height: 30px; font-weight: 700; }
+.contact-head p { margin-top: 6px; font-size: 15px; line-height: 24px; color: var(--ink-2); }
+.contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 28px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
 .contact-form .wide { grid-column: 1 / -1; }
 .field { display: grid; gap: 6px; }
 .field label { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--ink); }
@@ -461,6 +478,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .block { padding: 72px 0; }
   .water-deer-article { padding: 0; }
   .wiki-body { grid-template-columns: 1fr; gap: 32px; }
+  .faq-contact { grid-template-columns: 1fr; gap: 48px; }
   .wiki-infobox { max-width: 360px; }
   .block h2, .final h2 { font-size: 32px; line-height: 42px; }
   .feature { grid-template-columns: 1fr; gap: 32px; }
@@ -468,7 +486,6 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .feature.flip { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .faq-item { display: block; }
   .faq-item p { padding: 0 0 20px; }
   .top .wrap { gap: 12px; }
   .nav { display: none; }
@@ -506,7 +523,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .seg button { flex: 1; padding: 0 8px; }
   .install-card { padding: 4px 20px; }
   .install-quick { flex-direction: column; align-items: stretch; padding: 20px; }
-  .contact { grid-template-columns: 1fr; gap: 24px; }
+  .contact { position: static; }
   .contact-form { grid-template-columns: 1fr; padding: 20px; }
   .install-cta { justify-content: center; }
   .steps.install-list li { grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; align-items: start; padding: 16px 0; }
@@ -525,6 +542,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .run.go, .btn:hover .run { animation: none; }
-  .btn .i-arrow, .seg button, .copy, .country-close, .field input, .field select, .field textarea { transition: none; }
+  .btn .i-arrow, .seg button, .copy, .country-close, .field input, .field select, .field textarea, .faq-item summary::after { transition: none; }
+  .faq-item[open] p { animation: none; }
   .copy.done .i-done { animation: none; }
 }

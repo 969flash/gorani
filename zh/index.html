@@ -20,7 +20,7 @@
 <meta property="og:title" content="Gorani: 简单快速的3D地形生成与图表制作工具">
 <meta property="og:description" content="Gorani 是面向 Rhino、SketchUp 和 Blender 用户的免费开源插件，可生成场地3D地形和22种可编辑图表。">
 <meta property="og:url" content="https://969flash.github.io/gorani/zh/">
-<meta property="og:image" content="https://969flash.github.io/gorani/assets/og-zh.png">
+<meta property="og:image" content="https://969flash.github.io/gorani/assets/og-zh.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -48,14 +48,14 @@
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "inLanguage": "zh",
       "url": "https://969flash.github.io/gorani/zh/",
-      "image": "https://969flash.github.io/gorani/assets/og-zh.png",
+      "image": "https://969flash.github.io/gorani/assets/og-zh.png?v=2",
       "author": { "@type": "Person", "name": "969flash", "url": "https://github.com/969flash" },
       "featureList": [
         "周边建筑（按层数确定高度）、道路、地形、水系、绿地和铁路的3D模型",
         "分图层的 Illustrator（.ai）底图",
         "土地利用、用地分区、图底关系等分析图（SVG、AI）",
         "地块与建筑统计表（CSV）",
-        "韩国全国；日本、荷兰、法国、瑞士使用官方 3D 建筑数据；其他地区使用 OpenStreetMap"
+        "韩国全国；日本、荷兰、法国、瑞士使用官方 3D 建筑数据；美国使用 Overture Maps 建筑；其他地区使用 OpenStreetMap"
       ]
     },
     {
@@ -91,28 +91,33 @@
     <nav class="nav" aria-label="本页导航">
       <a href="#install">安装</a>
       <a href="#usage">使用方法</a>
-      <a href="#faq">常见问题</a>
-      <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>留下评价</a>
+      <a href="#contact">联系</a>
     </nav>
-    <details class="language-switch">
-      <summary aria-label="语言"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
-      <div class="language-menu" role="menu">
-        <a href="../" hreflang="ko" lang="ko" role="menuitem">한국어</a>
-        <a href="../en/" hreflang="en" lang="en" role="menuitem">English</a>
-        <a href="../ja/" hreflang="ja" lang="ja" role="menuitem">日本語</a>
-        <a href="./" hreflang="zh" lang="zh" aria-current="page" role="menuitem">简体中文</a>
-        <a href="../es/" hreflang="es" lang="es" role="menuitem">Español</a>
-      </div>
-    </details>
-    <details class="menu-switch">
-      <summary aria-label="菜单"><svg aria-hidden="true"><use href="#i-menu"/></svg></summary>
-      <div class="language-menu menu-list">
-        <a href="#install">安装</a>
-        <a href="#usage">使用方法</a>
-        <a href="#faq">常见问题</a>
-        <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>留下评价</a>
-      </div>
-    </details>
+    <div class="top-tools">
+      <a class="icon-btn" href="https://github.com/969flash/gorani-plugin" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
+      <details class="language-switch">
+        <summary aria-label="语言"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
+        <div class="language-menu" role="menu">
+          <a href="../" hreflang="ko" lang="ko" role="menuitem">한국어</a>
+          <a href="../en/" hreflang="en" lang="en" role="menuitem">English</a>
+          <a href="../ja/" hreflang="ja" lang="ja" role="menuitem">日本語</a>
+          <a href="./" hreflang="zh" lang="zh" aria-current="page" role="menuitem">简体中文</a>
+          <a href="../es/" hreflang="es" lang="es" role="menuitem">Español</a>
+        </div>
+      </details>
+      <details class="menu-switch">
+        <summary aria-label="菜单"><svg aria-hidden="true"><use href="#i-menu"/></svg></summary>
+        <div class="language-menu menu-list">
+          <a href="#install">安装</a>
+          <a href="#usage">使用方法</a>
+          <a href="#contact">联系</a>
+        </div>
+      </details>
+          <details class="faq-item">
+            <summary><h3>Rhino 7 能用吗？</h3></summary>
+            <p>可以。安装方法相同，PackageManager 会自动选择 Rhino 7 版本。在 Windows 上，面板会在 Edge 窗口中打开，并且不支持保存 DWG。</p>
+          </details>
+    </div>
   </div>
   <div class="progress" aria-hidden="true"><i></i><span class="run"></span></div>
 </header>
@@ -125,7 +130,7 @@
         <p class="lead">Gorani 是面向 Rhino、SketchUp 和 Blender 用户的免费开源插件。</p>
         <div class="acts">
           <a class="btn go" href="#install">安装 Gorani<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn icon" href="https://github.com/969flash/gorani" aria-label="GitHub" title="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
+          <a class="btn icon" href="https://github.com/969flash/gorani-plugin" aria-label="GitHub" title="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
         </div>
       </div>
 
@@ -521,16 +526,16 @@
           <article class="country-panel" data-country-panel="us" aria-labelledby="country-us-title" hidden>
             <header>
               <span class="country-flag" aria-hidden="true">🇺🇸</span>
-              <span class="country-name"><h3 id="country-us-title">美国</h3><small>即将添加</small></span>
+              <span class="country-name"><h3 id="country-us-title">美国</h3><small>3,234 个县</small></span>
               <button type="button" class="country-close" aria-label="关闭"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
             </header>
-            <p>专属数据即将添加。目前基于 OpenStreetMap 生成。</p>
+            <p>使用 Overture Maps 的 1.6161 亿栋建筑覆盖美国全境（本土、阿拉斯加、夏威夷、波多黎各）。高度大多为机器学习估算值。</p>
             <h4>数据来源</h4>
             <dl class="country-sources">
-              <div><dt>建筑</dt><dd>OpenStreetMap 建筑（高度/楼层标签，缺失时使用默认值）</dd></div>
+              <div><dt>建筑</dt><dd>Overture Maps 建筑 1.6161 亿栋（Microsoft ML Buildings、OpenStreetMap、Esri 合并，高度多为 ML 估算），3,234 个县</dd></div>
               <div><dt>道路面</dt><dd>OpenStreetMap 道路线缓冲</dd></div>
               <div><dt>地形</dt><dd>Terrain Tiles 公开高程图块</dd></div>
-              <div><dt>来源·许可</dt><dd>OpenStreetMap ODbL</dd></div>
+              <div><dt>来源·许可</dt><dd>ODbL 1.0（Overture Maps Foundation，© OpenStreetMap contributors，Microsoft）</dd></div>
             </dl>
             <small class="coverage-date">数据更新确认日：2026-10-23</small>
           </article>
@@ -607,32 +612,69 @@
     <div class="wrap">
       <div class="block-head">
         <h2 id="faq-title">常见问题</h2>
-        <a class="btn" href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>留下评价</a>
       </div>
-      <div class="faq">
-        <div class="faq-item">
-          <h3>真的免费吗？</h3>
-          <p>是的，也不需要注册账号。项目依靠赞助运营。</p>
+      <div class="faq-contact">
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>真的免费吗？</h3></summary>
+            <p>是的，也不需要注册账号。项目依靠赞助运营。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>需要 Grasshopper 或其他软件吗？</h3></summary>
+            <p>不需要。只要有 Rhino 7 及以上、SketchUp 2022 及以上或 Blender 4.2 及以上中的一个即可，支持 Windows 和 macOS。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>结果保存在哪里？</h3></summary>
+            <p>3D模型会放入当前打开的文件，文件保存在 <code>~/Gorani/result/场地_日期/</code>，包括模型文件、<code>log.txt</code> 和 <code>2D/</code> 文件夹。</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>出现问题怎么办？</h3></summary>
+            <p>请先查看结果文件夹中的 <code>log.txt</code>。如果仍未解决，请<a href="#contact">联系我们</a>。附上 <code>log.txt</code> 的内容，能帮助我们更快找到原因。</p>
+          </details>
         </div>
-        <div class="faq-item">
-          <h3>需要 Grasshopper 或其他软件吗？</h3>
-          <p>不需要。只要有 Rhino 7 及以上、SketchUp 2022 及以上或 Blender 4.2 及以上中的一个即可，支持 Windows 和 macOS。</p>
-        </div>
-        <div class="faq-item">
-          <h3>Rhino 7 能用吗？</h3>
-          <p>可以。安装方法相同，PackageManager 会自动选择 Rhino 7 版本。在 Windows 上，面板会在 Edge 窗口中打开，并且不支持保存 DWG。</p>
-        </div>
-        <div class="faq-item">
-          <h3>结果保存在哪里？</h3>
-          <p>3D模型会放入当前打开的文件，文件保存在 <code>~/Gorani/result/场地_日期/</code>，包括模型文件、<code>log.txt</code> 和 <code>2D/</code> 文件夹。</p>
-        </div>
-        <div class="faq-item">
-          <h3>出现问题怎么办？</h3>
-          <p>请先查看结果文件夹中的 <code>log.txt</code>。如果仍未解决，请在 <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a> 提交问题并附上 <code>log.txt</code>。</p>
+        <div class="contact" id="contact" aria-labelledby="contact-title">
+          <div class="contact-head">
+            <h3 id="contact-title">联系我们</h3>
+          </div>
+          <form class="contact-form" novalidate data-sending="发送中…" data-sent="已发送。我们会回复到 {email}。" data-error="发送失败。请稍后再试，或在 GitHub Issues 留言。" data-unready="联系表单正在准备中，目前请使用 GitHub Issues。">
+            <div class="field">
+              <label for="c-name">姓名</label>
+              <input id="c-name" name="name" type="text" autocomplete="name" maxlength="60" required>
+            </div>
+            <div class="field">
+              <label for="c-email">邮箱</label>
+              <input id="c-email" name="email" type="email" autocomplete="email" maxlength="120" required>
+            </div>
+            <div class="field wide">
+              <label for="c-topic">主题</label>
+              <select id="c-topic" name="topic" required>
+                <option value="" disabled selected>选择主题</option>
+                  <option value="usage">使用方法</option>
+                  <option value="bug">错误报告</option>
+                  <option value="data">地区·数据需求</option>
+                  <option value="idea">功能建议</option>
+                  <option value="other">其他</option>
+              </select>
+            </div>
+            <div class="field wide">
+              <label for="c-message">内容</label>
+              <textarea id="c-message" name="message" rows="6" maxlength="4000" placeholder="如果是错误，请写下当时在做什么、出现了什么提示。" required></textarea>
+            </div>
+            <div class="field trap" aria-hidden="true">
+              <label for="c-website">Website</label>
+              <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <label class="consent wide"><input name="consent" type="checkbox" required><span>我们会回复到您填写的邮箱。我们仅为回复收集姓名和邮箱，回复一年后删除。我同意。</span></label>
+            <div class="contact-send wide">
+              <button class="btn go" type="submit">发送<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+              <p class="contact-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </section>
+
 
   <section class="block soft final" aria-labelledby="final-title">
     <div class="wrap">
@@ -665,7 +707,7 @@
   <div class="wrap">
     <div class="fine">
       <span class="mark" aria-hidden="true"></span>
-      <p>作者 <a href="https://github.com/969flash">Hoon</a> 和 <a href="https://wjcho.com">Cho</a>。版本 0.3.4。</p>
+      <p>作者 <a href="https://github.com/969flash">Hoon</a> 和 <a href="https://wjcho.com">Cho</a>。版本 0.3.7。<a href="mailto:gorani.3d@gmail.com">gorani.3d@gmail.com</a></p>
       <p>我们是饿着肚子的研究生。如果 Gorani 帮到了你，请请我们喝杯咖啡。</p>
       <a class="btn" href="https://github.com/sponsors/969flash">在 GitHub 上赞助</a>
     </div>

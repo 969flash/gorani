@@ -20,7 +20,7 @@
 <meta property="og:title" content="Gorani: Terreno 3D y diagramas, fácil y rápido">
 <meta property="og:description" content="Gorani es un plugin gratuito y de código abierto para usuarios de Rhino, SketchUp y Blender. Crea el terreno 3D del sitio y 22 diagramas editables.">
 <meta property="og:url" content="https://969flash.github.io/gorani/es/">
-<meta property="og:image" content="https://969flash.github.io/gorani/assets/og-es.png">
+<meta property="og:image" content="https://969flash.github.io/gorani/assets/og-es.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -48,14 +48,14 @@
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "inLanguage": "es",
       "url": "https://969flash.github.io/gorani/es/",
-      "image": "https://969flash.github.io/gorani/assets/og-es.png",
+      "image": "https://969flash.github.io/gorani/assets/og-es.png?v=2",
       "author": { "@type": "Person", "name": "969flash", "url": "https://github.com/969flash" },
       "featureList": [
         "Modelo 3D de edificios del entorno (altura según número de plantas), calles, terreno, agua, zonas verdes y ferrocarril",
         "Plano base de Illustrator (.ai) por capas",
         "Mapas de análisis como uso del suelo, zonificación y figura-fondo (SVG, AI)",
         "Tablas de parcelas y edificios (CSV)",
-        "Corea en todo el país; datos oficiales de edificios 3D en Japón, Países Bajos, Francia y Suiza; resto del mundo con OpenStreetMap"
+        "Corea en todo el país; datos oficiales de edificios 3D en Japón, Países Bajos, Francia y Suiza; edificios de Overture Maps en Estados Unidos; resto del mundo con OpenStreetMap"
       ]
     },
     {
@@ -91,28 +91,33 @@
     <nav class="nav" aria-label="En esta página">
       <a href="#install">Instalar</a>
       <a href="#usage">Cómo usar</a>
-      <a href="#faq">Preguntas</a>
-      <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>Dejar una reseña</a>
+      <a href="#contact">Contacto</a>
     </nav>
-    <details class="language-switch">
-      <summary aria-label="Idioma"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
-      <div class="language-menu" role="menu">
-        <a href="../" hreflang="ko" lang="ko" role="menuitem">한국어</a>
-        <a href="../en/" hreflang="en" lang="en" role="menuitem">English</a>
-        <a href="../ja/" hreflang="ja" lang="ja" role="menuitem">日本語</a>
-        <a href="../zh/" hreflang="zh" lang="zh" role="menuitem">简体中文</a>
-        <a href="./" hreflang="es" lang="es" aria-current="page" role="menuitem">Español</a>
-      </div>
-    </details>
-    <details class="menu-switch">
-      <summary aria-label="Menú"><svg aria-hidden="true"><use href="#i-menu"/></svg></summary>
-      <div class="language-menu menu-list">
-        <a href="#install">Instalar</a>
-        <a href="#usage">Cómo usar</a>
-        <a href="#faq">Preguntas</a>
-        <a href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>Dejar una reseña</a>
-      </div>
-    </details>
+    <div class="top-tools">
+      <a class="icon-btn" href="https://github.com/969flash/gorani-plugin" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
+      <details class="language-switch">
+        <summary aria-label="Idioma"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
+        <div class="language-menu" role="menu">
+          <a href="../" hreflang="ko" lang="ko" role="menuitem">한국어</a>
+          <a href="../en/" hreflang="en" lang="en" role="menuitem">English</a>
+          <a href="../ja/" hreflang="ja" lang="ja" role="menuitem">日本語</a>
+          <a href="../zh/" hreflang="zh" lang="zh" role="menuitem">简体中文</a>
+          <a href="./" hreflang="es" lang="es" aria-current="page" role="menuitem">Español</a>
+        </div>
+      </details>
+      <details class="menu-switch">
+        <summary aria-label="Menú"><svg aria-hidden="true"><use href="#i-menu"/></svg></summary>
+        <div class="language-menu menu-list">
+          <a href="#install">Instalar</a>
+          <a href="#usage">Cómo usar</a>
+          <a href="#contact">Contacto</a>
+        </div>
+      </details>
+          <details class="faq-item">
+            <summary><h3>¿Funciona en Rhino 7?</h3></summary>
+            <p>Sí. La instalación es la misma y PackageManager descarga la versión para Rhino 7. En Windows el panel se abre en una ventana de Edge y no incluye exportación DWG.</p>
+          </details>
+    </div>
   </div>
   <div class="progress" aria-hidden="true"><i></i><span class="run"></span></div>
 </header>
@@ -125,7 +130,7 @@
         <p class="lead">Gorani es un plugin gratuito y de código abierto para usuarios de Rhino, SketchUp y Blender.</p>
         <div class="acts">
           <a class="btn go" href="#install">Instala Gorani<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn icon" href="https://github.com/969flash/gorani" aria-label="GitHub" title="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
+          <a class="btn icon" href="https://github.com/969flash/gorani-plugin" aria-label="GitHub" title="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
         </div>
       </div>
 
@@ -521,16 +526,16 @@
           <article class="country-panel" data-country-panel="us" aria-labelledby="country-us-title" hidden>
             <header>
               <span class="country-flag" aria-hidden="true">🇺🇸</span>
-              <span class="country-name"><h3 id="country-us-title">Estados Unidos</h3><small>Próximamente</small></span>
+              <span class="country-name"><h3 id="country-us-title">Estados Unidos</h3><small>3.234 condados</small></span>
               <button type="button" class="country-close" aria-label="Cerrar"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
             </header>
-            <p>Los datos propios llegarán pronto. Por ahora, el modelo se genera con OpenStreetMap.</p>
+            <p>161,6 millones de edificios de Overture Maps cubren todo el país (territorio continental, Alaska, Hawái y Puerto Rico). Las alturas son en su mayoría estimaciones por aprendizaje automático.</p>
             <h4>Fuentes de datos</h4>
             <dl class="country-sources">
-              <div><dt>Edificios</dt><dd>Edificios de OpenStreetMap (etiquetas de altura/niveles; valor predeterminado si faltan)</dd></div>
+              <div><dt>Edificios</dt><dd>Edificios de Overture Maps, 161,6 millones (Microsoft ML Buildings, OpenStreetMap y Esri combinados; alturas en su mayoría estimadas por ML), 3.234 condados</dd></div>
               <div><dt>Superficie vial</dt><dd>Líneas viales de OpenStreetMap con búfer</dd></div>
               <div><dt>Terreno</dt><dd>Teselas de elevación públicas Terrain Tiles</dd></div>
-              <div><dt>Fuente y licencia</dt><dd>OpenStreetMap ODbL</dd></div>
+              <div><dt>Fuente y licencia</dt><dd>ODbL 1.0 (Overture Maps Foundation, © OpenStreetMap contributors, Microsoft)</dd></div>
             </dl>
             <small class="coverage-date">Actualización de datos comprobada: 2026-10-23</small>
           </article>
@@ -607,32 +612,69 @@
     <div class="wrap">
       <div class="block-head">
         <h2 id="faq-title">Preguntas frecuentes</h2>
-        <a class="btn" href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>Dejar una reseña</a>
       </div>
-      <div class="faq">
-        <div class="faq-item">
-          <h3>¿De verdad es gratis?</h3>
-          <p>Sí, y no necesitas cuenta. Se mantiene con patrocinios.</p>
+      <div class="faq-contact">
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary><h3>¿De verdad es gratis?</h3></summary>
+            <p>Sí, y no necesitas cuenta. Se mantiene con patrocinios.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>¿Necesito Grasshopper u otro programa?</h3></summary>
+            <p>No. Solo necesitas Rhino 7 o posterior, SketchUp 2022 o posterior, o Blender 4.2 o posterior, en Windows o macOS.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>¿Dónde se guardan los resultados?</h3></summary>
+            <p>El modelo 3D entra en el documento abierto. Los archivos se guardan en <code>~/Gorani/result/sitio_fecha/</code>: el archivo del modelo, <code>log.txt</code> y la carpeta <code>2D/</code>.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Algo salió mal. ¿Qué hago?</h3></summary>
+            <p>Primero revisa <code>log.txt</code> en la carpeta de resultados. Si no se resuelve, <a href="#contact">escríbenos</a>. Si pegas el contenido de <code>log.txt</code>, encontraremos la causa más rápido.</p>
+          </details>
         </div>
-        <div class="faq-item">
-          <h3>¿Necesito Grasshopper u otro programa?</h3>
-          <p>No. Solo necesitas Rhino 7 o posterior, SketchUp 2022 o posterior, o Blender 4.2 o posterior, en Windows o macOS.</p>
-        </div>
-        <div class="faq-item">
-          <h3>¿Funciona en Rhino 7?</h3>
-          <p>Sí. Se instala igual; PackageManager elige la versión para Rhino 7. En Windows el panel se abre en una ventana de Edge y no se puede guardar en DWG.</p>
-        </div>
-        <div class="faq-item">
-          <h3>¿Dónde se guardan los resultados?</h3>
-          <p>El modelo 3D entra en el documento abierto. Los archivos se guardan en <code>~/Gorani/result/sitio_fecha/</code>: el archivo del modelo, <code>log.txt</code> y la carpeta <code>2D/</code>.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Algo salió mal. ¿Qué hago?</h3>
-          <p>Primero revisa <code>log.txt</code> en la carpeta de resultados. Si no se resuelve, abre una incidencia en <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a> y adjunta <code>log.txt</code>.</p>
+        <div class="contact" id="contact" aria-labelledby="contact-title">
+          <div class="contact-head">
+            <h3 id="contact-title">Contacto</h3>
+          </div>
+          <form class="contact-form" novalidate data-sending="Enviando…" data-sent="Enviado. Te responderemos a {email}." data-error="No se pudo enviar. Inténtalo de nuevo en un momento o escribe en GitHub Issues." data-unready="El formulario aún no está listo. Por ahora usa GitHub Issues.">
+            <div class="field">
+              <label for="c-name">Nombre</label>
+              <input id="c-name" name="name" type="text" autocomplete="name" maxlength="60" required>
+            </div>
+            <div class="field">
+              <label for="c-email">Correo electrónico</label>
+              <input id="c-email" name="email" type="email" autocomplete="email" maxlength="120" required>
+            </div>
+            <div class="field wide">
+              <label for="c-topic">Tema</label>
+              <select id="c-topic" name="topic" required>
+                <option value="" disabled selected>Elige un tema</option>
+                  <option value="usage">Cómo usarlo</option>
+                  <option value="bug">Informar de un error</option>
+                  <option value="data">Petición de región o datos</option>
+                  <option value="idea">Idea de función</option>
+                  <option value="other">Otro</option>
+              </select>
+            </div>
+            <div class="field wide">
+              <label for="c-message">Mensaje</label>
+              <textarea id="c-message" name="message" rows="6" maxlength="4000" placeholder="Si es un error, cuéntanos qué hacías y qué mensaje apareció." required></textarea>
+            </div>
+            <div class="field trap" aria-hidden="true">
+              <label for="c-website">Website</label>
+              <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <label class="consent wide"><input name="consent" type="checkbox" required><span>Te responderemos al correo que indiques. Guardamos tu nombre y correo solo para responderte y los borramos un año después de la respuesta. Acepto.</span></label>
+            <div class="contact-send wide">
+              <button class="btn go" type="submit">Enviar<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+              <p class="contact-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </section>
+
 
   <section class="block soft final" aria-labelledby="final-title">
     <div class="wrap">
@@ -665,7 +707,7 @@
   <div class="wrap">
     <div class="fine">
       <span class="mark" aria-hidden="true"></span>
-      <p>Hecho por <a href="https://github.com/969flash">Hoon</a> y <a href="https://wjcho.com">Cho</a>. Versión 0.3.4.</p>
+      <p>Hecho por <a href="https://github.com/969flash">Hoon</a> y <a href="https://wjcho.com">Cho</a>. Versión 0.3.7. <a href="mailto:gorani.3d@gmail.com">gorani.3d@gmail.com</a></p>
       <p>Somos estudiantes de posgrado con hambre. Si Gorani te ayudó, invítanos a un café.</p>
       <a class="btn" href="https://github.com/sponsors/969flash">Patrocinar en GitHub</a>
     </div>

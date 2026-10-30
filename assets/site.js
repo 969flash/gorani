@@ -23,6 +23,8 @@
     document.head.appendChild(tag);
   }
   function track(name, params) { if (window.gtag) window.gtag("event", name, params); }
+  // 문의 받는 곳 — 구글 앱스 스크립트 웹 앱 주소(tools/contact/README.md). 비면 폼이 '준비 중'을 띄운다
+  var CONTACT_URL = "https://script.google.com/macros/s/AKfycbxjfiwvtAXoDbKTjeiVvg6TosK3SA5i_ZzoPk6XkdI4sLhQQOAP_uqWzPQMKTynry-E/exec";
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   var lang = document.documentElement.lang === "ko" ? "ko" : "en";
@@ -61,8 +63,8 @@
     if (a.closest(".language-switch")) return track("language_switch", { from: pageLang, to: a.getAttribute("lang") });
     if (a.getAttribute("href") === "#install") return track("install_cta", { place: place(a) });
     var href = a.href;
-    var target = /\/gorani\/issues/.test(href) ? "review" : /github\.com\/sponsors\//.test(href) ? "sponsor"
-      : /github\.com\/969flash\/gorani\/?$/.test(href) ? "github" : /wikipedia\.org/.test(href) ? "wikipedia" : "";
+    var target = /\/gorani(-plugin)?\/issues/.test(href) ? "review" : /github\.com\/sponsors\//.test(href) ? "sponsor"
+      : /github\.com\/969flash\/gorani(-plugin)?\/?$/.test(href) ? "github" : /wikipedia\.org/.test(href) ? "wikipedia" : "";
     if (target) track("outbound_click", { target: target, place: place(a) });
   });
   if ("IntersectionObserver" in window) {
@@ -81,7 +83,7 @@
     ".block-head h2", ".block-head .sub", ".block-head > .seg", ".block-head > .btn",
     ".support .host-link", ".feature",
     "#install [role=tabpanel]:not([hidden]) .install-quick", "#install [role=tabpanel]:not([hidden]) .install-card",
-    ".usage li", ".country-marquee", ".faq-item", ".final .wrap"
+    ".usage li", ".country-marquee", ".faq", ".contact", ".final .wrap"
   ].join(", ")));
   revealTargets.forEach(function (el) { el.classList.add("reveal"); });
   if ("IntersectionObserver" in window && !reduce.matches) {
@@ -221,6 +223,46 @@
       var code = countryOpen;
       showCountry("");
       if (countryDetail.contains(document.activeElement) || countryRow.contains(document.activeElement)) firstCard(code).focus({ preventScroll: true });
+    });
+  }
+
+  // ── 문의: 칸을 확인하고 앱스 스크립트로 보낸다(text/plain이라 사전 요청 없이 간다). 숨은 칸이 채워졌거나 너무 빨리 보내면 봇으로 보고 성공처럼 보인다 ──
+  var contact = document.querySelector(".contact-form");
+  if (contact) {
+    var shownAt = Date.now();
+    var status = contact.querySelector(".contact-status");
+    var sendBtn = contact.querySelector('button[type="submit"]');
+    var note = function (text, isError) { status.textContent = text; status.classList.toggle("error", !!isError); };
+    var finish = function (email) {
+      contact.classList.add("sent");
+      note(contact.getAttribute("data-sent").replace("{email}", email));
+    };
+    contact.addEventListener("submit", function (e) {
+      e.preventDefault();
+      contact.classList.add("checked");
+      if (!contact.checkValidity()) { contact.reportValidity(); return; }
+      var f = contact.elements;
+      var email = f.email.value.trim();
+      if (f.website.value || Date.now() - shownAt < 3000) { finish(email); return; }
+      if (!CONTACT_URL) { note(contact.getAttribute("data-unready"), true); return; }
+      sendBtn.disabled = true;
+      note(contact.getAttribute("data-sending"));
+      var topic = f.topic.value;
+      fetch(CONTACT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          app: "gorani-web", lang: pageLang, page: location.href, topic: topic,
+          name: f.name.value.trim(), email: email, message: f.message.value.trim(), elapsed: Date.now() - shownAt
+        })
+      }).then(function (r) { return r.json(); }).then(function (res) {
+        if (!res || !res.ok) throw new Error(res && res.error);
+        finish(email);
+        track("contact_submit", { topic: topic });
+      }).catch(function () {
+        sendBtn.disabled = false;
+        note(contact.getAttribute("data-error"), true);
+      });
     });
   }
 

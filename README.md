@@ -12,16 +12,17 @@ Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino
 ## Install
 
 - Rhino 7 and 8: `PackageManager`, search `Gorani`, install, restart Rhino, run `Gorani`.
-- SketchUp 2022+: Extensions > Extension Warehouse, search `Gorani`, install.
-- Blender 4.2+: Edit > Preferences > Get Extensions, search `Gorani`, install.
+- SketchUp 2022+: Extensions > Extension Warehouse, search `Gorani`, install (listing pending approval).
+- Blender 4.2+: Edit > Preferences > Get Extensions, search `Gorani`, install (listing in review).
 
 ## Coverage
 
 Coverage status on the website was last checked on 2026-10-23. Dataset-specific reference dates are printed in generated drawings and `log.txt`.
 
 - **Korea, nationwide**: cadastre, buildings, 1:5,000 terrain, zoning; analysis maps (figure-ground, zoning, land use, street hierarchy, building age and more).
-- **Japan**: PLATEAU buildings (MLIT), GSI 5 m terrain, OpenStreetMap roads.
+- **Japan**: PLATEAU buildings and road surfaces (MLIT), GSI 5 m terrain.
 - **Netherlands, France, Switzerland**: official building footprints with measured heights (Kadaster 3D Basisvoorziening, IGN BD TOPO, swisstopo swissBUILDINGS3D).
+- **United States**: Overture Maps buildings (Microsoft ML Buildings, OpenStreetMap, Esri; heights mostly ML estimates), 3,234 counties.
 - **Elsewhere**: OpenStreetMap buildings and roads, public terrain tiles.
 
 ## This repository

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gorani: Easy, fast 3D terrain and diagram maker (free plugin for Rhino, SketchUp, Blender)</title>
-<meta name="description" content="Pick a site and Gorani builds the surrounding buildings, roads and terrain in 3D, and saves a basemap and analysis maps as Illustrator files. A free plugin for Rhino 7+, SketchUp and Blender.">
+<meta name="description" content="Pick a site and Gorani builds the surrounding buildings, roads and terrain in 3D, and saves a basemap and analysis maps as Illustrator files. A free plugin for Rhino 7 and 8, SketchUp and Blender.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1, max-snippet:-1">
 <link rel="alternate" type="text/plain" href="https://969flash.github.io/gorani/llms.txt">
 <link rel="canonical" href="https://969flash.github.io/gorani/en/">
@@ -38,9 +38,9 @@
     {
       "@type": "SoftwareApplication",
       "name": "Gorani",
-      "description": "Pick a site and Gorani builds the surrounding buildings, roads, terrain and water as a 3D model, and saves a layered Illustrator basemap and urban analysis maps. Free plugin for Rhino 7+, SketchUp and Blender.",
+      "description": "Pick a site and Gorani builds the surrounding buildings, roads, terrain and water as a 3D model, and saves a layered Illustrator basemap and urban analysis maps. Free plugin for Rhino 7 and 8, SketchUp and Blender.",
       "applicationCategory": "DesignApplication",
-      "applicationSubCategory": "Rhino 7+, SketchUp, Blender plugin",
+      "applicationSubCategory": "Rhino 7/8, SketchUp, Blender plugin",
       "operatingSystem": "Windows, macOS",
       "softwareRequirements": "Rhinoceros 7 or later, SketchUp 2022 or later, Blender 4.2 or later",
       "softwareVersion": "0.3.7",
@@ -113,6 +113,10 @@
           <a href="#contact">Contact</a>
         </div>
       </details>
+          <details class="faq-item">
+            <summary><h3>Does it work in Rhino 7?</h3></summary>
+            <p>Yes. The installation is the same, and PackageManager picks the Rhino 7 build. On Windows the panel opens in an Edge window, and DWG export is not available.</p>
+          </details>
     </div>
   </div>
   <div class="progress" aria-hidden="true"><i></i><span class="run"></span></div>
@@ -217,7 +221,7 @@
       <div class="block-head">
         <h2 id="install-title">Install</h2>
         <div class="seg" role="tablist" aria-label="Program">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7/8</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
         </div>
@@ -226,9 +230,12 @@
         <div class="install-quick">
           <div>
             <h3>Quick install</h3>
-            <p>The Package Manager in Rhino 7 or 8 opens with Gorani already searched.</p>
+            <p>Rhino’s Package Manager opens with Gorani already searched.</p>
           </div>
-          <a class="btn go install-cta" href="rhino://package/search?name=gorani">Install in Rhino<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <div class="install-ctas">
+            <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Install in Rhino 8<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn go install-cta" href="rhino7://package/search?name=gorani">Install in Rhino 7<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
         </div>
         <div class="install-card">
           <ol class="steps install-list">

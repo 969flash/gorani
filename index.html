@@ -38,9 +38,9 @@
     {
       "@type": "SoftwareApplication",
       "name": "Gorani",
-      "description": "대상지를 고르면 주변 건물, 도로, 지형, 하천을 3D 모델로 만들고 베이스맵과 현황도, 분석도를 일러스트레이터 파일로 저장하는 무료 플러그인. Rhino 7 이상, SketchUp, Blender에서 작동.",
+      "description": "대상지를 고르면 주변 건물, 도로, 지형, 하천을 3D 모델로 만들고 베이스맵과 현황도, 분석도를 일러스트레이터 파일로 저장하는 무료 플러그인. Rhino 7·8, SketchUp, Blender에서 작동.",
       "applicationCategory": "DesignApplication",
-      "applicationSubCategory": "Rhino 7+, SketchUp, Blender plugin",
+      "applicationSubCategory": "Rhino 7/8, SketchUp, Blender plugin",
       "operatingSystem": "Windows, macOS",
       "softwareRequirements": "Rhinoceros 7 이상, SketchUp 2022 이상, Blender 4.2 이상",
       "softwareVersion": "0.3.7",
@@ -113,6 +113,10 @@
           <a href="#contact">문의</a>
         </div>
       </details>
+          <details class="faq-item">
+            <summary><h3>Rhino 7에서도 되나요?</h3></summary>
+            <p>네. 설치 방법은 같고, PackageManager가 Rhino 7용 판을 골라 받습니다. Windows에서는 패널이 Edge 창으로 열리고, DWG 저장은 없습니다.</p>
+          </details>
     </div>
   </div>
   <div class="progress" aria-hidden="true"><i></i><span class="run"></span></div>
@@ -217,7 +221,7 @@
       <div class="block-head">
         <h2 id="install-title">설치</h2>
         <div class="seg" role="tablist" aria-label="프로그램">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7·8</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
         </div>
@@ -226,9 +230,12 @@
         <div class="install-quick">
           <div>
             <h3>바로 설치</h3>
-            <p>Rhino 7·8의 패키지 매니저가 Gorani 검색 결과로 열립니다.</p>
+            <p>Rhino의 패키지 매니저가 Gorani 검색 결과로 열립니다.</p>
           </div>
-          <a class="btn go install-cta" href="rhino://package/search?name=gorani">Rhino에서 설치<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <div class="install-ctas">
+            <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Rhino 8에서 설치<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn go install-cta" href="rhino7://package/search?name=gorani">Rhino 7에서 설치<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
         </div>
         <div class="install-card">
           <ol class="steps install-list">

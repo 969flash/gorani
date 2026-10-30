@@ -6,7 +6,7 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1, max-snippet:-1">
 <link rel="alternate" type="text/plain" href="https://969flash.github.io/gorani/llms.txt">
 <title>Gorani: Terreno 3D y diagramas, fácil y rápido (plugin gratuito para Rhino, SketchUp y Blender)</title>
-<meta name="description" content="Elige un sitio y Gorani crea en 3D los edificios, calles y terreno del entorno, y guarda un plano base y mapas de análisis como archivos de Illustrator. Plugin gratuito para Rhino 7 o posterior, SketchUp y Blender.">
+<meta name="description" content="Elige un sitio y Gorani crea en 3D los edificios, calles y terreno del entorno, y guarda un plano base y mapas de análisis como archivos de Illustrator. Plugin gratuito para Rhino 7 y 8, SketchUp y Blender.">
 <link rel="canonical" href="https://969flash.github.io/gorani/es/">
 <link rel="alternate" hreflang="ko" href="https://969flash.github.io/gorani/">
 <link rel="alternate" hreflang="en" href="https://969flash.github.io/gorani/en/">
@@ -38,9 +38,9 @@
     {
       "@type": "SoftwareApplication",
       "name": "Gorani",
-      "description": "Elige un sitio y Gorani crea un modelo 3D de los edificios, calles, terreno y agua del entorno, y guarda un plano base de Illustrator por capas y mapas de análisis urbano. Plugin gratuito para Rhino 7 o posterior, SketchUp y Blender.",
+      "description": "Elige un sitio y Gorani crea un modelo 3D de los edificios, calles, terreno y agua del entorno, y guarda un plano base de Illustrator por capas y mapas de análisis urbano. Plugin gratuito para Rhino 7 y 8, SketchUp y Blender.",
       "applicationCategory": "DesignApplication",
-      "applicationSubCategory": "Rhino 7+, SketchUp, Blender plugin",
+      "applicationSubCategory": "Rhino 7/8, SketchUp, Blender plugin",
       "operatingSystem": "Windows, macOS",
       "softwareRequirements": "Rhinoceros 7 o posterior, SketchUp 2022 o posterior, Blender 4.2 o posterior",
       "softwareVersion": "0.3.7",
@@ -113,6 +113,10 @@
           <a href="#contact">Contacto</a>
         </div>
       </details>
+          <details class="faq-item">
+            <summary><h3>¿Funciona en Rhino 7?</h3></summary>
+            <p>Sí. La instalación es la misma y PackageManager descarga la versión para Rhino 7. En Windows el panel se abre en una ventana de Edge y no incluye exportación DWG.</p>
+          </details>
     </div>
   </div>
   <div class="progress" aria-hidden="true"><i></i><span class="run"></span></div>
@@ -217,7 +221,7 @@
       <div class="block-head">
         <h2 id="install-title">Instalar</h2>
         <div class="seg" role="tablist" aria-label="Programa">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7/8</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
         </div>
@@ -226,9 +230,12 @@
         <div class="install-quick">
           <div>
             <h3>Instalación rápida</h3>
-            <p>El Package Manager de Rhino 7 u 8 se abre con Gorani ya buscado.</p>
+            <p>El Package Manager de Rhino se abre con Gorani ya buscado.</p>
           </div>
-          <a class="btn go install-cta" href="rhino://package/search?name=gorani">Instalar en Rhino<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <div class="install-ctas">
+            <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Instalar en Rhino 8<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn go install-cta" href="rhino7://package/search?name=gorani">Instalar en Rhino 7<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
         </div>
         <div class="install-card">
           <ol class="steps install-list">

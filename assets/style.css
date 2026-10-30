@@ -441,10 +441,11 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 [role="tabpanel"][hidden] { display: none; }
 /* 설치 카드: 세 프로그램 모두 같은 번호 목록(명령은 줄 오른쪽). Rhino만 맨 위에 바로 설치 한 줄을 더한다 */
 .install-card { padding: 8px 32px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
-.install-quick { display: flex; align-items: center; justify-content: space-between; gap: 16px 32px; margin-bottom: 12px; padding: 20px 24px 20px 32px; border-radius: 16px; background: var(--press); }
+.install-quick { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; margin-bottom: 12px; padding: 20px 24px 20px 32px; border-radius: 16px; background: var(--press); }
 .install-quick h3 { font-size: 17px; line-height: 24px; font-weight: 700; }
 .install-quick p { margin-top: 2px; font-size: 14px; line-height: 20px; color: var(--ink-2); }
-.install-cta { flex: none; }   /* food4rhino Install과 같은 rhino:// 링크(Rhino 7·8 패키지 매니저) */
+.install-ctas { display: flex; gap: 8px; flex: none; }
+.install-cta { flex: none; }   /* food4rhino Install과 같은 rhino8://·rhino7:// 링크 */
 .install-cta[aria-disabled="true"], .install-cta[aria-disabled="true"]:hover { gap: 8px; background: var(--hair); border-color: var(--hair); color: var(--ink-3); cursor: not-allowed; }   /* SketchUp·Blender: 스토어 업로드 전까지 누를 수 없음 */
 .install-cta small { padding: 2px 8px; border-radius: 999px; background: var(--surface); font-size: 12px; line-height: 16px; font-weight: 600; }
 .steps.install-list { display: block; }
@@ -521,6 +522,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .seg button { flex: 1; padding: 0 8px; }
   .install-card { padding: 4px 20px; }
   .install-quick { flex-direction: column; align-items: stretch; padding: 20px; }
+  .install-ctas { flex-direction: column; }
   .contact { position: static; }
   .contact-form { grid-template-columns: 1fr; padding: 20px; }
   .install-cta { justify-content: center; }

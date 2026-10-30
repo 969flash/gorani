@@ -13,7 +13,7 @@
 
 ## Install (Rhino 7 and 8)
 
-For people: type `PackageManager` in the Rhino command line, search `Gorani`, install, restart Rhino. Rhino 7 gets its own build from the same Package Manager search. In Rhino 7 the panel opens in a Rhino window on macOS and an Edge window on Windows, and DWG export is not available.
+For people: type `PackageManager` in the Rhino command line, search `Gorani`, install, restart Rhino. PackageManager picks the build for the running Rhino (7 or 8). In Rhino 7 the panel opens in a Rhino window on macOS and an Edge window on Windows, and DWG export is not available.
 
 For agents with shell access (use the Rhino version that is installed):
 
@@ -23,10 +23,11 @@ For agents with shell access (use the Rhino version that is installed):
 "C:\Program Files\Rhino 7\System\Yak.exe" install Gorani
 # macOS
 "/Applications/Rhino 8.app/Contents/Resources/bin/yak" install Gorani
+
 "/Applications/Rhino 7.app/Contents/Resources/bin/yak" install Gorani
 ```
 
-Rhino must restart before the plugin loads. Then run the command `_Gorani` (for example through RhinoApp.RunScript) to open the panel. There is no scripted API yet: the user picks the site and range in the panel (map with search by address, parcel number or place name), presses Create 3D model, and optionally Create 2D material for the basemap and analysis maps. The panel opens in English; Korean, Spanish, Japanese and Simplified Chinese are available from the globe button at the top (the choice is saved).
+Rhino must restart before the plugin loads. Then run the command `_Gorani` (for example through RhinoApp.RunScript) to open the panel. There is no scripted API yet: the user picks the site and range in the panel (map with search by address, parcel number or place name), presses Create 3D model, and optionally Create 2D material for the basemap and analysis maps. The panel opens in English; Korean, Spanish, Japanese and Simplified Chinese are available from the globe button at the top (the choice is saved). In Rhino 7 on Windows the panel opens in a Microsoft Edge app window instead of inside Rhino, and DWG export is Rhino 8 only.
 
 No Grasshopper, no Python packages and no other software are required.
 

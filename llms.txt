@@ -71,4 +71,4 @@ Coverage status on this website was last checked on 2026-10-23. Dataset-specific
 - Website (Japanese): https://969flash.github.io/gorani/ja/
 - Website (Simplified Chinese): https://969flash.github.io/gorani/zh/
 - Website (Spanish): https://969flash.github.io/gorani/es/
-- Issues and releases: https://github.com/969flash/gorani
+- Issues and releases: https://github.com/969flash/gorani-plugin

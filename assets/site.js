@@ -63,8 +63,8 @@
     if (a.closest(".language-switch")) return track("language_switch", { from: pageLang, to: a.getAttribute("lang") });
     if (a.getAttribute("href") === "#install") return track("install_cta", { place: place(a) });
     var href = a.href;
-    var target = /\/gorani\/issues/.test(href) ? "review" : /github\.com\/sponsors\//.test(href) ? "sponsor"
-      : /github\.com\/969flash\/gorani\/?$/.test(href) ? "github" : /wikipedia\.org/.test(href) ? "wikipedia" : "";
+    var target = /\/gorani(-plugin)?\/issues/.test(href) ? "review" : /github\.com\/sponsors\//.test(href) ? "sponsor"
+      : /github\.com\/969flash\/gorani(-plugin)?\/?$/.test(href) ? "github" : /wikipedia\.org/.test(href) ? "wikipedia" : "";
     if (target) track("outbound_click", { target: target, place: place(a) });
   });
   if ("IntersectionObserver" in window) {

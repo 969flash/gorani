@@ -311,32 +311,49 @@
       <div role="tabpanel" id="p-autocad" aria-labelledby="tab-autocad" hidden>
         <div class="install-quick">
           <div>
-            <h3>Instalar desde archivo</h3>
+            <h3>Windows</h3>
             <p>Pendiente de aprobación en Autodesk App Store</p>
           </div>
-          <div class="install-ctas">
-            <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Descargar para Windows<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip">Descargar para macOS<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Descargar para Windows<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
             <li>
               <h3>Descomprimir</h3>
-              <p>En Windows, haz clic derecho en el zip, abre <span class="ui">Propiedades</span> y marca <span class="ui">Desbloquear</span> antes de descomprimir.</p>
+              <p>Haz clic derecho en el zip, abre <span class="ui">Propiedades</span>, marca <span class="ui">Desbloquear</span> y descomprímelo.</p>
             </li>
             <li>
-              <h3>Windows: mover la carpeta</h3>
+              <h3>Mover la carpeta</h3>
               <p>Mueve la carpeta <code>Gorani.bundle</code> a esta ubicación. Si Windows pide permiso de administrador, pulsa <span class="ui">Continuar</span>.</p>
               <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="Ruta copiada" aria-label="Copiar ruta"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
-              <h3>macOS: mover la carpeta</h3>
-              <p>En Finder, abre <span class="ui">Ir &gt; Ir a la carpeta</span>, pega esta ruta y mueve <code>Gorani.bundle</code> a la carpeta que se abre.</p>
+              <h3>Reiniciar AutoCAD</h3>
+              <p>Gorani se carga al iniciar AutoCAD.</p>
+            </li>
+            <li>
+              <h3>Abrir el panel</h3>
+              <p>Escribe en la línea de comandos</p>
+              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANI copiado" aria-label="Copiar GORANI"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+          </ol>
+        </div>
+        <div class="install-quick">
+          <div>
+            <h3>macOS</h3>
+            <p>Pendiente de aprobación en Autodesk App Store</p>
+          </div>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip">Descargar para macOS<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>Mover la carpeta</h3>
+              <p>En Finder, elige <span class="ui">Ir &gt; Ir a la carpeta</span> y pega esta ruta. Mueve allí la carpeta <code>Gorani.bundle</code> descomprimida.</p>
               <span class="cmd path"><code>~/Library/Application Support/<wbr>Autodesk/<wbr>ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="Ruta copiada" aria-label="Copiar ruta"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
-              <h3>macOS: permitir que se ejecute</h3>
+              <h3>Permitir que se ejecute</h3>
               <p>macOS bloquea los programas descargados de internet. Ejecuta esto una vez en Terminal para quitar el bloqueo.</p>
               <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/<wbr>Application\ Support/<wbr>Autodesk/<wbr>ApplicationAddins/<wbr>Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="xattr copiado" aria-label="Copiar xattr"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>

@@ -311,32 +311,49 @@
       <div role="tabpanel" id="p-autocad" aria-labelledby="tab-autocad" hidden>
         <div class="install-quick">
           <div>
-            <h3>파일로 설치</h3>
+            <h3>Windows</h3>
             <p>Autodesk App Store 승인 대기 중</p>
           </div>
-          <div class="install-ctas">
-            <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Windows용 받기<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip">macOS용 받기<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Windows용 받기<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
             <li>
               <h3>압축 풀기</h3>
-              <p>Windows에서는 zip 파일을 오른쪽 클릭해 <span class="ui">속성</span>에서 <span class="ui">차단 해제</span>를 체크한 뒤 풉니다.</p>
+              <p>zip 파일을 오른쪽 클릭해 <span class="ui">속성</span>에서 <span class="ui">차단 해제</span>를 체크한 뒤 풉니다.</p>
             </li>
             <li>
-              <h3>Windows: 폴더 옮기기</h3>
+              <h3>폴더 옮기기</h3>
               <p><code>Gorani.bundle</code> 폴더를 아래 위치로 옮깁니다. 관리자 권한을 물으면 <span class="ui">계속</span>을 누릅니다.</p>
               <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="경로 복사됨" aria-label="경로 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
-              <h3>macOS: 폴더 옮기기</h3>
-              <p>Finder에서 <span class="ui">이동 &gt; 폴더로 이동</span>을 눌러 아래 경로를 엽니다. 열린 폴더로 <code>Gorani.bundle</code>을 옮깁니다.</p>
+              <h3>AutoCAD 다시 시작</h3>
+              <p>다시 켜야 Gorani가 올라옵니다.</p>
+            </li>
+            <li>
+              <h3>패널 열기</h3>
+              <p>명령창에 입력</p>
+              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANI 복사됨" aria-label="GORANI 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+          </ol>
+        </div>
+        <div class="install-quick">
+          <div>
+            <h3>macOS</h3>
+            <p>Autodesk App Store 승인 대기 중</p>
+          </div>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip">macOS용 받기<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>폴더 옮기기</h3>
+              <p>Finder 메뉴 <span class="ui">이동 &gt; 폴더로 이동</span>에 아래 경로를 붙여 넣습니다. 열린 폴더에 압축을 푼 <code>Gorani.bundle</code>을 옮깁니다.</p>
               <span class="cmd path"><code>~/Library/Application Support/<wbr>Autodesk/<wbr>ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="경로 복사됨" aria-label="경로 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
-              <h3>macOS: 실행 허용</h3>
+              <h3>실행 허용</h3>
               <p>macOS는 인터넷에서 받은 프로그램의 실행을 막습니다. 터미널에 아래 명령을 한 번 입력하면 풀립니다.</p>
               <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/<wbr>Application\ Support/<wbr>Autodesk/<wbr>ApplicationAddins/<wbr>Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="xattr 복사됨" aria-label="xattr 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
@@ -346,7 +363,7 @@
             </li>
             <li>
               <h3>패널 열기</h3>
-              <p>명령줄에 입력</p>
+              <p>명령창에 입력</p>
               <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANI 복사됨" aria-label="GORANI 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
           </ol>

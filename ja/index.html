@@ -311,32 +311,49 @@
       <div role="tabpanel" id="p-autocad" aria-labelledby="tab-autocad" hidden>
         <div class="install-quick">
           <div>
-            <h3>ファイルからインストール</h3>
+            <h3>Windows</h3>
             <p>Autodesk App Storeの承認待ち</p>
           </div>
-          <div class="install-ctas">
-            <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Windows版をダウンロード<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip">macOS版をダウンロード<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Windows版をダウンロード<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
             <li>
               <h3>展開する</h3>
-              <p>Windowsではzipを右クリックし、<span class="ui">プロパティ</span>で<span class="ui">許可する</span>にチェックしてから展開する</p>
+              <p>zipを右クリックし、<span class="ui">プロパティ</span>で<span class="ui">許可する</span>にチェックしてから展開する</p>
             </li>
             <li>
-              <h3>Windows：フォルダーを移動</h3>
+              <h3>フォルダーを移動</h3>
               <p><code>Gorani.bundle</code>フォルダーをこの場所へ移動する。管理者の許可を求められたら<span class="ui">続行</span></p>
               <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="パスをコピーしました" aria-label="パスをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
-              <h3>macOS：フォルダーを移動</h3>
-              <p>Finderの<span class="ui">移動 &gt; フォルダへ移動</span>にこのパスを入れ、開いたフォルダーへ<code>Gorani.bundle</code>を移動する</p>
+              <h3>AutoCADを再起動</h3>
+              <p>再起動するとGoraniが読み込まれます。</p>
+            </li>
+            <li>
+              <h3>パネルを開く</h3>
+              <p>コマンドラインに入力</p>
+              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANIをコピーしました" aria-label="GORANIをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+          </ol>
+        </div>
+        <div class="install-quick">
+          <div>
+            <h3>macOS</h3>
+            <p>Autodesk App Storeの承認待ち</p>
+          </div>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip">macOS版をダウンロード<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>フォルダーを移動</h3>
+              <p>Finderの<span class="ui">移動 &gt; フォルダへ移動</span>にこのパスを貼り付け、開いたフォルダーへ展開した<code>Gorani.bundle</code>を移動する</p>
               <span class="cmd path"><code>~/Library/Application Support/<wbr>Autodesk/<wbr>ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="パスをコピーしました" aria-label="パスをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
-              <h3>macOS：実行を許可</h3>
+              <h3>実行を許可</h3>
               <p>インターネットから入手したプログラムはmacOSがブロックするため、ターミナルで一度実行して解除する</p>
               <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/<wbr>Application\ Support/<wbr>Autodesk/<wbr>ApplicationAddins/<wbr>Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="xattrをコピーしました" aria-label="xattrをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>

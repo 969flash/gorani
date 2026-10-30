@@ -447,6 +447,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .install-quick h3 { font-size: 17px; line-height: 24px; font-weight: 700; }
 .install-quick p { margin-top: 2px; font-size: 14px; line-height: 20px; color: var(--ink-2); }
 .install-ctas { display: flex; gap: 8px; flex: none; }
+.install-card + .install-quick { margin-top: 28px; }   /* AutoCAD: Windows·macOS 블록 사이 */
 .install-cta { flex: none; }   /* food4rhino Install과 같은 rhino8://·rhino7:// 링크 */
 .install-cta[aria-disabled="true"], .install-cta[aria-disabled="true"]:hover { gap: 8px; background: var(--hair); border-color: var(--hair); color: var(--ink-3); cursor: not-allowed; }   /* SketchUp·Blender: 스토어 업로드 전까지 누를 수 없음 */
 .install-cta small { padding: 2px 8px; border-radius: 999px; background: var(--surface); font-size: 12px; line-height: 16px; font-weight: 600; }

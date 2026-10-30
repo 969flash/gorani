@@ -206,6 +206,7 @@
         <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="../assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>7以降</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022以降</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2以降</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="autocad"><span><b>AutoCAD</b><small>Windows</small></span></a></li>
         <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
         <li><span class="host-link"><b>Windows · macOS</b><small>対応OS</small></span></li>
       </ul>
@@ -220,6 +221,7 @@
           <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7・8</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
+          <button type="button" role="tab" id="tab-autocad" aria-controls="p-autocad" aria-selected="false" tabindex="-1">AutoCAD</button>
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
@@ -259,20 +261,20 @@
       <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
         <div class="install-quick">
           <div>
-            <h3>すぐにインストール</h3>
-            <p>Extension WarehouseのGoraniページを開きます。</p>
+            <h3>インストーラー</h3>
+            <p>Extension Warehouseの審査が終わるまで、ここからダウンロードします（92 MB）。</p>
           </div>
-          <a class="btn go install-cta" aria-disabled="true">SketchUpでインストール<small>公開予定</small></a>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz">インストーラーをダウンロード<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
             <li>
-              <h3>Extension Warehouseを開く</h3>
-              <p>メニュー <span class="ui">拡張機能 &gt; Extension Warehouse</span></p>
+              <h3>拡張機能マネージャーを開く</h3>
+              <p>メニュー <span class="ui">拡張機能 &gt; 拡張機能マネージャー</span></p>
             </li>
             <li>
               <h3>Goraniをインストール</h3>
-              <p>Goraniを検索して<span class="ui">インストール</span>を押す</p>
+              <p><span class="ui">拡張機能をインストール</span>を押して、ダウンロードした.rbzファイルを選ぶ。確認には<span class="ui">はい</span></p>
             </li>
             <li>
               <h3>パネルを開く</h3>
@@ -305,6 +307,38 @@
             </li>
           </ol>
         </div>
+      </div>
+      <div role="tabpanel" id="p-autocad" aria-labelledby="tab-autocad" hidden>
+        <div class="install-quick">
+          <div>
+            <h3>インストーラー</h3>
+            <p>Windows版です。Autodesk App Storeの審査が終わるまで、ここからダウンロードします（32 MB）。</p>
+          </div>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Windows版をダウンロード<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>ブロックを解除して展開</h3>
+              <p>zipファイルの<span class="ui">プロパティ</span>で<span class="ui">許可する</span>にチェックを入れて展開する</p>
+            </li>
+            <li>
+              <h3>フォルダーを入れる</h3>
+              <p><code>Gorani.bundle</code>フォルダーをここに入れる。管理者の許可を求められたら<span class="ui">続行</span></p>
+              <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="パスをコピーしました" aria-label="パスをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+            <li>
+              <h3>AutoCADを再起動</h3>
+              <p>再起動するとGoraniが読み込まれます。</p>
+            </li>
+            <li>
+              <h3>パネルを開く</h3>
+              <p>コマンドラインに入力</p>
+              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANIをコピーしました" aria-label="GORANIをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+          </ol>
+        </div>
+        <p class="note">AutoCAD版は3Dモデルではなく、2Dの敷地図を現在の図面に挿入します。macOS版は準備中です。</p>
       </div>
     </div>
   </section>

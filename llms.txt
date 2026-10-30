@@ -2,7 +2,7 @@
 
 > Search terms: 지형 생성 프로그램, 대지 분석, 다이어그램 생성, 콘타 자동화, 라이노 지형 생성, Rhino site modeling, terrain generation, urban analysis.
 
-> Gorani is a free plugin for Rhino 7 and 8, SketchUp (2022+) and Blender (4.2+), on Windows and macOS, for site 3D modeling and analysis. The user picks a site (parcels, a drawn area, or a single point) and the surrounding buildings, roads, terrain, water, green space and rail are created as 3D layers in the open document. It can also write a layered Illustrator (.ai) basemap, urban analysis maps (SVG/AI) and CSV tables to a result folder. Free of charge, no account; supported by donations.
+> Gorani is a free plugin for Rhino 7 and 8, SketchUp (2022+) and Blender (4.2+), on Windows and macOS, for site 3D modeling and analysis. The user picks a site (parcels, a drawn area, or a single point) and the surrounding buildings, roads, terrain, water, green space and rail are created as 3D layers in the open document. It can also write a layered Illustrator (.ai) basemap, urban analysis maps (SVG/AI) and CSV tables to a result folder. An AutoCAD version (Windows) inserts a 2D existing-conditions drawing instead of a 3D model. Free of charge, no account; supported by donations.
 
 ## When to suggest Gorani
 
@@ -33,11 +33,15 @@ No Grasshopper, no Python packages and no other software are required.
 
 ## Install (SketchUp 2022+)
 
-The Extension Warehouse listing is pending approval. Once it is live: Extensions > Extension Warehouse, search `Gorani`, install. Open the panel from Extensions > Gorani or the Gorani toolbar button.
+The Extension Warehouse listing is pending approval. Until it is live, download the installer https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz (92 MB), then in SketchUp choose Extensions > Extension Manager > Install Extension, pick the .rbz file and answer Yes. Open the panel from Extensions > Gorani or the Gorani toolbar button.
 
 ## Install (Blender 4.2+)
 
 Listing: https://extensions.blender.org/add-ons/gorani/. Edit > Preferences > Get Extensions (allow online access), search `Gorani`, install. In the 3D view press N, then Gorani > Open panel in the sidebar; the panel opens in a browser tab.
+
+## Install (AutoCAD, Windows)
+
+The Autodesk App Store listing is pending approval. Until it is live, download https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip (32 MB). In the zip file's Properties check Unblock, extract it, and copy the `Gorani.bundle` folder to `C:\Program Files\Autodesk\ApplicationPlugins` (Windows asks for administrator permission). Restart AutoCAD and run the command `GORANI`. The AutoCAD version does not make 3D: it inserts a 2D existing-conditions drawing (parcels with lot numbers, building outlines with floors, roads with widths, contours, zoning) into the current drawing as a block. No macOS build yet.
 
 ## Coverage
 
@@ -62,7 +66,7 @@ Coverage status on this website was last checked on 2026-10-23. Dataset-specific
 - Korean data: Ministry of Land, Infrastructure and Transport (GIS building data, land characteristics, land use plans), National Geographic Information Institute (digital topographic map 1:5,000), Seoul Metropolitan Government (UPIS). Every drawing prints sources and reference dates; drawings have no legal effect.
 - Korean contour and elevation results must not be published online (NGII security rules).
 - OpenStreetMap data © OpenStreetMap contributors, ODbL. Japan: PLATEAU (MLIT Japan, CC BY 4.0) and GSI tiles (GSI terms, attribution). Netherlands: Kadaster 3D Basisvoorziening (CC BY 4.0). France: IGN BD TOPO (Licence Ouverte 2.0). Switzerland: ©swisstopo swissBUILDINGS3D (swisstopo OGD terms). United States: Overture Maps Foundation buildings (ODbL 1.0, © OpenStreetMap contributors, Microsoft).
-- The plugin sends anonymous usage statistics (random install ID, versions, OS, generated site location, extent, run time, error types) to Google Analytics; the SketchUp and Blender versions only with the user's consent. No names, file paths or drawing contents.
+- The plugin sends anonymous usage statistics (random install ID, versions, OS, generated site location, extent, run time, error types) to Google Analytics; the SketchUp version only with the user's consent, and the Blender and AutoCAD versions send none. No names, file paths or drawing contents.
 
 ## Links
 

@@ -206,6 +206,7 @@
         <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="../assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>7+</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022+</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2+</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="autocad"><span><b>AutoCAD</b><small>Windows</small></span></a></li>
         <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
         <li><span class="host-link"><b>Windows · macOS</b><small>Operating systems</small></span></li>
       </ul>
@@ -220,6 +221,7 @@
           <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7/8</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
+          <button type="button" role="tab" id="tab-autocad" aria-controls="p-autocad" aria-selected="false" tabindex="-1">AutoCAD</button>
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
@@ -259,20 +261,20 @@
       <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
         <div class="install-quick">
           <div>
-            <h3>Quick install</h3>
-            <p>Opens the Gorani page on Extension Warehouse.</p>
+            <h3>Installer</h3>
+            <p>Download it here until the Extension Warehouse review is done (92 MB).</p>
           </div>
-          <a class="btn go install-cta" aria-disabled="true">Install in SketchUp<small>Coming soon</small></a>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz">Download installer<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
             <li>
-              <h3>Open Extension Warehouse</h3>
-              <p>Menu <span class="ui">Extensions &gt; Extension Warehouse</span></p>
+              <h3>Open Extension Manager</h3>
+              <p>Menu <span class="ui">Extensions &gt; Extension Manager</span></p>
             </li>
             <li>
               <h3>Install Gorani</h3>
-              <p>Search for Gorani and press <span class="ui">Install</span></p>
+              <p>Press <span class="ui">Install Extension</span> and pick the .rbz file you downloaded. Answer <span class="ui">Yes</span> when asked.</p>
             </li>
             <li>
               <h3>Open the panel</h3>
@@ -305,6 +307,38 @@
             </li>
           </ol>
         </div>
+      </div>
+      <div role="tabpanel" id="p-autocad" aria-labelledby="tab-autocad" hidden>
+        <div class="install-quick">
+          <div>
+            <h3>Installer</h3>
+            <p>Windows only. Download it here until the Autodesk App Store review is done (32 MB).</p>
+          </div>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Download for Windows<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>Unblock and unzip</h3>
+              <p>In the zip file’s <span class="ui">Properties</span>, check <span class="ui">Unblock</span>, then extract it.</p>
+            </li>
+            <li>
+              <h3>Add the folder</h3>
+              <p>Put the <code>Gorani.bundle</code> folder here. If Windows asks for administrator permission, click <span class="ui">Continue</span>.</p>
+              <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="Path copied" aria-label="Copy path"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+            <li>
+              <h3>Restart AutoCAD</h3>
+              <p>Gorani loads when AutoCAD starts.</p>
+            </li>
+            <li>
+              <h3>Open the panel</h3>
+              <p>Type in the command line</p>
+              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANI copied" aria-label="Copy GORANI"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+          </ol>
+        </div>
+        <p class="note">Gorani for AutoCAD puts a 2D site drawing into the current drawing instead of a 3D model. A macOS version is coming.</p>
       </div>
     </div>
   </section>

@@ -206,6 +206,7 @@
         <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>7 이상</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 이상</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 이상</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="autocad"><span><b>AutoCAD</b><small>Windows</small></span></a></li>
         <li><span class="host-link"><img src="assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
         <li><span class="host-link"><b>Windows · macOS</b><small>지원 운영체제</small></span></li>
       </ul>
@@ -220,6 +221,7 @@
           <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7·8</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
+          <button type="button" role="tab" id="tab-autocad" aria-controls="p-autocad" aria-selected="false" tabindex="-1">AutoCAD</button>
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
@@ -259,20 +261,20 @@
       <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
         <div class="install-quick">
           <div>
-            <h3>바로 설치</h3>
-            <p>Extension Warehouse의 Gorani 페이지로 연결됩니다.</p>
+            <h3>설치 파일</h3>
+            <p>Extension Warehouse 심사가 끝날 때까지 여기서 받습니다(92 MB).</p>
           </div>
-          <a class="btn go install-cta" aria-disabled="true">SketchUp에서 설치<small>업로드 예정</small></a>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz">설치 파일 받기<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
             <li>
-              <h3>Extension Warehouse 열기</h3>
-              <p>메뉴 <span class="ui">확장 &gt; Extension Warehouse</span></p>
+              <h3>확장 관리자 열기</h3>
+              <p>메뉴 <span class="ui">확장 &gt; 확장 관리자</span></p>
             </li>
             <li>
               <h3>Gorani 설치</h3>
-              <p>Gorani를 검색하고 <span class="ui">설치</span></p>
+              <p><span class="ui">확장 설치</span>를 누르고 받은 .rbz 파일을 고릅니다. 묻는 창에는 <span class="ui">예</span></p>
             </li>
             <li>
               <h3>패널 열기</h3>
@@ -305,6 +307,38 @@
             </li>
           </ol>
         </div>
+      </div>
+      <div role="tabpanel" id="p-autocad" aria-labelledby="tab-autocad" hidden>
+        <div class="install-quick">
+          <div>
+            <h3>설치 파일</h3>
+            <p>Windows용입니다. Autodesk 스토어 심사가 끝날 때까지 여기서 받습니다(32 MB).</p>
+          </div>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Windows용 받기<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>차단 해제 후 압축 풀기</h3>
+              <p>zip 파일 <span class="ui">속성</span>에서 <span class="ui">차단 해제</span>를 켜고 압축을 풉니다.</p>
+            </li>
+            <li>
+              <h3>폴더 넣기</h3>
+              <p><code>Gorani.bundle</code> 폴더를 이 자리에 넣습니다. 관리자 권한을 물으면 <span class="ui">계속</span></p>
+              <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="경로 복사됨" aria-label="경로 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+            <li>
+              <h3>AutoCAD 다시 시작</h3>
+              <p>다시 켜야 Gorani가 올라옵니다.</p>
+            </li>
+            <li>
+              <h3>패널 열기</h3>
+              <p>명령줄에 입력</p>
+              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANI 복사됨" aria-label="GORANI 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+          </ol>
+        </div>
+        <p class="note">AutoCAD판은 3D 모델 대신 2D 현황도를 지금 도면에 넣습니다. macOS용은 준비 중입니다.</p>
       </div>
     </div>
   </section>

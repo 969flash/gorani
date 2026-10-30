@@ -12,8 +12,9 @@ Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino
 ## Install
 
 - Rhino 7 and 8: `PackageManager`, search `Gorani`, install, restart Rhino, run `Gorani`.
-- SketchUp 2022+: Extensions > Extension Warehouse, search `Gorani`, install (listing pending approval).
+- SketchUp 2022+: download [bsh_gorani-0.3.7.rbz](https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz), then Extensions > Extension Manager > Install Extension (Extension Warehouse listing pending approval).
 - Blender 4.2+: Edit > Preferences > Get Extensions, search `Gorani`, install ([listing](https://extensions.blender.org/add-ons/gorani/)).
+- AutoCAD (Windows, 2D drawing): download [Gorani-autocad-win-0.3.6.zip](https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip), unblock and extract it, copy `Gorani.bundle` to `C:\Program Files\Autodesk\ApplicationPlugins`, restart AutoCAD, run `GORANI` (Autodesk App Store listing pending approval).
 
 ## Coverage
 
@@ -29,4 +30,4 @@ Coverage status on the website was last checked on 2026-10-23. Dataset-specific 
 
 This repository holds the website (GitHub Pages, plain HTML/CSS/JS, no build step) and is where issues and release notes live. Report problems in [Issues](https://github.com/969flash/gorani/issues) with `log.txt` from the result folder (`~/Gorani/result/<site>_<date>/`) attached.
 
-Data: © OpenStreetMap contributors (ODbL); Korean public data from MOLIT, NGII and Seoul Metropolitan Government, with sources printed on every drawing. Rhino is a trademark of Robert McNeel & Associates, SketchUp of Trimble Inc., Blender of the Blender Foundation; this project is not affiliated with them.
+Data: © OpenStreetMap contributors (ODbL); Korean public data from MOLIT, NGII and Seoul Metropolitan Government, with sources printed on every drawing. Rhino is a trademark of Robert McNeel & Associates, SketchUp of Trimble Inc., Blender of the Blender Foundation, AutoCAD of Autodesk, Inc.; this project is not affiliated with them.

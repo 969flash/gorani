@@ -206,6 +206,7 @@
         <li><a class="host-link" href="#install" data-install-tab="rhino"><img src="../assets/logo-rhino.png" alt="" aria-hidden="true"><span><b>Rhino</b><small>7 及以上</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 及以上</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 及以上</small></span></a></li>
+        <li><a class="host-link" href="#install" data-install-tab="autocad"><span><b>AutoCAD</b><small>Windows</small></span></a></li>
         <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
         <li><span class="host-link"><b>Windows · macOS</b><small>支持的操作系统</small></span></li>
       </ul>
@@ -220,6 +221,7 @@
           <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7/8</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
+          <button type="button" role="tab" id="tab-autocad" aria-controls="p-autocad" aria-selected="false" tabindex="-1">AutoCAD</button>
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
@@ -259,20 +261,20 @@
       <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
         <div class="install-quick">
           <div>
-            <h3>快速安装</h3>
-            <p>打开 Extension Warehouse 上的 Gorani 页面。</p>
+            <h3>安装文件</h3>
+            <p>Extension Warehouse 审核完成前，请在这里下载（92 MB）。</p>
           </div>
-          <a class="btn go install-cta" aria-disabled="true">在 SketchUp 中安装<small>即将上线</small></a>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz">下载安装文件<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
             <li>
-              <h3>打开 Extension Warehouse</h3>
-              <p>菜单 <span class="ui">扩展程序 &gt; Extension Warehouse</span></p>
+              <h3>打开扩展程序管理器</h3>
+              <p>菜单 <span class="ui">扩展程序 &gt; 扩展程序管理器</span></p>
             </li>
             <li>
               <h3>安装 Gorani</h3>
-              <p>搜索 Gorani 并点击<span class="ui">安装</span></p>
+              <p>点击<span class="ui">安装扩展程序</span>，选择下载的 .rbz 文件。弹出确认时点击<span class="ui">是</span></p>
             </li>
             <li>
               <h3>打开面板</h3>
@@ -305,6 +307,38 @@
             </li>
           </ol>
         </div>
+      </div>
+      <div role="tabpanel" id="p-autocad" aria-labelledby="tab-autocad" hidden>
+        <div class="install-quick">
+          <div>
+            <h3>安装文件</h3>
+            <p>仅限 Windows。Autodesk App Store 审核完成前，请在这里下载（32 MB）。</p>
+          </div>
+          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">下载 Windows 版<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="install-card">
+          <ol class="steps install-list">
+            <li>
+              <h3>解除锁定并解压</h3>
+              <p>在 zip 文件的<span class="ui">属性</span>中勾选<span class="ui">解除锁定</span>，然后解压</p>
+            </li>
+            <li>
+              <h3>放入文件夹</h3>
+              <p>把 <code>Gorani.bundle</code> 文件夹放到这里。如果 Windows 要求管理员权限，点击<span class="ui">继续</span></p>
+              <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="已复制路径" aria-label="复制路径"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+            <li>
+              <h3>重启 AutoCAD</h3>
+              <p>重启后 Gorani 才会加载。</p>
+            </li>
+            <li>
+              <h3>打开面板</h3>
+              <p>在命令行中输入</p>
+              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="已复制 GORANI" aria-label="复制 GORANI"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+            </li>
+          </ol>
+        </div>
+        <p class="note">AutoCAD 版会把二维现状图插入当前图纸，不生成三维模型。macOS 版即将推出。</p>
       </div>
     </div>
   </section>

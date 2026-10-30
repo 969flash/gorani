@@ -381,7 +381,6 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 /* 문의: 왼쪽 머리, 오른쪽 폼 카드 — 보내면 구글 앱스 스크립트(tools/contact)가 시트에 적고 메일로 알린다 */
 .contact { position: sticky; top: 88px; display: grid; gap: 16px; }
 .contact-head h3 { font-size: 22px; line-height: 30px; font-weight: 700; }
-.contact-head p { margin-top: 6px; font-size: 15px; line-height: 24px; color: var(--ink-2); }
 .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 28px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
 .contact-form .wide { grid-column: 1 / -1; }
 .field { display: grid; gap: 6px; }

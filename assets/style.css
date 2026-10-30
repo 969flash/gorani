@@ -362,8 +362,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 /* FAQ: 얇은 선 아코디언 */
 /* 자주 묻는 질문 + 문의: 왼쪽 접고 펴는 질문, 오른쪽 문의 카드(스크롤해도 따라온다) */
 .faq-contact { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 48px; align-items: start; }
-.faq { max-width: none; border-bottom: 1px solid var(--hair); }
-.faq-item { border-top: 1px solid var(--hair); }
+.faq { max-width: none; }
 .faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0; cursor: pointer; list-style: none; }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary::after {   /* + 가 펴면 − 로 */

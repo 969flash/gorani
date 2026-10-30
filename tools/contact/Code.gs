@@ -15,6 +15,7 @@ const APPS = {
 const TOPICS = { usage: '사용 방법', bug: '오류 신고', data: '지역·데이터 요청', idea: '기능 제안', other: '기타' };
 
 const HEADERS = ['문의 번호', '받은 시각', '앱', '주제', '이름', '이메일', '내용', '언어', '페이지', '상태', '담당', '메모', '답장한 날'];
+const NOTIFY_DEFAULT = 'gorani.3d@gmail.com';   // 알림 받는 주소 — 스크립트 속성 NOTIFY_EMAIL이 있으면 그것(쉼표로 여러 개)
 const STATUSES = ['새 문의', '확인 중', '답장함', '완료', '스팸'];
 const LIMITS = { name: 60, email: 120, message: 4000, perEmailSeconds: 60, perHour: 60 };
 
@@ -63,7 +64,7 @@ function doGet() {
   return reply_({ ok: true, apps: Object.keys(APPS) });
 }
 
-/** 처음 한 번 실행: 앱마다 탭과 칸·상태 목록을 만든다. 알림 메일은 스크립트 속성 NOTIFY_EMAIL(없으면 이 계정). */
+/** 처음 한 번 실행: 권한을 승인하고 앱마다 탭과 칸·상태 목록을 만든다. */
 function setup() {
   Object.keys(APPS).forEach(function (key) { sheetFor_(APPS[key][0]); });
 }
@@ -87,7 +88,7 @@ function sheetFor_(title) {
 }
 
 function notify_(appTitle, id, topic, name, email, message, lang) {
-  const to = PropertiesService.getScriptProperties().getProperty('NOTIFY_EMAIL') || Session.getEffectiveUser().getEmail();
+  const to = PropertiesService.getScriptProperties().getProperty('NOTIFY_EMAIL') || NOTIFY_DEFAULT;
   MailApp.sendEmail({
     to: to,
     replyTo: email,   // 메일에서 바로 [답장]하면 문의한 사람에게 간다

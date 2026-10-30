@@ -71,6 +71,7 @@ function setup() {
 
 function sheetFor_(title) {
   const book = SpreadsheetApp.getActiveSpreadsheet();
+  if (book.getSpreadsheetTimeZone() !== 'Asia/Seoul') book.setSpreadsheetTimeZone('Asia/Seoul');   // 받은 시각을 한국 시간으로 보인다
   let sheet = book.getSheetByName(title);
   if (sheet) return sheet;
   sheet = book.insertSheet(title);

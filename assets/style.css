@@ -75,11 +75,13 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .brand { display: flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: none; font-weight: 800; font-size: 20px; letter-spacing: -.01em; }
 .brand .mark { --s: 28px; }
 .nav { display: flex; gap: 4px; margin-left: auto; }
-.language-switch { position: relative; margin-left: 8px; }
-.language-switch summary, .menu-switch summary { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--hair); border-radius: 8px; color: var(--ink-2); cursor: pointer; list-style: none; font-size: 20px; line-height: 1; }
+.icon-btn svg { width: 15px; height: 15px; }   /* 꽉 찬 GitHub 로고를 선 아이콘(지구본·메뉴)과 같은 무게로 */
+.top-tools { display: flex; align-items: center; gap: 8px; }   /* GitHub·언어·(좁은 화면) 메뉴 단추 묶음 */
+.language-switch { position: relative; }
+.icon-btn, .language-switch summary, .menu-switch summary { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--hair); border-radius: 8px; color: var(--ink-2); cursor: pointer; list-style: none; font-size: 20px; line-height: 1; }
 .language-switch summary::-webkit-details-marker, .menu-switch summary::-webkit-details-marker { display: none; }
 .language-switch summary svg, .menu-switch summary svg { width: 17px; height: 17px; }
-.language-switch summary:hover, .language-switch[open] summary, .menu-switch summary:hover, .menu-switch[open] summary { background: var(--press); color: var(--ink); }
+.icon-btn:hover, .language-switch summary:hover, .language-switch[open] summary, .menu-switch summary:hover, .menu-switch[open] summary { background: var(--press); color: var(--ink); }
 .language-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 6; display: grid; min-width: 116px; padding: 4px; border: 1px solid var(--hair); background: var(--surface); box-shadow: 0 12px 28px -18px rgba(20, 20, 20, .35); }
 .language-menu a, .language-menu span { padding: 7px 9px; color: var(--ink-2); text-decoration: none; font-size: 13px; white-space: nowrap; }
 .language-menu a:hover, .language-menu a[aria-current="page"] { background: var(--press); color: var(--ink); }
@@ -91,8 +93,6 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .nav a:hover, .lang:hover { background: var(--press); color: var(--ink); }
 .nav a, .menu-list a { display: inline-flex; align-items: center; gap: 6px; }
 .nav a svg, .menu-list a svg { width: 15px; height: 15px; flex: none; }
-.nav .nav-github { padding: 4px 8px; }   /* 저장소 로고만 */
-.nav .nav-github svg { width: 18px; height: 18px; }
 .lang { border: 1px solid var(--hair); }
 .progress { position: relative; height: 2px; background: var(--hair); }
 .progress i { position: absolute; inset: 0 auto 0 0; width: calc(var(--p, 0) * 100%); background: var(--ink); }
@@ -489,7 +489,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .top .wrap { gap: 12px; }
   .nav { display: none; }
   .menu-switch { display: block; }
-  .language-switch { margin-left: auto; }
+  .top-tools { margin-left: auto; }
   .hero { padding-top: 40px; }
   .hero h1 { font-size: 34px; line-height: 42px; }
   html[lang="ja"] .hero h1 { font-size: 30px; line-height: 40px; }

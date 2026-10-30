@@ -37,7 +37,7 @@ The Extension Warehouse listing is pending approval. Once it is live: Extensions
 
 ## Install (Blender 4.2+)
 
-The extensions.blender.org listing is in review. Once it is live: Edit > Preferences > Get Extensions (allow online access), search `Gorani`, install. In the 3D view press N, then Gorani > Open panel in the sidebar; the panel opens in a browser tab.
+Listing: https://extensions.blender.org/add-ons/gorani/. Edit > Preferences > Get Extensions (allow online access), search `Gorani`, install. In the 3D view press N, then Gorani > Open panel in the sidebar; the panel opens in a browser tab.
 
 ## Coverage
 

@@ -13,7 +13,7 @@ Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino
 
 - Rhino 7 and 8: `PackageManager`, search `Gorani`, install, restart Rhino, run `Gorani`.
 - SketchUp 2022+: Extensions > Extension Warehouse, search `Gorani`, install (listing pending approval).
-- Blender 4.2+: Edit > Preferences > Get Extensions, search `Gorani`, install (listing in review).
+- Blender 4.2+: Edit > Preferences > Get Extensions, search `Gorani`, install ([listing](https://extensions.blender.org/add-ons/gorani/)).
 
 ## Coverage
 

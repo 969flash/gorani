@@ -76,7 +76,7 @@ h1, h2, h3, p, ol, ul, figure { margin: 0; }
 .brand .mark { --s: 28px; }
 .nav { display: flex; gap: 4px; margin-left: auto; }
 .icon-btn svg { width: 15px; height: 15px; }   /* 꽉 찬 GitHub 로고를 선 아이콘(지구본·메뉴)과 같은 무게로 */
-.top-tools { display: flex; align-items: center; gap: 8px; }   /* GitHub·언어·(좁은 화면) 메뉴 단추 묶음 */
+.top-tools { display: flex; align-items: center; gap: 8px; }   /* GitHub·언어·(좁은 화면) 메뉴 버튼 묶음 */
 .language-switch { position: relative; }
 .icon-btn, .language-switch summary, .menu-switch summary { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--hair); border-radius: 8px; color: var(--ink-2); cursor: pointer; list-style: none; font-size: 20px; line-height: 1; }
 .language-switch summary::-webkit-details-marker, .menu-switch summary::-webkit-details-marker { display: none; }

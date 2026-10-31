@@ -82,6 +82,7 @@
   <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-close" viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
   <symbol id="i-menu" viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 4.75v5.5M5.5 8l2.5 2.5L10.5 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 </svg>
 
@@ -207,7 +208,7 @@
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 及以上</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 及以上</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="autocad"><span><b>AutoCAD</b><small>二维图纸</small></span></a></li>
-        <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
+        <li><a class="host-link" href="#install" data-install-tab="archicad"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></a></li>
         <li><span class="host-link"><b>Windows · macOS</b><small>支持的操作系统</small></span></li>
       </ul>
     </div>
@@ -218,10 +219,11 @@
       <div class="block-head">
         <h2 id="install-title">安装</h2>
         <div class="seg" role="tablist" aria-label="软件">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7/8</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
           <button type="button" role="tab" id="tab-autocad" aria-controls="p-autocad" aria-selected="false" tabindex="-1">AutoCAD</button>
+          <button type="button" role="tab" id="tab-archicad" aria-controls="p-archicad" aria-selected="false" tabindex="-1">Archicad</button>
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
@@ -230,10 +232,7 @@
             <h3>快速安装</h3>
             <p>Rhino 的 Package Manager 会打开并显示 Gorani 的搜索结果。</p>
           </div>
-          <div class="install-ctas">
-            <a class="btn go install-cta" href="rhino8://package/search?name=gorani">在 Rhino 8 中安装<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn go install-cta" href="rhino7://package/search?name=gorani">在 Rhino 7 中安装<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
+          <ul class="install-links"><li><a href="rhino8://package/search?name=gorani" data-release="tag">Rhino 8 Gorani <span class="ver">0.3.7</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="rhino7://package/search?name=gorani" data-release="tag">Rhino 7 Gorani <span class="ver">0.3.7</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -261,10 +260,10 @@
       <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
         <div class="install-quick">
           <div>
-            <h3>通过文件安装</h3>
+            <h3>快速安装</h3>
             <p>等待 Extension Warehouse 批准</p>
           </div>
-          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz">下载安装文件<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz" data-release="sketchup">SketchUp Gorani <span class="ver">0.3.7</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -289,7 +288,7 @@
             <h3>快速安装</h3>
             <p>打开 Blender Extensions 上的 Gorani 页面。</p>
           </div>
-          <a class="btn go install-cta" href="https://extensions.blender.org/add-ons/gorani/">在 Blender 中安装<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <ul class="install-links"><li><a href="https://extensions.blender.org/add-ons/gorani/">Blender Gorani<svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -309,64 +308,77 @@
         </div>
       </div>
       <div role="tabpanel" id="p-autocad" aria-labelledby="tab-autocad" hidden>
+        <div class="os-block" data-os="win">
+          <div class="install-quick">
+            <div>
+              <h3>快速安装</h3>
+              <p>等待 Autodesk App Store 批准</p>
+            </div>
+            <div class="seg os-switch" role="group" aria-label="操作系统"><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">macOS</button></div>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip" data-release="autocad-win">Windows Gorani <span class="ver">0.3.6</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+          </div>
+          <div class="install-card">
+            <ol class="steps install-list">
+              <li>
+                <h3>解压</h3>
+                <p>右键单击 zip 文件，在<span class="ui">属性</span>中勾选<span class="ui">解除锁定</span>后再解压</p>
+              </li>
+              <li>
+                <h3>移动文件夹</h3>
+                <p>把 <code>Gorani.bundle</code> 文件夹移到下面的位置。如果要求管理员权限，点击<span class="ui">继续</span></p>
+                <span class="cmd path"><code>C:\Program Files\Autodesk\ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="已复制 路径" aria-label="复制 路径"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+              <li>
+                <h3>重启 AutoCAD</h3>
+              </li>
+              <li>
+                <h3>打开面板</h3>
+                <p>在命令行中输入</p>
+                <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="已复制 Gorani" aria-label="复制 Gorani"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="os-block" data-os="mac" hidden>
+          <div class="install-quick">
+            <div>
+              <h3>快速安装</h3>
+              <p>等待 Autodesk App Store 批准</p>
+            </div>
+            <div class="seg os-switch" role="group" aria-label="操作系统"><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">macOS</button></div>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip" data-release="autocad-mac">macOS Gorani <span class="ver">0.3.6</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+          </div>
+          <div class="install-card">
+            <ol class="steps install-list">
+              <li>
+                <h3>移动文件夹</h3>
+                <p>在访达中打开<span class="ui">前往 &gt; 前往文件夹</span>，粘贴下面的路径，把解压后的 <code>Gorani.bundle</code> 移到打开的文件夹中</p>
+                <span class="cmd path"><code>~/Library/Application Support/Autodesk/ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="已复制 路径" aria-label="复制 路径"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+              <li>
+                <h3>允许运行</h3>
+                <p>macOS 会阻止从网上下载的程序运行。在终端中执行一次下面的命令即可解除</p>
+                <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="已复制 xattr" aria-label="复制 xattr"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+              <li>
+                <h3>重启 AutoCAD</h3>
+              </li>
+              <li>
+                <h3>打开面板</h3>
+                <p>在命令行中输入</p>
+                <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="已复制 Gorani" aria-label="复制 Gorani"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" id="p-archicad" aria-labelledby="tab-archicad" hidden>
         <div class="install-quick">
           <div>
-            <h3>Windows</h3>
-            <p>等待 Autodesk App Store 批准</p>
+            <h3>快速安装</h3>
+            <p>我们正在开发中。</p>
           </div>
-          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">下载 Windows 版<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-        <div class="install-card">
-          <ol class="steps install-list">
-            <li>
-              <h3>解压</h3>
-              <p>右键单击 zip 文件，在<span class="ui">属性</span>中勾选<span class="ui">解除锁定</span>后再解压</p>
-            </li>
-            <li>
-              <h3>移动文件夹</h3>
-              <p>把 <code>Gorani.bundle</code> 文件夹移到下面的位置。如果要求管理员权限，点击<span class="ui">继续</span></p>
-              <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="已复制 路径" aria-label="复制 路径"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-            <li>
-              <h3>重启 AutoCAD</h3>
-              <p>重启后 Gorani 才会加载。</p>
-            </li>
-            <li>
-              <h3>打开面板</h3>
-              <p>在命令行中输入</p>
-              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="已复制 GORANI" aria-label="复制 GORANI"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-          </ol>
-        </div>
-        <div class="install-quick">
-          <div>
-            <h3>macOS</h3>
-            <p>等待 Autodesk App Store 批准</p>
-          </div>
-          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip">下载 macOS 版<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-        <div class="install-card">
-          <ol class="steps install-list">
-            <li>
-              <h3>移动文件夹</h3>
-              <p>在访达中打开<span class="ui">前往 &gt; 前往文件夹</span>，粘贴下面的路径，把解压后的 <code>Gorani.bundle</code> 移到打开的文件夹中</p>
-              <span class="cmd path"><code>~/Library/Application Support/<wbr>Autodesk/<wbr>ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="已复制 路径" aria-label="复制 路径"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-            <li>
-              <h3>允许运行</h3>
-              <p>macOS 会阻止从网上下载的程序运行。在终端中执行一次下面的命令即可解除</p>
-              <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/<wbr>Application\ Support/<wbr>Autodesk/<wbr>ApplicationAddins/<wbr>Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="已复制 xattr" aria-label="复制 xattr"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-            <li>
-              <h3>重启 AutoCAD</h3>
-              <p>重启后 Gorani 才会加载。</p>
-            </li>
-            <li>
-              <h3>打开面板</h3>
-              <p>在命令行中输入</p>
-              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="已复制 GORANI" aria-label="复制 GORANI"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-          </ol>
+          <ul class="install-links"><li><span aria-disabled="true">Archicad 即将推出</span></li></ul>
         </div>
       </div>
     </div>
@@ -692,12 +704,13 @@
           </details>
           <details class="faq-item">
             <summary><h3>出现问题怎么办？</h3></summary>
-            <p>请先查看结果文件夹中的 <code>log.txt</code>。如果仍未解决，请<a href="#contact">联系我们</a>。附上 <code>log.txt</code> 的内容，能帮助我们更快找到原因。</p>
+            <p>请先查看结果文件夹中的 <code>log.txt</code>。如果仍未解决，请在 <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a> 提交问题并附上 <code>log.txt</code>。没有 GitHub 账号的话，也可以使用下方的<a href="#contact">联系表单</a>。</p>
           </details>
         </div>
         <div class="contact" id="contact" aria-labelledby="contact-title">
           <div class="contact-head">
             <h3 id="contact-title">联系我们</h3>
+            <a class="btn" href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>在 GitHub 提交问题</a>
           </div>
           <form class="contact-form" novalidate data-sending="发送中…" data-sent="已发送。我们会回复到 {email}。" data-error="发送失败。请稍后再试，或在 GitHub Issues 留言。" data-unready="联系表单正在准备中，目前请使用 GitHub Issues。">
             <div class="field">
@@ -770,7 +783,7 @@
   <div class="wrap">
     <div class="fine">
       <span class="mark" aria-hidden="true"></span>
-      <p>作者 <a href="https://github.com/969flash">Hoon</a> 和 <a href="https://wjcho.com">Cho</a>。版本 0.3.7。<a href="mailto:gorani.3d@gmail.com">gorani.3d@gmail.com</a></p>
+      <p class="credit"><span>Made by <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a></span><a href="mailto:gorani.3d@gmail.com">gorani.3d@gmail.com</a><span class="ver-tag">v<span data-release-ver>0.3.7</span></span></p>
       <p>我们是饿着肚子的研究生。如果 Gorani 帮到了你，请请我们喝杯咖啡。</p>
       <a class="btn" href="https://github.com/sponsors/969flash">在 GitHub 上赞助</a>
     </div>

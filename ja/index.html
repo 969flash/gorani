@@ -82,6 +82,7 @@
   <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-close" viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
   <symbol id="i-menu" viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 4.75v5.5M5.5 8l2.5 2.5L10.5 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 </svg>
 
@@ -207,7 +208,7 @@
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022以降</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2以降</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="autocad"><span><b>AutoCAD</b><small>2D図面</small></span></a></li>
-        <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
+        <li><a class="host-link" href="#install" data-install-tab="archicad"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></a></li>
         <li><span class="host-link"><b>Windows · macOS</b><small>対応OS</small></span></li>
       </ul>
     </div>
@@ -218,10 +219,11 @@
       <div class="block-head">
         <h2 id="install-title">インストール</h2>
         <div class="seg" role="tablist" aria-label="プログラム">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7・8</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
           <button type="button" role="tab" id="tab-autocad" aria-controls="p-autocad" aria-selected="false" tabindex="-1">AutoCAD</button>
+          <button type="button" role="tab" id="tab-archicad" aria-controls="p-archicad" aria-selected="false" tabindex="-1">Archicad</button>
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
@@ -230,10 +232,7 @@
             <h3>すぐにインストール</h3>
             <p>RhinoのパッケージマネージャーがGoraniの検索結果で開きます。</p>
           </div>
-          <div class="install-ctas">
-            <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Rhino 8でインストール<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn go install-cta" href="rhino7://package/search?name=gorani">Rhino 7でインストール<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
+          <ul class="install-links"><li><a href="rhino8://package/search?name=gorani" data-release="tag">Rhino 8 Gorani <span class="ver">0.3.7</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="rhino7://package/search?name=gorani" data-release="tag">Rhino 7 Gorani <span class="ver">0.3.7</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -261,10 +260,10 @@
       <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
         <div class="install-quick">
           <div>
-            <h3>ファイルからインストール</h3>
+            <h3>すぐにインストール</h3>
             <p>Extension Warehouseの承認待ち</p>
           </div>
-          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz">インストーラーをダウンロード<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz" data-release="sketchup">SketchUp Gorani <span class="ver">0.3.7</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -289,7 +288,7 @@
             <h3>すぐにインストール</h3>
             <p>Blender ExtensionsのGoraniページを開きます。</p>
           </div>
-          <a class="btn go install-cta" href="https://extensions.blender.org/add-ons/gorani/">Blenderでインストール<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <ul class="install-links"><li><a href="https://extensions.blender.org/add-ons/gorani/">Blender Gorani<svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -309,64 +308,77 @@
         </div>
       </div>
       <div role="tabpanel" id="p-autocad" aria-labelledby="tab-autocad" hidden>
+        <div class="os-block" data-os="win">
+          <div class="install-quick">
+            <div>
+              <h3>すぐにインストール</h3>
+              <p>Autodesk App Storeの承認待ち</p>
+            </div>
+            <div class="seg os-switch" role="group" aria-label="OS"><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">macOS</button></div>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip" data-release="autocad-win">Windows Gorani <span class="ver">0.3.6</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+          </div>
+          <div class="install-card">
+            <ol class="steps install-list">
+              <li>
+                <h3>展開する</h3>
+                <p>zipを右クリックし、<span class="ui">プロパティ</span>で<span class="ui">許可する</span>にチェックしてから展開する</p>
+              </li>
+              <li>
+                <h3>フォルダーを移動</h3>
+                <p><code>Gorani.bundle</code>フォルダーをこの場所へ移動する。管理者の許可を求められたら<span class="ui">続行</span></p>
+                <span class="cmd path"><code>C:\Program Files\Autodesk\ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="パスをコピーしました" aria-label="パスをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+              <li>
+                <h3>AutoCADを再起動</h3>
+              </li>
+              <li>
+                <h3>パネルを開く</h3>
+                <p>コマンドラインに入力</p>
+                <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Goraniをコピーしました" aria-label="Goraniをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="os-block" data-os="mac" hidden>
+          <div class="install-quick">
+            <div>
+              <h3>すぐにインストール</h3>
+              <p>Autodesk App Storeの承認待ち</p>
+            </div>
+            <div class="seg os-switch" role="group" aria-label="OS"><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">macOS</button></div>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip" data-release="autocad-mac">macOS Gorani <span class="ver">0.3.6</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+          </div>
+          <div class="install-card">
+            <ol class="steps install-list">
+              <li>
+                <h3>フォルダーを移動</h3>
+                <p>Finderの<span class="ui">移動 &gt; フォルダへ移動</span>にこのパスを貼り付け、開いたフォルダーへ展開した<code>Gorani.bundle</code>を移動する</p>
+                <span class="cmd path"><code>~/Library/Application Support/Autodesk/ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="パスをコピーしました" aria-label="パスをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+              <li>
+                <h3>実行を許可</h3>
+                <p>インターネットから入手したプログラムはmacOSがブロックするため、ターミナルで一度実行して解除する</p>
+                <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="xattrをコピーしました" aria-label="xattrをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+              <li>
+                <h3>AutoCADを再起動</h3>
+              </li>
+              <li>
+                <h3>パネルを開く</h3>
+                <p>コマンドラインに入力</p>
+                <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Goraniをコピーしました" aria-label="Goraniをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" id="p-archicad" aria-labelledby="tab-archicad" hidden>
         <div class="install-quick">
           <div>
-            <h3>Windows</h3>
-            <p>Autodesk App Storeの承認待ち</p>
+            <h3>すぐにインストール</h3>
+            <p>近日対応予定です。</p>
           </div>
-          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Windows版をダウンロード<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-        <div class="install-card">
-          <ol class="steps install-list">
-            <li>
-              <h3>展開する</h3>
-              <p>zipを右クリックし、<span class="ui">プロパティ</span>で<span class="ui">許可する</span>にチェックしてから展開する</p>
-            </li>
-            <li>
-              <h3>フォルダーを移動</h3>
-              <p><code>Gorani.bundle</code>フォルダーをこの場所へ移動する。管理者の許可を求められたら<span class="ui">続行</span></p>
-              <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="パスをコピーしました" aria-label="パスをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-            <li>
-              <h3>AutoCADを再起動</h3>
-              <p>再起動するとGoraniが読み込まれます。</p>
-            </li>
-            <li>
-              <h3>パネルを開く</h3>
-              <p>コマンドラインに入力</p>
-              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANIをコピーしました" aria-label="GORANIをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-          </ol>
-        </div>
-        <div class="install-quick">
-          <div>
-            <h3>macOS</h3>
-            <p>Autodesk App Storeの承認待ち</p>
-          </div>
-          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip">macOS版をダウンロード<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-        <div class="install-card">
-          <ol class="steps install-list">
-            <li>
-              <h3>フォルダーを移動</h3>
-              <p>Finderの<span class="ui">移動 &gt; フォルダへ移動</span>にこのパスを貼り付け、開いたフォルダーへ展開した<code>Gorani.bundle</code>を移動する</p>
-              <span class="cmd path"><code>~/Library/Application Support/<wbr>Autodesk/<wbr>ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="パスをコピーしました" aria-label="パスをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-            <li>
-              <h3>実行を許可</h3>
-              <p>インターネットから入手したプログラムはmacOSがブロックするため、ターミナルで一度実行して解除する</p>
-              <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/<wbr>Application\ Support/<wbr>Autodesk/<wbr>ApplicationAddins/<wbr>Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="xattrをコピーしました" aria-label="xattrをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-            <li>
-              <h3>AutoCADを再起動</h3>
-              <p>再起動するとGoraniが読み込まれます。</p>
-            </li>
-            <li>
-              <h3>パネルを開く</h3>
-              <p>コマンドラインに入力</p>
-              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANIをコピーしました" aria-label="GORANIをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-          </ol>
+          <ul class="install-links"><li><span aria-disabled="true">Archicad 準備中</span></li></ul>
         </div>
       </div>
     </div>
@@ -692,12 +704,13 @@
           </details>
           <details class="faq-item">
             <summary><h3>問題が起きたらどうすればいいですか？</h3></summary>
-            <p>まず結果フォルダの<code>log.txt</code>を確認してください。解決しない場合は<a href="#contact">お問い合わせ</a>ください。<code>log.txt</code>の内容を貼り付けていただくと、原因をすぐに確認できます。</p>
+            <p>まず結果フォルダの<code>log.txt</code>を確認してください。解決しない場合は、<code>log.txt</code>を添付して<a href="https://github.com/969flash/gorani/issues">GitHub Issues</a>に投稿してください。GitHubアカウントがない場合は、下の<a href="#contact">お問い合わせ</a>からどうぞ。</p>
           </details>
         </div>
         <div class="contact" id="contact" aria-labelledby="contact-title">
           <div class="contact-head">
             <h3 id="contact-title">お問い合わせ</h3>
+            <a class="btn" href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHubでIssueを作成</a>
           </div>
           <form class="contact-form" novalidate data-sending="送信中…" data-sent="送信しました。{email} に返信します。" data-error="送信できませんでした。しばらくしてから再度お試しいただくか、GitHub Issues にご投稿ください。" data-unready="お問い合わせフォームは準備中です。今は GitHub Issues をご利用ください。">
             <div class="field">
@@ -770,7 +783,7 @@
   <div class="wrap">
     <div class="fine">
       <span class="mark" aria-hidden="true"></span>
-      <p>制作 <a href="https://github.com/969flash">Hoon</a>、<a href="https://wjcho.com">Cho</a>。バージョン 0.3.7。<a href="mailto:gorani.3d@gmail.com">gorani.3d@gmail.com</a></p>
+      <p class="credit"><span>Made by <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a></span><a href="mailto:gorani.3d@gmail.com">gorani.3d@gmail.com</a><span class="ver-tag">v<span data-release-ver>0.3.7</span></span></p>
       <p>お腹をすかせた大学院生です。役に立ったら、コーヒーを一杯おごってください。</p>
       <a class="btn" href="https://github.com/sponsors/969flash">GitHubで支援する</a>
     </div>

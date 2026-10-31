@@ -82,6 +82,7 @@
   <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-close" viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
   <symbol id="i-menu" viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 4.75v5.5M5.5 8l2.5 2.5L10.5 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 </svg>
 
@@ -207,7 +208,7 @@
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 이상</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 이상</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="autocad"><span><b>AutoCAD</b><small>2D 도면</small></span></a></li>
-        <li><span class="host-link"><img src="assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
+        <li><a class="host-link" href="#install" data-install-tab="archicad"><img src="assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></a></li>
         <li><span class="host-link"><b>Windows · macOS</b><small>지원 운영체제</small></span></li>
       </ul>
     </div>
@@ -218,10 +219,11 @@
       <div class="block-head">
         <h2 id="install-title">설치</h2>
         <div class="seg" role="tablist" aria-label="프로그램">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7·8</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino</button>
           <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
           <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
           <button type="button" role="tab" id="tab-autocad" aria-controls="p-autocad" aria-selected="false" tabindex="-1">AutoCAD</button>
+          <button type="button" role="tab" id="tab-archicad" aria-controls="p-archicad" aria-selected="false" tabindex="-1">Archicad</button>
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
@@ -230,10 +232,7 @@
             <h3>바로 설치</h3>
             <p>Rhino의 패키지 매니저가 Gorani 검색 결과로 열립니다.</p>
           </div>
-          <div class="install-ctas">
-            <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Rhino 8에서 설치<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn go install-cta" href="rhino7://package/search?name=gorani">Rhino 7에서 설치<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
+          <ul class="install-links"><li><a href="rhino8://package/search?name=gorani" data-release="tag">Rhino 8 Gorani <span class="ver">0.3.7</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="rhino7://package/search?name=gorani" data-release="tag">Rhino 7 Gorani <span class="ver">0.3.7</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -261,10 +260,10 @@
       <div role="tabpanel" id="p-sketchup" aria-labelledby="tab-sketchup" hidden>
         <div class="install-quick">
           <div>
-            <h3>파일로 설치</h3>
+            <h3>바로 설치</h3>
             <p>Extension Warehouse 승인 대기 중</p>
           </div>
-          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz">설치 파일 받기<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz" data-release="sketchup">SketchUp Gorani <span class="ver">0.3.7</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -289,7 +288,7 @@
             <h3>바로 설치</h3>
             <p>Blender Extensions의 Gorani 페이지로 연결됩니다.</p>
           </div>
-          <a class="btn go install-cta" href="https://extensions.blender.org/add-ons/gorani/">Blender에서 설치<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <ul class="install-links"><li><a href="https://extensions.blender.org/add-ons/gorani/">Blender Gorani<svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -309,64 +308,77 @@
         </div>
       </div>
       <div role="tabpanel" id="p-autocad" aria-labelledby="tab-autocad" hidden>
+        <div class="os-block" data-os="win">
+          <div class="install-quick">
+            <div>
+              <h3>바로 설치</h3>
+              <p>Autodesk App Store 승인 대기 중</p>
+            </div>
+            <div class="seg os-switch" role="group" aria-label="운영체제"><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">macOS</button></div>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip" data-release="autocad-win">Windows Gorani <span class="ver">0.3.6</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+          </div>
+          <div class="install-card">
+            <ol class="steps install-list">
+              <li>
+                <h3>압축 풀기</h3>
+                <p>zip 파일을 오른쪽 클릭해 <span class="ui">속성</span>에서 <span class="ui">차단 해제</span>를 체크한 뒤 풉니다.</p>
+              </li>
+              <li>
+                <h3>폴더 옮기기</h3>
+                <p><code>Gorani.bundle</code> 폴더를 아래 위치로 옮깁니다. 관리자 권한을 물으면 <span class="ui">계속</span>을 누릅니다.</p>
+                <span class="cmd path"><code>C:\Program Files\Autodesk\ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="경로 복사됨" aria-label="경로 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+              <li>
+                <h3>AutoCAD 다시 시작</h3>
+              </li>
+              <li>
+                <h3>패널 열기</h3>
+                <p>명령창에 입력</p>
+                <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Gorani 복사됨" aria-label="Gorani 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="os-block" data-os="mac" hidden>
+          <div class="install-quick">
+            <div>
+              <h3>바로 설치</h3>
+              <p>Autodesk App Store 승인 대기 중</p>
+            </div>
+            <div class="seg os-switch" role="group" aria-label="운영체제"><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">macOS</button></div>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip" data-release="autocad-mac">macOS Gorani <span class="ver">0.3.6</span><svg class="i-dl" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+          </div>
+          <div class="install-card">
+            <ol class="steps install-list">
+              <li>
+                <h3>폴더 옮기기</h3>
+                <p>Finder 메뉴 <span class="ui">이동 &gt; 폴더로 이동</span>에 아래 경로를 붙여 넣습니다. 열린 폴더에 압축을 푼 <code>Gorani.bundle</code>을 옮깁니다.</p>
+                <span class="cmd path"><code>~/Library/Application Support/Autodesk/ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="경로 복사됨" aria-label="경로 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+              <li>
+                <h3>실행 허용</h3>
+                <p>macOS는 인터넷에서 받은 프로그램의 실행을 막습니다. 터미널에 아래 명령을 한 번 입력하면 풀립니다.</p>
+                <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="xattr 복사됨" aria-label="xattr 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+              <li>
+                <h3>AutoCAD 다시 시작</h3>
+              </li>
+              <li>
+                <h3>패널 열기</h3>
+                <p>명령창에 입력</p>
+                <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Gorani 복사됨" aria-label="Gorani 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" id="p-archicad" aria-labelledby="tab-archicad" hidden>
         <div class="install-quick">
           <div>
-            <h3>Windows</h3>
-            <p>Autodesk App Store 승인 대기 중</p>
+            <h3>바로 설치</h3>
+            <p>곧 지원할 예정입니다.</p>
           </div>
-          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip">Windows용 받기<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-        <div class="install-card">
-          <ol class="steps install-list">
-            <li>
-              <h3>압축 풀기</h3>
-              <p>zip 파일을 오른쪽 클릭해 <span class="ui">속성</span>에서 <span class="ui">차단 해제</span>를 체크한 뒤 풉니다.</p>
-            </li>
-            <li>
-              <h3>폴더 옮기기</h3>
-              <p><code>Gorani.bundle</code> 폴더를 아래 위치로 옮깁니다. 관리자 권한을 물으면 <span class="ui">계속</span>을 누릅니다.</p>
-              <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="경로 복사됨" aria-label="경로 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-            <li>
-              <h3>AutoCAD 다시 시작</h3>
-              <p>다시 켜야 Gorani가 올라옵니다.</p>
-            </li>
-            <li>
-              <h3>패널 열기</h3>
-              <p>명령창에 입력</p>
-              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANI 복사됨" aria-label="GORANI 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-          </ol>
-        </div>
-        <div class="install-quick">
-          <div>
-            <h3>macOS</h3>
-            <p>Autodesk App Store 승인 대기 중</p>
-          </div>
-          <a class="btn go install-cta" href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip">macOS용 받기<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-        <div class="install-card">
-          <ol class="steps install-list">
-            <li>
-              <h3>폴더 옮기기</h3>
-              <p>Finder 메뉴 <span class="ui">이동 &gt; 폴더로 이동</span>에 아래 경로를 붙여 넣습니다. 열린 폴더에 압축을 푼 <code>Gorani.bundle</code>을 옮깁니다.</p>
-              <span class="cmd path"><code>~/Library/Application Support/<wbr>Autodesk/<wbr>ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="경로 복사됨" aria-label="경로 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-            <li>
-              <h3>실행 허용</h3>
-              <p>macOS는 인터넷에서 받은 프로그램의 실행을 막습니다. 터미널에 아래 명령을 한 번 입력하면 풀립니다.</p>
-              <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/<wbr>Application\ Support/<wbr>Autodesk/<wbr>ApplicationAddins/<wbr>Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="xattr 복사됨" aria-label="xattr 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-            <li>
-              <h3>AutoCAD 다시 시작</h3>
-              <p>다시 켜야 Gorani가 올라옵니다.</p>
-            </li>
-            <li>
-              <h3>패널 열기</h3>
-              <p>명령창에 입력</p>
-              <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANI 복사됨" aria-label="GORANI 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
-            </li>
-          </ol>
+          <ul class="install-links"><li><span aria-disabled="true">Archicad 준비 중</span></li></ul>
         </div>
       </div>
     </div>
@@ -692,12 +704,13 @@
           </details>
           <details class="faq-item">
             <summary><h3>문제가 생기면 어떻게 하나요?</h3></summary>
-            <p>먼저 결과 폴더의 <code>log.txt</code>를 확인해 주세요. 해결되지 않으면 <a href="#contact">문의</a>를 남겨 주세요. <code>log.txt</code> 내용을 붙여 주시면 원인을 빨리 찾을 수 있습니다.</p>
+            <p>먼저 결과 폴더의 <code>log.txt</code>를 확인해 주세요. 해결되지 않으면 <a href="https://github.com/969flash/gorani/issues">GitHub Issues</a>에 <code>log.txt</code>를 첨부해 남겨 주세요. GitHub 계정이 없으면 아래 <a href="#contact">문의</a>로 보내 주셔도 됩니다.</p>
           </details>
         </div>
         <div class="contact" id="contact" aria-labelledby="contact-title">
           <div class="contact-head">
             <h3 id="contact-title">문의하기</h3>
+            <a class="btn" href="https://github.com/969flash/gorani/issues"><svg aria-hidden="true"><use href="#i-github"/></svg>GitHub에 이슈 남기기</a>
           </div>
           <form class="contact-form" novalidate data-sending="보내는 중…" data-sent="보냈습니다. {email} 주소로 답장드리겠습니다." data-error="보내지 못했습니다. 잠시 뒤 다시 보내거나 GitHub Issues에 남겨 주세요." data-unready="문의창을 준비하고 있습니다. 지금은 GitHub Issues에 남겨 주세요.">
             <div class="field">
@@ -770,7 +783,7 @@
   <div class="wrap">
     <div class="fine">
       <span class="mark" aria-hidden="true"></span>
-      <p>만든 사람 <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a>. 버전 0.3.7. <a href="mailto:gorani.3d@gmail.com">gorani.3d@gmail.com</a></p>
+      <p class="credit"><span>Made by <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a></span><a href="mailto:gorani.3d@gmail.com">gorani.3d@gmail.com</a><span class="ver-tag">v<span data-release-ver>0.3.7</span></span></p>
       <p>배고픈 대학원생입니다. 도움이 되었다면 커피 한 잔 부탁드립니다.</p>
       <a class="btn" href="https://github.com/sponsors/969flash">GitHub로 후원하기</a>
     </div>

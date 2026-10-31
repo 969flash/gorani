@@ -62,6 +62,7 @@
     if (!a) return;
     if (a.closest(".language-switch")) return track("language_switch", { from: pageLang, to: a.getAttribute("lang") });
     if (a.getAttribute("href") === "#install") return track("install_cta", { place: place(a) });
+    if (a.closest(".install-links")) return track("install_download", { target: a.textContent.trim() });
     var href = a.href;
     var target = /\/gorani(-plugin)?\/issues/.test(href) ? "review" : /github\.com\/sponsors\//.test(href) ? "sponsor"
       : /github\.com\/969flash\/gorani(-plugin)?\/?$/.test(href) ? "github" : /wikipedia\.org/.test(href) ? "wikipedia" : "";
@@ -147,6 +148,53 @@
       if (d) { e.preventDefault(); pick(tabs[(i + d + tabs.length) % tabs.length], true); }
     });
   });
+  // AutoCAD 설치: Windows·macOS 전환(기본 Windows). 블록마다 회색 박스 안에 같은 전환이 있어 함께 맞춘다
+  document.querySelectorAll(".os-switch").forEach(function (sw) {
+    var panel = sw.closest("[role=tabpanel]");
+    sw.addEventListener("click", function (e) {
+      var btn = e.target.closest("button[data-os]");
+      if (!btn) return;
+      var os = btn.getAttribute("data-os");
+      panel.querySelectorAll(".os-switch button[data-os]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-os") === os)); });
+      panel.querySelectorAll(".os-block").forEach(function (blk) { blk.hidden = blk.getAttribute("data-os") !== os; });
+      var next = panel.querySelector('.os-block[data-os="' + os + '"] .os-switch button[data-os="' + os + '"]');
+      if (next) next.focus();
+      track("install_os", { os: os });
+    });
+  });
+  // 설치 받기 링크: 플러그인 저장소의 최신 릴리스를 읽어 파일 주소·버전을 맞춘다(실패하면 페이지에 적힌 값 그대로)
+  var releaseLinks = document.querySelectorAll("[data-release]");
+  if ((releaseLinks.length || document.querySelector("[data-release-ver]")) && window.fetch) {
+    var applyRelease = function (rel) {
+      var tagVer = String(rel.tag_name || "").replace(/^v/, "");
+      var pattern = { "sketchup": /\.rbz$/, "autocad-win": /autocad-win.*\.zip$/, "autocad-mac": /autocad-mac.*\.zip$/ };
+      document.querySelectorAll("[data-release-ver]").forEach(function (el) { if (tagVer) el.textContent = tagVer; });
+      releaseLinks.forEach(function (a) {
+        var kind = a.getAttribute("data-release"), ver = tagVer;
+        if (pattern[kind]) {
+          var asset = (rel.assets || []).filter(function (x) { return pattern[kind].test(x.name); })[0];
+          if (!asset) return;
+          a.href = asset.browser_download_url;
+          ver = (asset.name.match(/(\d+\.\d+\.\d+)/) || [])[1] || tagVer;
+        }
+        var span = a.querySelector(".ver");
+        if (span && ver) span.textContent = ver;
+      });
+    };
+    var cached = null;
+    try { cached = JSON.parse(sessionStorage.getItem("gorani-release") || "null"); } catch (e) {}
+    if (cached) applyRelease(cached);
+    else fetch("https://api.github.com/repos/969flash/gorani-plugin/releases/latest")
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (rel) {
+        if (!rel || !rel.tag_name) return;
+        var slim = { tag_name: rel.tag_name, assets: (rel.assets || []).map(function (x) { return { name: x.name, browser_download_url: x.browser_download_url }; }) };
+        try { sessionStorage.setItem("gorani-release", JSON.stringify(slim)); } catch (e) {}
+        applyRelease(slim);
+      })
+      .catch(function () {});
+  }
+
   // 지원 프로그램 칩: 설치의 그 프로그램 탭을 연다
   document.querySelectorAll("[data-install-tab]").forEach(function (link) {
     link.addEventListener("click", function () {

@@ -448,12 +448,11 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .install-quick { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; margin-bottom: 12px; padding: 20px 24px 20px 32px; border-radius: 16px; background: var(--press); }
 .install-quick h3 { font-size: 17px; line-height: 24px; font-weight: 700; }
 .install-quick p { margin-top: 2px; font-size: 14px; line-height: 20px; color: var(--ink-2); }
-.install-ctas { display: flex; gap: 8px; flex: none; }
+.install-ctas { display: flex; align-items: center; gap: 20px; flex: none; }
 .install-card + .install-quick { margin-top: 28px; }   /* AutoCAD: Windows·macOS 블록 사이 */
-.install-cta { flex: none; }
-.install-ctas .install-cta { background: var(--surface); border-color: var(--hair); color: var(--ink); }   /* Rhino 8·7: 버전 고르기라 흰 단추 둘 */
-.install-ctas .install-cta:hover { background: var(--surface); border-color: #CECECE; }
-.install-cta img { width: 18px; height: 18px; object-fit: contain; }   /* food4rhino Install과 같은 rhino8://·rhino7:// 링크 */
+.install-cta { flex: none; }   /* food4rhino Install과 같은 rhino8://·rhino7:// 링크 */
+.install-alt { order: -1; font-size: 14px; color: var(--ink-2); }   /* Rhino 7: 주 단추 옆 작은 글자 링크(모든 탭이 검은 단추 하나로 같게) */
+.install-alt:hover { color: var(--ink); }
 .install-cta[aria-disabled="true"], .install-cta[aria-disabled="true"]:hover { gap: 8px; background: var(--hair); border-color: var(--hair); color: var(--ink-3); cursor: not-allowed; }   /* SketchUp·Blender: 스토어 업로드 전까지 누를 수 없음 */
 .install-cta small { padding: 2px 8px; border-radius: 999px; background: var(--surface); font-size: 12px; line-height: 16px; font-weight: 600; }
 .steps.install-list { display: block; }
@@ -533,7 +532,8 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .seg button:last-child:nth-child(odd) { grid-column: span 2; }
   .install-card { padding: 4px 20px; }
   .install-quick { flex-direction: column; align-items: stretch; padding: 20px; }
-  .install-ctas { flex-direction: column; }
+  .install-ctas { flex-direction: column; align-items: stretch; gap: 12px; }
+  .install-alt { order: 1; text-align: center; }
   .contact { position: static; }
   .contact-form { grid-template-columns: 1fr; padding: 20px; }
   .install-cta { justify-content: center; }

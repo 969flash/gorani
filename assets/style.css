@@ -291,7 +291,7 @@ html[lang="ja"] .hero h1 { font-size: 42px; line-height: 52px; }   /* 전각 글
 .usage { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 0; list-style: none; }
 .usage li { border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); overflow: hidden; transition: border-color .6s cubic-bezier(.33,0,.45,1), box-shadow .6s cubic-bezier(.33,0,.45,1); }
 .usage li:hover { border-color: #CECECE; box-shadow: 0 12px 32px -24px rgba(20, 20, 20, .35); transition-duration: .18s; }   /* 지원 칩과 같은 결: 제자리에서 빠르게 켜지고 천천히 꺼짐 */
-.usage img { width: 100%; height: auto; background: var(--press); }
+.usage img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; object-position: top; background: var(--press); }   /* 네 장을 같은 3:2 틀에 — 카드 본문 높이가 같아진다 */
 .usage div { padding: 20px 24px 24px; }
 .usage h3 { font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: -.01em; }
 .usage h3 b { color: var(--ink-3); font-weight: 700; margin-right: 10px; font-variant-numeric: tabular-nums; }

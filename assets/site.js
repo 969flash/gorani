@@ -148,15 +148,18 @@
       if (d) { e.preventDefault(); pick(tabs[(i + d + tabs.length) % tabs.length], true); }
     });
   });
-  // AutoCAD 설치: Windows·macOS 전환(기본 Windows)
+  // AutoCAD 설치: Windows·macOS 전환(기본 Windows). 블록마다 회색 박스 안에 같은 전환이 있어 함께 맞춘다
   document.querySelectorAll(".os-switch").forEach(function (sw) {
-    var panel = sw.parentElement;
+    var panel = sw.closest("[role=tabpanel]");
     sw.addEventListener("click", function (e) {
       var btn = e.target.closest("button[data-os]");
       if (!btn) return;
-      sw.querySelectorAll("button[data-os]").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
-      panel.querySelectorAll(".os-block").forEach(function (blk) { blk.hidden = blk.getAttribute("data-os") !== btn.getAttribute("data-os"); });
-      track("install_os", { os: btn.getAttribute("data-os") });
+      var os = btn.getAttribute("data-os");
+      panel.querySelectorAll(".os-switch button[data-os]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-os") === os)); });
+      panel.querySelectorAll(".os-block").forEach(function (blk) { blk.hidden = blk.getAttribute("data-os") !== os; });
+      var next = panel.querySelector('.os-block[data-os="' + os + '"] .os-switch button[data-os="' + os + '"]');
+      if (next) next.focus();
+      track("install_os", { os: os });
     });
   });
   // 지원 프로그램 칩: 설치의 그 프로그램 탭을 연다

@@ -454,9 +454,9 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .os-block[hidden] { display: none; }
 /* 설치 받기: 프로그램·버전 글자 링크 + 받기 아이콘, 한 줄에 하나(한 번 누르면 끝) */
 .install-links { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; justify-items: start; }
-.install-links a, .install-links > li > span { display: inline-flex; align-items: center; gap: 0; font-size: 15px; line-height: 24px; font-weight: 600; color: var(--ink); text-decoration: none; }
+.install-links a, .install-links > li > span { display: inline-block; font-size: 15px; line-height: 24px; font-weight: 600; color: var(--ink); text-decoration: none; }
 .install-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
-.install-links svg { width: 16px; height: 16px; flex: none; margin-left: 8px; transition: transform .6s cubic-bezier(.33,0,.45,1); }
+.install-links svg { width: 16px; height: 16px; margin-left: 8px; vertical-align: -3px; transition: transform .6s cubic-bezier(.33,0,.45,1); }
 .install-links a:hover svg { transform: translateY(2px); transition-duration: .18s; }
 .install-links span[aria-disabled="true"] { color: var(--ink-3); cursor: not-allowed; }
 .steps.install-list { display: block; }

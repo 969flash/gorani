@@ -446,8 +446,10 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .install-quick { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; margin-bottom: 12px; padding: 20px 24px 20px 32px; border-radius: 16px; background: var(--press); }
 .install-quick h3 { font-size: 17px; line-height: 24px; font-weight: 700; }
 .install-quick p { margin-top: 2px; font-size: 14px; line-height: 20px; color: var(--ink-2); }
-.os-switch { display: inline-flex; margin-left: auto; background: var(--hair); }   /* AutoCAD: Windows·macOS 전환(기본 Windows) */
-.os-switch button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
+.os-switch { display: inline-flex; gap: 16px; margin-left: auto; padding: 0; background: none; }   /* AutoCAD: Windows·macOS 글자 전환(기본 Windows) */
+.os-switch button { height: auto; padding: 2px 0; border-radius: 0; background: none; box-shadow: none; font-size: 14px; font-weight: 500; color: var(--ink-3); }
+.os-switch button:hover { color: var(--ink); background: none; }
+.os-switch button[aria-pressed="true"] { color: var(--ink); font-weight: 600; background: none; box-shadow: none; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1.5px; }
 .os-block[hidden] { display: none; }
 /* 설치 받기: 프로그램·버전 글자 링크 + 받기 아이콘, 한 줄에 하나(한 번 누르면 끝) */
 .install-links { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; justify-items: start; }
@@ -530,7 +532,8 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .country-sources div { grid-template-columns: 1fr; gap: 2px; }
   .seg { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); }   /* 탭 5개: 휴대폰에서는 세 칸씩 두 줄 */
   .seg button { justify-content: center; padding: 0 6px; font-size: 14px; }
-  .os-switch { width: auto; display: inline-grid; grid-template-columns: 1fr 1fr; margin-left: 0; justify-self: start; align-self: flex-start; }
+  .os-switch { width: auto; display: inline-flex; margin-left: 0; align-self: flex-start; }
+  .os-switch button { padding: 2px 0; font-size: 14px; }
   .install-card { padding: 4px 20px; }
   .install-quick { flex-direction: column; align-items: stretch; padding: 20px; }
   .contact { position: static; }

@@ -415,8 +415,6 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 /* 설치: 프로그램 고르기(세그먼트) + 단계 카드 */
 .seg { display: inline-flex; gap: 2px; padding: 2px; border-radius: 8px; background: var(--press); }
 .seg button { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; transition: background-color .6s cubic-bezier(.33,0,.45,1), color .6s cubic-bezier(.33,0,.45,1), box-shadow .6s cubic-bezier(.33,0,.45,1); border: 0; background: none; height: 36px; padding: 0 16px; border-radius: 6px; font-weight: 500; font-size: 15px; color: var(--ink-2); cursor: pointer; }
-.seg button img { width: 16px; height: 16px; object-fit: contain; border-radius: 3px; filter: grayscale(1); opacity: .55; transition: filter .6s cubic-bezier(.33,0,.45,1), opacity .6s cubic-bezier(.33,0,.45,1); }
-.seg button[aria-selected="true"] img, .seg button:hover img { filter: none; opacity: 1; transition-duration: .18s; }
 .seg button[aria-selected="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
 .steps { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 12px; padding: 0; list-style: none; counter-reset: s; }
 .steps li { counter-increment: s; padding: 24px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
@@ -449,7 +447,9 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .install-quick h3 { font-size: 17px; line-height: 24px; font-weight: 700; }
 .install-quick p { margin-top: 2px; font-size: 14px; line-height: 20px; color: var(--ink-2); }
 .install-ctas { display: flex; align-items: center; gap: 20px; flex: none; }
-.install-card + .install-quick { margin-top: 28px; }   /* AutoCAD: Windows·macOS 블록 사이 */
+.os-switch { display: inline-flex; margin-bottom: 12px; }   /* AutoCAD: Windows·macOS 전환(기본 Windows) */
+.os-switch button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
+.os-block[hidden] { display: none; }
 .install-cta { flex: none; }   /* food4rhino Install과 같은 rhino8://·rhino7:// 링크 */
 .install-alt { order: -1; font-size: 14px; color: var(--ink-2); }   /* Rhino 7: 주 단추 옆 작은 글자 링크(모든 탭이 검은 단추 하나로 같게) */
 .install-alt:hover { color: var(--ink); }
@@ -527,9 +527,9 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .country-panel { grid-template-columns: 1fr; grid-template-areas: "head" "text" "label" "sources" "date"; grid-template-rows: none; padding: 20px; }
   .country-panel h4 { margin-top: 24px; }
   .country-sources div { grid-template-columns: 1fr; gap: 2px; }
-  .seg { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }   /* 탭 5개: 휴대폰에서는 두 줄 */
-  .seg button { justify-content: center; padding: 0 8px; }
-  .seg button:last-child:nth-child(odd) { grid-column: span 2; }
+  .seg { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); }   /* 탭 5개: 휴대폰에서는 세 칸씩 두 줄 */
+  .seg button { justify-content: center; padding: 0 6px; font-size: 14px; }
+  .os-switch { width: auto; display: inline-grid; grid-template-columns: 1fr 1fr; }
   .install-card { padding: 4px 20px; }
   .install-quick { flex-direction: column; align-items: stretch; padding: 20px; }
   .install-ctas { flex-direction: column; align-items: stretch; gap: 12px; }

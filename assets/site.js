@@ -147,6 +147,17 @@
       if (d) { e.preventDefault(); pick(tabs[(i + d + tabs.length) % tabs.length], true); }
     });
   });
+  // AutoCAD 설치: Windows·macOS 전환(기본 Windows)
+  document.querySelectorAll(".os-switch").forEach(function (sw) {
+    var panel = sw.parentElement;
+    sw.addEventListener("click", function (e) {
+      var btn = e.target.closest("button[data-os]");
+      if (!btn) return;
+      sw.querySelectorAll("button[data-os]").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
+      panel.querySelectorAll(".os-block").forEach(function (blk) { blk.hidden = blk.getAttribute("data-os") !== btn.getAttribute("data-os"); });
+      track("install_os", { os: btn.getAttribute("data-os") });
+    });
+  });
   // 지원 프로그램 칩: 설치의 그 프로그램 탭을 연다
   document.querySelectorAll("[data-install-tab]").forEach(function (link) {
     link.addEventListener("click", function () {

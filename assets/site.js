@@ -62,6 +62,7 @@
     if (!a) return;
     if (a.closest(".language-switch")) return track("language_switch", { from: pageLang, to: a.getAttribute("lang") });
     if (a.getAttribute("href") === "#install") return track("install_cta", { place: place(a) });
+    if (a.closest(".install-links")) return track("install_download", { target: a.textContent.trim() });
     var href = a.href;
     var target = /\/gorani(-plugin)?\/issues/.test(href) ? "review" : /github\.com\/sponsors\//.test(href) ? "sponsor"
       : /github\.com\/969flash\/gorani(-plugin)?\/?$/.test(href) ? "github" : /wikipedia\.org/.test(href) ? "wikipedia" : "";
@@ -156,19 +157,6 @@
       sw.querySelectorAll("button[data-os]").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
       panel.querySelectorAll(".os-block").forEach(function (blk) { blk.hidden = blk.getAttribute("data-os") !== btn.getAttribute("data-os"); });
       track("install_os", { os: btn.getAttribute("data-os") });
-    });
-  });
-  // Rhino 설치: 8·7 버전 고르기 — 단추 하나의 주소·글자를 바꾼다
-  document.querySelectorAll(".ver-switch").forEach(function (sw) {
-    var cta = sw.parentElement.querySelector(".install-cta[data-label]");
-    sw.addEventListener("click", function (e) {
-      var btn = e.target.closest("button[data-ver]");
-      if (!btn || !cta) return;
-      var v = btn.getAttribute("data-ver");
-      sw.querySelectorAll("button[data-ver]").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
-      cta.href = "rhino" + v + "://package/search?name=gorani";
-      cta.querySelector("span").textContent = cta.getAttribute("data-label").replace("{v}", v);
-      track("install_version", { version: v });
     });
   });
   // 지원 프로그램 칩: 설치의 그 프로그램 탭을 연다

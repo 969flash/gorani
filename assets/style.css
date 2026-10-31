@@ -414,7 +414,9 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 
 /* 설치: 프로그램 고르기(세그먼트) + 단계 카드 */
 .seg { display: inline-flex; gap: 2px; padding: 2px; border-radius: 8px; background: var(--press); }
-.seg button { transition: background-color .6s cubic-bezier(.33,0,.45,1), color .6s cubic-bezier(.33,0,.45,1), box-shadow .6s cubic-bezier(.33,0,.45,1); border: 0; background: none; height: 36px; padding: 0 16px; border-radius: 6px; font-weight: 500; font-size: 15px; color: var(--ink-2); cursor: pointer; }
+.seg button { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; transition: background-color .6s cubic-bezier(.33,0,.45,1), color .6s cubic-bezier(.33,0,.45,1), box-shadow .6s cubic-bezier(.33,0,.45,1); border: 0; background: none; height: 36px; padding: 0 16px; border-radius: 6px; font-weight: 500; font-size: 15px; color: var(--ink-2); cursor: pointer; }
+.seg button img { width: 16px; height: 16px; object-fit: contain; border-radius: 3px; filter: grayscale(1); opacity: .55; transition: filter .6s cubic-bezier(.33,0,.45,1), opacity .6s cubic-bezier(.33,0,.45,1); }
+.seg button[aria-selected="true"] img, .seg button:hover img { filter: none; opacity: 1; transition-duration: .18s; }
 .seg button[aria-selected="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
 .steps { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 12px; padding: 0; list-style: none; counter-reset: s; }
 .steps li { counter-increment: s; padding: 24px; border-radius: 16px; background: var(--surface); border: 1px solid var(--hair); }
@@ -428,9 +430,9 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 12px;
   height: 40px; padding: 0 4px 0 12px; border-radius: 8px; background: var(--press);
 }
-.cmd code { font-size: 15px; font-weight: 600; color: var(--ink); }
-.cmd.path { height: auto; min-height: 40px; padding-top: 6px; padding-bottom: 6px; }
-.cmd.path code { font-size: 13px; line-height: 18px; }   /* 긴 폴더 경로(AutoCAD 번들 자리)는 줄을 바꾼다 — 끊는 자리는 <wbr> */
+.cmd code { flex: 1; min-width: 0; overflow-x: auto; white-space: nowrap; scrollbar-width: thin; padding: 10px 0; font-size: 15px; font-weight: 600; color: var(--ink); }   /* 긴 명령어·경로는 칸 안에서 가로 스크롤, 칸 크기는 그대로 */
+.cmd .copy { flex: none; }
+.cmd.path code { font-size: 13px; }   /* 긴 폴더 경로는 글자만 조금 작게(칸 안에서 가로 스크롤) */
 .copy { display: grid; place-items: center; width: 32px; height: 32px; border: 0; border-radius: 6px; background: none; color: var(--ink-2); cursor: pointer; }
 .copy { transition: background-color .6s cubic-bezier(.33,0,.45,1), color .6s cubic-bezier(.33,0,.45,1); }
 .copy:hover { background: var(--surface); color: var(--ink); transition-duration: .18s; }
@@ -448,16 +450,21 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .install-quick p { margin-top: 2px; font-size: 14px; line-height: 20px; color: var(--ink-2); }
 .install-ctas { display: flex; gap: 8px; flex: none; }
 .install-card + .install-quick { margin-top: 28px; }   /* AutoCAD: Windows·macOS 블록 사이 */
-.install-cta { flex: none; }   /* food4rhino Install과 같은 rhino8://·rhino7:// 링크 */
+.install-cta { flex: none; }
+.install-ctas .install-cta { background: var(--surface); border-color: var(--hair); color: var(--ink); }   /* Rhino 8·7: 버전 고르기라 흰 단추 둘 */
+.install-ctas .install-cta:hover { background: var(--surface); border-color: #CECECE; }
+.install-cta img { width: 18px; height: 18px; object-fit: contain; }   /* food4rhino Install과 같은 rhino8://·rhino7:// 링크 */
 .install-cta[aria-disabled="true"], .install-cta[aria-disabled="true"]:hover { gap: 8px; background: var(--hair); border-color: var(--hair); color: var(--ink-3); cursor: not-allowed; }   /* SketchUp·Blender: 스토어 업로드 전까지 누를 수 없음 */
 .install-cta small { padding: 2px 8px; border-radius: 999px; background: var(--surface); font-size: 12px; line-height: 16px; font-weight: 600; }
 .steps.install-list { display: block; }
-.steps.install-list li { display: grid; grid-template-columns: 28px minmax(0, 1fr) 260px; column-gap: 16px; align-items: center; padding: 20px 0; border: 0; border-radius: 0; background: none; }
-.steps.install-list li + li { border-top: 1px solid var(--hair); }
-.steps.install-list li::before { grid-row: span 2; margin: 0; }
+/* 설치 순서: 번호를 세로선으로 잇는 타임라인, 명령어 칸은 오른쪽 열 */
+.steps.install-list li { position: relative; display: grid; grid-template-columns: 28px minmax(0, 1fr) 300px; column-gap: 20px; align-items: start; padding: 20px 0; border: 0; border-radius: 0; background: none; }
+.steps.install-list li::before { grid-row: span 2; margin: 0; position: relative; z-index: 1; }
+.steps.install-list li:not(:last-child)::after { content: ""; position: absolute; left: 13.5px; top: 52px; bottom: -16px; width: 1px; background: var(--hair); }
+.steps.install-list h3 { line-height: 28px; }
 .steps.install-list h3, .steps.install-list p { grid-column: 2; }
 .steps.install-list p { margin-top: 2px; }
-.steps.install-list .cmd { grid-column: 3; grid-row: 1 / span 2; margin: 0; }
+.steps.install-list .cmd { grid-column: 3; grid-row: 1 / span 2; align-self: center; margin: 0; min-width: 0; }
 
 /* ── 꼬리말 ── */
 .foot { position: relative; background: var(--soft); padding: 40px 0 48px; font-size: 14px; line-height: 22px; color: var(--ink-2); }
@@ -521,8 +528,9 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .country-panel { grid-template-columns: 1fr; grid-template-areas: "head" "text" "label" "sources" "date"; grid-template-rows: none; padding: 20px; }
   .country-panel h4 { margin-top: 24px; }
   .country-sources div { grid-template-columns: 1fr; gap: 2px; }
-  .seg { width: 100%; }
-  .seg button { flex: 1; padding: 0 8px; }
+  .seg { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }   /* 탭 5개: 휴대폰에서는 두 줄 */
+  .seg button { justify-content: center; padding: 0 8px; }
+  .seg button:last-child:nth-child(odd) { grid-column: span 2; }
   .install-card { padding: 4px 20px; }
   .install-quick { flex-direction: column; align-items: stretch; padding: 20px; }
   .install-ctas { flex-direction: column; }
@@ -531,6 +539,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .install-cta { justify-content: center; }
   .steps.install-list li { grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; align-items: start; padding: 16px 0; }
   .steps.install-list li::before { grid-row: span 3; }
+  .steps.install-list li:not(:last-child)::after { top: 48px; }
   .steps.install-list .cmd { grid-column: 2; grid-row: auto; margin-top: 10px; }
   .fine {
     display: grid;

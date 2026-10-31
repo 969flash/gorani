@@ -207,7 +207,7 @@
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 及以上</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 及以上</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="autocad"><span><b>AutoCAD</b><small>二维图纸</small></span></a></li>
-        <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
+        <li><a class="host-link" href="#install" data-install-tab="archicad"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></a></li>
         <li><span class="host-link"><b>Windows · macOS</b><small>支持的操作系统</small></span></li>
       </ul>
     </div>
@@ -218,10 +218,11 @@
       <div class="block-head">
         <h2 id="install-title">安装</h2>
         <div class="seg" role="tablist" aria-label="软件">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7/8</button>
-          <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
-          <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true"><img src="../assets/logo-rhino.png" alt="">Rhino 7/8</button>
+          <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1"><img src="../assets/logo-sketchup.png" alt="">SketchUp</button>
+          <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1"><img src="../assets/logo-blender.png" alt="">Blender</button>
           <button type="button" role="tab" id="tab-autocad" aria-controls="p-autocad" aria-selected="false" tabindex="-1">AutoCAD</button>
+          <button type="button" role="tab" id="tab-archicad" aria-controls="p-archicad" aria-selected="false" tabindex="-1"><img src="../assets/logo-archicad.png" alt="">Archicad</button>
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
@@ -231,8 +232,8 @@
             <p>Rhino 的 Package Manager 会打开并显示 Gorani 的搜索结果。</p>
           </div>
           <div class="install-ctas">
-            <a class="btn go install-cta" href="rhino8://package/search?name=gorani">在 Rhino 8 中安装<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn go install-cta" href="rhino7://package/search?name=gorani">在 Rhino 7 中安装<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn install-cta" href="rhino8://package/search?name=gorani"><img src="../assets/logo-rhino.png" alt="">Rhino 8<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn install-cta" href="rhino7://package/search?name=gorani"><img src="../assets/logo-rhino.png" alt="">Rhino 7<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </div>
         <div class="install-card">
@@ -325,7 +326,7 @@
             <li>
               <h3>移动文件夹</h3>
               <p>把 <code>Gorani.bundle</code> 文件夹移到下面的位置。如果要求管理员权限，点击<span class="ui">继续</span></p>
-              <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="已复制 路径" aria-label="复制 路径"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              <span class="cmd path"><code>C:\Program Files\Autodesk\ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="已复制 路径" aria-label="复制 路径"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
               <h3>重启 AutoCAD</h3>
@@ -350,12 +351,12 @@
             <li>
               <h3>移动文件夹</h3>
               <p>在访达中打开<span class="ui">前往 &gt; 前往文件夹</span>，粘贴下面的路径，把解压后的 <code>Gorani.bundle</code> 移到打开的文件夹中</p>
-              <span class="cmd path"><code>~/Library/Application Support/<wbr>Autodesk/<wbr>ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="已复制 路径" aria-label="复制 路径"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              <span class="cmd path"><code>~/Library/Application Support/Autodesk/ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="已复制 路径" aria-label="复制 路径"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
               <h3>允许运行</h3>
               <p>macOS 会阻止从网上下载的程序运行。在终端中执行一次下面的命令即可解除</p>
-              <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/<wbr>Application\ Support/<wbr>Autodesk/<wbr>ApplicationAddins/<wbr>Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="已复制 xattr" aria-label="复制 xattr"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="已复制 xattr" aria-label="复制 xattr"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
               <h3>重启 AutoCAD</h3>
@@ -367,6 +368,15 @@
               <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="已复制 GORANI" aria-label="复制 GORANI"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
           </ol>
+        </div>
+      </div>
+      <div role="tabpanel" id="p-archicad" aria-labelledby="tab-archicad" hidden>
+        <div class="install-quick">
+          <div>
+            <h3>Archicad 支持即将推出</h3>
+            <p>我们正在开发中。</p>
+          </div>
+          <a class="btn go install-cta" aria-disabled="true">在 Archicad 中安装<small>即将推出</small></a>
         </div>
       </div>
     </div>

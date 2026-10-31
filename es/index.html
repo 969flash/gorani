@@ -207,7 +207,7 @@
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="../assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 o posterior</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="../assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 o posterior</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="autocad"><span><b>AutoCAD</b><small>Plano 2D</small></span></a></li>
-        <li><span class="host-link"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
+        <li><a class="host-link" href="#install" data-install-tab="archicad"><img src="../assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></a></li>
         <li><span class="host-link"><b>Windows · macOS</b><small>Sistemas operativos</small></span></li>
       </ul>
     </div>
@@ -218,10 +218,11 @@
       <div class="block-head">
         <h2 id="install-title">Instalar</h2>
         <div class="seg" role="tablist" aria-label="Programa">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7/8</button>
-          <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
-          <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true"><img src="../assets/logo-rhino.png" alt="">Rhino 7/8</button>
+          <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1"><img src="../assets/logo-sketchup.png" alt="">SketchUp</button>
+          <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1"><img src="../assets/logo-blender.png" alt="">Blender</button>
           <button type="button" role="tab" id="tab-autocad" aria-controls="p-autocad" aria-selected="false" tabindex="-1">AutoCAD</button>
+          <button type="button" role="tab" id="tab-archicad" aria-controls="p-archicad" aria-selected="false" tabindex="-1"><img src="../assets/logo-archicad.png" alt="">Archicad</button>
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
@@ -231,8 +232,8 @@
             <p>El Package Manager de Rhino se abre con Gorani ya buscado.</p>
           </div>
           <div class="install-ctas">
-            <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Instalar en Rhino 8<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn go install-cta" href="rhino7://package/search?name=gorani">Instalar en Rhino 7<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn install-cta" href="rhino8://package/search?name=gorani"><img src="../assets/logo-rhino.png" alt="">Rhino 8<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn install-cta" href="rhino7://package/search?name=gorani"><img src="../assets/logo-rhino.png" alt="">Rhino 7<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </div>
         <div class="install-card">
@@ -325,7 +326,7 @@
             <li>
               <h3>Mover la carpeta</h3>
               <p>Mueve la carpeta <code>Gorani.bundle</code> a esta ubicación. Si Windows pide permiso de administrador, pulsa <span class="ui">Continuar</span>.</p>
-              <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="Ruta copiada" aria-label="Copiar ruta"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              <span class="cmd path"><code>C:\Program Files\Autodesk\ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="Ruta copiada" aria-label="Copiar ruta"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
               <h3>Reiniciar AutoCAD</h3>
@@ -350,12 +351,12 @@
             <li>
               <h3>Mover la carpeta</h3>
               <p>En Finder, elige <span class="ui">Ir &gt; Ir a la carpeta</span> y pega esta ruta. Mueve allí la carpeta <code>Gorani.bundle</code> descomprimida.</p>
-              <span class="cmd path"><code>~/Library/Application Support/<wbr>Autodesk/<wbr>ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="Ruta copiada" aria-label="Copiar ruta"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              <span class="cmd path"><code>~/Library/Application Support/Autodesk/ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="Ruta copiada" aria-label="Copiar ruta"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
               <h3>Permitir que se ejecute</h3>
               <p>macOS bloquea los programas descargados de internet. Ejecuta esto una vez en Terminal para quitar el bloqueo.</p>
-              <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/<wbr>Application\ Support/<wbr>Autodesk/<wbr>ApplicationAddins/<wbr>Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="xattr copiado" aria-label="Copiar xattr"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="xattr copiado" aria-label="Copiar xattr"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
               <h3>Reiniciar AutoCAD</h3>
@@ -367,6 +368,15 @@
               <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANI copiado" aria-label="Copiar GORANI"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
           </ol>
+        </div>
+      </div>
+      <div role="tabpanel" id="p-archicad" aria-labelledby="tab-archicad" hidden>
+        <div class="install-quick">
+          <div>
+            <h3>Soporte para Archicad en camino</h3>
+            <p>Estamos trabajando en ello.</p>
+          </div>
+          <a class="btn go install-cta" aria-disabled="true">Instalar en Archicad<small>Próximamente</small></a>
         </div>
       </div>
     </div>

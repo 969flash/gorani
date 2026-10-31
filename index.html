@@ -207,7 +207,7 @@
         <li><a class="host-link" href="#install" data-install-tab="sketchup"><img src="assets/logo-sketchup.png" alt="" aria-hidden="true"><span><b>SketchUp</b><small>2022 이상</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="blender"><img src="assets/logo-blender.png" alt="" aria-hidden="true"><span><b>Blender</b><small>4.2 이상</small></span></a></li>
         <li><a class="host-link" href="#install" data-install-tab="autocad"><span><b>AutoCAD</b><small>2D 도면</small></span></a></li>
-        <li><span class="host-link"><img src="assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></span></li>
+        <li><a class="host-link" href="#install" data-install-tab="archicad"><img src="assets/logo-archicad.png" alt="" aria-hidden="true"><span><b>Archicad</b></span></a></li>
         <li><span class="host-link"><b>Windows · macOS</b><small>지원 운영체제</small></span></li>
       </ul>
     </div>
@@ -218,10 +218,11 @@
       <div class="block-head">
         <h2 id="install-title">설치</h2>
         <div class="seg" role="tablist" aria-label="프로그램">
-          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true">Rhino 7·8</button>
-          <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1">SketchUp</button>
-          <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1">Blender</button>
+          <button type="button" role="tab" id="tab-rhino" aria-controls="p-rhino" aria-selected="true"><img src="assets/logo-rhino.png" alt="">Rhino 7·8</button>
+          <button type="button" role="tab" id="tab-sketchup" aria-controls="p-sketchup" aria-selected="false" tabindex="-1"><img src="assets/logo-sketchup.png" alt="">SketchUp</button>
+          <button type="button" role="tab" id="tab-blender" aria-controls="p-blender" aria-selected="false" tabindex="-1"><img src="assets/logo-blender.png" alt="">Blender</button>
           <button type="button" role="tab" id="tab-autocad" aria-controls="p-autocad" aria-selected="false" tabindex="-1">AutoCAD</button>
+          <button type="button" role="tab" id="tab-archicad" aria-controls="p-archicad" aria-selected="false" tabindex="-1"><img src="assets/logo-archicad.png" alt="">Archicad</button>
         </div>
       </div>
       <div role="tabpanel" id="p-rhino" aria-labelledby="tab-rhino">
@@ -231,8 +232,8 @@
             <p>Rhino의 패키지 매니저가 Gorani 검색 결과로 열립니다.</p>
           </div>
           <div class="install-ctas">
-            <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Rhino 8에서 설치<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="btn go install-cta" href="rhino7://package/search?name=gorani">Rhino 7에서 설치<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn install-cta" href="rhino8://package/search?name=gorani"><img src="assets/logo-rhino.png" alt="">Rhino 8<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn install-cta" href="rhino7://package/search?name=gorani"><img src="assets/logo-rhino.png" alt="">Rhino 7<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </div>
         <div class="install-card">
@@ -325,7 +326,7 @@
             <li>
               <h3>폴더 옮기기</h3>
               <p><code>Gorani.bundle</code> 폴더를 아래 위치로 옮깁니다. 관리자 권한을 물으면 <span class="ui">계속</span>을 누릅니다.</p>
-              <span class="cmd path"><code>C:\Program Files\Autodesk\<wbr>ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="경로 복사됨" aria-label="경로 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              <span class="cmd path"><code>C:\Program Files\Autodesk\ApplicationPlugins</code><button type="button" class="copy" data-copy="C:\Program Files\Autodesk\ApplicationPlugins" data-done="경로 복사됨" aria-label="경로 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
               <h3>AutoCAD 다시 시작</h3>
@@ -350,12 +351,12 @@
             <li>
               <h3>폴더 옮기기</h3>
               <p>Finder 메뉴 <span class="ui">이동 &gt; 폴더로 이동</span>에 아래 경로를 붙여 넣습니다. 열린 폴더에 압축을 푼 <code>Gorani.bundle</code>을 옮깁니다.</p>
-              <span class="cmd path"><code>~/Library/Application Support/<wbr>Autodesk/<wbr>ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="경로 복사됨" aria-label="경로 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              <span class="cmd path"><code>~/Library/Application Support/Autodesk/ApplicationAddins</code><button type="button" class="copy" data-copy="~/Library/Application Support/Autodesk/ApplicationAddins" data-done="경로 복사됨" aria-label="경로 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
               <h3>실행 허용</h3>
               <p>macOS는 인터넷에서 받은 프로그램의 실행을 막습니다. 터미널에 아래 명령을 한 번 입력하면 풀립니다.</p>
-              <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/<wbr>Application\ Support/<wbr>Autodesk/<wbr>ApplicationAddins/<wbr>Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="xattr 복사됨" aria-label="xattr 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              <span class="cmd path"><code>xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle" data-done="xattr 복사됨" aria-label="xattr 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
             <li>
               <h3>AutoCAD 다시 시작</h3>
@@ -367,6 +368,15 @@
               <span class="cmd"><code>GORANI</code><button type="button" class="copy" data-copy="GORANI" data-done="GORANI 복사됨" aria-label="GORANI 복사"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
           </ol>
+        </div>
+      </div>
+      <div role="tabpanel" id="p-archicad" aria-labelledby="tab-archicad" hidden>
+        <div class="install-quick">
+          <div>
+            <h3>Archicad 지원 준비 중</h3>
+            <p>곧 지원할 예정입니다.</p>
+          </div>
+          <a class="btn go install-cta" aria-disabled="true">Archicad에서 설치<small>준비 중</small></a>
         </div>
       </div>
     </div>

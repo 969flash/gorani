@@ -164,10 +164,11 @@
   });
   // 설치 받기 링크: 플러그인 저장소의 최신 릴리스를 읽어 파일 주소·버전을 맞춘다(실패하면 페이지에 적힌 값 그대로)
   var releaseLinks = document.querySelectorAll("[data-release]");
-  if (releaseLinks.length && window.fetch) {
+  if ((releaseLinks.length || document.querySelector("[data-release-ver]")) && window.fetch) {
     var applyRelease = function (rel) {
       var tagVer = String(rel.tag_name || "").replace(/^v/, "");
       var pattern = { "sketchup": /\.rbz$/, "autocad-win": /autocad-win.*\.zip$/, "autocad-mac": /autocad-mac.*\.zip$/ };
+      document.querySelectorAll("[data-release-ver]").forEach(function (el) { if (tagVer) el.textContent = tagVer; });
       releaseLinks.forEach(function (a) {
         var kind = a.getAttribute("data-release"), ver = tagVer;
         if (pattern[kind]) {

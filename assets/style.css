@@ -476,6 +476,8 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .foot-top .mark { --s: 32px; }
 .links { display: flex; flex-wrap: wrap; gap: 4px 16px; padding: 0; list-style: none; }
 .fine { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 4px 20px; font-size: 13px; line-height: 20px; color: var(--ink-2); text-align: left; }
+.credit { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }   /* 꼬리말: 만든 사람, 메일, 버전(가운뎃점 없이 간격으로) */
+.credit .ver-tag { color: var(--ink-3); }
 .fine .mark { --s: 24px; color: var(--ink); }
 .fine .btn { height: 34px; margin-left: auto; padding: 0 14px; font-size: 13px; }
 

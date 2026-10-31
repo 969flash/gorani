@@ -232,8 +232,8 @@
             <p>Rhino 的 Package Manager 会打开并显示 Gorani 的搜索结果。</p>
           </div>
           <div class="install-ctas">
-            <a class="btn go install-cta" href="rhino8://package/search?name=gorani">在 Rhino 8 中安装<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="install-alt" href="rhino7://package/search?name=gorani">在 Rhino 7 中安装</a>
+            <div class="seg ver-switch" role="group" aria-label="版本"><button type="button" data-ver="8" aria-pressed="true">Rhino 8</button><button type="button" data-ver="7" aria-pressed="false">Rhino 7</button></div>
+            <a class="btn go install-cta" data-label="在 Rhino {v} 中安装" href="rhino8://package/search?name=gorani"><span>在 Rhino 8 中安装</span><svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </div>
         <div class="install-card">

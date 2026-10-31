@@ -232,8 +232,8 @@
             <p>RhinoのパッケージマネージャーがGoraniの検索結果で開きます。</p>
           </div>
           <div class="install-ctas">
-            <a class="btn go install-cta" href="rhino8://package/search?name=gorani">Rhino 8でインストール<svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="install-alt" href="rhino7://package/search?name=gorani">Rhino 7でインストール</a>
+            <div class="seg ver-switch" role="group" aria-label="バージョン"><button type="button" data-ver="8" aria-pressed="true">Rhino 8</button><button type="button" data-ver="7" aria-pressed="false">Rhino 7</button></div>
+            <a class="btn go install-cta" data-label="Rhino {v}でインストール" href="rhino8://package/search?name=gorani"><span>Rhino 8でインストール</span><svg class="i-arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </div>
         <div class="install-card">

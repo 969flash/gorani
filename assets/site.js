@@ -158,6 +158,19 @@
       track("install_os", { os: btn.getAttribute("data-os") });
     });
   });
+  // Rhino 설치: 8·7 버전 고르기 — 단추 하나의 주소·글자를 바꾼다
+  document.querySelectorAll(".ver-switch").forEach(function (sw) {
+    var cta = sw.parentElement.querySelector(".install-cta[data-label]");
+    sw.addEventListener("click", function (e) {
+      var btn = e.target.closest("button[data-ver]");
+      if (!btn || !cta) return;
+      var v = btn.getAttribute("data-ver");
+      sw.querySelectorAll("button[data-ver]").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
+      cta.href = "rhino" + v + "://package/search?name=gorani";
+      cta.querySelector("span").textContent = cta.getAttribute("data-label").replace("{v}", v);
+      track("install_version", { version: v });
+    });
+  });
   // 지원 프로그램 칩: 설치의 그 프로그램 탭을 연다
   document.querySelectorAll("[data-install-tab]").forEach(function (link) {
     link.addEventListener("click", function () {

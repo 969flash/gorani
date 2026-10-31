@@ -162,6 +162,38 @@
       track("install_os", { os: os });
     });
   });
+  // 설치 받기 링크: 플러그인 저장소의 최신 릴리스를 읽어 파일 주소·버전을 맞춘다(실패하면 페이지에 적힌 값 그대로)
+  var releaseLinks = document.querySelectorAll("[data-release]");
+  if (releaseLinks.length && window.fetch) {
+    var applyRelease = function (rel) {
+      var tagVer = String(rel.tag_name || "").replace(/^v/, "");
+      var pattern = { "sketchup": /\.rbz$/, "autocad-win": /autocad-win.*\.zip$/, "autocad-mac": /autocad-mac.*\.zip$/ };
+      releaseLinks.forEach(function (a) {
+        var kind = a.getAttribute("data-release"), ver = tagVer;
+        if (pattern[kind]) {
+          var asset = (rel.assets || []).filter(function (x) { return pattern[kind].test(x.name); })[0];
+          if (!asset) return;
+          a.href = asset.browser_download_url;
+          ver = (asset.name.match(/(\d+\.\d+\.\d+)/) || [])[1] || tagVer;
+        }
+        var span = a.querySelector(".ver");
+        if (span && ver) span.textContent = ver;
+      });
+    };
+    var cached = null;
+    try { cached = JSON.parse(sessionStorage.getItem("gorani-release") || "null"); } catch (e) {}
+    if (cached) applyRelease(cached);
+    else fetch("https://api.github.com/repos/969flash/gorani-plugin/releases/latest")
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (rel) {
+        if (!rel || !rel.tag_name) return;
+        var slim = { tag_name: rel.tag_name, assets: (rel.assets || []).map(function (x) { return { name: x.name, browser_download_url: x.browser_download_url }; }) };
+        try { sessionStorage.setItem("gorani-release", JSON.stringify(slim)); } catch (e) {}
+        applyRelease(slim);
+      })
+      .catch(function () {});
+  }
+
   // 지원 프로그램 칩: 설치의 그 프로그램 탭을 연다
   document.querySelectorAll("[data-install-tab]").forEach(function (link) {
     link.addEventListener("click", function () {

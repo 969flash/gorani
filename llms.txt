@@ -33,7 +33,7 @@ No Grasshopper, no Python packages and no other software are required.
 
 ## Install (SketchUp 2022+)
 
-The Extension Warehouse listing is pending approval. Until it is live, download the installer https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz (92 MB), then in SketchUp choose Extensions > Extension Manager > Install Extension, pick the .rbz file and answer Yes. Open the panel from Extensions > Gorani or the Gorani toolbar button.
+The Extension Warehouse listing is pending approval. Until it is live, download the installer https://github.com/969flash/gorani-plugin/releases/download/v0.3.8/bsh_gorani-0.3.8.rbz (92 MB), then in SketchUp choose Extensions > Extension Manager > Install Extension, pick the .rbz file and answer Yes. Open the panel from Extensions > Gorani or the Gorani toolbar button.
 
 ## Install (Blender 4.2+)
 
@@ -43,8 +43,8 @@ Listing: https://extensions.blender.org/add-ons/gorani/. Edit > Preferences > Ge
 
 The Autodesk App Store listing is pending approval. Until it is live, install from the release files.
 
-- Windows: download https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip (32 MB). In the zip file's Properties check Unblock, extract it, and move the `Gorani.bundle` folder to `C:\Program Files\Autodesk\ApplicationPlugins` (Windows asks for administrator permission).
-- macOS: download https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip (64 MB), move `Gorani.bundle` to `~/Library/Application Support/Autodesk/ApplicationAddins`, then run `xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle` once in Terminal (macOS blocks downloaded programs).
+- Windows: download https://github.com/969flash/gorani-plugin/releases/download/v0.3.8/Gorani-autocad-win-0.3.6.zip (32 MB). In the zip file's Properties check Unblock, extract it, and move the `Gorani.bundle` folder to `C:\Program Files\Autodesk\ApplicationPlugins` (Windows asks for administrator permission).
+- macOS: download https://github.com/969flash/gorani-plugin/releases/download/v0.3.8/Gorani-autocad-mac-0.3.6.zip (64 MB), move `Gorani.bundle` to `~/Library/Application Support/Autodesk/ApplicationAddins`, then run `xattr -dr com.apple.quarantine ~/Library/Application\ Support/Autodesk/ApplicationAddins/Gorani.bundle` once in Terminal (macOS blocks downloaded programs).
 
 Restart AutoCAD and run the command `GORANI`. The AutoCAD version does not make 3D: it inserts a 2D existing-conditions drawing (parcels with lot numbers, building outlines with floors, roads with widths, contours, zoning) into the current drawing as a block (on macOS, type `GORANI` again after creating to insert it).
 

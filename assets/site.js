@@ -181,14 +181,15 @@
         if (span && ver) span.textContent = ver;
       });
     };
-    var cached = null;
+    var cached = null;   // 10분만 재사용한다(새 릴리스가 열어 둔 탭에도 곧 반영되게)
     try { cached = JSON.parse(sessionStorage.getItem("gorani-release") || "null"); } catch (e) {}
+    if (cached && !(Date.now() - (cached.at || 0) < 600000)) cached = null;
     if (cached) applyRelease(cached);
     else fetch("https://api.github.com/repos/969flash/gorani-plugin/releases/latest")
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (rel) {
         if (!rel || !rel.tag_name) return;
-        var slim = { tag_name: rel.tag_name, assets: (rel.assets || []).map(function (x) { return { name: x.name, browser_download_url: x.browser_download_url }; }) };
+        var slim = { at: Date.now(), tag_name: rel.tag_name, assets: (rel.assets || []).map(function (x) { return { name: x.name, browser_download_url: x.browser_download_url }; }) };
         try { sessionStorage.setItem("gorani-release", JSON.stringify(slim)); } catch (e) {}
         applyRelease(slim);
       })

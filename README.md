@@ -12,9 +12,9 @@ Pick a site and get 3D terrain and 2D analysis drawings. A free plugin for Rhino
 ## Install
 
 - Rhino 7 and 8: `PackageManager`, search `Gorani`, install, restart Rhino, run `Gorani`.
-- SketchUp 2022+: download [bsh_gorani-0.3.7.rbz](https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/bsh_gorani-0.3.7.rbz), then Extensions > Extension Manager > Install Extension (Extension Warehouse listing pending approval).
+- SketchUp 2022+: download [bsh_gorani-0.3.8.rbz](https://github.com/969flash/gorani-plugin/releases/download/v0.3.8/bsh_gorani-0.3.8.rbz), then Extensions > Extension Manager > Install Extension (Extension Warehouse listing pending approval).
 - Blender 4.2+: Edit > Preferences > Get Extensions, search `Gorani`, install ([listing](https://extensions.blender.org/add-ons/gorani/)).
-- AutoCAD (2D drawing, Autodesk App Store listing pending approval): Windows — download [Gorani-autocad-win-0.3.6.zip](https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-win-0.3.6.zip), unblock and extract it, move `Gorani.bundle` to `C:\Program Files\Autodesk\ApplicationPlugins`. macOS — download [Gorani-autocad-mac-0.3.6.zip](https://github.com/969flash/gorani-plugin/releases/download/v0.3.7/Gorani-autocad-mac-0.3.6.zip), move `Gorani.bundle` to `~/Library/Application Support/Autodesk/ApplicationAddins` and run `xattr -dr com.apple.quarantine` on it once. Then restart AutoCAD and run `GORANI`.
+- AutoCAD (2D drawing, Autodesk App Store listing pending approval): Windows — download [Gorani-autocad-win-0.3.6.zip](https://github.com/969flash/gorani-plugin/releases/download/v0.3.8/Gorani-autocad-win-0.3.6.zip), unblock and extract it, move `Gorani.bundle` to `C:\Program Files\Autodesk\ApplicationPlugins`. macOS — download [Gorani-autocad-mac-0.3.6.zip](https://github.com/969flash/gorani-plugin/releases/download/v0.3.8/Gorani-autocad-mac-0.3.6.zip), move `Gorani.bundle` to `~/Library/Application Support/Autodesk/ApplicationAddins` and run `xattr -dr com.apple.quarantine` on it once. Then restart AutoCAD and run `GORANI`.
 
 ## Coverage
 

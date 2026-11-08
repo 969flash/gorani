@@ -2,10 +2,6 @@
  {
   "version": "0.3.9",
   "date": "2026-11-08",
-  "tools": {
-   "rhino": "0.3.9",
-   "sketchup": "0.3.9"
-  },
   "groups": [
    {
     "type": "new",
@@ -35,7 +31,14 @@
       "Puedes volver a abrir un resultado anterior y seguir trabajando.",
       "En Rhino, pulsa [Actualizar ahora] en el aviso de actualización para instalar al instante."
      ]
-    }
+    },
+    "hosts": [
+     null,
+     null,
+     [
+      "rhino"
+     ]
+    ]
    },
    {
     "type": "improved",
@@ -75,7 +78,16 @@
       "Los sitios fuera de Corea muestran una dirección en lugar de latitud y longitud.",
       "Datos públicos: plan de uso del suelo actualizado a la edición 2026-10-09 y UPIS de Seúl a 2026-09."
      ]
-    }
+    },
+    "hosts": [
+     null,
+     null,
+     [
+      "rhino"
+     ],
+     null,
+     null
+    ]
    },
    {
     "type": "stable",
@@ -95,17 +107,16 @@
      "es": [
       "Se corrigieron varios problemas, como fallos al dividir las caras del terreno."
      ]
-    }
+    },
+    "hosts": [
+     null
+    ]
    }
   ]
  },
  {
   "version": "0.3.8",
   "date": "2026-11-06",
-  "tools": {
-   "rhino": "0.3.8",
-   "sketchup": "0.3.8"
-  },
   "groups": [
    {
     "type": "new",
@@ -135,7 +146,14 @@
       "En Rhino 8, puedes elegir Mesh o Brep (polisuperficies cerradas) para la geometría 3D.",
       "Puedes ver hasta cinco sitios recientes y quitarlos con ×."
      ]
-    }
+    },
+    "hosts": [
+     null,
+     [
+      "rhino"
+     ],
+     null
+    ]
    },
    {
     "type": "improved",
@@ -155,7 +173,10 @@
      "es": [
       "Sitios fuera de Corea: si el servidor de OSM está ocupado, espera un momento y reintenta."
      ]
-    }
+    },
+    "hosts": [
+     null
+    ]
    },
    {
     "type": "stable",
@@ -175,18 +196,18 @@
      "es": [
       "Se corrigió que el panel no se abriera en SketchUp para Windows y que la pantalla se congelara al abrir por primera vez."
      ]
-    }
+    },
+    "hosts": [
+     [
+      "sketchup"
+     ]
+    ]
    }
   ]
  },
  {
   "version": "0.3.7",
   "date": "2026-10-30",
-  "tools": {
-   "rhino": "0.3.7",
-   "sketchup": "0.3.7",
-   "autocad": "0.3.6"
-  },
   "groups": [
    {
     "type": "new",
@@ -216,7 +237,18 @@
       "Puedes descargar el archivo de instalación de SketchUp (.rbz) e instalarlo.",
       "Puedes crear planos 2D del estado actual en AutoCAD (Windows, macOS)."
      ]
-    }
+    },
+    "hosts": [
+     [
+      "rhino"
+     ],
+     [
+      "sketchup"
+     ],
+     [
+      "autocad"
+     ]
+    ]
    },
    {
     "type": "stable",
@@ -236,16 +268,16 @@
      "es": [
       "Se corrigió que los patios interiores de los edificios se rellenaran."
      ]
-    }
+    },
+    "hosts": [
+     null
+    ]
    }
   ]
  },
  {
   "version": "0.3.6",
   "date": "2026-10-24",
-  "tools": {
-   "blender": "0.3.6"
-  },
   "groups": [
    {
     "type": "new",
@@ -265,7 +297,10 @@
      "es": [
       "Puedes usar datos de edificios de todo Estados Unidos (Overture Maps)."
      ]
-    }
+    },
+    "hosts": [
+     null
+    ]
    },
    {
     "type": "stable",
@@ -285,7 +320,12 @@
      "es": [
       "Se mejoraron las descargas de datos de Blender, los mensajes de error y la espera en redes restringidas."
      ]
-    }
+    },
+    "hosts": [
+     [
+      "blender"
+     ]
+    ]
    }
   ]
  },

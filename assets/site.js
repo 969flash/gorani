@@ -271,9 +271,17 @@
 
         // 카드 안은 분류(새 기능·개선·안정성)로 나눈다. 분류가 없는 항목(매니페스트에서 자동으로 붙은 최신 배포)은 한 덩어리로 보인다
         var groups = Array.isArray(e.groups)
-          ? e.groups.map(function (g) { return { type: g.type, items: (g.items && (g.items[pageCode] || g.items.en)) || [] }; })
+          ? e.groups.map(function (g) { return { type: g.type, items: (g.items && (g.items[pageCode] || g.items.en)) || [], hosts: g.hosts || [] }; })
           : [{ type: "", items: items }];
-        var presentTools = e.tools ? Object.keys(e.tools) : [];
+        // 항목마다 보일 프로그램(hosts, 플러그인 안내와 같은 값)이 있으면 그 합집합 — 하나라도 "모두"인 항목이 있으면 모든 프로그램
+        var ALL_TOOLS = ["rhino", "sketchup", "blender", "autocad"], presentTools = [];
+        if (Array.isArray(e.groups)) {
+          groups.forEach(function (g) {
+            g.items.forEach(function (_, i) {
+              (g.hosts[i] || ALL_TOOLS).forEach(function (k) { if (presentTools.indexOf(k) === -1) presentTools.push(k); });
+            });
+          });
+        } else if (e.tools) presentTools = Object.keys(e.tools);
         if (!presentTools.length) {
           items.forEach(function (t) { var k = classifyTool(t); if (k !== "common" && presentTools.indexOf(k) === -1) presentTools.push(k); });
         }
@@ -304,7 +312,7 @@
           html += '<div class="gh-tool-row" data-group="' + esc2(g.type) + '">' +
             (g.type && GROUP_LABELS[g.type] ? '<div class="gh-tool-name">' + esc2(GROUP_LABELS[g.type]) + '</div>' : '') +
             '<ul class="gh-changes">' +
-            g.items.map(function (txt) { return '<li>' + esc2(txt) + '</li>'; }).join("") +
+            g.items.map(function (txt, i) { return '<li' + (g.hosts[i] ? ' data-hosts="' + esc2(g.hosts[i].join(" ")) + '"' : "") + '>' + esc2(txt) + '</li>'; }).join("") +
             '</ul></div>';
         });
         html += '</div></div></div>';
@@ -342,11 +350,18 @@
         entries.forEach(function (entry) {
           var isOlder = entry.classList.contains("gh-older");
           var toolsAttr = (entry.getAttribute("data-tools") || "").split(" ");
-          if (filter === "all") {
-            entry.style.display = isOlder ? "none" : "";
-          } else {
-            entry.style.display = toolsAttr.indexOf(filter) !== -1 ? "" : "none";
-          }
+          var show = filter === "all" ? !isOlder : toolsAttr.indexOf(filter) !== -1;
+          entry.style.display = show ? "" : "none";
+          // 프로그램을 고르면 그 프로그램에 해당하는 항목만(hosts가 없는 항목은 모두에게) 남기고, 빈 분류 줄은 숨긴다
+          entry.querySelectorAll(".gh-tool-row").forEach(function (row) {
+            var any = false;
+            row.querySelectorAll("li").forEach(function (li) {
+              var hs = li.getAttribute("data-hosts");
+              var ok = filter === "all" || !hs || hs.split(" ").indexOf(filter) !== -1;
+              li.style.display = ok ? "" : "none"; if (ok) any = true;
+            });
+            row.style.display = any ? "" : "none";
+          });
         });
 
         months.forEach(function (mEl) {

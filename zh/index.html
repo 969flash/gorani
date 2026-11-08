@@ -29,7 +29,7 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="../assets/style.css?v=202611081500">
+<link rel="stylesheet" href="../assets/style.css?v=202611081700">
 <link rel="preload" href="../assets/demo-poster.webp" as="image">
 <script type="application/ld+json">
 {
@@ -84,6 +84,10 @@
   <symbol id="i-menu" viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
   <symbol id="i-dl" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 4.75v5.5M5.5 8l2.5 2.5L10.5 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+  <symbol id="i-git-commit" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.5 8a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.42 1a3.501 3.501 0 00-6.84 0H1.75a.75.75 0 000 1.5h3.33a3.501 3.501 0 006.84 0h3.33a.75.75 0 000-1.5h-3.33z" fill="currentColor"/></symbol>
+  <symbol id="i-git-pr" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z" fill="currentColor"/></symbol>
+  <symbol id="i-git-tag" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 00.354 0l5.025-5.025a.25.25 0 000-.354l-6.25-6.25a.25.25 0 00-.177-.073H2.75a.25.25 0 00-.25.25v5.025zM6 4.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" fill="currentColor"/></symbol>
+  <symbol id="i-unfold" viewBox="0 0 16 16"><path d="M8.177.677l2.896 2.896a.25.25 0 01-.177.427H8.75v3.25a.75.75 0 01-1.5 0V4H5.104a.25.25 0 01-.177-.427L7.823.677a.25.25 0 01.354 0zM7.823 15.323l-2.896-2.896a.25.25 0 01.177-.427H7.25V8.75a.75.75 0 011.5 0V12h2.146a.25.25 0 01.177.427l-2.896 2.896a.25.25 0 01-.354 0z" fill="currentColor"/></symbol>
 </svg>
 
 <header class="top">
@@ -758,10 +762,19 @@
       <div class="block-head">
         <div>
           <h2 id="changelog-title">版本记录</h2>
-          <p class="sub">插件各个版本的更新内容。</p>
+          <p class="sub">各3D软件的发布版本与更新内容。</p>
+        </div>
+        <div class="seg changelog-filter" role="tablist" aria-label="选择3D软件">
+          <button type="button" role="tab" data-filter="all" aria-selected="true">全部</button>
+          <button type="button" role="tab" data-filter="rhino" aria-selected="false"><img src="../assets/logo-rhino.png" alt="" width="16" height="16" aria-hidden="true">Rhino <span class="tab-ver">v0.3.8</span></button>
+          <button type="button" role="tab" data-filter="sketchup" aria-selected="false"><img src="../assets/logo-sketchup.png" alt="" width="16" height="16" aria-hidden="true">SketchUp <span class="tab-ver">v0.3.8</span></button>
+          <button type="button" role="tab" data-filter="blender" aria-selected="false"><img src="../assets/logo-blender.png" alt="" width="16" height="16" aria-hidden="true">Blender <span class="tab-ver">v0.3.6</span></button>
+          <button type="button" role="tab" data-filter="autocad" aria-selected="false"><img src="../assets/logo-autocad.png" alt="" width="16" height="16" aria-hidden="true">AutoCAD <span class="tab-ver">v0.3.6</span></button>
         </div>
       </div>
-      <ol class="changelog" data-more="查看更早的版本"></ol>
+      <div class="changelog-timeline-wrap">
+        <div class="gh-timeline" data-more="查看更早的版本" data-item-suffix="项" data-common-label="通用 (Core / UI)"></div>
+      </div>
     </div>
   </section>
 
@@ -803,6 +816,6 @@
   </div>
 </footer>
 <p id="live" class="skip" aria-live="polite"></p>
-<script src="../assets/site.js?v=202611081500" defer></script>
+<script src="../assets/site.js?v=202611081700" defer></script>
 </body>
 </html>

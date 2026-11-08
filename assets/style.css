@@ -564,15 +564,312 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .copy.done .i-done { animation: none; }
 }
 
-/* 버전 기록: 버전마다 한 줄 머리 + 바뀐 점 목록. 최신 버전은 매니페스트 업데이트 안내에서 자동으로 붙는다 */
-.changelog { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--hair); }
-.changelog > li { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 8px 32px; padding: 24px 0; border-bottom: 1px solid var(--hair); }
-.changelog > li[hidden] { display: none; }
-.changelog h3 { display: flex; align-items: baseline; gap: 12px; margin: 0; font-size: 17px; line-height: 26px; font-weight: 700; }
-.changelog time { font-size: 14px; font-weight: 500; color: var(--ink-3); font-variant-numeric: tabular-nums; }
-.changelog ul { display: grid; gap: 6px; margin: 0; padding: 0 0 0 18px; font-size: 15px; line-height: 24px; color: var(--ink-2); }
-.changelog-more { margin-top: 20px; }
-@media (max-width: 640px) { .changelog > li { grid-template-columns: 1fr; padding: 20px 0; } }
+/* ── 버전 기록: 3D 프로그램별 탭 + 깃 업데이트 스타일(타임라인·노드·미터 바·배지) ── */
+.changelog-filter {
+  margin-top: 14px;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.changelog-filter button {
+  height: 34px;
+  padding: 0 12px;
+  font-size: 13px;
+  gap: 6px;
+  border-radius: 6px;
+}
+.changelog-filter button img {
+  display: block;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+.changelog-filter .tab-ver {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-3);
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .05);
+}
+.changelog-filter button[aria-selected="true"] .tab-ver {
+  background: var(--press);
+  color: var(--ink-2);
+}
+
+.changelog-timeline-wrap {
+  position: relative;
+  margin-top: 32px;
+}
+
+/* 월 구분선 (November 2026 ────────) */
+.gh-month-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0 18px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+.gh-month-divider:first-child {
+  margin-top: 0;
+}
+.gh-month-line {
+  flex: 1;
+  height: 1px;
+  background: var(--hair);
+}
+
+/* 타임라인 레일 및 엔트리 */
+.gh-timeline {
+  position: relative;
+}
+.gh-entry {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.gh-entry[hidden] {
+  display: none !important;
+}
+
+/* 왼쪽 세로 타임라인 레일과 원형 노드 */
+.gh-node {
+  position: relative;
+  flex-shrink: 0;
+  width: 32px;
+  display: flex;
+  justify-content: center;
+}
+.gh-node-line {
+  position: absolute;
+  top: 16px;
+  bottom: -20px;
+  left: 15px;
+  width: 2px;
+  background: var(--hair);
+  z-index: 0;
+}
+.gh-entry:last-child .gh-node-line {
+  bottom: 0;
+}
+.gh-node-icon {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--hair);
+  display: grid;
+  place-items: center;
+  color: var(--ink-2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .03);
+}
+
+/* GitHub 스타일 카드 */
+.gh-card {
+  flex: 1;
+  min-width: 0;
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .02);
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.gh-card:hover {
+  border-color: #c4c4c4;
+}
+
+/* 카드 헤더 */
+.gh-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #f6f8fa;
+  border-bottom: 1px solid var(--hair);
+  gap: 12px;
+}
+.gh-card-title-group {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.gh-card-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.gh-card-date {
+  font-size: 13px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.gh-card-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.gh-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.gh-unfold-icon {
+  color: var(--ink-3);
+}
+
+/* 툴 목록 */
+.gh-tools-list {
+  display: flex;
+  flex-direction: column;
+}
+.gh-tool-row {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--hair);
+}
+.gh-tool-row:last-child {
+  border-bottom: 0;
+}
+.gh-tool-row[hidden] {
+  display: none !important;
+}
+
+/* 툴 헤더 (저장소 행과 동일한 구조) */
+.gh-tool-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.gh-tool-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.gh-tool-logo {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.gh-tool-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  display: inline-block;
+  margin: 0 4px;
+}
+.gh-tool-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+}
+.gh-tool-ver {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  padding: 1px 6px;
+  background: var(--press);
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.gh-tool-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.gh-count-pill {
+  font-size: 12px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* 시각적 활성 미터 바 (Image #1 참조: [🟩🟩🟩]) */
+.gh-meter {
+  width: 80px;
+  height: 8px;
+  border-radius: 4px;
+  background: #ebedf0;
+  overflow: hidden;
+  display: flex;
+}
+.gh-meter-bar {
+  height: 100%;
+  border-radius: 4px;
+  background: #2da44e; /* GitHub Green */
+  transition: width .25s ease;
+}
+
+/* 변경 내역 불릿 목록 */
+.gh-changes {
+  margin: 8px 0 0 26px;
+  padding: 0;
+  list-style: disc;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--ink-2);
+}
+.gh-changes li {
+  margin-bottom: 2px;
+}
+.gh-changes li:last-child {
+  margin-bottom: 0;
+}
+
+/* 이전 버전 더 보기 */
+.changelog-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+@media (max-width: 640px) {
+  .gh-entry {
+    gap: 10px;
+  }
+  .gh-node {
+    width: 24px;
+  }
+  .gh-node-line {
+    left: 11px;
+  }
+  .gh-node-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .gh-node-icon svg {
+    width: 13px;
+    height: 13px;
+  }
+  .gh-meter {
+    display: none;
+  }
+  .gh-card-header {
+    padding: 8px 12px;
+  }
+  .gh-tool-row {
+    padding: 10px 12px;
+  }
+  .gh-changes {
+    margin-left: 20px;
+  }
+}
 
 /* 한국 데이터: 레이어마다 원천과 판(기준일)을 한 줄 더 */
 .kr-sources dd small { display: block; margin-top: 2px; font-size: 13px; line-height: 20px; color: var(--ink-3); }

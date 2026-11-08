@@ -33,6 +33,10 @@
     "SketchUp Windows：修复了面板无法打开的问题",
     "可从列表中删除最近的场地"
    ]
+  },
+  "tools": {
+   "rhino": "0.3.8",
+   "sketchup": "0.3.8"
   }
  },
  {
@@ -64,6 +68,11 @@
     "Archivo de instalación de SketchUp (.rbz) disponible para descargar",
     "AutoCAD: planos 2D del estado actual (Windows, macOS)"
    ]
+  },
+  "tools": {
+   "rhino": "0.3.7",
+   "sketchup": "0.3.7",
+   "autocad": "0.3.6"
   }
  },
  {
@@ -90,6 +99,9 @@
     "Blender: los paquetes de datos se descargan de la copia en GitHub",
     "Se pueden añadir datos de edificios de nuevos países sin actualizar el plugin"
    ]
+  },
+  "tools": {
+   "blender": "0.3.6"
   }
  },
  {
@@ -289,6 +301,9 @@
    "es": [
     "Primera publicación en el Package Manager de Rhino"
    ]
+  },
+  "tools": {
+   "rhino": "0.1.0"
   }
  }
 ]

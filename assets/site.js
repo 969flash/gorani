@@ -195,31 +195,225 @@
       .catch(function () {});
   }
 
-  // 버전 기록: assets/changelog.json + 매니페스트 update(최신 배포가 기록에 아직 없으면 맨 위에 붙인다). 처음엔 4개만 보인다
-  var changelog = document.querySelector(".changelog");
-  if (changelog && window.fetch) {
+  // ── 버전 기록: 3D 프로그램별 구분 + 깃 업데이트 스타일(타임라인·미터 바) ──
+  var timelineEl = document.querySelector(".gh-timeline");
+  var filterWrap = document.querySelector(".changelog-filter");
+  if (timelineEl && window.fetch) {
     var pageCode = { ko: "ko", en: "en", ja: "ja", zh: "zh", es: "es" }[pageLang] || "en";
     var base = (document.querySelector('script[src*="site.js"]') || {}).src || location.href;
+    var assetsDir = base.replace(/\/?[^\/]*$/, "/");
     var esc2 = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
     var getJson = function (url) { return fetch(url).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); };
-    Promise.all([getJson(new URL("changelog.json", base).href), getJson("https://huggingface.co/datasets/hooooooooon/urbandesigntool-data/resolve/main/manifest.json")])
-      .then(function (res) {
-        var list = Array.isArray(res[0]) ? res[0].slice() : [], up = res[1] && res[1].update;
-        if (up && up.latest && up.items && !list.some(function (e) { return e.version === up.latest; }))
-          list.unshift({ version: up.latest, date: up.date || "", items: up.items });
-        if (!list.length) return;
-        changelog.innerHTML = list.map(function (e, i) {
-          var items = (e.items && (e.items[pageCode] || e.items.en)) || [];
-          return '<li' + (i >= 4 ? " hidden" : "") + '><h3>v' + esc2(e.version) + (e.date ? ' <time datetime="' + esc2(e.date) + '">' + esc2(e.date) + "</time>" : "") +
-            "</h3><ul>" + items.map(function (t) { return "<li>" + esc2(t) + "</li>"; }).join("") + "</ul></li>";
-        }).join("");
-        if (list.length > 4) {
-          var more = document.createElement("button");
-          more.type = "button"; more.className = "btn changelog-more"; more.textContent = changelog.getAttribute("data-more");
-          more.addEventListener("click", function () { changelog.querySelectorAll("li[hidden]").forEach(function (li) { li.hidden = false; }); more.remove(); });
-          changelog.after(more);
+
+    var TOOL_CONFIG = {
+      rhino: { name: "Rhino", logo: new URL("logo-rhino.png", assetsDir).href },
+      sketchup: { name: "SketchUp", logo: new URL("logo-sketchup.png", assetsDir).href },
+      blender: { name: "Blender", logo: new URL("logo-blender.png", assetsDir).href },
+      autocad: { name: "AutoCAD", logo: new URL("logo-autocad.png", assetsDir).href },
+      common: {
+        name: timelineEl.getAttribute("data-common-label") || ({
+          ko: "공통 (Core / UI)", en: "Core / UI", ja: "共通 (Core / UI)", zh: "通用 (Core / UI)", es: "General (Core / UI)"
+        }[pageCode] || "Core / UI"),
+        logo: null
+      }
+    };
+
+    function classifyTool(str) {
+      var s = String(str).toLowerCase();
+      if (/rhino|라이노|ライノ/.test(s)) return "rhino";
+      if (/sketchup|스케치업|スケッチアップ/.test(s)) return "sketchup";
+      if (/blender|블렌더|ブレンダー/.test(s)) return "blender";
+      if (/autocad|오토캐드|オートキャド/.test(s)) return "autocad";
+      if (/archicad|아키캐드|アーキキャド/.test(s)) return "archicad";
+      return "common";
+    }
+
+    function formatMonth(dateStr) {
+      var parts = String(dateStr).split("-");
+      var y = parts[0], m = parseInt(parts[1], 10);
+      if (!y || isNaN(m)) return "";
+      var enMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+      if (pageCode === "ko") return y + "년 " + m + "월";
+      if (pageCode === "ja" || pageCode === "zh") return y + "年" + m + "月";
+      if (pageCode === "es") {
+        var esMonths = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+        return esMonths[m - 1] + " de " + y;
+      }
+      return enMonths[m - 1] + " " + y;
+    }
+
+    Promise.all([
+      getJson(new URL("changelog.json", base).href),
+      getJson("https://huggingface.co/datasets/hooooooooon/urbandesigntool-data/resolve/main/manifest.json")
+    ]).then(function (res) {
+      var list = Array.isArray(res[0]) ? res[0].slice() : [];
+      var up = res[1] && res[1].update;
+      if (up && up.latest && up.items && !list.some(function (e) { return e.version === up.latest; })) {
+        list.unshift({ version: up.latest, date: up.date || "", items: up.items });
+      }
+      if (!list.length) return;
+
+      function getCountLabel(count) {
+        if (pageCode === "ko") return count + "개 항목";
+        if (pageCode === "ja") return count + "項目";
+        if (pageCode === "zh") return count + "项";
+        if (pageCode === "es") return count + (count === 1 ? " elemento" : " elementos");
+        return count + (count === 1 ? " item" : " items");
+      }
+
+      var lastMonth = "";
+      var html = "";
+
+      list.forEach(function (e, releaseIdx) {
+        var items = (e.items && (e.items[pageCode] || e.items.en)) || [];
+        var monthKey = e.date ? e.date.slice(0, 7) : "";
+        var monthLabel = e.date ? formatMonth(e.date) : "";
+
+        if (monthKey && monthKey !== lastMonth) {
+          lastMonth = monthKey;
+          html += '<div class="gh-month-divider" data-month="' + esc2(monthKey) + '">' +
+            '<span class="gh-month-label">' + esc2(monthLabel) + '</span>' +
+            '<span class="gh-month-line" aria-hidden="true"></span>' +
+            '</div>';
         }
+
+        var toolMap = {};
+        items.forEach(function (t) {
+          var tool = classifyTool(t);
+          if (!toolMap[tool]) toolMap[tool] = [];
+          toolMap[tool].push(t);
+        });
+
+        var toolOrder = ["rhino", "sketchup", "blender", "autocad", "common"];
+        var presentTools = toolOrder.filter(function (tk) { return toolMap[tk] && toolMap[tk].length > 0; });
+        if (!presentTools.length && items.length) {
+          toolMap.common = items;
+          presentTools = ["common"];
+        }
+
+        var nodeIcon = (releaseIdx % 3 === 0) ? "i-git-tag" : (releaseIdx % 3 === 1 ? "i-git-commit" : "i-git-pr");
+        var isOlder = releaseIdx >= 4;
+
+        html += '<div class="gh-entry' + (isOlder ? ' gh-older' : '') + '"' +
+          ' data-version="' + esc2(e.version) + '"' +
+          ' data-tools="' + esc2(presentTools.join(" ")) + '"' +
+          ' data-month="' + esc2(monthKey) + '"' +
+          (isOlder ? ' hidden' : '') + '>';
+
+        html += '<div class="gh-node" aria-hidden="true">' +
+          '<div class="gh-node-line"></div>' +
+          '<div class="gh-node-icon">' +
+          '<svg width="15" height="15" viewBox="0 0 16 16"><use href="#' + nodeIcon + '"/></svg>' +
+          '</div></div>';
+
+        html += '<div class="gh-card">' +
+          '<div class="gh-card-header">' +
+          '<div class="gh-card-title-group">' +
+          '<h3 class="gh-card-title">Gorani ' + esc2(e.version) + '</h3>' +
+          (e.date ? '<time class="gh-card-date" datetime="' + esc2(e.date) + '">' + esc2(e.date) + '</time>' : '') +
+          '</div>' +
+          '<div class="gh-card-badges">' +
+          '<span class="gh-tag-pill">v' + esc2(e.version) + '</span>' +
+          '<svg class="gh-unfold-icon" width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-unfold"/></svg>' +
+          '</div></div>';
+
+        html += '<div class="gh-tools-list">';
+        presentTools.forEach(function (tk) {
+          var tCfg = TOOL_CONFIG[tk] || { name: tk, logo: null };
+          var tItems = toolMap[tk];
+          var tVer = (e.tools && e.tools[tk]) ? e.tools[tk] : (tk === "common" ? "" : e.version);
+          var meterWidth = Math.min(80, Math.max(16, tItems.length * 28));
+
+          html += '<div class="gh-tool-row" data-tool="' + esc2(tk) + '">' +
+            '<div class="gh-tool-header">' +
+            '<div class="gh-tool-info">' +
+            (tCfg.logo ? '<img class="gh-tool-logo" src="' + esc2(tCfg.logo) + '" alt="" width="16" height="16">' : '<span class="gh-tool-dot" aria-hidden="true"></span>') +
+            '<span class="gh-tool-name">' + esc2(tCfg.name) + '</span>' +
+            (tVer ? '<span class="gh-tool-ver">v' + esc2(tVer) + '</span>' : '') +
+            '</div>' +
+            '<div class="gh-tool-meta">' +
+            '<span class="gh-count-pill">' + esc2(getCountLabel(tItems.length)) + '</span>' +
+            '<div class="gh-meter" aria-hidden="true"><span class="gh-meter-bar" style="width:' + meterWidth + 'px;"></span></div>' +
+            '</div></div>' +
+            '<ul class="gh-changes">' +
+            tItems.map(function (txt) { return '<li>' + esc2(txt) + '</li>'; }).join("") +
+            '</ul></div>';
+        });
+        html += '</div></div></div>';
       });
+
+      timelineEl.innerHTML = html;
+
+      var moreWrap = null;
+      if (list.length > 4) {
+        moreWrap = document.createElement("div");
+        moreWrap.className = "changelog-more-wrap";
+        var moreBtn = document.createElement("button");
+        moreBtn.type = "button";
+        moreBtn.className = "btn changelog-more";
+        moreBtn.textContent = timelineEl.getAttribute("data-more") || "이전 버전 더 보기";
+        moreBtn.addEventListener("click", function () {
+          timelineEl.querySelectorAll(".gh-entry.gh-older").forEach(function (el) {
+            el.hidden = false;
+            el.classList.remove("gh-older");
+          });
+          moreWrap.remove();
+          moreWrap = null;
+          updateFilterView(currentFilter);
+        });
+        moreWrap.appendChild(moreBtn);
+        timelineEl.after(moreWrap);
+      }
+
+      var currentFilter = "all";
+      function updateFilterView(filter) {
+        currentFilter = filter;
+        var entries = [].slice.call(timelineEl.querySelectorAll(".gh-entry"));
+        var months = [].slice.call(timelineEl.querySelectorAll(".gh-month-divider"));
+
+        entries.forEach(function (entry) {
+          var isOlder = entry.classList.contains("gh-older");
+          var toolsAttr = (entry.getAttribute("data-tools") || "").split(" ");
+          if (filter === "all") {
+            entry.style.display = isOlder ? "none" : "";
+            entry.querySelectorAll(".gh-tool-row").forEach(function (r) { r.style.display = ""; });
+          } else {
+            var match = toolsAttr.indexOf(filter) !== -1;
+            if (match) {
+              entry.style.display = "";
+              entry.querySelectorAll(".gh-tool-row").forEach(function (r) {
+                r.style.display = (r.getAttribute("data-tool") === filter) ? "" : "none";
+              });
+            } else {
+              entry.style.display = "none";
+            }
+          }
+        });
+
+        months.forEach(function (mEl) {
+          var mKey = mEl.getAttribute("data-month");
+          var hasVisible = entries.some(function (en) {
+            return en.getAttribute("data-month") === mKey && en.style.display !== "none" && !en.hidden;
+          });
+          mEl.style.display = hasVisible ? "" : "none";
+        });
+
+        if (moreWrap) {
+          moreWrap.style.display = (filter === "all") ? "" : "none";
+        }
+      }
+
+      if (filterWrap) {
+        var filterBtns = [].slice.call(filterWrap.querySelectorAll("button[data-filter]"));
+        filterBtns.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            filterBtns.forEach(function (b) { b.setAttribute("aria-selected", String(b === btn)); });
+            updateFilterView(btn.getAttribute("data-filter"));
+            track("changelog_filter", { tool: btn.getAttribute("data-filter") });
+          });
+        });
+      }
+    });
   }
 
   // 지원 프로그램 칩: 설치의 그 프로그램 탭을 연다

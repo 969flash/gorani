@@ -244,8 +244,12 @@
     ]).then(function (res) {
       var list = Array.isArray(res[0]) ? res[0].slice() : [];
       var up = res[1] && res[1].update;
-      if (up && up.latest && up.items && !list.some(function (e) { return e.version === up.latest; })) {
-        list.unshift({ version: up.latest, date: up.date || "", items: up.items });
+      // 플러그인 창에 뜨는 업데이트 안내(매니페스트 update)가 원본이다 — 같은 글이 두 곳에 뜨게 한다.
+      // groups(새 기능·개선·안정성)가 있으면 그 판의 기록을 매니페스트 글로 바꾸고, 없는 옛 매니페스트면 changelog.json 글을 그대로 쓴다
+      if (up && up.latest && (up.groups || up.items)) {
+        var at = list.map(function (e) { return e.version; }).indexOf(up.latest);
+        if (at === -1) list.unshift({ version: up.latest, date: up.date || "", items: up.items, groups: up.groups });
+        else if (up.groups) list[at] = Object.assign({}, list[at], { date: up.date || list[at].date, groups: up.groups });
       }
       if (!list.length) return;
 

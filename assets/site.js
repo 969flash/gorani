@@ -126,7 +126,7 @@
   });
 
   // ── 설치 탭(Rhino·SketchUp·Blender) ─────
-  var tabs = [].slice.call(document.querySelectorAll('[role="tab"]'));
+  var tabs = [].slice.call(document.querySelectorAll('#install [role="tab"]'));   // 설치 탭만(버전 기록 필터 버튼은 따로 처리)
   function pick(tab, focus) {
     tabs.forEach(function (t) {
       var on = t === tab;
@@ -194,6 +194,200 @@
         applyRelease(slim);
       })
       .catch(function () {});
+  }
+
+  // ── 버전 기록: 3D 프로그램별 구분 + 깃 업데이트 스타일(타임라인·미터 바) ──
+  var timelineEl = document.querySelector(".gh-timeline");
+  var filterWrap = document.querySelector(".changelog-filter");
+  if (timelineEl && window.fetch) {
+    var pageCode = { ko: "ko", en: "en", ja: "ja", zh: "zh", es: "es" }[pageLang] || "en";
+    var base = (document.querySelector('script[src*="site.js"]') || {}).src || location.href;
+    var assetsDir = base.replace(/\/?[^\/]*$/, "/");
+    var esc2 = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+    var getJson = function (url) { return fetch(url).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); };
+
+    function classifyTool(str) {
+      var s = String(str).toLowerCase();
+      if (/rhino|라이노|ライノ/.test(s)) return "rhino";
+      if (/sketchup|스케치업|スケッチアップ/.test(s)) return "sketchup";
+      if (/blender|블렌더|ブレンダー/.test(s)) return "blender";
+      if (/autocad|오토캐드|オートキャド/.test(s)) return "autocad";
+      if (/archicad|아키캐드|アー키캐드/.test(s)) return "archicad";
+      return "common";
+    }
+
+    var GROUP_LABELS = ({
+      ko: { "new": "새 기능", improved: "개선", stable: "안정성" },
+      en: { "new": "New", improved: "Improvements", stable: "Stability" },
+      ja: { "new": "新機能", improved: "改善", stable: "安定性" },
+      zh: { "new": "新功能", improved: "改进", stable: "稳定性" },
+      es: { "new": "Novedades", improved: "Mejoras", stable: "Estabilidad" }
+    })[pageCode] || { "new": "New", improved: "Improvements", stable: "Stability" };
+
+    function formatMonth(dateStr) {
+      var parts = String(dateStr).split("-");
+      var y = parts[0], m = parseInt(parts[1], 10);
+      if (!y || isNaN(m)) return "";
+      var enMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+      if (pageCode === "ko") return y + "년 " + m + "월";
+      if (pageCode === "ja" || pageCode === "zh") return y + "年" + m + "月";
+      if (pageCode === "es") {
+        var esMonths = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+        return esMonths[m - 1] + " de " + y;
+      }
+      return enMonths[m - 1] + " " + y;
+    }
+
+    Promise.all([
+      getJson(new URL("changelog.json", base).href),
+      getJson("https://huggingface.co/datasets/hooooooooon/urbandesigntool-data/resolve/main/manifest.json")
+    ]).then(function (res) {
+      var list = Array.isArray(res[0]) ? res[0].slice() : [];
+      var up = res[1] && res[1].update;
+      // 플러그인 창에 뜨는 업데이트 안내(매니페스트 update)가 원본이다 — 같은 글이 두 곳에 뜨게 한다.
+      // groups(새 기능·개선·안정성)가 있으면 그 판의 기록을 매니페스트 글로 바꾸고, 없는 옛 매니페스트면 changelog.json 글을 그대로 쓴다
+      if (up && up.latest && (up.groups || up.items)) {
+        var at = list.map(function (e) { return e.version; }).indexOf(up.latest);
+        if (at === -1) list.unshift({ version: up.latest, date: up.date || "", items: up.items, groups: up.groups });
+        else if (up.groups) list[at] = Object.assign({}, list[at], { date: up.date || list[at].date, groups: up.groups });
+      }
+      if (!list.length) return;
+
+      var lastMonth = "";
+      var html = "";
+
+      list.forEach(function (e, releaseIdx) {
+        var items = (e.items && (e.items[pageCode] || e.items.en)) || [];
+        var monthKey = e.date ? e.date.slice(0, 7) : "";
+        var monthLabel = e.date ? formatMonth(e.date) : "";
+
+        if (monthKey && monthKey !== lastMonth) {
+          lastMonth = monthKey;
+          html += '<div class="gh-month-divider" data-month="' + esc2(monthKey) + '">' +
+            '<span class="gh-month-label">' + esc2(monthLabel) + '</span>' +
+            '<span class="gh-month-line" aria-hidden="true"></span>' +
+            '</div>';
+        }
+
+        // 카드 안은 분류(새 기능·개선·안정성)로 나눈다. 분류가 없는 항목(매니페스트에서 자동으로 붙은 최신 배포)은 한 덩어리로 보인다
+        var groups = Array.isArray(e.groups)
+          ? e.groups.map(function (g) { return { type: g.type, items: (g.items && (g.items[pageCode] || g.items.en)) || [], hosts: g.hosts || [] }; })
+          : [{ type: "", items: items }];
+        // 항목마다 보일 프로그램(hosts, 플러그인 안내와 같은 값)이 있으면 그 합집합 — 하나라도 "모두"인 항목이 있으면 모든 프로그램
+        var ALL_TOOLS = ["rhino", "sketchup", "blender", "autocad"], presentTools = [];
+        if (Array.isArray(e.groups)) {
+          groups.forEach(function (g) {
+            g.items.forEach(function (_, i) {
+              (g.hosts[i] || ALL_TOOLS).forEach(function (k) { if (presentTools.indexOf(k) === -1) presentTools.push(k); });
+            });
+          });
+        } else if (e.tools) presentTools = Object.keys(e.tools);
+        if (!presentTools.length) {
+          items.forEach(function (t) { var k = classifyTool(t); if (k !== "common" && presentTools.indexOf(k) === -1) presentTools.push(k); });
+        }
+        if (!presentTools.length) presentTools = ["common"];
+
+        var isOlder = releaseIdx >= 4;
+
+        html += '<div class="gh-entry' + (isOlder ? ' gh-older' : '') + '"' +
+          ' data-version="' + esc2(e.version) + '"' +
+          ' data-tools="' + esc2(presentTools.join(" ")) + '"' +
+          ' data-month="' + esc2(monthKey) + '"' +
+          (isOlder ? ' hidden' : '') + '>';
+
+        html += '<div class="gh-node" aria-hidden="true">' +
+          '<div class="gh-node-line"></div>' +
+          '<div class="gh-node-dot"></div>' +
+          '</div>';
+
+        html += '<div class="gh-body">' +
+          '<div class="gh-head">' +
+          '<h3 class="gh-title">Gorani ' + esc2(e.version) + '</h3>' +
+          (e.date ? '<time class="gh-date" datetime="' + esc2(e.date) + '">' + esc2(e.date) + '</time>' : '') +
+          '</div>';
+
+        html += '<div class="gh-card">';
+        groups.forEach(function (g) {
+          if (!g.items.length) return;
+          html += '<div class="gh-tool-row" data-group="' + esc2(g.type) + '">' +
+            (g.type && GROUP_LABELS[g.type] ? '<div class="gh-tool-name">' + esc2(GROUP_LABELS[g.type]) + '</div>' : '') +
+            '<ul class="gh-changes">' +
+            g.items.map(function (txt, i) { return '<li' + (g.hosts[i] ? ' data-hosts="' + esc2(g.hosts[i].join(" ")) + '"' : "") + '>' + esc2(txt) + '</li>'; }).join("") +
+            '</ul></div>';
+        });
+        html += '</div></div></div>';
+      });
+
+      timelineEl.innerHTML = html;
+
+      var moreWrap = null;
+      if (list.length > 4) {
+        moreWrap = document.createElement("div");
+        moreWrap.className = "changelog-more-wrap";
+        var moreBtn = document.createElement("button");
+        moreBtn.type = "button";
+        moreBtn.className = "btn changelog-more";
+        moreBtn.textContent = timelineEl.getAttribute("data-more") || "이전 버전 더 보기";
+        moreBtn.addEventListener("click", function () {
+          timelineEl.querySelectorAll(".gh-entry.gh-older").forEach(function (el) {
+            el.hidden = false;
+            el.classList.remove("gh-older");
+          });
+          moreWrap.remove();
+          moreWrap = null;
+          updateFilterView(currentFilter);
+        });
+        moreWrap.appendChild(moreBtn);
+        timelineEl.after(moreWrap);
+      }
+
+      var currentFilter = "all";
+      function updateFilterView(filter) {
+        currentFilter = filter;
+        var entries = [].slice.call(timelineEl.querySelectorAll(".gh-entry"));
+        var months = [].slice.call(timelineEl.querySelectorAll(".gh-month-divider"));
+
+        entries.forEach(function (entry) {
+          var isOlder = entry.classList.contains("gh-older");
+          var toolsAttr = (entry.getAttribute("data-tools") || "").split(" ");
+          var show = filter === "all" ? !isOlder : toolsAttr.indexOf(filter) !== -1;
+          entry.style.display = show ? "" : "none";
+          // 프로그램을 고르면 그 프로그램에 해당하는 항목만(hosts가 없는 항목은 모두에게) 남기고, 빈 분류 줄은 숨긴다
+          entry.querySelectorAll(".gh-tool-row").forEach(function (row) {
+            var any = false;
+            row.querySelectorAll("li").forEach(function (li) {
+              var hs = li.getAttribute("data-hosts");
+              var ok = filter === "all" || !hs || hs.split(" ").indexOf(filter) !== -1;
+              li.style.display = ok ? "" : "none"; if (ok) any = true;
+            });
+            row.style.display = any ? "" : "none";
+          });
+        });
+
+        months.forEach(function (mEl) {
+          var mKey = mEl.getAttribute("data-month");
+          var hasVisible = entries.some(function (en) {
+            return en.getAttribute("data-month") === mKey && en.style.display !== "none" && !en.hidden;
+          });
+          mEl.style.display = hasVisible ? "" : "none";
+        });
+
+        if (moreWrap) {
+          moreWrap.style.display = (filter === "all") ? "" : "none";
+        }
+      }
+
+      if (filterWrap) {
+        var filterBtns = [].slice.call(filterWrap.querySelectorAll("button[data-filter]"));
+        filterBtns.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            filterBtns.forEach(function (b) { b.setAttribute("aria-selected", String(b === btn)); });
+            updateFilterView(btn.getAttribute("data-filter"));
+            track("changelog_filter", { tool: btn.getAttribute("data-filter") });
+          });
+        });
+      }
+    });
   }
 
   // 지원 프로그램 칩: 설치의 그 프로그램 탭을 연다

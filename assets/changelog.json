@@ -1,0 +1,594 @@
+[
+ {
+  "version": "0.3.9",
+  "date": "2026-11-08",
+  "groups": [
+   {
+    "type": "new",
+    "items": {
+     "ko": [
+      "대상지 구역을 여러 개 그릴 수 있고, 선을 합칠 수 있습니다.",
+      "지난 생성 결과를 다시 열어 작업할 수 있습니다.",
+      "Rhino에서 업데이트 안내의 [지금 업데이트]를 눌러 바로 설치할 수 있습니다."
+     ],
+     "en": [
+      "You can draw several areas for a site and merge their outlines.",
+      "You can reopen a previous result and keep working on it.",
+      "In Rhino, press [Update now] in the update notice to install right away."
+     ],
+     "ja": [
+      "対象地の区域を複数描くことができ、線を結合できます。",
+      "以前の生成結果を開き直して作業を続けられます。",
+      "Rhinoでは、更新のお知らせの［今すぐ更新］を押してそのままインストールできます。"
+     ],
+     "zh": [
+      "可以为场地绘制多个区域，并合并它们的轮廓线。",
+      "可以重新打开以前生成的结果继续工作。",
+      "在 Rhino 中，点击更新提示里的[立即更新]即可直接安装。"
+     ],
+     "es": [
+      "Puedes dibujar varias áreas para un sitio y unir sus contornos.",
+      "Puedes volver a abrir un resultado anterior y seguir trabajando.",
+      "En Rhino, pulsa [Actualizar ahora] en el aviso de actualización para instalar al instante."
+     ]
+    },
+    "hosts": [
+     null,
+     null,
+     [
+      "rhino"
+     ]
+    ]
+   },
+   {
+    "type": "improved",
+    "items": {
+     "ko": [
+      "지형: 계단 지형이 원본 등고선을 따라 더 정확하고 매끈해졌습니다.",
+      "수면: 호수는 평평하게, 강은 물가를 따라 흐르게 만듭니다.",
+      "Rhino 8 Brep으로 만드는 시간이 크게 줄었습니다.",
+      "해외 대상지도 위경도 대신 주소로 볼 수 있습니다.",
+      "공공데이터: 토지이용계획 2026-10-09판, 서울 UPIS 2026-09판으로 갱신했습니다."
+     ],
+     "en": [
+      "Terrain: stepped terrain now follows the original contours more accurately and smoothly.",
+      "Water: lakes are flat and rivers slope along the shore.",
+      "Rhino 8: building Brep output is much faster.",
+      "Sites outside Korea show an address instead of latitude and longitude.",
+      "Public data: land use plan updated to the 2026-10-09 edition and Seoul UPIS to 2026-09."
+     ],
+     "ja": [
+      "地形: 階段状の地形が元の等高線に沿って、より正確で滑らかになりました。",
+      "水面: 湖は平らに、川は水辺に沿って流れるように作ります。",
+      "Rhino 8: Brepで出力する時間が大きく短くなりました。",
+      "海外の対象地も、緯度経度の代わりに住所で表示されます。",
+      "公共データ: 土地利用計画を2026-10-09版、ソウルUPISを2026-09版に更新しました。"
+     ],
+     "zh": [
+      "地形：阶梯地形更精确、更平滑地贴合原始等高线。",
+      "水面：湖泊保持水平，河流沿岸边向下游倾斜。",
+      "Rhino 8：生成 Brep 的时间大幅缩短。",
+      "海外场地也显示地址，而不是经纬度。",
+      "公共数据：土地利用规划更新为2026-10-09版，首尔 UPIS 更新为2026-09版。"
+     ],
+     "es": [
+      "Terreno: el terreno escalonado sigue las curvas de nivel originales con más precisión y suavidad.",
+      "Agua: los lagos quedan planos y los ríos descienden siguiendo la orilla.",
+      "Rhino 8: generar la salida Brep es mucho más rápido.",
+      "Los sitios fuera de Corea muestran una dirección en lugar de latitud y longitud.",
+      "Datos públicos: plan de uso del suelo actualizado a la edición 2026-10-09 y UPIS de Seúl a 2026-09."
+     ]
+    },
+    "hosts": [
+     null,
+     null,
+     [
+      "rhino"
+     ],
+     null,
+     null
+    ]
+   },
+   {
+    "type": "stable",
+    "items": {
+     "ko": [
+      "지형 면 분할 실패 등 여러 문제를 고쳤습니다."
+     ],
+     "en": [
+      "Fixed several issues, including failures when splitting terrain faces."
+     ],
+     "ja": [
+      "地形の面分割に失敗する問題など、いくつかの不具合を直しました。"
+     ],
+     "zh": [
+      "修复了地形面分割失败等多个问题。"
+     ],
+     "es": [
+      "Se corrigieron varios problemas, como fallos al dividir las caras del terreno."
+     ]
+    },
+    "hosts": [
+     null
+    ]
+   }
+  ]
+ },
+ {
+  "version": "0.3.8",
+  "date": "2026-11-06",
+  "groups": [
+   {
+    "type": "new",
+    "items": {
+     "ko": [
+      "3D 지형을 바닥까지 채운 덩어리로 만들 수 있습니다(기본 켜짐, 3D 설정에서 끌 수 있습니다).",
+      "Rhino 8에서 3D 형상을 Mesh 또는 Brep(닫힌 폴리서피스)으로 고를 수 있습니다.",
+      "최근 대상지를 5개까지 보고, ×로 지울 수 있습니다."
+     ],
+     "en": [
+      "You can make 3D terrain a solid block down to a base (on by default; turn it off in 3D settings).",
+      "In Rhino 8, you can choose Mesh or Brep (closed polysurfaces) for the 3D geometry.",
+      "You can see up to five recent sites and remove them with ×."
+     ],
+     "ja": [
+      "3D地形を底まで埋めた塊として作れます（既定でオン、3D設定でオフにできます）。",
+      "Rhino 8では、3D形状をMeshまたはBrep（閉じたポリサーフェス）から選べます。",
+      "最近の対象地を5件まで表示し、×で消せます。"
+     ],
+     "zh": [
+      "可以将3D地形生成为填充到底部的实体块（默认开启，可在3D设置中关闭）。",
+      "在 Rhino 8 中，可以为3D几何选择 Mesh 或 Brep（封闭多重曲面）。",
+      "最多显示5个最近的场地，可用×删除。"
+     ],
+     "es": [
+      "Puedes crear el terreno 3D como un bloque sólido hasta una base (activado por defecto; se desactiva en los ajustes 3D).",
+      "En Rhino 8, puedes elegir Mesh o Brep (polisuperficies cerradas) para la geometría 3D.",
+      "Puedes ver hasta cinco sitios recientes y quitarlos con ×."
+     ]
+    },
+    "hosts": [
+     null,
+     [
+      "rhino"
+     ],
+     null
+    ]
+   },
+   {
+    "type": "improved",
+    "items": {
+     "ko": [
+      "해외 대상지: OSM 서버가 붐비면 잠시 기다렸다 다시 시도합니다."
+     ],
+     "en": [
+      "Sites outside Korea: when the OSM server is busy, it waits a moment and retries."
+     ],
+     "ja": [
+      "海外の対象地: OSMサーバーが混雑しているときは、少し待って再試行します。"
+     ],
+     "zh": [
+      "海外场地：OSM 服务器繁忙时，会稍等后重试。"
+     ],
+     "es": [
+      "Sitios fuera de Corea: si el servidor de OSM está ocupado, espera un momento y reintenta."
+     ]
+    },
+    "hosts": [
+     null
+    ]
+   },
+   {
+    "type": "stable",
+    "items": {
+     "ko": [
+      "SketchUp Windows에서 패널이 열리지 않던 문제와, 처음 열 때 화면이 멈추던 문제를 고쳤습니다."
+     ],
+     "en": [
+      "Fixed the panel not opening in SketchUp for Windows, and the screen freezing on first launch."
+     ],
+     "ja": [
+      "SketchUp Windowsでパネルが開かない問題と、初回起動時に画面が止まる問題を直しました。"
+     ],
+     "zh": [
+      "修复了 SketchUp Windows 中面板无法打开，以及首次打开时画面卡住的问题。"
+     ],
+     "es": [
+      "Se corrigió que el panel no se abriera en SketchUp para Windows y que la pantalla se congelara al abrir por primera vez."
+     ]
+    },
+    "hosts": [
+     [
+      "sketchup"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "version": "0.3.7",
+  "date": "2026-10-30",
+  "groups": [
+   {
+    "type": "new",
+    "items": {
+     "ko": [
+      "Rhino 7에서도 사용할 수 있습니다(Rhino 7, 8 모두 패키지 매니저에서 설치).",
+      "SketchUp 설치 파일(.rbz)을 받아 설치할 수 있습니다.",
+      "AutoCAD에서 2D 현황도를 만들 수 있습니다(Windows, macOS)."
+     ],
+     "en": [
+      "Gorani now works in Rhino 7 too (install in Rhino 7 or 8 from the Package Manager).",
+      "You can download the SketchUp installer file (.rbz) and install it.",
+      "You can make 2D existing-conditions drawings in AutoCAD (Windows, macOS)."
+     ],
+     "ja": [
+      "Rhino 7でも使えます（Rhino 7、8ともパッケージマネージャーからインストール）。",
+      "SketchUpのインストールファイル（.rbz）をダウンロードしてインストールできます。",
+      "AutoCADで2D現況図を作れます（Windows、macOS）。"
+     ],
+     "zh": [
+      "现在也支持 Rhino 7（Rhino 7、8 均可在 Package Manager 中安装）。",
+      "可以下载 SketchUp 安装文件（.rbz）进行安装。",
+      "可以在 AutoCAD 中生成2D现状图（Windows、macOS）。"
+     ],
+     "es": [
+      "También funciona en Rhino 7 (instálalo en Rhino 7 u 8 desde el Package Manager).",
+      "Puedes descargar el archivo de instalación de SketchUp (.rbz) e instalarlo.",
+      "Puedes crear planos 2D del estado actual en AutoCAD (Windows, macOS)."
+     ]
+    },
+    "hosts": [
+     [
+      "rhino"
+     ],
+     [
+      "sketchup"
+     ],
+     [
+      "autocad"
+     ]
+    ]
+   },
+   {
+    "type": "stable",
+    "items": {
+     "ko": [
+      "안뜰이 있는 건물의 안뜰이 메워지던 문제를 고쳤습니다."
+     ],
+     "en": [
+      "Fixed courtyards in buildings being filled in."
+     ],
+     "ja": [
+      "中庭のある建物で中庭が埋まってしまう問題を直しました。"
+     ],
+     "zh": [
+      "修复了带内庭院的建筑，庭院被填平的问题。"
+     ],
+     "es": [
+      "Se corrigió que los patios interiores de los edificios se rellenaran."
+     ]
+    },
+    "hosts": [
+     null
+    ]
+   }
+  ]
+ },
+ {
+  "version": "0.3.6",
+  "date": "2026-10-24",
+  "groups": [
+   {
+    "type": "new",
+    "items": {
+     "ko": [
+      "미국 전역의 건물 데이터(Overture Maps)를 쓸 수 있습니다."
+     ],
+     "en": [
+      "You can use building data for the whole United States (Overture Maps)."
+     ],
+     "ja": [
+      "米国全土の建物データ（Overture Maps）を使えます。"
+     ],
+     "zh": [
+      "可以使用美国全境的建筑数据（Overture Maps）。"
+     ],
+     "es": [
+      "Puedes usar datos de edificios de todo Estados Unidos (Overture Maps)."
+     ]
+    },
+    "hosts": [
+     null
+    ]
+   },
+   {
+    "type": "stable",
+    "items": {
+     "ko": [
+      "Blender의 데이터 받기 경로와 오류 문구, 네트워크가 막힌 환경의 대기 시간을 정리했습니다."
+     ],
+     "en": [
+      "Improved Blender data downloads, error messages, and waiting behavior on restricted networks."
+     ],
+     "ja": [
+      "Blenderのデータ取得経路とエラー文言、ネットワークが制限された環境での待ち時間を整えました。"
+     ],
+     "zh": [
+      "优化了 Blender 的数据下载路径、错误提示，以及网络受限环境下的等待时间。"
+     ],
+     "es": [
+      "Se mejoraron las descargas de datos de Blender, los mensajes de error y la espera en redes restringidas."
+     ]
+    },
+    "hosts": [
+     [
+      "blender"
+     ]
+    ]
+   }
+  ]
+ },
+ {
+  "version": "0.3.5",
+  "date": "2026-10-23",
+  "groups": [
+   {
+    "type": "stable",
+    "items": {
+     "ko": [
+      "지도 타일이 막히던 문제를 고쳤습니다"
+     ],
+     "en": [
+      "Fixed map tiles being blocked"
+     ],
+     "ja": [
+      "地図タイルが表示されない問題を直しました"
+     ],
+     "zh": [
+      "修复了地图瓦片被拦截的问题"
+     ],
+     "es": [
+      "Se corrigió el bloqueo de las teselas del mapa"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "version": "0.3.4",
+  "date": "2026-10-23",
+  "groups": [
+   {
+    "type": "new",
+    "items": {
+     "ko": [
+      "스위스 공식 건물 데이터(swissBUILDINGS3D)를 씁니다"
+     ],
+     "en": [
+      "Official Swiss building data (swissBUILDINGS3D)"
+     ],
+     "ja": [
+      "スイスの公式建物データ（swissBUILDINGS3D）を使います"
+     ],
+     "zh": [
+      "使用瑞士官方建筑数据（swissBUILDINGS3D）"
+     ],
+     "es": [
+      "Datos oficiales de edificios de Suiza (swissBUILDINGS3D)"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "version": "0.3.3",
+  "date": "2026-10-22",
+  "groups": [
+   {
+    "type": "new",
+    "items": {
+     "ko": [
+      "네덜란드, 프랑스 공식 건물 데이터를 씁니다"
+     ],
+     "en": [
+      "Official building data for the Netherlands and France"
+     ],
+     "ja": [
+      "オランダ、フランスの公式建物データを使います"
+     ],
+     "zh": [
+      "使用荷兰、法国官方建筑数据"
+     ],
+     "es": [
+      "Datos oficiales de edificios de Países Bajos y Francia"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "version": "0.3.2",
+  "date": "2026-10-22",
+  "groups": [
+   {
+    "type": "new",
+    "items": {
+     "ko": [
+      "해외 대상지에서도 도로면을 만듭니다"
+     ],
+     "en": [
+      "Road surfaces for sites outside Korea"
+     ],
+     "ja": [
+      "海外の対象地でも道路面を作ります"
+     ],
+     "zh": [
+      "海外场地也可生成道路面"
+     ],
+     "es": [
+      "Superficies de calles para sitios fuera de Corea"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "version": "0.3.1",
+  "date": "2026-10-21",
+  "groups": [
+   {
+    "type": "new",
+    "items": {
+     "ko": [
+      "일본: PLATEAU 건물과 국토지리원 5 m 지형을 씁니다"
+     ],
+     "en": [
+      "Japan: PLATEAU buildings and GSI 5 m terrain"
+     ],
+     "ja": [
+      "日本: PLATEAUの建物と国土地理院5 m地形を使います"
+     ],
+     "zh": [
+      "日本：使用 PLATEAU 建筑和日本国土地理院 5 m 地形"
+     ],
+     "es": [
+      "Japón: edificios de PLATEAU y terreno de 5 m de GSI"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "version": "0.3.0",
+  "date": "2026-10-21",
+  "groups": [
+   {
+    "type": "new",
+    "items": {
+     "ko": [
+      "패널이 다섯 언어(영어, 한국어, 스페인어, 일본어, 중국어)를 지원합니다",
+      "패널 위쪽 지구본 버튼으로 언어를 바꿉니다"
+     ],
+     "en": [
+      "The panel is available in five languages (English, Korean, Spanish, Japanese, Chinese)",
+      "Switch the language with the globe button at the top of the panel"
+     ],
+     "ja": [
+      "パネルが5つの言語（英語、韓国語、スペイン語、日本語、中国語）に対応しました",
+      "パネル上部の地球儀ボタンで言語を切り替えます"
+     ],
+     "zh": [
+      "面板支持五种语言（英语、韩语、西班牙语、日语、中文）",
+      "可通过面板顶部的地球按钮切换语言"
+     ],
+     "es": [
+      "El panel está en cinco idiomas (inglés, coreano, español, japonés y chino)",
+      "Cambia el idioma con el botón del globo en la parte superior del panel"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "version": "0.2.3",
+  "date": "2026-10-21",
+  "groups": [
+   {
+    "type": "improved",
+    "items": {
+     "ko": [
+      "지도가 접속한 위치 근처에서 열립니다"
+     ],
+     "en": [
+      "The map opens near your location"
+     ],
+     "ja": [
+      "地図が接続した場所の近くで開きます"
+     ],
+     "zh": [
+      "地图会在您所在位置附近打开"
+     ],
+     "es": [
+      "El mapa se abre cerca de tu ubicación"
+     ]
+    }
+   },
+   {
+    "type": "stable",
+    "items": {
+     "ko": [
+      "불러오기 캐시 오류를 고쳤습니다"
+     ],
+     "en": [
+      "Fixed a loader cache bug"
+     ],
+     "ja": [
+      "読み込みキャッシュの不具合を直しました"
+     ],
+     "zh": [
+      "修复了加载缓存的问题"
+     ],
+     "es": [
+      "Se corrigió un error de la caché de carga"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "version": "0.2.2",
+  "date": "2026-10-21",
+  "groups": [
+   {
+    "type": "improved",
+    "items": {
+     "ko": [
+      "패널 위치가 고정됩니다"
+     ],
+     "en": [
+      "The panel keeps its position"
+     ],
+     "ja": [
+      "パネルの位置が固定されます"
+     ],
+     "zh": [
+      "面板位置保持固定"
+     ],
+     "es": [
+      "El panel mantiene su posición"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "version": "0.1.0",
+  "date": "2026-10-19",
+  "groups": [
+   {
+    "type": "new",
+    "items": {
+     "ko": [
+      "Rhino 패키지 매니저에 처음 등록했습니다"
+     ],
+     "en": [
+      "First release on the Rhino Package Manager"
+     ],
+     "ja": [
+      "Rhinoのパッケージマネージャーに初めて登録しました"
+     ],
+     "zh": [
+      "首次发布到 Rhino Package Manager"
+     ],
+     "es": [
+      "Primera publicación en el Package Manager de Rhino"
+     ]
+    }
+   }
+  ],
+  "tools": {
+   "rhino": "0.1.0"
+  }
+ }
+]

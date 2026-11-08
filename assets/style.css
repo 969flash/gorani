@@ -564,7 +564,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .copy.done .i-done { animation: none; }
 }
 
-/* ── 버전 기록: 3D 프로그램별 탭 + 깃 업데이트 스타일(타임라인·노드·미터 바·배지) ── */
+/* ── 버전 기록: 3D 프로그램별 탭 + 심플한 타임라인 스타일 ── */
 .changelog-filter {
   margin-top: 14px;
   flex-wrap: wrap;
@@ -572,28 +572,17 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 }
 .changelog-filter button {
   height: 34px;
-  padding: 0 12px;
-  font-size: 13px;
-  gap: 6px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 500;
   border-radius: 6px;
-}
-.changelog-filter button img {
-  display: block;
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-}
-.changelog-filter .tab-ver {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink-3);
-  padding: 1px 6px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, .05);
-}
-.changelog-filter button[aria-selected="true"] .tab-ver {
-  background: var(--press);
   color: var(--ink-2);
+}
+.changelog-filter button[aria-selected="true"] {
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
 }
 
 .changelog-timeline-wrap {
@@ -606,7 +595,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 32px 0 18px;
+  margin: 36px 0 20px;
   font-size: 14px;
   font-weight: 700;
   color: var(--ink);
@@ -621,7 +610,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   background: var(--hair);
 }
 
-/* 타임라인 레일 및 엔트리 */
+/* 타임라인 엔트리 */
 .gh-timeline {
   position: relative;
 }
@@ -629,25 +618,25 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   position: relative;
   display: flex;
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 }
 .gh-entry[hidden] {
   display: none !important;
 }
 
-/* 왼쪽 세로 타임라인 레일과 원형 노드 */
+/* 왼쪽 세로선과 깔끔한 원형 노드 (심볼 없음) */
 .gh-node {
   position: relative;
   flex-shrink: 0;
-  width: 32px;
+  width: 16px;
   display: flex;
   justify-content: center;
 }
 .gh-node-line {
   position: absolute;
-  top: 16px;
-  bottom: -20px;
-  left: 15px;
+  top: 10px;
+  bottom: -32px;
+  left: 7px;
   width: 2px;
   background: var(--hair);
   z-index: 0;
@@ -655,90 +644,55 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .gh-entry:last-child .gh-node-line {
   bottom: 0;
 }
-.gh-node-icon {
+.gh-node-dot {
   position: relative;
   z-index: 1;
-  width: 30px;
-  height: 30px;
+  width: 14px;
+  height: 14px;
+  margin-top: 5px;
   border-radius: 50%;
   background: var(--paper);
-  border: 2px solid var(--hair);
-  display: grid;
-  place-items: center;
-  color: var(--ink-2);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .03);
+  border: 2px solid var(--ink);
+  box-sizing: border-box;
 }
 
-/* GitHub 스타일 카드 */
-.gh-card {
+/* 본문 영역 */
+.gh-body {
   flex: 1;
   min-width: 0;
-  background: var(--paper);
-  border: 1px solid var(--hair);
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .02);
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.gh-card:hover {
-  border-color: #c4c4c4;
 }
 
-/* 카드 헤더 */
-.gh-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-  background: #f6f8fa;
-  border-bottom: 1px solid var(--hair);
-  gap: 12px;
-}
-.gh-card-title-group {
+/* 동그라미 옆 버전명과 날짜 */
+.gh-head {
   display: flex;
   align-items: baseline;
   gap: 10px;
-  flex-wrap: wrap;
+  margin-bottom: 12px;
 }
-.gh-card-title {
+.gh-title {
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--ink);
+  letter-spacing: -.01em;
 }
-.gh-card-date {
+.gh-date {
   font-size: 13px;
   color: var(--ink-3);
   font-variant-numeric: tabular-nums;
 }
-.gh-card-badges {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.gh-tag-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
+
+/* 심플한 카드 박스 */
+.gh-card {
   background: var(--paper);
   border: 1px solid var(--hair);
-  color: var(--ink-2);
-  font-variant-numeric: tabular-nums;
-}
-.gh-unfold-icon {
-  color: var(--ink-3);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-/* 툴 목록 */
-.gh-tools-list {
-  display: flex;
-  flex-direction: column;
-}
+/* 툴 행 */
 .gh-tool-row {
-  padding: 14px 16px;
+  padding: 14px 18px;
   border-bottom: 1px solid var(--hair);
 }
 .gh-tool-row:last-child {
@@ -747,79 +701,17 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .gh-tool-row[hidden] {
   display: none !important;
 }
-
-/* 툴 헤더 (저장소 행과 동일한 구조) */
-.gh-tool-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.gh-tool-info {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.gh-tool-logo {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-.gh-tool-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--ink-3);
-  display: inline-block;
-  margin: 0 4px;
-}
 .gh-tool-name {
-  font-weight: 600;
   font-size: 14px;
+  font-weight: 700;
   color: var(--ink);
-}
-.gh-tool-ver {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink-2);
-  padding: 1px 6px;
-  background: var(--press);
-  border-radius: 4px;
-  font-variant-numeric: tabular-nums;
-}
-.gh-tool-meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.gh-count-pill {
-  font-size: 12px;
-  color: var(--ink-3);
-  white-space: nowrap;
-}
-
-/* 시각적 활성 미터 바 (Image #1 참조: [🟩🟩🟩]) */
-.gh-meter {
-  width: 80px;
-  height: 8px;
-  border-radius: 4px;
-  background: #ebedf0;
-  overflow: hidden;
-  display: flex;
-}
-.gh-meter-bar {
-  height: 100%;
-  border-radius: 4px;
-  background: #2da44e; /* GitHub Green */
-  transition: width .25s ease;
+  margin-bottom: 6px;
 }
 
 /* 변경 내역 불릿 목록 */
 .gh-changes {
-  margin: 8px 0 0 26px;
-  padding: 0;
+  margin: 0;
+  padding: 0 0 0 18px;
   list-style: disc;
   font-size: 14px;
   line-height: 22px;
@@ -841,33 +733,11 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 
 @media (max-width: 640px) {
   .gh-entry {
-    gap: 10px;
-  }
-  .gh-node {
-    width: 24px;
-  }
-  .gh-node-line {
-    left: 11px;
-  }
-  .gh-node-icon {
-    width: 24px;
-    height: 24px;
-  }
-  .gh-node-icon svg {
-    width: 13px;
-    height: 13px;
-  }
-  .gh-meter {
-    display: none;
-  }
-  .gh-card-header {
-    padding: 8px 12px;
+    gap: 12px;
+    margin-bottom: 24px;
   }
   .gh-tool-row {
-    padding: 10px 12px;
-  }
-  .gh-changes {
-    margin-left: 20px;
+    padding: 12px 14px;
   }
 }
 

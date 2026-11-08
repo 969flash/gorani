@@ -206,15 +206,14 @@
     var getJson = function (url) { return fetch(url).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); };
 
     var TOOL_CONFIG = {
-      rhino: { name: "Rhino", logo: new URL("logo-rhino.png", assetsDir).href },
-      sketchup: { name: "SketchUp", logo: new URL("logo-sketchup.png", assetsDir).href },
-      blender: { name: "Blender", logo: new URL("logo-blender.png", assetsDir).href },
-      autocad: { name: "AutoCAD", logo: new URL("logo-autocad.png", assetsDir).href },
+      rhino: { name: "Rhino" },
+      sketchup: { name: "SketchUp" },
+      blender: { name: "Blender" },
+      autocad: { name: "AutoCAD" },
       common: {
         name: timelineEl.getAttribute("data-common-label") || ({
-          ko: "공통 (Core / UI)", en: "Core / UI", ja: "共通 (Core / UI)", zh: "通用 (Core / UI)", es: "General (Core / UI)"
-        }[pageCode] || "Core / UI"),
-        logo: null
+          ko: "공통", en: "Common", ja: "共通", zh: "通用", es: "General"
+        }[pageCode] || "Common")
       }
     };
 
@@ -224,7 +223,7 @@
       if (/sketchup|스케치업|スケッチアップ/.test(s)) return "sketchup";
       if (/blender|블렌더|ブレンダー/.test(s)) return "blender";
       if (/autocad|오토캐드|オートキャド/.test(s)) return "autocad";
-      if (/archicad|아키캐드|アーキキャド/.test(s)) return "archicad";
+      if (/archicad|아키캐드|アー키캐드/.test(s)) return "archicad";
       return "common";
     }
 
@@ -252,14 +251,6 @@
         list.unshift({ version: up.latest, date: up.date || "", items: up.items });
       }
       if (!list.length) return;
-
-      function getCountLabel(count) {
-        if (pageCode === "ko") return count + "개 항목";
-        if (pageCode === "ja") return count + "項目";
-        if (pageCode === "zh") return count + "项";
-        if (pageCode === "es") return count + (count === 1 ? " elemento" : " elementos");
-        return count + (count === 1 ? " item" : " items");
-      }
 
       var lastMonth = "";
       var html = "";
@@ -291,7 +282,6 @@
           presentTools = ["common"];
         }
 
-        var nodeIcon = (releaseIdx % 3 === 0) ? "i-git-tag" : (releaseIdx % 3 === 1 ? "i-git-commit" : "i-git-pr");
         var isOlder = releaseIdx >= 4;
 
         html += '<div class="gh-entry' + (isOlder ? ' gh-older' : '') + '"' +
@@ -302,39 +292,22 @@
 
         html += '<div class="gh-node" aria-hidden="true">' +
           '<div class="gh-node-line"></div>' +
-          '<div class="gh-node-icon">' +
-          '<svg width="15" height="15" viewBox="0 0 16 16"><use href="#' + nodeIcon + '"/></svg>' +
-          '</div></div>';
+          '<div class="gh-node-dot"></div>' +
+          '</div>';
 
-        html += '<div class="gh-card">' +
-          '<div class="gh-card-header">' +
-          '<div class="gh-card-title-group">' +
-          '<h3 class="gh-card-title">Gorani ' + esc2(e.version) + '</h3>' +
-          (e.date ? '<time class="gh-card-date" datetime="' + esc2(e.date) + '">' + esc2(e.date) + '</time>' : '') +
-          '</div>' +
-          '<div class="gh-card-badges">' +
-          '<span class="gh-tag-pill">v' + esc2(e.version) + '</span>' +
-          '<svg class="gh-unfold-icon" width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-unfold"/></svg>' +
-          '</div></div>';
+        html += '<div class="gh-body">' +
+          '<div class="gh-head">' +
+          '<h3 class="gh-title">Gorani ' + esc2(e.version) + '</h3>' +
+          (e.date ? '<time class="gh-date" datetime="' + esc2(e.date) + '">' + esc2(e.date) + '</time>' : '') +
+          '</div>';
 
-        html += '<div class="gh-tools-list">';
+        html += '<div class="gh-card">';
         presentTools.forEach(function (tk) {
-          var tCfg = TOOL_CONFIG[tk] || { name: tk, logo: null };
+          var tCfg = TOOL_CONFIG[tk] || { name: tk };
           var tItems = toolMap[tk];
-          var tVer = (e.tools && e.tools[tk]) ? e.tools[tk] : (tk === "common" ? "" : e.version);
-          var meterWidth = Math.min(80, Math.max(16, tItems.length * 28));
 
           html += '<div class="gh-tool-row" data-tool="' + esc2(tk) + '">' +
-            '<div class="gh-tool-header">' +
-            '<div class="gh-tool-info">' +
-            (tCfg.logo ? '<img class="gh-tool-logo" src="' + esc2(tCfg.logo) + '" alt="" width="16" height="16">' : '<span class="gh-tool-dot" aria-hidden="true"></span>') +
-            '<span class="gh-tool-name">' + esc2(tCfg.name) + '</span>' +
-            (tVer ? '<span class="gh-tool-ver">v' + esc2(tVer) + '</span>' : '') +
-            '</div>' +
-            '<div class="gh-tool-meta">' +
-            '<span class="gh-count-pill">' + esc2(getCountLabel(tItems.length)) + '</span>' +
-            '<div class="gh-meter" aria-hidden="true"><span class="gh-meter-bar" style="width:' + meterWidth + 'px;"></span></div>' +
-            '</div></div>' +
+            '<div class="gh-tool-name">' + esc2(tCfg.name) + '</div>' +
             '<ul class="gh-changes">' +
             tItems.map(function (txt) { return '<li>' + esc2(txt) + '</li>'; }).join("") +
             '</ul></div>';

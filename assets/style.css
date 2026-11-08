@@ -308,11 +308,21 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 
 /* 지원 지역 */
 /* 지원 국가: 끝없이 흐르는 카드 줄(impeccable.style 후기 카드 결). 카드를 누르면 멈추고 아래에 데이터 출처를 연다 */
-.country-marquee { --gap: 12px; overflow: hidden; padding: 4px 0 8px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 64px, #000 calc(100% - 64px), transparent); mask-image: linear-gradient(90deg, transparent, #000 64px, #000 calc(100% - 64px), transparent); }
-.country-track { display: flex; width: max-content; animation: country-marquee 40s linear infinite; }
-.country-marquee:hover .country-track, .country-marquee:has(:focus-visible) .country-track, .country-marquee.is-paused .country-track { animation-play-state: paused; }
+.country-rail { position: relative; }
+.country-marquee { --gap: 12px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; cursor: grab; padding: 4px 0 8px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 64px, #000 calc(100% - 64px), transparent); mask-image: linear-gradient(90deg, transparent, #000 64px, #000 calc(100% - 64px), transparent); }
+.country-marquee::-webkit-scrollbar { display: none; }
+.country-marquee.is-dragging { cursor: grabbing; user-select: none; }
+.country-marquee.is-dragging .country-card { pointer-events: none; }
+.country-track { display: flex; width: max-content; }   /* 저절로 흐르는 건 site.js가 scrollLeft로 — 밀기·끌기·화살표도 같은 줄에서 된다. 같은 목록 4벌을 이어 붙여 이음매 없이 반복 */
 .country-set { display: flex; gap: var(--gap); padding-right: var(--gap); }
-@keyframes country-marquee { to { transform: translateX(-25%); } }   /* 같은 목록 4벌 중 1벌만큼 돌면 이음매 없이 반복(넓은 화면도 덮도록 4벌) */
+.country-nav { position: absolute; top: 50%; z-index: 2; display: grid; place-items: center; width: 36px; height: 36px; margin-top: -22px; padding: 0; border-radius: 999px; border: 1px solid var(--hair); background: var(--surface); color: var(--ink); cursor: pointer; opacity: 0; pointer-events: none; box-shadow: 0 1px 2px rgba(20, 20, 20, .06); transition: opacity .6s cubic-bezier(.33,0,.45,1), border-color .6s cubic-bezier(.33,0,.45,1); }
+.country-nav svg { width: 16px; height: 16px; }
+.country-nav.prev { left: 8px; }
+.country-nav.prev svg { transform: scaleX(-1); }
+.country-nav.next { right: 8px; }
+.country-rail:hover .country-nav, .country-rail:focus-within .country-nav { opacity: 1; pointer-events: auto; transition-duration: .18s; }   /* 마우스를 올리거나 키보드로 들어오면 화살표가 나온다 */
+.country-nav:hover { border-color: #CECECE; }
+@media (hover: none) { .country-nav { display: none; } }   /* 터치 화면은 밀어서 넘긴다 */
 .country-card {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; flex: none;
   width: 168px; height: 120px; padding: 0 12px; font: inherit; font-size: 15px; line-height: 20px; font-weight: 700; text-align: center; color: var(--ink); cursor: pointer;
@@ -348,10 +358,10 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .country-sources dt { font-weight: 600; color: var(--ink); }
 .country-sources dd { margin: 0; color: var(--ink-2); }
 @media (prefers-reduced-motion: reduce) {   /* 움직임 줄이기: 흐르지 않고 손으로 넘기는 한 줄 */
-  .country-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
-  .country-track { animation: none; padding-inline: max(16px, calc((100% - 1200px) / 2)); }
+  .country-marquee { -webkit-mask-image: none; mask-image: none; }
+  .country-track { padding-inline: max(16px, calc((100% - 1200px) / 2)); }
   .country-set[aria-hidden="true"] { display: none; }
-  .country-card, .country-panel { transition: none; animation: none; }
+  .country-card, .country-panel, .country-nav { transition: none; animation: none; }
 }
 .coverage h3 { font-size: 22px; line-height: 30px; font-weight: 700; }
 .coverage p { margin-top: 8px; color: var(--ink-2); }

@@ -252,6 +252,63 @@
         apply();
       }
     };
+    // 줄은 저절로 흐르되 손으로도 넘긴다: 밀기(트랙패드·터치)·마우스 끌기·양쪽 화살표. 손이 닿으면 잠깐 멈췄다가 다시 흐른다
+    (function () {
+      var sets = countryRow.querySelectorAll(".country-set"), SPEED = 36, HOLD = 3000;   // 36 px/s = 예전 40초에 한 벌
+      var setW = 0, pos = 0, last = 0, holdUntil = 0, hovering = false, visible = true, down = null, moved = false;
+      var measure = function () { setW = !reduce.matches && sets[1] && sets[1].offsetWidth ? sets[1].getBoundingClientRect().left - sets[0].getBoundingClientRect().left : 0; };
+      var wrap = function () {   // 4벌 중 가운데 두 벌 안에서만 돌게 이음매에서 한 벌만큼 되돌린다(앞뒤로 모두 끝없이)
+        if (!setW) return;
+        if (countryRow.scrollLeft >= setW * 2.5) { countryRow.scrollLeft -= setW; pos = countryRow.scrollLeft; }
+        else if (countryRow.scrollLeft < setW * 0.5) { countryRow.scrollLeft += setW; pos = countryRow.scrollLeft; }
+      };
+      var hold = function (ms) { holdUntil = performance.now() + (ms || HOLD); };
+      var tick = function (t) {
+        var dt = last ? Math.min(t - last, 64) : 0; last = t;
+        if (setW && visible && !hovering && !down && t > holdUntil && !countryRow.classList.contains("is-paused") && !countryRow.querySelector(":focus-visible")) {
+          pos += SPEED * dt / 1000; countryRow.scrollLeft = pos; wrap();
+        }
+        requestAnimationFrame(tick);
+      };
+      countryRow.addEventListener("scroll", function () {   // 우리가 옮긴 게 아니면 손이 옮긴 것 — 거기서부터 이어 흐른다
+        if (Math.abs(countryRow.scrollLeft - pos) > 1.5) { pos = countryRow.scrollLeft; hold(); wrap(); }
+      }, { passive: true });
+      countryRow.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") hovering = true; });
+      countryRow.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") { hovering = false; hold(1200); } });
+      countryRow.addEventListener("wheel", function () { hold(); }, { passive: true });
+      countryRow.addEventListener("touchstart", function () { hold(); }, { passive: true });
+      countryRow.addEventListener("pointerdown", function (e) {   // 마우스로 끌기(터치는 브라우저가 알아서 민다)
+        if (e.pointerType !== "mouse" || e.button !== 0) return;
+        down = { x: e.clientX, left: countryRow.scrollLeft, id: e.pointerId }; moved = false;
+      });
+      countryRow.addEventListener("pointermove", function (e) {
+        if (!down) return;
+        var dx = e.clientX - down.x;
+        if (!moved && Math.abs(dx) < 5) return;
+        if (!moved) { moved = true; countryRow.classList.add("is-dragging"); try { countryRow.setPointerCapture(down.id); } catch (err) {} }
+        countryRow.scrollLeft = down.left - dx; pos = countryRow.scrollLeft; wrap();
+      });
+      var release = function () {
+        if (!down) return;
+        down = null; countryRow.classList.remove("is-dragging"); hold();
+        if (moved) { var stop = function (ev) { ev.stopPropagation(); ev.preventDefault(); }; countryRow.addEventListener("click", stop, { capture: true, once: true }); setTimeout(function () { countryRow.removeEventListener("click", stop, true); }, 0); }   // 끌고 놓은 자리에서 카드가 눌리지 않게
+      };
+      countryRow.addEventListener("pointerup", release);
+      countryRow.addEventListener("pointercancel", release);
+      [].forEach.call(document.querySelectorAll(".country-nav"), function (btn) {
+        btn.addEventListener("click", function () {
+          var card = countryRow.querySelector(".country-card"), step = card ? (card.offsetWidth + 12) * 2 : 360;
+          hold(HOLD + 1000);
+          countryRow.scrollBy({ left: btn.classList.contains("prev") ? -step : step, behavior: reduce.matches ? "auto" : "smooth" });
+          track("country_nav", { dir: btn.classList.contains("prev") ? "prev" : "next" });
+        });
+      });
+      if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(countryRow);
+      var start = function () { measure(); if (setW) { pos = setW; countryRow.scrollLeft = pos; } };
+      start(); window.addEventListener("load", start);
+      window.addEventListener("resize", function () { var old = setW; measure(); if (setW && old) { pos = pos % setW + setW; countryRow.scrollLeft = pos; } });
+      if (!reduce.matches) requestAnimationFrame(tick);
+    })();
     var firstCard = function (code) { return countryRow.querySelector('.country-set:not([aria-hidden]) [data-country="' + code + '"]'); };
     countryCards.forEach(function (card) {
       card.addEventListener("click", function () {

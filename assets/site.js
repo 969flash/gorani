@@ -195,6 +195,33 @@
       .catch(function () {});
   }
 
+  // 버전 기록: assets/changelog.json + 매니페스트 update(최신 배포가 기록에 아직 없으면 맨 위에 붙인다). 처음엔 4개만 보인다
+  var changelog = document.querySelector(".changelog");
+  if (changelog && window.fetch) {
+    var pageCode = { ko: "ko", en: "en", ja: "ja", zh: "zh", es: "es" }[pageLang] || "en";
+    var base = (document.querySelector('script[src*="site.js"]') || {}).src || location.href;
+    var esc2 = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+    var getJson = function (url) { return fetch(url).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); };
+    Promise.all([getJson(new URL("changelog.json", base).href), getJson("https://huggingface.co/datasets/hooooooooon/urbandesigntool-data/resolve/main/manifest.json")])
+      .then(function (res) {
+        var list = Array.isArray(res[0]) ? res[0].slice() : [], up = res[1] && res[1].update;
+        if (up && up.latest && up.items && !list.some(function (e) { return e.version === up.latest; }))
+          list.unshift({ version: up.latest, date: up.date || "", items: up.items });
+        if (!list.length) return;
+        changelog.innerHTML = list.map(function (e, i) {
+          var items = (e.items && (e.items[pageCode] || e.items.en)) || [];
+          return '<li' + (i >= 4 ? " hidden" : "") + '><h3>v' + esc2(e.version) + (e.date ? ' <time datetime="' + esc2(e.date) + '">' + esc2(e.date) + "</time>" : "") +
+            "</h3><ul>" + items.map(function (t) { return "<li>" + esc2(t) + "</li>"; }).join("") + "</ul></li>";
+        }).join("");
+        if (list.length > 4) {
+          var more = document.createElement("button");
+          more.type = "button"; more.className = "btn changelog-more"; more.textContent = changelog.getAttribute("data-more");
+          more.addEventListener("click", function () { changelog.querySelectorAll("li[hidden]").forEach(function (li) { li.hidden = false; }); more.remove(); });
+          changelog.after(more);
+        }
+      });
+  }
+
   // 지원 프로그램 칩: 설치의 그 프로그램 탭을 연다
   document.querySelectorAll("[data-install-tab]").forEach(function (link) {
     link.addEventListener("click", function () {

@@ -29,7 +29,7 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="../assets/style.css?v=202610311917">
+<link rel="stylesheet" href="../assets/style.css?v=202611081500">
 <link rel="preload" href="../assets/demo-poster.webp" as="image">
 <script type="application/ld+json">
 {
@@ -552,14 +552,16 @@
             </header>
             <p>Buildings, road surfaces, contours, parcels and zoning, all from public data.</p>
             <h4>Data sources</h4>
-            <dl class="country-sources">
-              <div><dt>Buildings</dt><dd>Building register + digital topographic map buildings (floors, use, completion date)</dd></div>
-              <div><dt>Road surfaces</dt><dd>Road boundary surfaces from the digital topographic map</dd></div>
-              <div><dt>Terrain</dt><dd>1:5,000 digital topographic map contours and spot heights</dd></div>
-              <div><dt>Parcels & zoning</dt><dd>Continuous cadastral map, land characteristics, land-use plans (UPIS)</dd></div>
-              <div><dt>Source & license</dt><dd>MOLIT, NGII and Seoul (KOGL and others). Contour packs are served from Korean servers only</dd></div>
+            <dl class="country-sources kr-sources">
+              <div><dt>Buildings</dt><dd><a href="https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=NA&dsId=18">GIS Building Integrated Information</a> (MOLIT): height, floors, use, approval date. Gaps are filled with buildings from the 1:5,000 topographic map.<small>Edition 2026-10-09, monthly</small></dd></div>
+              <div><dt>Terrain</dt><dd><a href="https://map.ngii.go.kr/ms/map/NlipMap.do">1:5,000 digital topographic map</a> (NGII) contours and spot heights<small>Updated 2026-03-04, yearly</small></dd></div>
+              <div><dt>Roads, water, rail</dt><dd>1:5,000 topographic map road surfaces, centerlines (width, lanes), rivers and rail<small>Updated 2026-03-04</small></dd></div>
+              <div><dt>Parcels</dt><dd><a href="https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=NA&dsId=4">Land characteristics</a> (MOLIT): land category, area, zoning, official land price<small>Edition 2026-05-20, twice a year</small></dd></div>
+              <div><dt>Zones and districts</dt><dd><a href="https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=NA&dsId=14">Land use plan information</a> (MOLIT): zones, districts and areas per parcel<small>Edition 2026-10-09 (Gyeonggi and Gyeongbuk 2026-08-26), monthly</small></dd></div>
+              <div><dt>Seoul planning</dt><dd><a href="https://data.seoul.go.kr/">Seoul UPIS</a>, 19 layers: zoning, districts, areas, planning facilities, district unit plans<small>Edition 2026-09, monthly</small></dd></div>
+              <div><dt>Terms</dt><dd>KOGL Type 1 and CC BY (VWorld). Contours and elevations may not be published online, so they are served from a server in Korea only. For information only, with no legal effect.</dd></div>
             </dl>
-            <small class="coverage-date">Data update checked: 2026-10-23 · Source reference dates are shown in drawings and log.txt</small>
+            <small class="coverage-date">Data editions checked 2026-11-08. Source dates are also printed on each drawing and in log.txt.</small>
           </article>
           <article class="country-panel" data-country-panel="jp" aria-labelledby="country-jp-title" hidden>
             <header>
@@ -751,6 +753,18 @@
   </section>
 
 
+  <section class="block" id="changelog" aria-labelledby="changelog-title">
+    <div class="wrap">
+      <div class="block-head">
+        <div>
+          <h2 id="changelog-title">Release notes</h2>
+          <p class="sub">What changed in each plugin release.</p>
+        </div>
+      </div>
+      <ol class="changelog" data-more="Show earlier versions"></ol>
+    </div>
+  </section>
+
   <section class="block soft final" aria-labelledby="final-title">
     <div class="wrap">
       <div class="water-deer-article">
@@ -789,6 +803,6 @@
   </div>
 </footer>
 <p id="live" class="skip" aria-live="polite"></p>
-<script src="../assets/site.js?v=202610311917" defer></script>
+<script src="../assets/site.js?v=202611081500" defer></script>
 </body>
 </html>

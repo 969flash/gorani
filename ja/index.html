@@ -29,7 +29,7 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="../assets/style.css?v=202610311917">
+<link rel="stylesheet" href="../assets/style.css?v=202611081500">
 <link rel="preload" href="../assets/demo-poster.webp" as="image">
 <script type="application/ld+json">
 {
@@ -552,14 +552,16 @@
             </header>
             <p>建物・道路面・等高線から筆地・用途地域まで、すべて公共データで作ります。</p>
             <h4>データソース</h4>
-            <dl class="country-sources">
-              <div><dt>建物</dt><dd>建築物台帳+数値地形図の建物（階数・用途・竣工日）</dd></div>
-              <div><dt>道路面</dt><dd>数値地形図の道路境界面</dd></div>
-              <div><dt>地形</dt><dd>数値地形図1:5,000の等高線・標高点</dd></div>
-              <div><dt>筆地・用途地域</dt><dd>連続地籍図・土地特性・土地利用計画（UPIS）</dd></div>
-              <div><dt>出典・ライセンス</dt><dd>国土交通部・国土地理情報院・ソウル市（公共ヌリ等）。等高線パックは韓国国内サーバーのみ</dd></div>
+            <dl class="country-sources kr-sources">
+              <div><dt>建物</dt><dd><a href="https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=NA&dsId=18">GIS建物統合情報</a>（韓国国土交通部）: 高さ、階数、用途、使用承認日。抜けている建物は数値地形図の建物で補います。<small>2026-10-09版、毎月更新</small></dd></div>
+              <div><dt>地形</dt><dd><a href="https://map.ngii.go.kr/ms/map/NlipMap.do">数値地形図 1:5,000</a>（韓国国土地理情報院）の等高線と標高点<small>2026-03-04更新分、1年周期</small></dd></div>
+              <div><dt>道路、水系、鉄道</dt><dd>数値地形図 1:5,000 の道路境界面、道路中心線（幅、車線数）、河川、鉄道<small>2026-03-04更新分</small></dd></div>
+              <div><dt>区画</dt><dd><a href="https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=NA&dsId=4">土地特性情報</a>（韓国国土交通部）: 地目、面積、用途地域、公示地価<small>2026-05-20版、半年ごと</small></dd></div>
+              <div><dt>地域地区</dt><dd><a href="https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=NA&dsId=14">土地利用計画情報</a>（韓国国土交通部）: 区画ごとの地域、地区、区域<small>2026-10-09版（京畿、慶北は2026-08-26版）、毎月更新</small></dd></div>
+              <div><dt>ソウル都市計画</dt><dd><a href="https://data.seoul.go.kr/">ソウル市都市計画情報（UPIS）</a> 19種: 用途地域、地区、区域、都市計画施設、地区単位計画<small>2026-09版、毎月更新</small></dd></div>
+              <div><dt>利用条件</dt><dd>公共ヌリ第1類型、CC BY（VWorld）。等高線と標高はインターネット公開が制限されるため、韓国内のサーバーからのみ提供します。情報提供目的で、法的効力はありません。</dd></div>
             </dl>
-            <small class="coverage-date">データ更新確認日: 2026-10-23 · データ基準日は図面とlog.txtに表示</small>
+            <small class="coverage-date">データ版の確認日 2026-11-08。原データの基準日は結果図面とlog.txtにも記載されます。</small>
           </article>
           <article class="country-panel" data-country-panel="jp" aria-labelledby="country-jp-title" hidden>
             <header>
@@ -751,6 +753,18 @@
   </section>
 
 
+  <section class="block" id="changelog" aria-labelledby="changelog-title">
+    <div class="wrap">
+      <div class="block-head">
+        <div>
+          <h2 id="changelog-title">リリースノート</h2>
+          <p class="sub">プラグインのバージョンごとの変更点です。</p>
+        </div>
+      </div>
+      <ol class="changelog" data-more="以前のバージョンを見る"></ol>
+    </div>
+  </section>
+
   <section class="block soft final" aria-labelledby="final-title">
     <div class="wrap">
       <div class="water-deer-article">
@@ -789,6 +803,6 @@
   </div>
 </footer>
 <p id="live" class="skip" aria-live="polite"></p>
-<script src="../assets/site.js?v=202610311917" defer></script>
+<script src="../assets/site.js?v=202611081500" defer></script>
 </body>
 </html>

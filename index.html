@@ -29,7 +29,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="assets/style.css?v=202610311917">
+<link rel="stylesheet" href="assets/style.css?v=202611081500">
 <link rel="preload" href="assets/demo-poster.webp" as="image">
 <script type="application/ld+json">
 {
@@ -552,14 +552,16 @@
             </header>
             <p>건물·도로면·등고선부터 필지와 용도지역까지, 공공 데이터로 모두 만듭니다.</p>
             <h4>데이터 출처</h4>
-            <dl class="country-sources">
-              <div><dt>건물</dt><dd>건축물대장 + 수치지형도 건물 (층수·용도·준공일)</dd></div>
-              <div><dt>도로면</dt><dd>수치지형도 도로경계 면</dd></div>
-              <div><dt>지형</dt><dd>수치지형도 1:5,000 등고선·표고점</dd></div>
-              <div><dt>필지·용도지역</dt><dd>연속지적도·토지특성·토지이용계획(UPIS)</dd></div>
-              <div><dt>출처·라이선스</dt><dd>국토부·국토지리정보원·서울시 (공공누리 등). 등고선 팩은 국내 서버에서만 제공</dd></div>
+            <dl class="country-sources kr-sources">
+              <div><dt>건물</dt><dd><a href="https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=NA&dsId=18">GIS건물통합정보</a>(국토교통부): 높이, 층수, 용도, 사용승인일. 빠진 건물은 수치지형도 건물로 채웁니다.<small>2026-10-09판, 매월 갱신</small></dd></div>
+              <div><dt>지형</dt><dd><a href="https://map.ngii.go.kr/ms/map/NlipMap.do">수치지형도 1:5,000</a>(국토지리정보원) 등고선과 표고점<small>2026-03-04 갱신분, 1년 주기</small></dd></div>
+              <div><dt>도로, 수계, 철도</dt><dd>수치지형도 1:5,000 도로경계 면, 도로중심선(폭, 차로수), 하천, 철도<small>2026-03-04 갱신분</small></dd></div>
+              <div><dt>필지</dt><dd><a href="https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=NA&dsId=4">토지특성정보</a>(국토교통부): 지목, 면적, 용도지역, 공시지가<small>2026-05-20판, 반기 갱신</small></dd></div>
+              <div><dt>지역지구</dt><dd><a href="https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=NA&dsId=14">토지이용계획정보</a>(국토교통부): 필지별 지역, 지구, 구역<small>2026-10-09판(경기, 경북은 2026-08-26판), 매월 갱신</small></dd></div>
+              <div><dt>서울 도시계획</dt><dd><a href="https://data.seoul.go.kr/">서울시 도시계획정보(UPIS)</a> 19종: 용도지역, 지구, 구역, 도시계획시설, 지구단위계획<small>2026-09판, 매월 갱신</small></dd></div>
+              <div><dt>이용 조건</dt><dd>공공누리 제1유형, CC BY(브이월드). 등고선과 표고는 인터넷 게시가 제한되어 국내 서버에서만 받습니다. 정보 제공용이며 법적 효력은 없습니다.</dd></div>
             </dl>
-            <small class="coverage-date">데이터 업데이트 확인일: 2026-10-23 · 원천 데이터 기준일은 결과 도면과 log.txt에 표시</small>
+            <small class="coverage-date">데이터 판 확인일 2026-11-08. 원천 기준일은 결과 도면과 log.txt에도 적힙니다.</small>
           </article>
           <article class="country-panel" data-country-panel="jp" aria-labelledby="country-jp-title" hidden>
             <header>
@@ -751,6 +753,18 @@
   </section>
 
 
+  <section class="block" id="changelog" aria-labelledby="changelog-title">
+    <div class="wrap">
+      <div class="block-head">
+        <div>
+          <h2 id="changelog-title">버전 기록</h2>
+          <p class="sub">플러그인 배포 버전별로 바뀐 점입니다.</p>
+        </div>
+      </div>
+      <ol class="changelog" data-more="이전 버전 더 보기"></ol>
+    </div>
+  </section>
+
   <section class="block soft final" aria-labelledby="final-title">
     <div class="wrap">
       <div class="water-deer-article">
@@ -789,6 +803,6 @@
   </div>
 </footer>
 <p id="live" class="skip" aria-live="polite"></p>
-<script src="assets/site.js?v=202610311917" defer></script>
+<script src="assets/site.js?v=202611081500" defer></script>
 </body>
 </html>

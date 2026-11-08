@@ -1,0 +1,294 @@
+[
+ {
+  "version": "0.3.8",
+  "date": "2026-11-06",
+  "items": {
+   "ko": [
+    "Rhino 8: 3D 형상을 Brep(닫힌 폴리서피스)으로도 냅니다",
+    "해외 대상지: OSM 서버가 붐비면 잠시 기다렸다 다시 시도합니다",
+    "SketchUp Windows: 패널이 열리지 않던 문제를 고쳤습니다",
+    "최근 대상지를 목록에서 지울 수 있습니다"
+   ],
+   "en": [
+    "Rhino 8: 3D geometry can now be output as Brep (closed polysurfaces)",
+    "Overseas sites: retries after a short wait when the OSM server is busy",
+    "SketchUp Windows: fixed the panel not opening",
+    "You can remove recent sites from the list"
+   ],
+   "es": [
+    "Rhino 8: la geometría 3D ahora puede salir como Brep (polisuperficies cerradas)",
+    "Sitios fuera de Corea: si el servidor de OSM está ocupado, espera y reintenta",
+    "SketchUp Windows: se corrigió que el panel no se abriera",
+    "Ahora puede quitar sitios recientes de la lista"
+   ],
+   "ja": [
+    "Rhino 8: 3D形状をBrep（閉じたポリサーフェス）でも出せます",
+    "海外の対象地: OSMサーバーが混雑しているときは少し待って再試行します",
+    "SketchUp Windows: パネルが開かない問題を直しました",
+    "最近の対象地を一覧から消せます"
+   ],
+   "zh": [
+    "Rhino 8：3D几何现在可输出为Brep（封闭多重曲面）",
+    "海外场地：OSM 服务器繁忙时稍等后重试",
+    "SketchUp Windows：修复了面板无法打开的问题",
+    "可从列表中删除最近的场地"
+   ]
+  }
+ },
+ {
+  "version": "0.3.7",
+  "date": "2026-10-30",
+  "items": {
+   "ko": [
+    "Rhino 7을 지원합니다(Rhino 7, 8 모두 패키지 매니저에서 설치)",
+    "SketchUp 설치 파일(.rbz)을 내려받아 설치할 수 있습니다",
+    "AutoCAD에서 2D 현황도를 만듭니다(Windows, macOS)"
+   ],
+   "en": [
+    "Rhino 7 support (install from the Package Manager in Rhino 7 or 8)",
+    "SketchUp installer file (.rbz) available for download",
+    "AutoCAD: 2D existing-conditions drawings (Windows, macOS)"
+   ],
+   "ja": [
+    "Rhino 7に対応しました（Rhino 7、8ともパッケージマネージャーからインストール）",
+    "SketchUpのインストールファイル（.rbz）をダウンロードできます",
+    "AutoCADで2D現況図を作れます（Windows、macOS）"
+   ],
+   "zh": [
+    "支持 Rhino 7（Rhino 7、8 均可在 Package Manager 中安装）",
+    "可下载 SketchUp 安装文件（.rbz）",
+    "AutoCAD：生成2D现状图（Windows、macOS）"
+   ],
+   "es": [
+    "Compatible con Rhino 7 (instalación desde el Package Manager en Rhino 7 u 8)",
+    "Archivo de instalación de SketchUp (.rbz) disponible para descargar",
+    "AutoCAD: planos 2D del estado actual (Windows, macOS)"
+   ]
+  }
+ },
+ {
+  "version": "0.3.6",
+  "date": "2026-10-24",
+  "items": {
+   "ko": [
+    "Blender: 데이터 팩을 GitHub 사본에서 받습니다",
+    "새 나라의 건물 데이터를 플러그인 업데이트 없이 추가할 수 있습니다"
+   ],
+   "en": [
+    "Blender: data packs are downloaded from the GitHub copy",
+    "Building data for new countries can be added without a plugin update"
+   ],
+   "ja": [
+    "Blender: データパックをGitHubのコピーから取得します",
+    "新しい国の建物データをプラグインの更新なしで追加できます"
+   ],
+   "zh": [
+    "Blender：数据包改从 GitHub 副本下载",
+    "无需更新插件即可添加新国家的建筑数据"
+   ],
+   "es": [
+    "Blender: los paquetes de datos se descargan de la copia en GitHub",
+    "Se pueden añadir datos de edificios de nuevos países sin actualizar el plugin"
+   ]
+  }
+ },
+ {
+  "version": "0.3.5",
+  "date": "2026-10-23",
+  "items": {
+   "ko": [
+    "지도 타일이 막히던 문제를 고쳤습니다"
+   ],
+   "en": [
+    "Fixed map tiles being blocked"
+   ],
+   "ja": [
+    "地図タイルが表示されない問題を直しました"
+   ],
+   "zh": [
+    "修复了地图瓦片被拦截的问题"
+   ],
+   "es": [
+    "Se corrigió el bloqueo de las teselas del mapa"
+   ]
+  }
+ },
+ {
+  "version": "0.3.4",
+  "date": "2026-10-23",
+  "items": {
+   "ko": [
+    "스위스 공식 건물 데이터(swissBUILDINGS3D)를 씁니다"
+   ],
+   "en": [
+    "Official Swiss building data (swissBUILDINGS3D)"
+   ],
+   "ja": [
+    "スイスの公式建物データ（swissBUILDINGS3D）を使います"
+   ],
+   "zh": [
+    "使用瑞士官方建筑数据（swissBUILDINGS3D）"
+   ],
+   "es": [
+    "Datos oficiales de edificios de Suiza (swissBUILDINGS3D)"
+   ]
+  }
+ },
+ {
+  "version": "0.3.3",
+  "date": "2026-10-22",
+  "items": {
+   "ko": [
+    "네덜란드, 프랑스 공식 건물 데이터를 씁니다"
+   ],
+   "en": [
+    "Official building data for the Netherlands and France"
+   ],
+   "ja": [
+    "オランダ、フランスの公式建物データを使います"
+   ],
+   "zh": [
+    "使用荷兰、法国官方建筑数据"
+   ],
+   "es": [
+    "Datos oficiales de edificios de Países Bajos y Francia"
+   ]
+  }
+ },
+ {
+  "version": "0.3.2",
+  "date": "2026-10-22",
+  "items": {
+   "ko": [
+    "해외 대상지에서도 도로면을 만듭니다"
+   ],
+   "en": [
+    "Road surfaces for sites outside Korea"
+   ],
+   "ja": [
+    "海外の対象地でも道路面を作ります"
+   ],
+   "zh": [
+    "海外场地也可生成道路面"
+   ],
+   "es": [
+    "Superficies de calles para sitios fuera de Corea"
+   ]
+  }
+ },
+ {
+  "version": "0.3.1",
+  "date": "2026-10-21",
+  "items": {
+   "ko": [
+    "일본: PLATEAU 건물과 국토지리원 5 m 지형을 씁니다"
+   ],
+   "en": [
+    "Japan: PLATEAU buildings and GSI 5 m terrain"
+   ],
+   "ja": [
+    "日本: PLATEAUの建物と国土地理院5 m地形を使います"
+   ],
+   "zh": [
+    "日本：使用 PLATEAU 建筑和日本国土地理院 5 m 地形"
+   ],
+   "es": [
+    "Japón: edificios de PLATEAU y terreno de 5 m de GSI"
+   ]
+  }
+ },
+ {
+  "version": "0.3.0",
+  "date": "2026-10-21",
+  "items": {
+   "ko": [
+    "패널이 다섯 언어(영어, 한국어, 스페인어, 일본어, 중국어)를 지원합니다",
+    "패널 위쪽 지구본 버튼으로 언어를 바꿉니다"
+   ],
+   "en": [
+    "The panel is available in five languages (English, Korean, Spanish, Japanese, Chinese)",
+    "Switch the language with the globe button at the top of the panel"
+   ],
+   "ja": [
+    "パネルが5つの言語（英語、韓国語、スペイン語、日本語、中国語）に対応しました",
+    "パネル上部の地球儀ボタンで言語を切り替えます"
+   ],
+   "zh": [
+    "面板支持五种语言（英语、韩语、西班牙语、日语、中文）",
+    "可通过面板顶部的地球按钮切换语言"
+   ],
+   "es": [
+    "El panel está en cinco idiomas (inglés, coreano, español, japonés y chino)",
+    "Cambia el idioma con el botón del globo en la parte superior del panel"
+   ]
+  }
+ },
+ {
+  "version": "0.2.3",
+  "date": "2026-10-21",
+  "items": {
+   "ko": [
+    "지도가 접속한 위치 근처에서 열립니다",
+    "불러오기 캐시 오류를 고쳤습니다"
+   ],
+   "en": [
+    "The map opens near your location",
+    "Fixed a loader cache bug"
+   ],
+   "ja": [
+    "地図が接続した場所の近くで開きます",
+    "読み込みキャッシュの不具合を直しました"
+   ],
+   "zh": [
+    "地图会在您所在位置附近打开",
+    "修复了加载缓存的问题"
+   ],
+   "es": [
+    "El mapa se abre cerca de tu ubicación",
+    "Se corrigió un error de la caché de carga"
+   ]
+  }
+ },
+ {
+  "version": "0.2.2",
+  "date": "2026-10-21",
+  "items": {
+   "ko": [
+    "패널 위치가 고정됩니다"
+   ],
+   "en": [
+    "The panel keeps its position"
+   ],
+   "ja": [
+    "パネルの位置が固定されます"
+   ],
+   "zh": [
+    "面板位置保持固定"
+   ],
+   "es": [
+    "El panel mantiene su posición"
+   ]
+  }
+ },
+ {
+  "version": "0.1.0",
+  "date": "2026-10-19",
+  "items": {
+   "ko": [
+    "Rhino 패키지 매니저에 처음 등록했습니다"
+   ],
+   "en": [
+    "First release on the Rhino Package Manager"
+   ],
+   "ja": [
+    "Rhinoのパッケージマネージャーに初めて登録しました"
+   ],
+   "zh": [
+    "首次发布到 Rhino Package Manager"
+   ],
+   "es": [
+    "Primera publicación en el Package Manager de Rhino"
+   ]
+  }
+ }
+]

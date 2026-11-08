@@ -29,7 +29,7 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="../assets/style.css?v=202610311917">
+<link rel="stylesheet" href="../assets/style.css?v=202611081500">
 <link rel="preload" href="../assets/demo-poster.webp" as="image">
 <script type="application/ld+json">
 {
@@ -552,14 +552,16 @@
             </header>
             <p>Edificios, superficies viales, curvas de nivel, parcelas y zonificación con datos públicos.</p>
             <h4>Fuentes de datos</h4>
-            <dl class="country-sources">
-              <div><dt>Edificios</dt><dd>Registro de edificios + edificios del mapa topográfico digital (plantas, uso, fecha de finalización)</dd></div>
-              <div><dt>Superficie vial</dt><dd>Superficies de límites viales del mapa topográfico digital</dd></div>
-              <div><dt>Terreno</dt><dd>Curvas de nivel y puntos de altura del mapa topográfico 1:5.000</dd></div>
-              <div><dt>Parcelas y zonificación</dt><dd>Mapa catastral continuo, características del suelo y planes de uso (UPIS)</dd></div>
-              <div><dt>Fuente y licencia</dt><dd>MOLIT, NGII y Seúl (KOGL, entre otras). Los paquetes de curvas solo se sirven desde servidores en Corea</dd></div>
+            <dl class="country-sources kr-sources">
+              <div><dt>Edificios</dt><dd><a href="https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=NA&dsId=18">Información integrada de edificios GIS</a> (MOLIT): altura, plantas, uso, fecha de aprobación. Los huecos se completan con edificios del mapa topográfico 1:5.000.<small>Edición 2026-10-09, mensual</small></dd></div>
+              <div><dt>Terreno</dt><dd><a href="https://map.ngii.go.kr/ms/map/NlipMap.do">Mapa topográfico digital 1:5.000</a> (NGII): curvas de nivel y puntos acotados<small>Actualizado 2026-03-04, anual</small></dd></div>
+              <div><dt>Calles, agua, ferrocarril</dt><dd>Mapa topográfico 1:5.000: superficies y ejes de calles (ancho, carriles), ríos y ferrocarril<small>Actualizado 2026-03-04</small></dd></div>
+              <div><dt>Parcelas</dt><dd><a href="https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=NA&dsId=4">Características del suelo</a> (MOLIT): categoría, superficie, zonificación, valor catastral<small>Edición 2026-05-20, semestral</small></dd></div>
+              <div><dt>Zonas y distritos</dt><dd><a href="https://www.vworld.kr/dtmk/dtmk_ntads_s002.do?svcCde=NA&dsId=14">Información de planes de uso del suelo</a> (MOLIT): zonas, distritos y áreas por parcela<small>Edición 2026-10-09 (Gyeonggi y Gyeongbuk 2026-08-26), mensual</small></dd></div>
+              <div><dt>Planeamiento de Seúl</dt><dd><a href="https://data.seoul.go.kr/">UPIS de Seúl</a>, 19 capas: zonificación, distritos, áreas, equipamientos urbanos, planes de unidad de distrito<small>Edición 2026-09, mensual</small></dd></div>
+              <div><dt>Condiciones</dt><dd>KOGL tipo 1 y CC BY (VWorld). Las curvas de nivel y cotas no pueden publicarse en internet, así que solo se sirven desde un servidor en Corea. Solo informativo, sin efecto legal.</dd></div>
             </dl>
-            <small class="coverage-date">Actualización de datos comprobada: 2026-10-23 · Las fechas de referencia aparecen en los planos y en log.txt</small>
+            <small class="coverage-date">Ediciones de datos comprobadas el 2026-11-08. Las fechas de origen también figuran en cada plano y en log.txt.</small>
           </article>
           <article class="country-panel" data-country-panel="jp" aria-labelledby="country-jp-title" hidden>
             <header>
@@ -751,6 +753,18 @@
   </section>
 
 
+  <section class="block" id="changelog" aria-labelledby="changelog-title">
+    <div class="wrap">
+      <div class="block-head">
+        <div>
+          <h2 id="changelog-title">Historial de versiones</h2>
+          <p class="sub">Novedades de cada versión del plugin.</p>
+        </div>
+      </div>
+      <ol class="changelog" data-more="Ver versiones anteriores"></ol>
+    </div>
+  </section>
+
   <section class="block soft final" aria-labelledby="final-title">
     <div class="wrap">
       <div class="water-deer-article">
@@ -789,6 +803,6 @@
   </div>
 </footer>
 <p id="live" class="skip" aria-live="polite"></p>
-<script src="../assets/site.js?v=202610311917" defer></script>
+<script src="../assets/site.js?v=202611081500" defer></script>
 </body>
 </html>

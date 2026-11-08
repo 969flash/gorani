@@ -126,7 +126,7 @@
   });
 
   // ── 설치 탭(Rhino·SketchUp·Blender) ─────
-  var tabs = [].slice.call(document.querySelectorAll('[role="tab"]'));
+  var tabs = [].slice.call(document.querySelectorAll('#install [role="tab"]'));   // 설치 탭만(버전 기록 필터 버튼은 따로 처리)
   function pick(tab, focus) {
     tabs.forEach(function (t) {
       var on = t === tab;
@@ -206,18 +206,6 @@
     var esc2 = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
     var getJson = function (url) { return fetch(url).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); };
 
-    var TOOL_CONFIG = {
-      rhino: { name: "Rhino" },
-      sketchup: { name: "SketchUp" },
-      blender: { name: "Blender" },
-      autocad: { name: "AutoCAD" },
-      common: {
-        name: timelineEl.getAttribute("data-common-label") || ({
-          ko: "공통", en: "Common", ja: "共通", zh: "通用", es: "General"
-        }[pageCode] || "Common")
-      }
-    };
-
     function classifyTool(str) {
       var s = String(str).toLowerCase();
       if (/rhino|라이노|ライノ/.test(s)) return "rhino";
@@ -227,6 +215,14 @@
       if (/archicad|아키캐드|アー키캐드/.test(s)) return "archicad";
       return "common";
     }
+
+    var GROUP_LABELS = ({
+      ko: { "new": "새 기능", improved: "개선", stable: "안정성" },
+      en: { "new": "New", improved: "Improvements", stable: "Stability" },
+      ja: { "new": "新機能", improved: "改善", stable: "安定性" },
+      zh: { "new": "新功能", improved: "改进", stable: "稳定性" },
+      es: { "new": "Novedades", improved: "Mejoras", stable: "Estabilidad" }
+    })[pageCode] || { "new": "New", improved: "Improvements", stable: "Stability" };
 
     function formatMonth(dateStr) {
       var parts = String(dateStr).split("-");
@@ -269,19 +265,15 @@
             '</div>';
         }
 
-        var toolMap = {};
-        items.forEach(function (t) {
-          var tool = classifyTool(t);
-          if (!toolMap[tool]) toolMap[tool] = [];
-          toolMap[tool].push(t);
-        });
-
-        var toolOrder = ["rhino", "sketchup", "blender", "autocad", "common"];
-        var presentTools = toolOrder.filter(function (tk) { return toolMap[tk] && toolMap[tk].length > 0; });
-        if (!presentTools.length && items.length) {
-          toolMap.common = items;
-          presentTools = ["common"];
+        // 카드 안은 분류(새 기능·개선·안정성)로 나눈다. 분류가 없는 항목(매니페스트에서 자동으로 붙은 최신 배포)은 한 덩어리로 보인다
+        var groups = Array.isArray(e.groups)
+          ? e.groups.map(function (g) { return { type: g.type, items: (g.items && (g.items[pageCode] || g.items.en)) || [] }; })
+          : [{ type: "", items: items }];
+        var presentTools = e.tools ? Object.keys(e.tools) : [];
+        if (!presentTools.length) {
+          items.forEach(function (t) { var k = classifyTool(t); if (k !== "common" && presentTools.indexOf(k) === -1) presentTools.push(k); });
         }
+        if (!presentTools.length) presentTools = ["common"];
 
         var isOlder = releaseIdx >= 4;
 
@@ -303,14 +295,12 @@
           '</div>';
 
         html += '<div class="gh-card">';
-        presentTools.forEach(function (tk) {
-          var tCfg = TOOL_CONFIG[tk] || { name: tk };
-          var tItems = toolMap[tk];
-
-          html += '<div class="gh-tool-row" data-tool="' + esc2(tk) + '">' +
-            '<div class="gh-tool-name">' + esc2(tCfg.name) + '</div>' +
+        groups.forEach(function (g) {
+          if (!g.items.length) return;
+          html += '<div class="gh-tool-row" data-group="' + esc2(g.type) + '">' +
+            (g.type && GROUP_LABELS[g.type] ? '<div class="gh-tool-name">' + esc2(GROUP_LABELS[g.type]) + '</div>' : '') +
             '<ul class="gh-changes">' +
-            tItems.map(function (txt) { return '<li>' + esc2(txt) + '</li>'; }).join("") +
+            g.items.map(function (txt) { return '<li>' + esc2(txt) + '</li>'; }).join("") +
             '</ul></div>';
         });
         html += '</div></div></div>';
@@ -350,17 +340,8 @@
           var toolsAttr = (entry.getAttribute("data-tools") || "").split(" ");
           if (filter === "all") {
             entry.style.display = isOlder ? "none" : "";
-            entry.querySelectorAll(".gh-tool-row").forEach(function (r) { r.style.display = ""; });
           } else {
-            var match = toolsAttr.indexOf(filter) !== -1;
-            if (match) {
-              entry.style.display = "";
-              entry.querySelectorAll(".gh-tool-row").forEach(function (r) {
-                r.style.display = (r.getAttribute("data-tool") === filter) ? "" : "none";
-              });
-            } else {
-              entry.style.display = "none";
-            }
+            entry.style.display = toolsAttr.indexOf(filter) !== -1 ? "" : "none";
           }
         });
 

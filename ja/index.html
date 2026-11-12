@@ -378,12 +378,66 @@
         </div>
       </div>
       <div role="tabpanel" id="p-archicad" aria-labelledby="tab-archicad" hidden>
-        <div class="install-quick">
-          <div>
-            <h3>すぐにインストール</h3>
-            <p>近日対応予定です。</p>
+        <div class="os-block" data-os="win">
+          <div class="install-quick">
+            <div>
+              <h3>すぐにインストール</h3>
+              <p>使っているArchicadのバージョンのファイルをダウンロードする</p>
+            </div>
+            <div class="seg os-switch" role="group" aria-label="OS"><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">macOS</button></div>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad30-win.zip" data-release="archicad-30-win">Archicad 30 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad29-win.zip" data-release="archicad-29-win">Archicad 29 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad28-win.zip" data-release="archicad-28-win">Archicad 28 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad27-win.zip" data-release="archicad-27-win">Archicad 27 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
           </div>
-          <ul class="install-links"><li><span aria-disabled="true">Archicad 準備中</span></li></ul>
+          <div class="install-card">
+            <ol class="steps install-list">
+              <li>
+                <h3>展開する</h3>
+                <p>zipを右クリックし、<span class="ui">プロパティ</span>で<span class="ui">許可する</span>にチェックしてから展開する</p>
+              </li>
+              <li>
+                <h3>フォルダーを移動</h3>
+                <p><code>Gorani</code>フォルダーをこの場所へ移動する。管理者の許可を求められたら<span class="ui">続行</span>。パスの<code>30</code>は使っているArchicadのバージョンに合わせる</p>
+                <span class="cmd path"><code>C:\Program Files\Graphisoft\Archicad 30\Add-Ons</code><button type="button" class="copy" data-copy="C:\Program Files\Graphisoft\Archicad 30\Add-Ons" data-done="パスをコピーしました" aria-label="パスをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+              <li>
+                <h3>Archicadを再起動</h3>
+              </li>
+              <li>
+                <h3>パネルを開く</h3>
+                <p>画面上部のメニューバーで<span class="ui">Gorani &gt; Gorani Site Context…</span>を選ぶ</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="os-block" data-os="mac" hidden>
+          <div class="install-quick">
+            <div>
+              <h3>すぐにインストール</h3>
+              <p>使っているArchicadのバージョンのファイルをダウンロードする</p>
+            </div>
+            <div class="seg os-switch" role="group" aria-label="OS"><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">macOS</button></div>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad30-mac.zip" data-release="archicad-30-mac">Archicad 30 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad29-mac.zip" data-release="archicad-29-mac">Archicad 29 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad28-mac.zip" data-release="archicad-28-mac">Archicad 28 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad27-mac.zip" data-release="archicad-27-mac">Archicad 27 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+          </div>
+          <div class="install-card">
+            <ol class="steps install-list">
+              <li>
+                <h3>フォルダーを移動</h3>
+                <p>Finderの<span class="ui">移動 &gt; フォルダへ移動</span>にこのパスを貼り付け、開いたフォルダーへ展開した<code>Gorani</code>フォルダーを移動する。パスの<code>30</code>は使っているArchicadのバージョンに合わせる</p>
+                <span class="cmd path"><code>/Applications/Graphisoft/Archicad 30/Add-Ons</code><button type="button" class="copy" data-copy="/Applications/Graphisoft/Archicad 30/Add-Ons" data-done="パスをコピーしました" aria-label="パスをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+              <li>
+                <h3>実行を許可</h3>
+                <p>インターネットから入手したプログラムはmacOSがブロックするため、ターミナルで一度実行して解除する</p>
+                <span class="cmd path"><code>xattr -dr com.apple.quarantine /Applications/Graphisoft/Archicad\ 30/Add-Ons/Gorani</code><button type="button" class="copy" data-copy="xattr -dr com.apple.quarantine /Applications/Graphisoft/Archicad\ 30/Add-Ons/Gorani" data-done="xattrをコピーしました" aria-label="xattrをコピー"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
+              </li>
+              <li>
+                <h3>Archicadを再起動</h3>
+              </li>
+              <li>
+                <h3>パネルを開く</h3>
+                <p>画面上部のメニューバーで<span class="ui">Gorani &gt; Gorani Site Context…</span>を選ぶ</p>
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>

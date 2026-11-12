@@ -171,8 +171,10 @@
       document.querySelectorAll("[data-release-ver]").forEach(function (el) { if (tagVer) el.textContent = tagVer; });
       releaseLinks.forEach(function (a) {
         var kind = a.getAttribute("data-release"), ver = tagVer;
-        if (pattern[kind]) {
-          var asset = (rel.assets || []).filter(function (x) { return pattern[kind].test(x.name); })[0];
+        var ac = /^archicad-(\d+)-(win|mac)$/.exec(kind);   // Archicad는 버전·OS마다 파일 하나(Gorani-<판>-Archicad30-mac.zip)
+        var re = pattern[kind] || (ac && new RegExp("Archicad" + ac[1] + "-" + ac[2] + "\\.zip$"));
+        if (re) {
+          var asset = (rel.assets || []).filter(function (x) { return re.test(x.name); })[0];
           if (!asset) return;
           a.href = asset.browser_download_url;
           ver = (asset.name.match(/(\d+\.\d+\.\d+)/) || [])[1] || tagVer;

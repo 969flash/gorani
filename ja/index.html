@@ -63,11 +63,11 @@
     {
       "@type": "VideoObject",
       "name": "Goraniの使い方",
-      "description": "RhinoでGoraniパネルを開き、エリアを描いて3Dモデルを作り、ベースマップと分析図まで作成する流れ。",
+      "description": "RhinoでGoraniパネルを開き、対象地を選んで3Dモデルを作り、ベースマップと分析図まで作成する流れ。",
       "thumbnailUrl": "https://969flash.github.io/gorani/assets/demo-poster.webp",
       "contentUrl": "https://969flash.github.io/gorani/assets/demo.mp4",
-      "uploadDate": "2026-10-21",
-      "duration": "PT52S"
+      "uploadDate": "2026-11-12",
+      "duration": "PT49S"
     }
   ]
 }
@@ -140,7 +140,7 @@
       <figure class="demo" id="product" aria-label="デモ動画">
         <div class="device">
           <div class="screen">
-            <video muted playsinline preload="none" width="1600" height="900" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="RhinoとGoraniパネルで対象地を探し、3Dモデルと2D資料を作る52秒の動画"></video>
+            <video muted playsinline preload="none" width="1600" height="900" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="RhinoとGoraniパネルで対象地を探し、3Dモデルと2D資料を作る49秒の動画"></video>
             <p class="cap" aria-hidden="true"></p>
             <div class="loading" aria-hidden="true"><span class="run go"></span>読み込み中</div>
             <button type="button" class="big-play"><span class="mark" aria-hidden="true"></span><span>Gorani</span></button>
@@ -156,10 +156,10 @@
         </div>
         <ol class="chapters" aria-label="シーン">
           <li><button type="button" data-at="0"><b>1</b>Goraniパネルを開く</button></li>
-          <li><button type="button" data-at="3.67"><b>2</b>対象地を選ぶ</button></li>
-          <li><button type="button" data-at="12.5"><b>3</b>3Dモデルを作る</button></li>
-          <li><button type="button" data-at="20.37"><b>4</b>2D資料を作る</button></li>
-          <li><button type="button" data-at="34.87"><b>5</b>スタイルを変える</button></li>
+          <li><button type="button" data-at="4.15"><b>2</b>対象地を選ぶ</button></li>
+          <li><button type="button" data-at="7.8"><b>3</b>3Dモデルを作る</button></li>
+          <li><button type="button" data-at="25.1"><b>4</b>2D資料を作る</button></li>
+          <li><button type="button" data-at="42.63"><b>5</b>スタイルを変える</button></li>
         </ol>
       </figure>
     </section>
@@ -167,13 +167,15 @@
 
   <section class="block soft" id="model" aria-labelledby="model-title">
     <div class="wrap feature">
-      <div class="shot">
-        <img src="../assets/detail-3d.webp" width="2888" height="1472" loading="lazy" alt="RhinoのPerspectiveビューに表示したGoraniの3Dモデルとレイヤーパネル。建物、道路、地形、水系、用途地域がレイヤー分けされている。">
+      <div class="shot media-stack">
+        <video muted autoplay loop playsinline preload="metadata" poster="../assets/detail-3d-orbit-poster.jpg" width="1600" height="1004" aria-label="RhinoでGoraniの3Dモデルのレイヤーが地形、道路、緑地と水系、区画、建物、対象地の順に一つずつ表示され、その後対象地に向かって回りながら拡大する動画。">
+          <source src="../assets/detail-3d-orbit.mp4" type="video/mp4">
+        </video>
       </div>
       <div>
         <span class="eyebrow">3Dモデル</span>
-        <h2 id="model-title">周辺の文脈をレイヤー別に</h2>
-        <p class="sub">建物、道路、地形、水系が、開いているドキュメントにレイヤー別に入ります。レイヤーパネルで結果の表示・非表示を切り替えられます。</p>
+        <h2 id="model-title">公開データから周辺模型を生成</h2>
+        <p class="sub">SHPファイルも不要です。地図で対象地をクリックして生成すると、建物、道路、地形、水系が開いているドキュメントにレイヤー別に入ります。</p>
         <ul class="tags" aria-label="作成するレイヤー">
           <li>建物</li><li>道路</li><li>地形</li><li>水系</li><li>緑地</li><li>鉄道</li><li>区画</li>
         </ul>

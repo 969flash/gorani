@@ -63,11 +63,11 @@
     {
       "@type": "VideoObject",
       "name": "How Gorani works",
-      "description": "Opening the Gorani panel in Rhino, drawing an area, making the 3D model, then the basemap and analysis maps.",
+      "description": "Opening the Gorani panel in Rhino, picking a site, making the 3D model, then the basemap and analysis maps.",
       "thumbnailUrl": "https://969flash.github.io/gorani/assets/demo-poster.webp",
       "contentUrl": "https://969flash.github.io/gorani/assets/demo.mp4",
-      "uploadDate": "2026-10-21",
-      "duration": "PT52S"
+      "uploadDate": "2026-11-12",
+      "duration": "PT49S"
     }
   ]
 }
@@ -140,7 +140,7 @@
       <figure class="demo" id="product" aria-label="Demo video">
         <div class="device">
           <div class="screen">
-            <video muted playsinline preload="none" width="1600" height="900" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="52-second video of finding a site and making 3D and 2D materials with Rhino and the Gorani panel"></video>
+            <video muted playsinline preload="none" width="1600" height="900" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="49-second video of finding a site and making 3D and 2D materials with Rhino and the Gorani panel"></video>
             <p class="cap" aria-hidden="true"></p>
             <div class="loading" aria-hidden="true"><span class="run go"></span>Loading</div>
             <button type="button" class="big-play"><span class="mark" aria-hidden="true"></span><span>Gorani</span></button>
@@ -156,10 +156,10 @@
         </div>
         <ol class="chapters" aria-label="Scenes">
           <li><button type="button" data-at="0"><b>1</b>Open Gorani panel</button></li>
-          <li><button type="button" data-at="3.67"><b>2</b>Pick a site</button></li>
-          <li><button type="button" data-at="12.5"><b>3</b>Make the 3D model</button></li>
-          <li><button type="button" data-at="20.37"><b>4</b>Make 2D materials</button></li>
-          <li><button type="button" data-at="34.87"><b>5</b>Change the style</button></li>
+          <li><button type="button" data-at="4.15"><b>2</b>Pick a site</button></li>
+          <li><button type="button" data-at="7.8"><b>3</b>Make the 3D model</button></li>
+          <li><button type="button" data-at="25.1"><b>4</b>Make 2D materials</button></li>
+          <li><button type="button" data-at="42.63"><b>5</b>Change the style</button></li>
         </ol>
       </figure>
     </section>
@@ -167,13 +167,15 @@
 
   <section class="block soft" id="model" aria-labelledby="model-title">
     <div class="wrap feature">
-      <div class="shot">
-        <img src="../assets/detail-3d.webp" width="2888" height="1472" loading="lazy" alt="Gorani 3D model in Rhino Perspective with the Layers panel open, separating buildings, roads, terrain, water and zoning.">
+      <div class="shot media-stack">
+        <video muted autoplay loop playsinline preload="metadata" poster="../assets/detail-3d-orbit-poster.jpg" width="1600" height="1004" aria-label="Gorani 3D model in Rhino as layers turn on one by one: terrain, roads, green space and water, parcels, buildings, then the site. The view then turns and zooms in on the site.">
+          <source src="../assets/detail-3d-orbit.mp4" type="video/mp4">
+        </video>
       </div>
       <div>
         <span class="eyebrow">3D model</span>
-        <h2 id="model-title">Site context, layer by layer</h2>
-        <p class="sub">Buildings, roads, terrain and water go into the open document on separate layers. Toggle or hide the results from the Layers panel.</p>
+        <h2 id="model-title">Site context from open data</h2>
+        <p class="sub">No SHP files needed. Click your site on the map and generate, and buildings, roads, terrain and water go into the open document on separate layers.</p>
         <ul class="tags" aria-label="Layers it makes">
           <li>Buildings</li><li>Roads</li><li>Terrain</li><li>Water</li><li>Green space</li><li>Rail</li><li>Parcels</li>
         </ul>

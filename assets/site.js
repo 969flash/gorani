@@ -516,23 +516,20 @@
   var cap = screen.querySelector(".cap");
   var chapters = [].slice.call(document.querySelectorAll("[data-at]"));
   var starts = chapters.map(function (b) { return +b.getAttribute("data-at"); });
-  var DEMO_START = 3.67;
+  var DEMO_START = 4.15;
   var firstPlayback = true;
-  var END = 52.33;   // 영상 길이(초)
+  var END = 49.67;   // 영상 길이(초)
 
   // 설명 자막 — [시작, 끝, 한국어, 영어], *강조*
   var CAPTIONS = [
-    [0.0, 3.67, "명령창에 *Gorani*를 입력해 패널을 엽니다.", "Type *Gorani* in the command line to open the panel."],
-    [3.67, 6.45, "대상지를 선택합니다.", "Select a site."],
-    [6.45, 9.5, "필지를 직접 선택하거나, 대상지의 경계를 그릴 수 있습니다.", "Choose parcels directly, or draw the site's boundary."],
-    [9.5, 12.5, "구역을 선택합니다.", "Select an area."],
-    [12.5, 17.17, "범위와 옵션을 정해 3D 모델을 만듭니다.", "Set the range and options to build the 3D model."],
-    [17.17, 20.37, "결과가 열린 Rhino 문서에 레이어별로 들어옵니다.", "The result lands in the open Rhino file, layer by layer."],
-    [20.37, 27.37, "베이스맵과 분석 자료를 생성합니다.", "Generate the basemap and analysis materials."],
-    [27.37, 34.87, "만든 도면을 패널에서 미리 봅니다.", "Preview the drawings in the panel."],
-    [34.87, 40.87, "다이어그램의 스타일을 변경하고 나만의 스타일을 저장할 수 있습니다.", "Change the diagram style and save your own style."],
-    [40.87, 46.37, "결과를 파일로 저장합니다.", "Save the results to files."],
-    [46.37, 49.93, "결과 폴더를 확인합니다.", "Check the result folder."]
+    [0.0, 4.15, "명령창에 *Gorani*를 입력해 패널을 엽니다.", "Type *Gorani* in the command line to open the panel."],
+    [4.15, 7.8, "필지를 직접 선택하거나, 대상지의 경계를 그릴 수 있습니다.", "Choose parcels directly, or draw the site's boundary."],
+    [7.8, 11.58, "범위와 옵션을 정해 3D 모델을 만듭니다.", "Set the range and options to build the 3D model."],
+    [11.58, 16.98, "건물과 도로, 지형 자료를 불러옵니다.", "Gorani fetches buildings, roads and terrain."],
+    [16.98, 25.1, "결과가 열린 Rhino 문서에 레이어별로 들어옵니다.", "The result lands in the open Rhino file, layer by layer."],
+    [25.1, 31.33, "베이스맵과 분석 자료를 생성합니다.", "Generate the basemap and analysis materials."],
+    [31.33, 42.63, "만든 도면을 패널에서 미리 봅니다.", "Preview the drawings in the panel."],
+    [42.63, 49.3, "다이어그램의 스타일을 변경하고 나만의 스타일을 저장할 수 있습니다.", "Change the diagram style and save your own style."]
   ];
   var ccLang = store("gorani-cc") || lang, shown = -2;
   function esc(s) { return s.replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }

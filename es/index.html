@@ -63,11 +63,11 @@
     {
       "@type": "VideoObject",
       "name": "Cómo funciona Gorani",
-      "description": "Abrir el panel de Gorani en Rhino, dibujar un área, crear el modelo 3D y después el plano base y los mapas de análisis.",
+      "description": "Abrir el panel de Gorani en Rhino, elegir el sitio, crear el modelo 3D y después el plano base y los mapas de análisis.",
       "thumbnailUrl": "https://969flash.github.io/gorani/assets/demo-poster.webp",
       "contentUrl": "https://969flash.github.io/gorani/assets/demo.mp4",
-      "uploadDate": "2026-10-21",
-      "duration": "PT52S"
+      "uploadDate": "2026-11-12",
+      "duration": "PT49S"
     }
   ]
 }
@@ -140,7 +140,7 @@
       <figure class="demo" id="product" aria-label="Video de demostración">
         <div class="device">
           <div class="screen">
-            <video muted playsinline preload="none" width="1600" height="900" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="Video de 52 segundos: buscar un sitio y crear materiales 3D y 2D con Rhino y el panel de Gorani"></video>
+            <video muted playsinline preload="none" width="1600" height="900" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="Video de 49 segundos: buscar un sitio y crear materiales 3D y 2D con Rhino y el panel de Gorani"></video>
             <p class="cap" aria-hidden="true"></p>
             <div class="loading" aria-hidden="true"><span class="run go"></span>Cargando</div>
             <button type="button" class="big-play"><span class="mark" aria-hidden="true"></span><span>Gorani</span></button>
@@ -156,10 +156,10 @@
         </div>
         <ol class="chapters" aria-label="Escenas">
           <li><button type="button" data-at="0"><b>1</b>Abrir el panel</button></li>
-          <li><button type="button" data-at="3.67"><b>2</b>Elegir el sitio</button></li>
-          <li><button type="button" data-at="12.5"><b>3</b>Crear el modelo 3D</button></li>
-          <li><button type="button" data-at="20.37"><b>4</b>Crear material 2D</button></li>
-          <li><button type="button" data-at="34.87"><b>5</b>Cambiar el estilo</button></li>
+          <li><button type="button" data-at="4.15"><b>2</b>Elegir el sitio</button></li>
+          <li><button type="button" data-at="7.8"><b>3</b>Crear el modelo 3D</button></li>
+          <li><button type="button" data-at="25.1"><b>4</b>Crear material 2D</button></li>
+          <li><button type="button" data-at="42.63"><b>5</b>Cambiar el estilo</button></li>
         </ol>
       </figure>
     </section>
@@ -167,13 +167,15 @@
 
   <section class="block soft" id="model" aria-labelledby="model-title">
     <div class="wrap feature">
-      <div class="shot">
-        <img src="../assets/detail-3d.webp" width="2888" height="1472" loading="lazy" alt="Modelo 3D de Gorani en la vista Perspective de Rhino con el panel de capas abierto: edificios, calles, terreno, agua y zonificación por separado.">
+      <div class="shot media-stack">
+        <video muted autoplay loop playsinline preload="metadata" poster="../assets/detail-3d-orbit-poster.jpg" width="1600" height="1004" aria-label="Modelo 3D de Gorani en Rhino mientras las capas se activan una a una: terreno, calles, zonas verdes y agua, parcelas, edificios y el sitio. Luego la vista gira y se acerca al sitio.">
+          <source src="../assets/detail-3d-orbit.mp4" type="video/mp4">
+        </video>
       </div>
       <div>
         <span class="eyebrow">Modelo 3D</span>
-        <h2 id="model-title">El entorno, capa por capa</h2>
-        <p class="sub">Edificios, calles, terreno y agua entran en el documento abierto en capas separadas. Activa u oculta los resultados desde el panel de capas.</p>
+        <h2 id="model-title">Entorno 3D a partir de datos abiertos</h2>
+        <p class="sub">No necesitas archivos SHP. Haz clic en el sitio en el mapa y genera: edificios, calles, terreno y agua entran en el documento abierto en capas separadas.</p>
         <ul class="tags" aria-label="Capas que crea">
           <li>Edificios</li><li>Calles</li><li>Terreno</li><li>Agua</li><li>Zonas verdes</li><li>Ferrocarril</li><li>Parcelas</li>
         </ul>

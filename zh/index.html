@@ -63,11 +63,11 @@
     {
       "@type": "VideoObject",
       "name": "Gorani 使用演示",
-      "description": "在 Rhino 中打开 Gorani 面板，绘制区域，生成3D模型，再生成底图和分析图的过程。",
+      "description": "在 Rhino 中打开 Gorani 面板，选择场地，生成3D模型，再生成底图和分析图的过程。",
       "thumbnailUrl": "https://969flash.github.io/gorani/assets/demo-poster.webp",
       "contentUrl": "https://969flash.github.io/gorani/assets/demo.mp4",
-      "uploadDate": "2026-10-21",
-      "duration": "PT52S"
+      "uploadDate": "2026-11-12",
+      "duration": "PT49S"
     }
   ]
 }
@@ -140,7 +140,7 @@
       <figure class="demo" id="product" aria-label="演示视频">
         <div class="device">
           <div class="screen">
-            <video muted playsinline preload="none" width="1600" height="900" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="使用 Rhino 和 Gorani 面板查找场地并生成3D模型和2D资料的52秒视频"></video>
+            <video muted playsinline preload="none" width="1600" height="900" poster="../assets/demo-poster.webp" data-src="../assets/demo.mp4" aria-label="使用 Rhino 和 Gorani 面板查找场地并生成3D模型和2D资料的49秒视频"></video>
             <p class="cap" aria-hidden="true"></p>
             <div class="loading" aria-hidden="true"><span class="run go"></span>加载中</div>
             <button type="button" class="big-play"><span class="mark" aria-hidden="true"></span><span>Gorani</span></button>
@@ -156,10 +156,10 @@
         </div>
         <ol class="chapters" aria-label="场景">
           <li><button type="button" data-at="0"><b>1</b>打开 Gorani 面板</button></li>
-          <li><button type="button" data-at="3.67"><b>2</b>选择场地</button></li>
-          <li><button type="button" data-at="12.5"><b>3</b>生成3D模型</button></li>
-          <li><button type="button" data-at="20.37"><b>4</b>生成2D资料</button></li>
-          <li><button type="button" data-at="34.87"><b>5</b>更改样式</button></li>
+          <li><button type="button" data-at="4.15"><b>2</b>选择场地</button></li>
+          <li><button type="button" data-at="7.8"><b>3</b>生成3D模型</button></li>
+          <li><button type="button" data-at="25.1"><b>4</b>生成2D资料</button></li>
+          <li><button type="button" data-at="42.63"><b>5</b>更改样式</button></li>
         </ol>
       </figure>
     </section>
@@ -167,13 +167,15 @@
 
   <section class="block soft" id="model" aria-labelledby="model-title">
     <div class="wrap feature">
-      <div class="shot">
-        <img src="../assets/detail-3d.webp" width="2888" height="1472" loading="lazy" alt="Rhino 透视视图中的 Gorani 3D模型和图层面板，建筑、道路、地形、水系和用地分区分别位于不同图层。">
+      <div class="shot media-stack">
+        <video muted autoplay loop playsinline preload="metadata" poster="../assets/detail-3d-orbit-poster.jpg" width="1600" height="1004" aria-label="在 Rhino 中，Gorani 3D模型的图层按地形、道路、绿地和水系、地块、建筑、场地的顺序逐个打开，随后视图旋转并放大到场地的视频。">
+          <source src="../assets/detail-3d-orbit.mp4" type="video/mp4">
+        </video>
       </div>
       <div>
         <span class="eyebrow">3D模型</span>
-        <h2 id="model-title">周边环境，按图层生成</h2>
-        <p class="sub">建筑、道路、地形和水系会按图层放入当前打开的文件。可以在图层面板中开关或隐藏结果。</p>
+        <h2 id="model-title">基于公开数据生成周边体块</h2>
+        <p class="sub">无需 SHP 文件。在地图上点选场地并生成，建筑、道路、地形和水系会按图层放入当前打开的文件。</p>
         <ul class="tags" aria-label="生成的图层">
           <li>建筑</li><li>道路</li><li>地形</li><li>水系</li><li>绿地</li><li>铁路</li><li>地块</li>
         </ul>

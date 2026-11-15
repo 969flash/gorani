@@ -90,3 +90,5 @@ Coverage status on this website was last checked on 2026-10-23. Dataset-specific
 - Website (Simplified Chinese): https://gorani.site/zh/
 - Website (Spanish): https://gorani.site/es/
 - Issues and releases: https://github.com/969flash/gorani-plugin
+- Privacy policy: https://gorani.site/privacy/ (Korean), https://gorani.site/en/privacy/ (English)
+- Terms of service: https://gorani.site/terms/ (Korean), https://gorani.site/en/terms/ (English)

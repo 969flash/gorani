@@ -9,20 +9,20 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="../assets/style.css?v=202611091200">
+<link rel="stylesheet" href="../assets/style.css?v=202611181800">
 <style>
   /* 플러그인 로그인 — 브라우저에서 구글 로그인 → 일회용 교환권 → 이 PC의 플러그인(127.0.0.1)으로 돌아간다(gorani-plugin docs/account_plan.md) */
-  .login { width: min(400px, 100% - 32px); margin: 72px auto; text-align: center; }
+  .login { width: min(360px, 100% - 32px); margin: 72px auto; text-align: center; }   /* 한 칸 — 버튼이 칸 너비만큼이라 글줄 가장자리가 버튼에 맞는다 */
   .login .mark { --s: 48px; color: var(--ink); }
   .login h1 { margin-top: 16px; font-size: 24px; line-height: 32px; font-weight: 700; letter-spacing: -.02em; }
-  .login .sub { margin-top: 8px; color: var(--ink-2); font-size: 15px; line-height: 22px; }
+  .login .sub { margin-top: 8px; color: var(--ink-2); font-size: 16px; line-height: 24px; text-wrap: balance; }
   .login .acts { display: grid; justify-items: center; gap: 12px; margin-top: 28px; min-height: 44px; }
-  .login .again { height: 44px; padding: 0 18px; border-radius: 22px; border: 1px solid var(--hair); background: var(--surface); font-weight: 600; cursor: pointer; }
+  .login .again { width: 100%; height: 44px; padding: 0 18px; border-radius: 22px; border: 1px solid var(--hair); background: var(--surface); font-weight: 600; cursor: pointer; }
   .login .again:hover { background: var(--press); }
   .login .msg { margin-top: 20px; color: var(--ink-2); font-size: 14px; line-height: 21px; }
   .login .msg.err { color: #B3261E; }
-  .login .terms-note { margin-top: 28px; color: var(--ink-3); font-size: 12px; line-height: 18px; }
-  .login .terms-note a { color: var(--ink-2); }
+  .login .terms-note { margin-top: 16px; color: var(--ink-3); font-size: 12px; line-height: 18px; text-wrap: balance; }   /* 버튼 바로 아래 — 약관 동의·가입 한 문장 */
+  .login .terms-note a { color: var(--ink-2); white-space: nowrap; }   /* 링크 이름이 줄 사이에서 쪼개지지 않게 */
 </style>
 </head>
 <body>
@@ -34,27 +34,24 @@
   <p class="msg" id="msg" role="status" aria-live="polite"></p>
   <p class="terms-note" id="fine"></p>
 </main>
+<script src="../assets/account.js?v=202611181200"></script>
 <script>
 (function () {
-  // 배포 값 — tools/account/README.md 처음 설정 1·5. 비어 있으면 '준비 중'
-  var ACCOUNT_API_URL = "";
-  var GOOGLE_CLIENT_ID = "";
-  var TERMS_V = "2026-11-16", PRIVACY_V = "2026-11-16";   // 처리방침·약관 시행일 — 가입 때 본 판으로 회원 줄에 남는다
+  var A = window.GoraniAccount;   // 배포 값·세션·회원 API — assets/account.js
   var HOSTS = ["rhino", "sketchup", "archicad"];
-  var SESSION_KEY = "gorani_session", SESSION_DAYS = 30;
 
   var q = new URLSearchParams(location.search);
   var lang = q.get("lang") === "ko" ? "ko" : "en";   // 패널 언어 — 한국어 밖은 영어(처리방침·약관이 한·영)
   var T = {
-    ko: { title: "Gorani 로그인", sub: "로그인하면 Gorani 플러그인으로 돌아갑니다.", cont: "{0}(으)로 계속", other: "다른 구글 계정으로 로그인하려면 아래 버튼을 누르세요.",
-      fine: '계속하면 <a href="../terms/">이용약관</a>과 <a href="../privacy/">개인정보 처리방침</a>에 동의합니다. 가입해도 결제는 없습니다.',
-      bad: "Gorani 패널의 [구글로 로그인]에서 열어 주세요.", unready: "로그인을 준비하고 있습니다. 잠시 뒤 다시 시도해 주세요.",
-      working: "로그인하는 중…", back: "Gorani로 돌아가는 중… 이 탭은 닫아도 됩니다.", fail: "로그인하지 못했습니다. 다시 시도해 주세요.",
-      busy: "잠시 뒤 다시 시도해 주세요(시도가 너무 잦습니다).", gis: "구글 로그인 버튼을 불러오지 못했습니다. 광고 차단·추적 방지 설정을 확인해 주세요." },
-    en: { title: "Sign in to Gorani", sub: "After signing in you return to the Gorani plugin.", cont: "Continue as {0}", other: "To use another Google account, use the button below.",
-      fine: 'By continuing you agree to the <a href="../en/terms/">Terms</a> and <a href="../en/privacy/">Privacy Policy</a>. Membership is free.',
-      bad: "Open this page from [Sign in with Google] in the Gorani panel.", unready: "Sign-in is being set up. Please try again later.",
-      working: "Signing in…", back: "Returning to Gorani… You can close this tab.", fail: "Could not sign in. Please try again.",
+    ko: { title: "Gorani 로그인", sub: "로그인하면 Gorani 플러그인으로 돌아갑니다.", cont: "{0} 계정으로 계속",
+      fine: '계속하면 <a href="../terms/">이용약관</a>과 <a href="../privacy/">개인정보 처리방침</a>에 동의하며, 처음이면 바로 가입됩니다.',
+      bad: "Gorani 패널의 [Google 계정으로 로그인]에서 열어 주세요.", unready: "로그인 기능을 준비 중입니다.",
+      working: "로그인하는 중…", back: "Gorani로 돌아가는 중…", fail: "로그인하지 못했습니다. 다시 시도해 주세요.",
+      busy: "시도가 너무 많습니다. 1분 뒤 다시 시도해 주세요.", gis: "Google 로그인 버튼을 불러오지 못했습니다. 광고 차단·추적 방지 설정을 확인해 주세요." },
+    en: { title: "Sign in to Gorani", sub: "After signing in you return to the Gorani plugin.", cont: "Continue as {0}",
+      fine: 'By continuing you agree to the <a href="../en/terms/">Terms</a> and <a href="../en/privacy/">Privacy Policy</a>, and new users are signed up right away.',
+      bad: "Open this page from [Sign in with Google] in the Gorani panel.", unready: "Sign-in is not available yet.",
+      working: "Signing in…", back: "Returning to Gorani…", fail: "Could not sign in. Please try again.",
       busy: "Too many attempts. Please try again in a minute.", gis: "Could not load the Google sign-in button. Check ad or tracking blockers." }
   }[lang];
   document.documentElement.lang = lang;
@@ -67,25 +64,17 @@
 
   // 플러그인이 넘긴 값 — 받는 곳은 127.0.0.1의 그 포트뿐(아무 곳으로나 보내는 통로가 되지 않게)
   var port = Number(q.get("port")), state = q.get("state") || "", host = q.get("h") || "";
+  if (!q.has("port") && !q.has("state") && !q.has("h")) { location.replace("../account/" + location.search); return; }   // 주소만 열었으면 웹 로그인(계정 페이지)
   if (!(port >= 1024 && port <= 65535 && /^[A-Za-z0-9_-]{16,64}$/.test(state) && HOSTS.indexOf(host) >= 0)) { msg(T.bad, true); $("fine").textContent = ""; return; }
-  if (!ACCOUNT_API_URL || !GOOGLE_CLIENT_ID) { msg(T.unready, true); return; }
+  if (!A.ready) { msg(T.unready, true); return; }
 
-  function api(body) {
-    return fetch(ACCOUNT_API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body) })
-      .then(function (r) { return r.json(); });
-  }
-  function store(value) {
-    try { if (value) localStorage.setItem(SESSION_KEY, JSON.stringify(value)); else localStorage.removeItem(SESSION_KEY); } catch (e) {}
-  }
-  function saved() {
-    try { var s = JSON.parse(localStorage.getItem(SESSION_KEY) || "null"); return s && s.exp > Date.now() ? s : null; } catch (e) { return null; }
-  }
   // 세션 → 교환권 → 플러그인으로. 페이지 이동이라 크롬의 로컬 네트워크 허락 창이 뜨지 않는다(fetch는 뜬다)
   function handOff(session) {
     msg(T.working);
-    return api({ action: "grant", session: session, host: host }).then(function (res) {
-      if (!res.ok) { if (res.error === "invalid") store(null); throw new Error(res.error); }
+    return A.api({ action: "grant", session: session, host: host }).then(function (res) {
+      if (!res.ok) { if (res.error === "invalid") A.store(null); throw new Error(res.error); }
       msg(T.back);
+      try { sessionStorage.setItem("gorani_login_host", host); } catch (e) {}   // 끝 페이지(/login/done/)가 'Rhino로 돌아가…'라고 쓰게
       location.href = "http://127.0.0.1:" + port + "/gorani-login?state=" + encodeURIComponent(state) + "&grant=" + encodeURIComponent(res.grant);
     });
   }
@@ -95,16 +84,12 @@
   }
   function onCredential(resp) {
     msg(T.working);
-    api({ action: "login", id_token: resp.credential, terms_v: TERMS_V, privacy_v: PRIVACY_V, lang: lang }).then(function (res) {
-      if (!res.ok) throw new Error(res.error);
-      store({ session: res.session, email: res.user.email, exp: Date.now() + SESSION_DAYS * 864e5 });
-      return handOff(res.session);
-    }).catch(fail);
+    A.login(resp.credential, lang).then(function (res) { return handOff(res.session); }).catch(fail);
   }
 
   function showButtons() {
     var acts = $("acts"); acts.innerHTML = "";
-    var s = saved();
+    var s = A.saved();
     if (s) {   // 이 브라우저에 웹 로그인이 남아 있으면 버튼 하나로 — 다른 계정은 아래 구글 버튼
       var b = document.createElement("button"); b.type = "button"; b.className = "again"; b.textContent = T.cont.replace("{0}", s.email);
       b.onclick = function () { b.disabled = true; handOff(s.session).catch(fail); };
@@ -112,14 +97,12 @@
     }
     var g = document.createElement("div"); acts.appendChild(g);
     if (!(window.google && google.accounts && google.accounts.id)) { msg(T.gis, true); return; }
-    google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: onCredential, auto_select: false, context: "signin" });
-    google.accounts.id.renderButton(g, { theme: "outline", size: "large", shape: "pill", text: "continue_with", locale: lang });
+    google.accounts.id.initialize({ client_id: A.clientId, callback: onCredential, auto_select: false, context: "signin" });
+    google.accounts.id.renderButton(g, { theme: "outline", size: "large", shape: "pill", text: "continue_with", locale: lang,
+      width: Math.min(360, acts.clientWidth || 360) });   // 칸 너비만큼(구글 버튼은 200~400px)
   }
 
-  var gis = document.createElement("script");
-  gis.src = "https://accounts.google.com/gsi/client"; gis.async = true;
-  gis.onload = showButtons; gis.onerror = function () { msg(T.gis, true); };
-  document.head.appendChild(gis);
+  A.loadGis(showButtons, function () { msg(T.gis, true); });
 })();
 </script>
 </body>

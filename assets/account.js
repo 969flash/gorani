@@ -2,8 +2,8 @@
 (function () {
   "use strict";
   // 배포 값 — tools/account/README.md 처음 설정 5·7·8. 비어 있으면 머리줄 로그인을 숨기고 계정 페이지는 '준비 중'(플러그인 로그인은 고장으로 넘긴다)
-  var FIREBASE = { apiKey: "", projectId: "", dbUrl: "" };
-  var GOOGLE_CLIENT_ID = "";
+  var FIREBASE = { apiKey: "AIzaSyCggyybM6ngv8v0NUJ2n_0wf476R0vZWxs", projectId: "gorani-da15f", dbUrl: "https://gorani-da15f-default-rtdb.asia-southeast1.firebasedatabase.app" };   // 고라니 운영 계정의 Spark 프로젝트 — 공개 값
+  var GOOGLE_CLIENT_ID = "881558869222-8njad170fa7q4jc5nom2bjlbj2n6ngkb.apps.googleusercontent.com";   // 같은 프로젝트의 웹 클라이언트(승인된 출처 gorani.site·localhost:8000)
   var URLS = { identity: "https://identitytoolkit.googleapis.com/v1/", token: "https://securetoken.googleapis.com/v1/token", gis: "https://accounts.google.com/gsi/client" };
   if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {   // 시험만 — tools/account/fake_firebase.py 주소로 바꾼다
     try {

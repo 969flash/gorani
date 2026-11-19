@@ -74,16 +74,13 @@ def new_refresh(uid):
 
 
 def check_write(path, tree):
-    """RTDB 규칙의 요점 — users/<uid> 아래 history·settings·connections만, 기록은 built_at·host, 설정은 history_sync(참·거짓)."""
+    """RTDB 규칙의 요점 — users/<uid> 아래 history·connections만(생성 기록은 늘 저장 — 설정 없음), 기록은 built_at·host."""
     user = (tree.get("users") or {}).get(path[1]) or {}
-    if set(user) - {"history", "settings", "connections"}:
+    if set(user) - {"history", "connections"}:
         return False
     for entry in (user.get("history") or {}).values():
         if not isinstance(entry, dict) or not isinstance(entry.get("built_at"), (int, float)) or not isinstance(entry.get("host"), str):
             return False
-    settings = user.get("settings") or {}
-    if set(settings) - {"history_sync"} or not all(isinstance(v, bool) for v in settings.values()):
-        return False
     for conn in (user.get("connections") or {}).values():
         if not isinstance(conn, dict) or "host" not in conn or "created" not in conn:
             return False

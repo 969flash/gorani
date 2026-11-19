@@ -27,7 +27,6 @@
 | 플러그인으로 넘기기 | 웹 → 127.0.0.1 | `/login/`이 `http://127.0.0.1:<port>/gorani-login`에 최상위 폼 POST — `state` + `refresh_token`, 웹 쪽 고장이면 `state` + `error=service`. 플러그인이 `/login/done/?ok=1`·`ok=0`·`fallback=1`(`&lang&h`)로 넘긴다 |
 | 가입일 | 웹 | `accounts:lookup`(`createdAt`) |
 | 생성 기록 | 플러그인·웹 | RTDB `users/<uid>/history/<entry_id>` — 아래 칸 |
-| 기록 켜고 끄기 | 웹(플러그인은 읽기만) | RTDB `users/<uid>/settings/history_sync`(끄면 `false`, 없으면 켜짐) |
 | 연결된 PC | 플러그인(로그인 때 쓰고 확인 때 `seen`)·웹(목록, [연결 해제] = 지움) | RTDB `users/<uid>/connections/<conn_id>` = `{host, version, os, created, seen}` — 지우면 그 PC가 다음 확인 때 스스로 로그아웃한다 |
 | 탈퇴 | 웹 | RTDB `users/<uid>` 지움 → `accounts:delete`. 로그인한 지 5분이 지났으면 구글로 한 번 더 로그인하고 지운다(`CREDENTIAL_TOO_OLD_LOGIN_AGAIN`) |
 

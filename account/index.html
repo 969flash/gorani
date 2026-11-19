@@ -96,11 +96,6 @@
   .lines .btn { flex: none; height: 34px; padding: 0 12px; font-size: 13px; }
   .lines .btn.danger { color: #B3261E; }
   .lines .btn:disabled { opacity: .45; cursor: default; background: var(--surface); }
-  .switch { position: relative; flex: none; width: 44px; height: 26px; padding: 0; border: 0; border-radius: 999px; background: #CFCFCF; cursor: pointer; transition: background-color .2s; }
-  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(0, 0, 0, .2); transition: transform .2s; }
-  .switch[aria-checked="true"] { background: var(--ink); }
-  .switch[aria-checked="true"]::after { transform: translateX(18px); }
-  .switch:disabled { opacity: .5; cursor: default; }
   .acct-foot { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hair); color: var(--ink-3); font-size: 13px; }
   .acct-foot a { color: var(--ink-2); }
 
@@ -128,7 +123,7 @@
     .tools button { justify-content: center; padding: 0 12px; font-size: 14px; }
     .open { gap: 12px; }
   }
-  @media (prefers-reduced-motion: reduce) { .switch, .switch::after, .toast { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
 </style>
 </head>
 <body>
@@ -191,7 +186,6 @@
         <div class="seg tools" id="tools" role="tablist"></div>
         <button type="button" class="star-filter" id="star-filter" aria-pressed="false"><svg aria-hidden="true"><use href="#i-star"/></svg><span></span></button>
       </div>
-      <div class="banner" id="sync-banner" hidden><span id="sync-banner-text"></span><button type="button" class="btn" id="sync-banner-on"></button></div>
       <div id="hist" role="tabpanel"></div>
     </section>
 
@@ -204,10 +198,6 @@
     <section class="sec" aria-labelledby="h-settings">
       <h2 id="h-settings"></h2>
       <ul class="lines">
-        <li>
-          <div class="grow"><b id="sync-label"></b><span id="sync-desc"></span></div>
-          <button type="button" class="switch" id="sync" role="switch" aria-checked="true" aria-labelledby="sync-label"></button>
-        </li>
         <li>
           <div class="grow"><b id="clear-label"></b><span id="clear-desc"></span></div>
           <button type="button" class="btn danger" id="clear"></button>
@@ -227,7 +217,6 @@
   <form method="dialog">
     <h3 id="ask-title"></h3>
     <p id="ask-body"></p>
-    <label id="ask-check-wrap" hidden><input type="checkbox" id="ask-check"><span id="ask-check-text"></span></label>
     <div class="ask-acts">
       <button type="submit" class="btn" value="cancel" id="ask-cancel"></button>
       <button type="submit" class="btn go" value="ok" id="ask-ok"></button>
@@ -263,8 +252,6 @@
       emptyAll: "아직 생성 기록이 없습니다.", emptyAllSub: "Rhino·SketchUp·Archicad의 Gorani 패널에서 로그인하고 3D 모델을 만들면 여기에 표시됩니다.",
       emptyTool: "{0}에서 만든 기록이 없습니다.", emptyToolSub: "{0}의 Gorani 패널에서 로그인하고 3D 모델을 만들면 여기에 표시됩니다.",
       emptyStar: "즐겨찾기한 기록이 없습니다.", emptyStarSub: "기록의 ☆ 버튼을 누르면 여기에 표시됩니다.",
-      syncOff: "생성 기록 저장이 꺼져 있습니다.", turnOn: "켜기",
-      unavailable: "지금 이용권에서는 생성 기록을 저장할 수 없습니다. 저장된 기록은 보고 삭제할 수 있습니다.",
       note: "결과 파일은 각 PC에 저장되고, Gorani 웹페이지에서는 최근 300개 대상지 생성 기록을 관리합니다.",
       modes: { lots: "필지", area: "구역", point: "위치" }, rect: "사각형 한 변 {0}", circle: "원 반지름 {0}", adv: "고급 모델", basic: "기본 모델",
       basemap: "{0} 베이스맵", sheets: "다이어그램 {0}장", tables: "조서",
@@ -278,9 +265,7 @@
       connEmpty: "연결된 프로그램이 없습니다. Rhino·SketchUp·Archicad의 Gorani 패널에서 [Google 계정으로 로그인]을 누르세요.",
       connMeta: "{0} · {1} 연결 · 마지막 확인 {2}", disconnect: "연결 해제", disconnectQ: "{0} 연결을 해제할까요?",
       disconnectBody: "그 PC의 Gorani는 다음 확인 때 로그아웃됩니다.", disconnected: "연결 해제 완료",
-      settings: "설정", syncLabel: "생성 기록 저장", syncDesc: "패널에서 만든 3D 모델의 대상지와 설정을 이 계정에 저장합니다.",
-      syncOffQ: "생성 기록 저장을 끌까요?", syncOffBody: "앞으로 만드는 모델은 기록되지 않습니다.", syncOffClear: "저장된 기록 {0}개도 삭제", turnOff: "끄기",
-      syncOnDone: "생성 기록 저장 켜짐", syncOffDone: "생성 기록 저장 꺼짐",
+      settings: "설정",
       delLabel: "탈퇴", delDesc: "회원 정보·연결된 프로그램·생성 기록을 모두 삭제합니다.", delQ: "Gorani에서 탈퇴할까요?",
       delBody: "회원 정보, 연결된 프로그램, 생성 기록이 바로 삭제되며 되돌릴 수 없습니다. PC의 결과 파일은 삭제되지 않습니다.", deleted: "탈퇴 완료",
       reauth: "탈퇴하려면 한 번 더 로그인해 주세요.",
@@ -298,8 +283,6 @@
       emptyAll: "No generation history yet.", emptyAllSub: "Sign in to the Gorani panel in Rhino, SketchUp or Archicad and generate a 3D model to see it here.",
       emptyTool: "Nothing generated in {0} yet.", emptyToolSub: "Sign in to the Gorani panel in {0} and generate a 3D model to see it here.",
       emptyStar: "No starred items.", emptyStarSub: "Star an item to see it here.",
-      syncOff: "Saving generation history is off.", turnOn: "Turn on",
-      unavailable: "Your current plan can’t save generation history. You can still view and delete saved records.",
       note: "Result files stay on each computer. The Gorani website keeps your latest 300 generation records.",
       modes: { lots: "Parcel", area: "Area", point: "Point" }, rect: "{0} square", circle: "{0} radius circle", adv: "Advanced model", basic: "Basic model",
       basemap: "{0} base map", sheets: "{0} diagrams", tables: "tables",
@@ -313,9 +296,7 @@
       connEmpty: "No connected programs. Press [Sign in with Google] in the Gorani panel in Rhino, SketchUp or Archicad.",
       connMeta: "{0} · connected {1} · last checked {2}", disconnect: "Disconnect", disconnectQ: "Disconnect {0}?",
       disconnectBody: "Gorani on that computer signs out at its next check.", disconnected: "Disconnected.",
-      settings: "Settings", syncLabel: "Save generation history", syncDesc: "Saves the site and settings of each 3D model you generate in the panel to this account.",
-      syncOffQ: "Turn off generation history?", syncOffBody: "New models won’t be recorded.", syncOffClear: "Also delete {0} saved records", turnOff: "Turn off",
-      syncOnDone: "Generation history on", syncOffDone: "Generation history off",
+      settings: "Settings",
       delLabel: "Delete account", delDesc: "Deletes your account, connections and generation history right away.", delQ: "Delete your Gorani account?",
       delBody: "Your account, connected programs and generation history are deleted right away and can’t be restored. Result files on your computer are not deleted.", deleted: "Your account was deleted.",
       reauth: "Sign in once more to delete your account.",
@@ -370,14 +351,10 @@
   $("h-history").textContent = T.history;
   $("tools").setAttribute("aria-label", T.tools);
   $("star-filter").querySelector("span").textContent = T.starOnly;
-  $("sync-banner-text").textContent = T.syncOff;
-  $("sync-banner-on").textContent = T.turnOn;
   $("hist-note").textContent = T.note;
   $("h-conn").textContent = T.conn;
   $("conn-sub").textContent = T.connSub;
   $("h-settings").textContent = T.settings;
-  $("sync-label").textContent = T.syncLabel;
-  $("sync-desc").textContent = T.syncDesc;
   $("clear-label").textContent = T.clearLabel;
   $("clear-desc").textContent = T.clearDesc;
   $("clear").textContent = T.del;
@@ -408,15 +385,12 @@
     var el = $("toast"); el.textContent = text; el.classList.add("show");
     clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.classList.remove("show"); }, 2600);
   }
-  // 확인 창 — {title, body, ok, danger, check} → Promise<{ok, checked}>. <dialog>가 없는 옛 브라우저는 confirm
+  // 확인 창 — {title, body, ok, danger} → Promise<{ok}>. <dialog>가 없는 옛 브라우저는 confirm
   function ask(o) {
     var d = $("ask");
-    if (typeof d.showModal !== "function") return Promise.resolve({ ok: window.confirm(o.title + "\n\n" + o.body), checked: false });
+    if (typeof d.showModal !== "function") return Promise.resolve({ ok: window.confirm(o.title + "\n\n" + o.body) });
     $("ask-title").textContent = o.title;
     $("ask-body").textContent = o.body;
-    $("ask-check-wrap").hidden = !o.check;
-    $("ask-check").checked = false;
-    $("ask-check-text").textContent = o.check || "";
     $("ask-cancel").textContent = T.cancel;
     $("ask-ok").textContent = o.ok;
     $("ask-ok").className = "btn " + (o.danger ? "danger-go" : "go");
@@ -424,7 +398,7 @@
     d.showModal();
     $("ask-cancel").focus();
     return new Promise(function (resolve) {
-      d.addEventListener("close", function onClose() { d.removeEventListener("close", onClose); resolve({ ok: d.returnValue === "ok", checked: $("ask-check").checked }); });
+      d.addEventListener("close", function onClose() { d.removeEventListener("close", onClose); resolve({ ok: d.returnValue === "ok" }); });
     });
   }
 
@@ -440,12 +414,12 @@
       });
     },
     history_list: function () {
-      return Promise.all([A.db("history"), A.db("settings")]).then(function (r) {
-        var items = list(r[0]).map(function (it) {
+      return A.db("history").then(function (data) {   // 생성 기록은 늘 저장한다 — 끄는 설정 없음(2026-11-19 사용자). 지우기·탈퇴로 지운다
+        var items = list(data).map(function (it) {
           it.target = json(it.target) || {}; it.options = json(it.options) || {}; it.made_2d = json(it.made_2d) || {}; it.star = !!it.star;
           return it;
         }).sort(function (a, b) { return (b.built_at || 0) - (a.built_at || 0); });
-        return { items: items, on: !(r[1] && r[1].history_sync === false), available: true };   // ponytail: 웹은 PLAN_FEATURES를 모른다 — 유료 이용권만 기록을 쓰게 되면 토큰의 plan으로 가른다
+        return { items: items };
       });
     },
     history_update: function (b) {   // 없는 기록이면 규칙(built_at·host 필요)에 막혀 denied — 다시 불러온다
@@ -455,9 +429,6 @@
       return A.db("history/" + encodeURIComponent(b.id), "PATCH", change);
     },
     history_delete: function (b) { return A.db(b.all ? "history" : "history/" + encodeURIComponent(b.id), "DELETE"); },
-    set_history_sync: function (b) {
-      return A.db("settings/history_sync", "PUT", !!b.on).then(function () { return b.clear ? A.db("history", "DELETE") : null; });
-    },
     logout: function (b) { return A.db("connections/" + encodeURIComponent(b.token_id), "DELETE"); },   // 연결 해제 — 그 PC가 다음 확인 때 스스로 로그아웃한다
     delete: function () {   // 탈퇴 — 기록·연결·설정(users/<uid>)을 지우고 계정을 지운다. 로그인한 지 오래면 Firebase가 막으니 먼저 다시 로그인
       return A.token().then(function (t) {
@@ -578,15 +549,6 @@
     $("hist").innerHTML = html;
     $("clear").disabled = !S.items.length;
   }
-  function renderSync() {
-    $("sync").setAttribute("aria-checked", String(S.on));
-    $("sync-banner").hidden = S.on || !S.available;
-    var unavailable = document.getElementById("unavailable");
-    if (!S.available && !unavailable) {
-      unavailable = document.createElement("p"); unavailable.id = "unavailable"; unavailable.className = "banner"; unavailable.textContent = T.unavailable;
-      $("sync-banner").after(unavailable);
-    } else if (S.available && unavailable) unavailable.remove();
-  }
   function renderConns() {
     var list = (S.me && S.me.connections) || [];
     $("conns").innerHTML = list.length ? list.map(function (c) {
@@ -603,7 +565,7 @@
     $("plan").textContent = me.entitlement.plan_name;
     var joined = parse(me.created);
     $("joined").textContent = joined ? fmt(T.joined, dateFmt.format(joined)) : "";
-    renderTools(); renderSync(); renderList(); renderConns();
+    renderTools(); renderList(); renderConns();
   }
 
   // ── 불러오기·로그인 ──
@@ -613,8 +575,6 @@
     return Promise.all([call("me"), call("history_list")]).then(function (res) {
       S.me = res[0];
       S.items = res[1].items || [];
-      S.on = res[1].on !== false;
-      S.available = res[1].available !== false;
       renderAll();
       show("dash");
     }).catch(function (err) {
@@ -722,21 +682,6 @@
       }).catch(failToast);
     });
   });
-  function setSync(on, clear) {
-    $("sync").disabled = true;
-    return call("set_history_sync", { on: on, clear: !!clear }).then(function () {
-      S.on = on;
-      if (clear) { S.items = []; renderTools(); renderList(); }
-      renderSync(); toast(on ? T.syncOnDone : T.syncOffDone);
-    }).catch(failToast).then(function () { $("sync").disabled = false; });
-  }
-  $("sync").addEventListener("click", function () {
-    if (!S.on) return setSync(true);
-    ask({ title: T.syncOffQ, body: T.syncOffBody, ok: T.turnOff, check: S.items.length ? fmt(T.syncOffClear, S.items.length) : "" }).then(function (r) {
-      if (r.ok) setSync(false, r.checked);
-    });
-  });
-  $("sync-banner-on").addEventListener("click", function () { setSync(true); });
   $("conns").addEventListener("click", function (e) {
     var li = e.target.closest("li[data-conn]"); if (!li || !e.target.closest("[data-act=disconnect]")) return;
     var id = li.getAttribute("data-conn"), c = S.me.connections.filter(function (x) { return x.id === id; })[0];

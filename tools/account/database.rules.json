@@ -17,10 +17,6 @@
             "star": {".validate": "newData.isBoolean()"}
           }
         },
-        "settings": {
-          "history_sync": {".validate": "newData.isBoolean()"},
-          "$other": {".validate": false}
-        },
         "connections": {
           "$conn": {".validate": "newData.hasChildren(['host', 'created'])"}
         },

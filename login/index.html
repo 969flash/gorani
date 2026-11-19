@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="../assets/style.css?v=202611091200">
 <style>
-  /* 플러그인 로그인 — 브라우저에서 구글 로그인 → 일회용 교환권 → 이 PC의 플러그인(127.0.0.1)으로 돌아간다(gorani-plugin docs/account_plan.md) */
+  /* 플러그인 로그인 — 브라우저에서 구글 로그인(Firebase) → 열쇠를 이 PC의 플러그인(127.0.0.1)에 폼 POST로 넘긴다(gorani-plugin docs/account_plan.md '구성') */
   .login { width: min(400px, 100% - 32px); margin: 72px auto; text-align: center; }
   .login .mark { --s: 48px; color: var(--ink); }
   .login h1 { margin-top: 16px; font-size: 24px; line-height: 32px; font-weight: 700; letter-spacing: -.02em; }
@@ -36,26 +36,28 @@
 </main>
 <script>
 (function () {
-  // 배포 값 — tools/account/README.md 처음 설정 1·5. 비어 있으면 '준비 중'
-  var ACCOUNT_API_URL = "";
+  // 배포 값 — tools/account/README.md 처음 설정 5·8. 비어 있으면 플러그인에 '고장'으로 넘긴다(고급을 연다 — 계획 문서 '로그인에 기대지 않기')
+  var FIREBASE = { apiKey: "" };
   var GOOGLE_CLIENT_ID = "";
-  var TERMS_V = "2026-11-16", PRIVACY_V = "2026-11-16";   // 처리방침·약관 시행일 — 가입 때 본 판으로 회원 줄에 남는다
+  var URLS = { identity: "https://identitytoolkit.googleapis.com/v1/", token: "https://securetoken.googleapis.com/v1/token", gis: "https://accounts.google.com/gsi/client" };
+  if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {   // 시험만 — tools/account/fake_firebase.py 주소로 바꾼다
+    try { var t = JSON.parse(localStorage.getItem("gorani_account_test") || "null"); if (t) { FIREBASE.apiKey = t.apiKey; GOOGLE_CLIENT_ID = t.clientId; URLS = t.urls; } } catch (e) {}
+  }
   var HOSTS = ["rhino", "sketchup", "archicad"];
-  var SESSION_KEY = "gorani_session", SESSION_DAYS = 30;
+  var SESSION_KEY = "gorani_session";
+  var DENIED = ["USER_DISABLED", "USER_NOT_FOUND", "TOKEN_EXPIRED", "INVALID_REFRESH_TOKEN"];   // 확실한 거절 넷 — 나머지 오류는 고장으로 본다
 
   var q = new URLSearchParams(location.search);
   var lang = q.get("lang") === "ko" ? "ko" : "en";   // 패널 언어 — 한국어 밖은 영어(처리방침·약관이 한·영)
   var T = {
     ko: { title: "Gorani 로그인", sub: "로그인하면 Gorani 플러그인으로 돌아갑니다.", cont: "{0}(으)로 계속", other: "다른 구글 계정으로 로그인하려면 아래 버튼을 누르세요.",
       fine: '계속하면 <a href="../terms/">이용약관</a>과 <a href="../privacy/">개인정보 처리방침</a>에 동의합니다. 가입해도 결제는 없습니다.',
-      bad: "Gorani 패널의 [구글로 로그인]에서 열어 주세요.", unready: "로그인을 준비하고 있습니다. 잠시 뒤 다시 시도해 주세요.",
-      working: "로그인하는 중…", back: "Gorani로 돌아가는 중… 이 탭은 닫아도 됩니다.", fail: "로그인하지 못했습니다. 다시 시도해 주세요.",
-      busy: "잠시 뒤 다시 시도해 주세요(시도가 너무 잦습니다).", gis: "구글 로그인 버튼을 불러오지 못했습니다. 광고 차단·추적 방지 설정을 확인해 주세요." },
+      bad: "Gorani 패널의 [구글로 로그인]에서 열어 주세요.",
+      working: "로그인하는 중…", back: "Gorani로 돌아가는 중… 이 탭은 닫아도 됩니다.", fail: "로그인하지 못했습니다. 다시 시도해 주세요." },
     en: { title: "Sign in to Gorani", sub: "After signing in you return to the Gorani plugin.", cont: "Continue as {0}", other: "To use another Google account, use the button below.",
       fine: 'By continuing you agree to the <a href="../en/terms/">Terms</a> and <a href="../en/privacy/">Privacy Policy</a>. Membership is free.',
-      bad: "Open this page from [Sign in with Google] in the Gorani panel.", unready: "Sign-in is being set up. Please try again later.",
-      working: "Signing in…", back: "Returning to Gorani… You can close this tab.", fail: "Could not sign in. Please try again.",
-      busy: "Too many attempts. Please try again in a minute.", gis: "Could not load the Google sign-in button. Check ad or tracking blockers." }
+      bad: "Open this page from [Sign in with Google] in the Gorani panel.",
+      working: "Signing in…", back: "Returning to Gorani… You can close this tab.", fail: "Could not sign in. Please try again." }
   }[lang];
   document.documentElement.lang = lang;
   document.title = T.title;
@@ -68,38 +70,65 @@
   // 플러그인이 넘긴 값 — 받는 곳은 127.0.0.1의 그 포트뿐(아무 곳으로나 보내는 통로가 되지 않게)
   var port = Number(q.get("port")), state = q.get("state") || "", host = q.get("h") || "";
   if (!(port >= 1024 && port <= 65535 && /^[A-Za-z0-9_-]{16,64}$/.test(state) && HOSTS.indexOf(host) >= 0)) { msg(T.bad, true); $("fine").textContent = ""; return; }
-  if (!ACCOUNT_API_URL || !GOOGLE_CLIENT_ID) { msg(T.unready, true); return; }
 
-  function api(body) {
-    return fetch(ACCOUNT_API_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body) })
-      .then(function (r) { return r.json(); });
+  // 플러그인으로 — 최상위 폼 POST라 열쇠가 주소·방문 기록에 남지 않고, fetch가 아니라 크롬 로컬 네트워크 허락 창이 뜨지 않는다
+  function handOff(fields) {
+    msg(T.back);
+    var f = document.createElement("form");
+    f.method = "POST";
+    f.action = "http://127.0.0.1:" + port + "/gorani-login";
+    fields.state = state;
+    Object.keys(fields).forEach(function (k) {
+      var i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = fields[k]; f.appendChild(i);
+    });
+    document.body.appendChild(f);
+    f.submit();
+  }
+  function broken() { handOff({ error: "service" }); }   // 웹 쪽 고장 — 플러그인이 이번 고급을 연다
+  if (!FIREBASE.apiKey || !GOOGLE_CLIENT_ID) return broken();   // 설정 전·설정 실수도 우리 쪽 고장이다
+
+  // Firebase REST — 실패는 Error(거절 넷 중 하나 | 'service')
+  function firebase(url, body, form) {
+    return fetch(url, { method: "POST", headers: { "Content-Type": form ? "application/x-www-form-urlencoded" : "application/json" },
+      body: form ? new URLSearchParams(body).toString() : JSON.stringify(body) }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        if (r.ok) return j;
+        var m = String((j.error && j.error.message) || "").split(/[\s:]/)[0];
+        throw new Error(DENIED.indexOf(m) >= 0 ? m : "service");
+      });
+    }, function () { throw new Error("service"); });
   }
   function store(value) {
     try { if (value) localStorage.setItem(SESSION_KEY, JSON.stringify(value)); else localStorage.removeItem(SESSION_KEY); } catch (e) {}
   }
   function saved() {
-    try { var s = JSON.parse(localStorage.getItem(SESSION_KEY) || "null"); return s && s.exp > Date.now() ? s : null; } catch (e) { return null; }
-  }
-  // 세션 → 교환권 → 플러그인으로. 페이지 이동이라 크롬의 로컬 네트워크 허락 창이 뜨지 않는다(fetch는 뜬다)
-  function handOff(session) {
-    msg(T.working);
-    return api({ action: "grant", session: session, host: host }).then(function (res) {
-      if (!res.ok) { if (res.error === "invalid") store(null); throw new Error(res.error); }
-      msg(T.back);
-      location.href = "http://127.0.0.1:" + port + "/gorani-login?state=" + encodeURIComponent(state) + "&grant=" + encodeURIComponent(res.grant);
-    });
+    try { var s = JSON.parse(localStorage.getItem(SESSION_KEY) || "null"); return s && s.refresh ? s : null; } catch (e) { return null; }
   }
   function fail(err) {
-    msg(err && err.message === "too_fast" ? T.busy : T.fail, true);
+    if (err && err.message === "service") return broken();
+    msg(T.fail, true);   // 거절(사용 중지된 계정 등) — 넘기지 않는다
     showButtons();
   }
+  // 구글 ID 토큰 → Firebase 열쇠(처음이면 그 자리에서 가입)
   function onCredential(resp) {
     msg(T.working);
-    api({ action: "login", id_token: resp.credential, terms_v: TERMS_V, privacy_v: PRIVACY_V, lang: lang }).then(function (res) {
-      if (!res.ok) throw new Error(res.error);
-      store({ session: res.session, email: res.user.email, exp: Date.now() + SESSION_DAYS * 864e5 });
-      return handOff(res.session);
+    firebase(URLS.identity + "accounts:signInWithIdp?key=" + FIREBASE.apiKey, {
+      postBody: "id_token=" + encodeURIComponent(resp.credential) + "&providerId=google.com", requestUri: location.origin, returnSecureToken: true
+    }).then(function (res) {
+      store({ refresh: res.refreshToken, email: res.email });
+      handOff({ refresh_token: res.refreshToken });
     }).catch(fail);
+  }
+  // 이 브라우저에 남은 열쇠 — securetoken으로 살아 있는지 보고 새 열쇠를 넘긴다
+  function continueAs(s) {
+    msg(T.working);
+    firebase(URLS.token + "?key=" + FIREBASE.apiKey, { grant_type: "refresh_token", refresh_token: s.refresh }, true).then(function (res) {
+      store({ refresh: res.refresh_token, email: s.email });
+      handOff({ refresh_token: res.refresh_token });
+    }).catch(function (err) {
+      if (err.message !== "service") store(null);
+      fail(err);
+    });
   }
 
   function showButtons() {
@@ -107,18 +136,18 @@
     var s = saved();
     if (s) {   // 이 브라우저에 웹 로그인이 남아 있으면 버튼 하나로 — 다른 계정은 아래 구글 버튼
       var b = document.createElement("button"); b.type = "button"; b.className = "again"; b.textContent = T.cont.replace("{0}", s.email);
-      b.onclick = function () { b.disabled = true; handOff(s.session).catch(fail); };
+      b.onclick = function () { b.disabled = true; continueAs(s); };
       acts.appendChild(b);
     }
     var g = document.createElement("div"); acts.appendChild(g);
-    if (!(window.google && google.accounts && google.accounts.id)) { msg(T.gis, true); return; }
+    if (!(window.google && google.accounts && google.accounts.id)) return broken();
     google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: onCredential, auto_select: false, context: "signin" });
     google.accounts.id.renderButton(g, { theme: "outline", size: "large", shape: "pill", text: "continue_with", locale: lang });
   }
 
   var gis = document.createElement("script");
-  gis.src = "https://accounts.google.com/gsi/client"; gis.async = true;
-  gis.onload = showButtons; gis.onerror = function () { msg(T.gis, true); };
+  gis.src = URLS.gis; gis.async = true;
+  gis.onload = showButtons; gis.onerror = broken;   // 구글 버튼을 못 받으면(차단·접속 안 됨) 고장으로 넘긴다
   document.head.appendChild(gis);
 })();
 </script>

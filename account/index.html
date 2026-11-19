@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="../assets/style.css?v=202611181800">
 <style>
-  /* 계정 페이지 — 웹 로그인(구글)과 계정별 생성 기록(3D 프로그램별). 회원 API는 tools/account, 설계는 gorani-plugin docs/account_plan.md '생성 기록' */
+  /* 계정 페이지 — 웹 로그인(구글)과 계정별 생성 기록(3D 프로그램별). Firebase는 assets/account.js·tools/account, 설계는 gorani-plugin docs/account_plan.md '생성 기록' */
   [hidden] { display: none !important; }   /* display를 준 칸(.state·.banner·label)도 hidden이면 숨긴다 */
   .acct { width: min(880px, 100% - 32px); margin: 40px auto 96px; }
   .state { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 160px; color: var(--ink-2); font-size: 15px; text-align: center; }
@@ -236,11 +236,11 @@
 </dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="../assets/account.js?v=202611181200"></script>
+<script src="../assets/account.js?v=202611191800"></script>
 <script>
 (function () {
   "use strict";
-  var A = window.GoraniAccount;   // 배포 값·세션·회원 API — assets/account.js
+  var A = window.GoraniAccount;   // 배포 값·이 브라우저의 로그인·Firebase REST — assets/account.js
   var q = new URLSearchParams(location.search);
   var asked = (q.get("lang") || navigator.language || "").slice(0, 2).toLowerCase();
   var lang = asked === "ko" ? "ko" : "en";   // 계정·처리방침은 한·영(다른 언어는 영어 — account_plan '다국어')
@@ -283,6 +283,7 @@
       syncOnDone: "생성 기록 저장 켜짐", syncOffDone: "생성 기록 저장 꺼짐",
       delLabel: "탈퇴", delDesc: "회원 정보·연결된 프로그램·생성 기록을 모두 삭제합니다.", delQ: "Gorani에서 탈퇴할까요?",
       delBody: "회원 정보, 연결된 프로그램, 생성 기록이 바로 삭제되며 되돌릴 수 없습니다. PC의 결과 파일은 삭제되지 않습니다.", deleted: "탈퇴 완료",
+      reauth: "탈퇴하려면 한 번 더 로그인해 주세요.",
       privacy: "개인정보 처리방침", terms: "이용약관", home: "Gorani 홈", privacyHref: "../privacy/", termsHref: "../terms/"
     },
     en: {
@@ -317,6 +318,7 @@
       syncOnDone: "Generation history on", syncOffDone: "Generation history off",
       delLabel: "Delete account", delDesc: "Deletes your account, connections and generation history right away.", delQ: "Delete your Gorani account?",
       delBody: "Your account, connected programs and generation history are deleted right away and can’t be restored. Result files on your computer are not deleted.", deleted: "Your account was deleted.",
+      reauth: "Sign in once more to delete your account.",
       privacy: "Privacy Policy", terms: "Terms", home: "Gorani home", privacyHref: "../en/privacy/", termsHref: "../en/terms/"
     }
   }[lang];
@@ -385,7 +387,7 @@
   $("foot").innerHTML = '<a href="' + esc($("home").getAttribute("href")) + '">' + esc(T.home) + '</a><a href="' + T.privacyHref + '">' + esc(T.privacy) + '</a><a href="' + T.termsHref + '">' + esc(T.terms) + "</a>";
 
   // ── 상태 ──
-  var S = { me: null, items: [], on: true, available: true, tool: "all", starOnly: false, open: {}, editing: "" };
+  var S = { me: null, items: [], on: true, available: true, tool: "all", starOnly: false, open: {}, editing: "", deleting: "" };   // deleting = 다시 로그인하고 탈퇴할 메일
   var hashTool = location.hash.slice(1);
   if (TOOLS.some(function (t) { return t.id === hashTool; })) S.tool = hashTool;
 
@@ -426,16 +428,49 @@
     });
   }
 
-  // 회원 API — 세션을 붙여 부른다. 세션이 끝났으면(me·history_list가 invalid) 로그인 화면으로
+  // 회원 — Firebase(assets/account.js). 기록·설정·연결은 RTDB users/<uid> 아래(target·options·made_2d는 JSON 글로 들어 있다)
+  function list(obj) { return Object.keys(obj || {}).map(function (k) { var v = obj[k]; v.id = k; return v; }); }
+  function json(text) { try { return text ? JSON.parse(text) : null; } catch (e) { return null; } }
+  var ACTIONS = {
+    me: function () {
+      return Promise.all([A.token(), A.lookup(), A.db("connections")]).then(function (r) {
+        var user = (r[1].users || [])[0] || {};
+        return { email: r[0].claims.email, created: Number(user.createdAt) || null, entitlement: A.plan(r[0].claims),
+          connections: list(r[2]).sort(function (a, b) { return (b.seen || 0) - (a.seen || 0); }) };
+      });
+    },
+    history_list: function () {
+      return Promise.all([A.db("history"), A.db("settings")]).then(function (r) {
+        var items = list(r[0]).map(function (it) {
+          it.target = json(it.target) || {}; it.options = json(it.options) || {}; it.made_2d = json(it.made_2d) || {}; it.star = !!it.star;
+          return it;
+        }).sort(function (a, b) { return (b.built_at || 0) - (a.built_at || 0); });
+        return { items: items, on: !(r[1] && r[1].history_sync === false), available: true };   // ponytail: 웹은 PLAN_FEATURES를 모른다 — 유료 이용권만 기록을 쓰게 되면 토큰의 plan으로 가른다
+      });
+    },
+    history_update: function (b) {   // 없는 기록이면 규칙(built_at·host 필요)에 막혀 denied — 다시 불러온다
+      var change = { edited: Date.now() };
+      if ("label" in b) change.label = String(b.label).slice(0, 80);
+      if ("star" in b) change.star = !!b.star;
+      return A.db("history/" + encodeURIComponent(b.id), "PATCH", change);
+    },
+    history_delete: function (b) { return A.db(b.all ? "history" : "history/" + encodeURIComponent(b.id), "DELETE"); },
+    set_history_sync: function (b) {
+      return A.db("settings/history_sync", "PUT", !!b.on).then(function () { return b.clear ? A.db("history", "DELETE") : null; });
+    },
+    logout: function (b) { return A.db("connections/" + encodeURIComponent(b.token_id), "DELETE"); },   // 연결 해제 — 그 PC가 다음 확인 때 스스로 로그아웃한다
+    delete: function () {   // 탈퇴 — 기록·연결·설정(users/<uid>)을 지우고 계정을 지운다. 로그인한 지 오래면 Firebase가 막으니 먼저 다시 로그인
+      return A.token().then(function (t) {
+        if (Date.now() / 1000 - t.claims.auth_time > 270) throw new Error("reauth");
+        return A.db("", "DELETE").then(A.deleteAccount);
+      });
+    }
+  };
   function call(action, body) {
-    var s = A.saved();
-    if (!s) { signOut(T.expired); var gone = new Error("invalid"); gone.handled = true; return Promise.reject(gone); }
-    var msg = { action: action, session: s.session };
-    Object.keys(body || {}).forEach(function (k) { msg[k] = body[k]; });
-    return A.api(msg).then(function (res) {
-      if (res.ok) return res;
-      var err = new Error(res.error || "server");
-      if (res.error === "invalid" && (action === "me" || action === "history_list" || action === "set_history_sync")) { signOut(T.expired); err.handled = true; }
+    if (!A.saved()) { signOut(T.expired); var gone = new Error("invalid"); gone.handled = true; return Promise.reject(gone); }
+    return ACTIONS[action](body || {}).catch(function (err) {
+      if (err.message === "invalid") { signOut(T.expired); err.handled = true; }   // 열쇠가 거절됐다(사용 중지·탈퇴·만료)
+      else if (err.message === "denied") err.message = "invalid";   // 다른 기기에서 지운 기록·끊은 연결 — failToast가 다시 불러온다
       throw err;
     });
   }
@@ -610,6 +645,8 @@
   function onCredential(resp) {
     $("si-msg").textContent = T.working; $("si-msg").className = "msg";
     A.login(resp.credential, lang).then(function (res) {
+      var deleting = S.deleting; S.deleting = "";
+      if (deleting && deleting === res.user.email) return call("delete").then(function () { signOut(T.deleted); }).catch(failToast);   // 같은 계정으로 다시 로그인했으면 탈퇴를 이어 간다
       toast(res.user && res.user.new ? T.welcome : T.signedIn);
       load();
     }).catch(function (err) {
@@ -620,9 +657,7 @@
 
   // ── 동작 ──
   $("logout").addEventListener("click", function () {
-    var s = A.saved();
-    if (s) A.api({ action: "logout", session: s.session }).catch(function () {});   // 서버 세션 줄도 지운다 — 실패해도 이 브라우저에서는 로그아웃
-    signOut(T.loggedOut);
+    signOut(T.loggedOut);   // 이 브라우저의 열쇠만 지운다(플러그인 연결은 그대로 — 끊으려면 '연결된 프로그램'에서)
   });
   $("tools").addEventListener("click", function (e) {
     var b = e.target.closest("[data-tool]"); if (!b) return;
@@ -716,7 +751,12 @@
   $("del").addEventListener("click", function () {
     ask({ title: T.delQ, body: T.delBody, ok: T.delLabel, danger: true }).then(function (r) {
       if (!r.ok) return;
-      call("delete").then(function () { signOut(T.deleted); }).catch(failToast);
+      call("delete").then(function () { signOut(T.deleted); }).catch(function (err) {
+        if (!err || err.message !== "reauth") return failToast(err);
+        S.deleting = S.me.email;   // 구글로 한 번 더 로그인하면 이어서 지운다
+        A.store(null); S.me = null; S.items = []; S.open = {}; S.editing = "";
+        showSignIn(T.reauth);
+      });
     });
   });
 

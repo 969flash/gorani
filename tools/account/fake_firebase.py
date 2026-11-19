@@ -7,7 +7,7 @@
 - api    : identitytoolkit(signInWithIdp·lookup·delete)·securetoken·Realtime Database REST·가짜 구글 버튼(/gsi/client)
 - plugin : 가짜 플러그인 받는 곳(POST /gorani-login → /login/done/)
 오류 글은 실제 Firebase 꼴({"error": {"message": "INVALID_REFRESH_TOKEN"}}, RTDB는 {"error": "Permission denied"}).
-시험 손잡이: GET /__db(전체), POST /__reset, POST /__set?<이름>=<값>(fail_signin·reauth_seconds·disable), GET /__received(받는 곳이 받은 것).
+시험 손잡이: GET /__db(전체), POST /__reset, POST /__set?<이름>=<값>(fail_signin·reauth_seconds·auth_back·disable·plan), GET /__received(받는 곳이 받은 것).
 """
 import argparse
 import base64
@@ -38,7 +38,7 @@ STATE = {}
 
 def reset():
     STATE.clear()
-    STATE.update(users={}, refresh={}, db={}, received=[], fail_signin=0, reauth_seconds=300)
+    STATE.update(users={}, refresh={}, db={}, received=[], fail_signin=0, reauth_seconds=300, auth_back=0)
 
 
 def b64(obj):
@@ -242,7 +242,7 @@ class Api(BaseHTTPRequestHandler):
             is_new = user is None
             if is_new:
                 user = STATE["users"][uid] = {"email": email, "created": int(time.time() * 1000)}
-            user["auth_time"] = int(time.time())
+            user["auth_time"] = int(time.time()) - STATE["auth_back"]   # auth_back — 오래전에 로그인한 것처럼(탈퇴 전 다시 로그인 시험)
             return self.send_json(200, {"idToken": make_id_token(uid), "refreshToken": new_refresh(uid), "localId": uid, "email": email,
                                         "isNewUser": is_new, "expiresIn": "3600", "providerId": "google.com"})
         uid = read_id_token(body.get("idToken", ""))
@@ -285,6 +285,11 @@ class Api(BaseHTTPRequestHandler):
         self.send_json(200, None if method == "DELETE" else value)
 
 
+class Server(ThreadingHTTPServer):
+    def handle_error(self, request, client_address):
+        pass   # 크롬이 끊은 연결(BrokenPipe 등) — 시험 출력만 어지럽힌다
+
+
 def make_plugin(site):
     class Plugin(BaseHTTPRequestHandler):
         """가짜 플러그인 받는 곳 — 플러그인처럼 열쇠를 확인하고 /login/done/로 넘긴다."""
@@ -322,8 +327,8 @@ def main():
         def log_message(self, *a):
             pass
 
-    servers = [ThreadingHTTPServer(("127.0.0.1", args.site), Site), ThreadingHTTPServer(("127.0.0.1", args.api), Api),
-               ThreadingHTTPServer(("127.0.0.1", args.plugin), make_plugin("http://127.0.0.1:%d" % args.site))]
+    servers = [Server(("127.0.0.1", args.site), Site), Server(("127.0.0.1", args.api), Api),
+               Server(("127.0.0.1", args.plugin), make_plugin("http://127.0.0.1:%d" % args.site))]
     for server in servers[1:]:
         threading.Thread(target=server.serve_forever, daemon=True).start()
     print("ready site=%d api=%d plugin=%d" % (args.site, args.api, args.plugin), flush=True)

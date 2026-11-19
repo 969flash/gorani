@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="../../assets/style.css?v=202611181800">
 <style>
-  /* 플러그인 받는 곳(127.0.0.1)이 로그인을 마치고 넘기는 곳 — ?ok=1|0&lang= */
+  /* 플러그인 받는 곳(127.0.0.1)이 로그인을 마치고 넘기는 곳 — ?ok=1|0, 로그인 쪽 고장이면 ?fallback=1(고급을 열었다), &lang&h */
   .login { width: min(400px, 100% - 32px); margin: 72px auto; text-align: center; }
   .login .mark { --s: 48px; color: var(--ink); }
   .login h1 { margin-top: 16px; font-size: 24px; line-height: 32px; font-weight: 700; letter-spacing: -.02em; }
@@ -29,16 +29,18 @@
 </main>
 <script>
 (function () {
-  var q = new URLSearchParams(location.search), ok = q.get("ok") === "1", lang = q.get("lang") === "ko" ? "ko" : "en";
-  var host = "";   // 로그인을 연 프로그램 — /login/이 넘기기 직전에 이 탭에 적어 둔다(플러그인은 ok·lang만 넘긴다)
-  try { host = sessionStorage.getItem("gorani_login_host") || ""; } catch (e) {}
+  var q = new URLSearchParams(location.search), ok = q.get("ok") === "1", fallback = q.get("fallback") === "1", lang = q.get("lang") === "ko" ? "ko" : "en";
+  var host = q.get("h") || "";   // 로그인을 연 프로그램 — 플러그인이 h로 넘긴다. 없으면 /login/이 넘기기 직전에 이 탭에 적어 둔 것
+  try { host = host || sessionStorage.getItem("gorani_login_host") || ""; } catch (e) {}
   var back = {
     ko: { rhino: "Rhino로", sketchup: "SketchUp으로", archicad: "Archicad로" }[host] || "Gorani 패널로",
     en: { rhino: "Rhino", sketchup: "SketchUp", archicad: "Archicad" }[host] || "the Gorani panel"
   }[lang];
-  var T = {
-    ko: ok ? ["로그인 완료", back + " 돌아가 작업을 이어 가세요.", "생성 기록 보기"] : ["로그인 실패", "Gorani 패널에서 [Google 계정으로 로그인]을 다시 눌러 주세요."],
-    en: ok ? ["You’re signed in", "Go back to " + back + " to keep working.", "View generation history"] : ["Sign-in failed", "Press [Sign in with Google] in the Gorani panel again."]
+  var T = {   // fallback — 로그인 쪽 고장이라 플러그인이 이번 고급을 열었다(계획 문서 '로그인에 기대지 않기', 문구는 패널 토스트와 같다)
+    ko: fallback ? ["로그인 서버가 풀 뜯으러 갔습니다", "이번 고급은 그냥 열어 둡니다. " + back + " 돌아가 작업을 이어 가세요."]
+      : ok ? ["로그인 완료", back + " 돌아가 작업을 이어 가세요.", "생성 기록 보기"] : ["로그인 실패", "Gorani 패널에서 [Google 계정으로 로그인]을 다시 눌러 주세요."],
+    en: fallback ? ["The sign-in server wandered off to graze", "Advanced is open this time. Go back to " + back + " to keep working."]
+      : ok ? ["You’re signed in", "Go back to " + back + " to keep working.", "View generation history"] : ["Sign-in failed", "Press [Sign in with Google] in the Gorani panel again."]
   }[lang];
   document.documentElement.lang = lang;
   document.title = T[0] + " · Gorani";

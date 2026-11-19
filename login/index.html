@@ -37,8 +37,8 @@
 <script>
 (function () {
   // 배포 값 — tools/account/README.md 처음 설정 5·8. 비어 있으면 플러그인에 '고장'으로 넘긴다(고급을 연다 — 계획 문서 '로그인에 기대지 않기')
-  var FIREBASE = { apiKey: "" };
-  var GOOGLE_CLIENT_ID = "";
+  var FIREBASE = { apiKey: "AIzaSyCggyybM6ngv8v0NUJ2n_0wf476R0vZWxs" };   // Firebase 프로젝트 gorani-da15f(고라니 운영 계정, Spark) — 공개 값
+  var GOOGLE_CLIENT_ID = "881558869222-8njad170fa7q4jc5nom2bjlbj2n6ngkb.apps.googleusercontent.com";   // 같은 프로젝트의 웹 클라이언트(승인된 출처 gorani.site)
   var URLS = { identity: "https://identitytoolkit.googleapis.com/v1/", token: "https://securetoken.googleapis.com/v1/token", gis: "https://accounts.google.com/gsi/client" };
   if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {   // 시험만 — tools/account/fake_firebase.py 주소로 바꾼다
     try { var t = JSON.parse(localStorage.getItem("gorani_account_test") || "null"); if (t) { FIREBASE.apiKey = t.apiKey; GOOGLE_CLIENT_ID = t.clientId; URLS = t.urls; } } catch (e) {}

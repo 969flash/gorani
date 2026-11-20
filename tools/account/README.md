@@ -27,7 +27,7 @@
 | 플러그인으로 넘기기 | 웹 → 127.0.0.1 | `/login/`이 `http://127.0.0.1:<port>/gorani-login`에 최상위 폼 POST — `state` + `refresh_token`, 웹 쪽 고장이면 `state` + `error=service`. 플러그인이 `/login/done/?ok=1`·`ok=0`·`fallback=1`(`&lang&h`)로 넘긴다 |
 
 - 거절로 보는 오류는 넷(`USER_DISABLED`·`USER_NOT_FOUND`·`TOKEN_EXPIRED`·`INVALID_REFRESH_TOKEN`)뿐이다. 나머지(접속 안 됨·5xx·한도·설정 오류·구글 버튼을 못 받음·키가 비어 있음)는 고장으로 보고 플러그인이 이번 고급을 연다('로그인에 기대지 않기').
-- 열쇠는 폼 본문으로만 오가 주소·방문 기록에 남지 않는다. 웹은 이 브라우저의 열쇠를 localStorage `gorani_session`에 두고 '…(으)로 계속'에 쓴다.
+- 열쇠는 폼 본문으로만 오가 주소·방문 기록에 남지 않는다. 웹은 이 브라우저의 열쇠를 localStorage `gorani_session`에 두고 '이 계정으로 계속'에 쓴다.
 
 ## 시험
 

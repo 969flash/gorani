@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gorani 로그인</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css?v=202611091200">
+<style>
+  /* 플러그인 로그인 — 브라우저에서 구글 로그인(Firebase) → 열쇠를 이 PC의 플러그인(127.0.0.1)에 폼 POST로 넘긴다(gorani-plugin docs/account_plan.md '구성') */
+  /* 모양은 플러그인 패널 로그인 창과 같은 결 — 옅은 회색 바탕 위 흰 카드, 마크·제목·버튼·작은 글 */
+  body { background: #F6F6F6; }
+  .login { width: min(400px, 100% - 32px); margin: max(48px, 12vh) auto 48px; padding: 40px 32px 24px; border: 1px solid var(--hair); border-radius: 20px;
+    background: var(--surface); box-shadow: 0 1px 2px rgba(20, 20, 20, .04), 0 16px 40px -20px rgba(20, 20, 20, .16); text-align: center; }
+  .login .home { position: relative; display: inline-flex; color: var(--ink); }
+  .login .mark { --s: 44px; }
+  .login .badge { position: absolute; right: -10px; bottom: -4px; display: grid; place-items: center; width: 22px; height: 22px; border: 2px solid var(--surface); border-radius: 50%;
+    background: #B3261E; color: var(--on-ink); }
+  .login .badge svg { width: 12px; height: 12px; }
+  .login.result { padding-bottom: 36px; }   /* 잘못된 링크 — 완료 페이지의 실패 화면과 같은 꼴 */
+  .login h1 { margin-top: 16px; font-size: 22px; line-height: 30px; font-weight: 700; letter-spacing: -.02em; text-wrap: balance; }
+  .login .sub { margin-top: 8px; color: var(--ink-2); font-size: 15px; line-height: 22px; white-space: pre-line; }
+  .login .acts { display: grid; gap: 12px; margin-top: 28px; min-height: 44px; transition: opacity .2s; }
+  .login .acts.busy { opacity: .4; pointer-events: none; }
+  .login .acts:empty { display: none; }
+  .login .gis { display: flex; justify-content: center; min-height: 44px; }
+  /* 이 브라우저에 남은 로그인 — 주 버튼(검정), 다른 계정은 '또는' 아래 구글 버튼 */
+  .login .again { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 56px; padding: 8px 20px 8px 12px; border: 0; border-radius: 28px;
+    background: var(--ink); color: var(--on-ink); text-align: left; cursor: pointer; }
+  .login .again:hover { background: color-mix(in srgb, var(--ink) 86%, var(--paper)); }
+  .login .again .avatar { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--on-ink); color: var(--ink); font-size: 15px; font-weight: 700; text-transform: uppercase; }
+  .login .again .who { display: grid; min-width: 0; }
+  .login .again b { font-size: 15px; line-height: 21px; font-weight: 600; }
+  .login .again small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; line-height: 18px; opacity: .72; }
+  .login .or { display: flex; align-items: center; gap: 12px; color: var(--ink-3); font-size: 13px; line-height: 18px; }
+  .login .or::before, .login .or::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+  /* 상태 한 줄 — 하는 중은 달리는 고라니, 실패는 옅은 빨간 칸, 안내는 옅은 회색 칸 */
+  .login .msg { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; color: var(--ink-2); font-size: 14px; line-height: 21px; white-space: pre-line; }
+  .login .msg:empty { display: none; }
+  .login .msg .run { --w: 24px; --h: 18px; color: var(--ink); }
+  .login .msg.err { padding: 10px 14px; border-radius: 12px; }
+  .login .msg.err { background: #FCEEEE; color: #B3261E; }
+  .login .terms-note { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--hair); color: var(--ink-3); font-size: 12px; line-height: 18px; }
+  .login .terms-note:empty { display: none; }
+  .login .terms-note a { color: var(--ink-2); }
+  @media (max-width: 480px) { .login { margin-top: 24px; padding: 32px 20px 20px; } }
+  @media (prefers-reduced-motion: reduce) { .login .acts { transition: none; } .login .msg .run.go { animation: none; } }
+</style>
+</head>
+<body>
+<main class="login">
+  <a class="home" href="../" aria-label="Gorani"><span class="mark" aria-hidden="true"></span></a>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <div class="acts" id="acts"></div>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+  <p class="terms-note" id="fine"></p>
+</main>
+<script>
+(function () {
+  // 배포 값 — tools/account/README.md 처음 설정 5·8. 비어 있으면 플러그인에 '고장'으로 넘긴다(고급을 연다 — 계획 문서 '로그인에 기대지 않기')
+  var FIREBASE = { apiKey: "AIzaSyCggyybM6ngv8v0NUJ2n_0wf476R0vZWxs" };   // Firebase 프로젝트 gorani-da15f(고라니 운영 계정, Spark) — 공개 값
+  var GOOGLE_CLIENT_ID = "881558869222-8njad170fa7q4jc5nom2bjlbj2n6ngkb.apps.googleusercontent.com";   // 같은 프로젝트의 웹 클라이언트(승인된 출처 gorani.site)
+  var URLS = { identity: "https://identitytoolkit.googleapis.com/v1/", token: "https://securetoken.googleapis.com/v1/token", gis: "https://accounts.google.com/gsi/client" };
+  if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {   // 시험만 — tools/account/fake_firebase.py 주소로 바꾼다
+    try { var t = JSON.parse(localStorage.getItem("gorani_account_test") || "null"); if (t) { FIREBASE.apiKey = t.apiKey; GOOGLE_CLIENT_ID = t.clientId; URLS = t.urls; } } catch (e) {}
+  }
+  var HOSTS = ["rhino", "sketchup", "archicad"];
+  var SESSION_KEY = "gorani_session";
+  var DENIED = ["USER_DISABLED", "USER_NOT_FOUND", "TOKEN_EXPIRED", "INVALID_REFRESH_TOKEN"];   // 확실한 거절 넷 — 나머지 오류는 고장으로 본다
+
+  var q = new URLSearchParams(location.search);
+  var lang = q.get("lang") === "ko" ? "ko" : "en";   // 패널 언어 — 한국어 밖은 영어(처리방침·약관이 한·영)
+  var T = {
+    ko: { title: "Gorani 로그인", sub: "구글 계정으로 로그인하면\nGorani 플러그인으로 돌아갑니다.", cont: "이 계정으로 계속", or: "또는",
+      fine: '계속하면 <a href="../terms/">이용약관</a>과 <a href="../privacy/">개인정보 처리방침</a>에 동의합니다.<br>가입해도 결제는 없습니다.',
+      badTitle: "잘못된 링크입니다", bad: "Gorani 패널에서\n[Google 계정으로 로그인]을 다시 눌러 주세요.",
+      working: "로그인하는 중…", back: "Gorani로 돌아가는 중… 이 탭은 닫아도 됩니다.", fail: "로그인하지 못했습니다. 다시 시도해 주세요." },
+    en: { title: "Sign in to Gorani", sub: "Sign in with your Google account\nand return to the Gorani plugin.", cont: "Continue with this account", or: "or",
+      fine: 'By continuing you agree to the <a href="../en/terms/">Terms</a> and <a href="../en/privacy/">Privacy Policy</a>.<br>Membership is free.',
+      badTitle: "Invalid link", bad: "Press [Sign in with Google]\nin the Gorani panel again.",
+      working: "Signing in…", back: "Returning to Gorani… You can close this tab.", fail: "Could not sign in. Please try again." }
+  }[lang];
+  document.documentElement.lang = lang;
+  document.title = T.title;
+  var $ = function (id) { return document.getElementById(id); };
+  $("title").textContent = T.title;
+  $("sub").textContent = T.sub;
+  $("fine").innerHTML = T.fine;
+  // kind: "busy"(달리는 고라니 + 버튼을 잠근다) | "err" | 없음
+  function msg(text, kind) {
+    var m = $("msg");
+    m.textContent = "";
+    m.className = "msg" + (kind ? " " + kind : "");
+    if (kind === "busy") { var r = document.createElement("span"); r.className = "run go"; r.setAttribute("aria-hidden", "true"); m.appendChild(r); }
+    if (text) m.appendChild(document.createTextNode(text));
+    $("acts").classList.toggle("busy", kind === "busy");
+  }
+
+  // 플러그인이 넘긴 값 — 받는 곳은 127.0.0.1의 그 포트뿐(아무 곳으로나 보내는 통로가 되지 않게)
+  var port = Number(q.get("port")), state = q.get("state") || "", host = q.get("h") || "";
+  if (!(port >= 1024 && port <= 65535 && /^[A-Za-z0-9_-]{16,64}$/.test(state) && HOSTS.indexOf(host) >= 0)) {   // 잘못된 링크 — 완료 페이지의 실패 화면과 같은 꼴(마크에 !, 패널에서 다시 누르라는 한 줄)
+    document.title = T.badTitle + " · Gorani";
+    $("title").textContent = T.badTitle;
+    $("sub").textContent = T.bad;
+    $("fine").textContent = "";
+    document.querySelector(".login").classList.add("result");
+    document.querySelector(".login .home").insertAdjacentHTML("beforeend", '<span class="badge err" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2.8v3.8M6 9.2v.01"/></svg></span>');
+    return;
+  }
+
+  // 플러그인으로 — 최상위 폼 POST라 열쇠가 주소·방문 기록에 남지 않고, fetch가 아니라 크롬 로컬 네트워크 허락 창이 뜨지 않는다
+  function handOff(fields) {
+    msg(T.back, "busy");
+    var f = document.createElement("form");
+    f.method = "POST";
+    f.action = "http://127.0.0.1:" + port + "/gorani-login";
+    fields.state = state;
+    Object.keys(fields).forEach(function (k) {
+      var i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = fields[k]; f.appendChild(i);
+    });
+    document.body.appendChild(f);
+    f.submit();
+  }
+  function broken() { handOff({ error: "service" }); }   // 웹 쪽 고장 — 플러그인이 이번 고급을 연다
+  if (!FIREBASE.apiKey || !GOOGLE_CLIENT_ID) return broken();   // 설정 전·설정 실수도 우리 쪽 고장이다
+
+  // Firebase REST — 실패는 Error(거절 넷 중 하나 | 'service')
+  function firebase(url, body, form) {
+    return fetch(url, { method: "POST", headers: { "Content-Type": form ? "application/x-www-form-urlencoded" : "application/json" },
+      body: form ? new URLSearchParams(body).toString() : JSON.stringify(body) }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        if (r.ok) return j;
+        var m = String((j.error && j.error.message) || "").split(/[\s:]/)[0];
+        throw new Error(DENIED.indexOf(m) >= 0 ? m : "service");
+      });
+    }, function () { throw new Error("service"); });
+  }
+  function store(value) {
+    try { if (value) localStorage.setItem(SESSION_KEY, JSON.stringify(value)); else localStorage.removeItem(SESSION_KEY); } catch (e) {}
+  }
+  function saved() {
+    try { var s = JSON.parse(localStorage.getItem(SESSION_KEY) || "null"); return s && s.refresh ? s : null; } catch (e) { return null; }
+  }
+  function fail(err) {
+    if (err && err.message === "service") return broken();
+    msg(T.fail, "err");   // 거절(사용 중지된 계정 등) — 넘기지 않는다
+    showButtons();
+  }
+  // 구글 ID 토큰 → Firebase 열쇠(처음이면 그 자리에서 가입)
+  function onCredential(resp) {
+    msg(T.working, "busy");
+    firebase(URLS.identity + "accounts:signInWithIdp?key=" + FIREBASE.apiKey, {
+      postBody: "id_token=" + encodeURIComponent(resp.credential) + "&providerId=google.com", requestUri: location.origin, returnSecureToken: true
+    }).then(function (res) {
+      store({ refresh: res.refreshToken, email: res.email });
+      handOff({ refresh_token: res.refreshToken });
+    }).catch(fail);
+  }
+  // 이 브라우저에 남은 열쇠 — securetoken으로 살아 있는지 보고 새 열쇠를 넘긴다
+  function continueAs(s) {
+    msg(T.working, "busy");
+    firebase(URLS.token + "?key=" + FIREBASE.apiKey, { grant_type: "refresh_token", refresh_token: s.refresh }, true).then(function (res) {
+      store({ refresh: res.refresh_token, email: s.email });
+      handOff({ refresh_token: res.refresh_token });
+    }).catch(function (err) {
+      if (err.message !== "service") store(null);
+      fail(err);
+    });
+  }
+
+  function showButtons() {
+    var acts = $("acts"); acts.innerHTML = "";
+    var s = saved();
+    if (s) {   // 이 브라우저에 웹 로그인이 남아 있으면 버튼 하나로 — 다른 계정은 '또는' 아래 구글 버튼
+      var b = document.createElement("button"); b.type = "button"; b.className = "again";
+      var avatar = document.createElement("span"); avatar.className = "avatar"; avatar.setAttribute("aria-hidden", "true"); avatar.textContent = (s.email || "?").charAt(0);
+      var who = document.createElement("span"); who.className = "who";
+      var title = document.createElement("b"); title.textContent = T.cont;
+      var email = document.createElement("small"); email.textContent = s.email;
+      who.appendChild(title); who.appendChild(email);
+      b.appendChild(avatar); b.appendChild(who);
+      b.onclick = function () { continueAs(s); };
+      acts.appendChild(b);
+      var or = document.createElement("div"); or.className = "or"; or.textContent = T.or; acts.appendChild(or);
+    }
+    var g = document.createElement("div"); g.className = "gis"; acts.appendChild(g);
+    if (!(window.google && google.accounts && google.accounts.id)) return broken();
+    google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: onCredential, auto_select: false, context: "signin" });
+    google.accounts.id.renderButton(g, { theme: "outline", size: "large", shape: "pill", text: "continue_with", logo_alignment: "center",
+      width: Math.min(400, g.clientWidth || 320), locale: lang });   // 카드 폭에 맞춘다(구글 버튼은 400 px까지)
+  }
+
+  var gis = document.createElement("script");
+  gis.src = URLS.gis; gis.async = true;
+  gis.onload = showButtons; gis.onerror = broken;   // 구글 버튼을 못 받으면(차단·접속 안 됨) 고장으로 넘긴다
+  document.head.appendChild(gis);
+})();
+</script>
+</body>
+</html>

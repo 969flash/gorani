@@ -162,6 +162,8 @@
       track("install_os", { os: os });
     });
   });
+  // 물음표 도움말(details.q): 바깥을 누르면 닫는다
+  document.addEventListener("click", function (e) { document.querySelectorAll("details.q[open]").forEach(function (d) { if (!d.contains(e.target)) d.open = false; }); });
   // 설치 받기 링크: 플러그인 저장소의 최신 릴리스를 읽어 파일 주소·버전을 맞춘다(실패하면 페이지에 적힌 값 그대로)
   var releaseLinks = document.querySelectorAll("[data-release]");
   if ((releaseLinks.length || document.querySelector("[data-release-ver]")) && window.fetch) {

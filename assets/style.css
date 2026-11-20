@@ -491,6 +491,7 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 .credit .ver-tag { color: var(--ink-3); }
 .fine .mark { --s: 24px; color: var(--ink); }
 .fine .btn { height: 34px; margin-left: auto; padding: 0 14px; font-size: 13px; }
+.fine > p:not(.credit) { flex: 1 1 240px; }   /* 후원 글이 먼저 줄바꿈해 [후원하기]가 같은 줄에 남게(꼬리말 링크가 늘어 일본어에서 밀렸다) */
 
 /* ── 좁은 화면 ── */
 @media (max-width: 900px) {   /* 위아래로 쌓기: 가운데 문구, 아래 시연 화면 */
@@ -758,6 +759,42 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 /* 한국 데이터: 레이어마다 원천과 판(기준일)을 한 줄 더 */
 .kr-sources dd small { display: block; margin-top: 2px; font-size: 13px; line-height: 20px; color: var(--ink-3); }
 .kr-sources dd a { color: inherit; }
+
+/* ── 처리방침·약관(privacy/, terms/) — 글 읽는 폭 하나, 표는 좁은 화면에서 옆으로 민다 ── */
+.doc { max-width: 760px; padding: 48px 0 96px; }
+.doc h1 { font-size: clamp(30px, 4vw, 40px); line-height: 1.15; font-weight: 700; letter-spacing: -.03em; }
+.doc .meta { margin-top: 8px; color: var(--ink-3); font-size: 14px; }
+.doc section { scroll-margin-top: 80px; }
+.doc h2 { margin: 40px 0 12px; font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: -.01em; }
+.doc p, .doc ul, .doc ol { margin: 0 0 12px; color: var(--ink-2); }
+.doc ul, .doc ol { padding-left: 22px; }
+.doc li + li { margin-top: 4px; }
+.doc li > ul { margin: 6px 0 0; }
+.doc .summary { margin: 24px 0 8px; padding: 16px 20px 6px; border-radius: 12px; background: var(--press); }
+.doc .summary h2 { margin: 0 0 8px; font-size: 15px; line-height: 22px; }
+.doc .summary ul { color: var(--ink); }
+.doc .toc { margin-top: 24px; font-size: 14px; line-height: 22px; }
+.doc .toc ol { columns: 2 240px; column-gap: 32px; padding-left: 0; list-style: none; }
+.doc .toc a { color: var(--ink-2); text-decoration: none; }
+.doc .toc a:hover { color: var(--ink); text-decoration: underline; }
+.doc .tbl { overflow-x: auto; margin: 8px 0 16px; border-top: 1px solid var(--ink); }
+.doc table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14px; line-height: 21px; }
+.doc th, .doc td { padding: 10px 8px; border-bottom: 1px solid var(--hair); text-align: left; vertical-align: top; }
+.doc th { font-weight: 600; white-space: nowrap; }
+.doc td:first-child { font-weight: 600; color: var(--ink); }
+.legal .foot .credit a { white-space: nowrap; }
+.legal .top-tools { margin-left: auto; }
+.doc .toc { margin-bottom: 32px; }
+@media (max-width: 640px) {   /* 좁은 화면: 표 한 줄 = 카드 하나, 칸 이름(data-label)을 앞에 */
+  .doc .tbl { overflow: visible; border-top: 0; }
+  .doc table, .doc tbody, .doc tr, .doc td { display: block; min-width: 0; }
+  .doc thead { position: absolute; left: -9999px; }
+  .doc tr { padding: 12px 0; border-top: 1px solid var(--hair); }
+  .doc tr:first-child { border-top-color: var(--ink); }
+  .doc td { padding: 2px 0; border: 0; }
+  .doc td:first-child { padding-bottom: 6px; font-size: 15px; }
+  .doc td:not(:first-child)::before { content: attr(data-label); display: block; color: var(--ink-3); font-size: 12px; line-height: 18px; }
+}
 
 /* Rhino 설치 오류 때만 펴는 파일 받기(기본 설치는 패키지 매니저) */
 .install-help { margin: 0 -32px; padding: 0 32px; border-top: 1px solid var(--hair); }

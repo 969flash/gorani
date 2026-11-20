@@ -50,4 +50,32 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://gorani.site/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gorani.site/en/"/>
   </url>
+  <url>
+    <loc>https://gorani.site/privacy/</loc>
+    <lastmod>2026-11-16</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gorani.site/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gorani.site/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gorani.site/en/privacy/"/>
+  </url>
+  <url>
+    <loc>https://gorani.site/en/privacy/</loc>
+    <lastmod>2026-11-16</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gorani.site/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gorani.site/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gorani.site/en/privacy/"/>
+  </url>
+  <url>
+    <loc>https://gorani.site/terms/</loc>
+    <lastmod>2026-11-16</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gorani.site/terms/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gorani.site/en/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gorani.site/en/terms/"/>
+  </url>
+  <url>
+    <loc>https://gorani.site/en/terms/</loc>
+    <lastmod>2026-11-16</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gorani.site/terms/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gorani.site/en/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gorani.site/en/terms/"/>
+  </url>
 </urlset>

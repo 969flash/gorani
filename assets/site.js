@@ -52,6 +52,21 @@
     if (e.key === "Escape" && open) { closePops(); open.querySelector("summary").focus(); }
   });
 
+  // ── 머리줄 계정: 회원 API를 배포했을 때만 보인다(assets/account.js). 손님은 검은 [로그인](눈에 띄게), 로그인했으면 꽉 찬 사람 아이콘 → 계정 페이지 ──
+  var accountLink = document.querySelector(".account-link");
+  if (accountLink && window.GoraniAccount && window.GoraniAccount.ready) {
+    var signed = window.GoraniAccount.saved();
+    if (signed) {
+      accountLink.querySelector("use").setAttribute("href", "#i-user-on");
+      accountLink.classList.add("signed-in");
+      accountLink.setAttribute("aria-label", accountLink.getAttribute("data-account") + " · " + signed.email);
+      accountLink.title = signed.email;
+    } else {
+      accountLink.classList.add("cta");
+    }
+    accountLink.hidden = false;
+  }
+
   // ── 행동 통계: 고른 프로그램, 설치 버튼, 바깥 링크, 언어 전환, 어느 섹션까지 봤는지 ──
   var pageLang = document.documentElement.lang;
   function place(el) { return el.closest("header") ? "header" : el.closest(".hero") ? "hero" : el.closest("footer") ? "footer" : "body"; }
@@ -61,6 +76,7 @@
     var a = e.target.closest("a");
     if (!a) return;
     if (a.closest(".language-switch")) return track("language_switch", { from: pageLang, to: a.getAttribute("lang") });
+    if (a.classList.contains("account-link")) return track("account_click", { signed_in: a.classList.contains("signed-in") ? 1 : 0 });
     if (a.getAttribute("href") === "#install") return track("install_cta", { place: place(a) });
     if (a.closest(".install-links")) return track("install_download", { target: a.textContent.trim() });
     var href = a.href;

@@ -31,7 +31,7 @@
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="../assets/style.css?v=202611161200">
+<link rel="stylesheet" href="../assets/style.css?v=202611201200">
 <link rel="preload" href="../assets/demo-poster.webp" as="image">
 <script type="application/ld+json">
 {
@@ -45,7 +45,7 @@
       "applicationSubCategory": "Rhino 7/8, SketchUp, Blender plugin",
       "operatingSystem": "Windows, macOS",
       "softwareRequirements": "Rhinoceros 7 及以上、SketchUp 2022 及以上、Blender 4.2 及以上",
-      "softwareVersion": "0.3.9",
+      "softwareVersion": "0.4.0",
       "isAccessibleForFree": true,
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "inLanguage": "zh",
@@ -80,6 +80,8 @@
   <symbol id="i-check" viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-play" viewBox="0 0 16 16"><path d="M4.5 2.8v10.4a.6.6 0 0 0 .9.5l8.2-5.2a.6.6 0 0 0 0-1L5.4 2.3a.6.6 0 0 0-.9.5z" fill="currentColor"/></symbol>
   <symbol id="i-pause" viewBox="0 0 16 16"><rect x="3.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/><rect x="9.5" y="2.5" width="3" height="11" rx="1" fill="currentColor"/></symbol>
+  <symbol id="i-user" viewBox="0 0 16 16"><circle cx="8" cy="5.5" r="2.75" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M2.75 13.5c.6-2.6 2.7-4.25 5.25-4.25s4.65 1.65 5.25 4.25" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></symbol>
+  <symbol id="i-user-on" viewBox="0 0 16 16"><circle cx="8" cy="5.5" r="3" fill="currentColor"/><path d="M2.5 13.75c.6-2.85 2.85-4.75 5.5-4.75s4.9 1.9 5.5 4.75z" fill="currentColor"/></symbol>
   <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.75" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M2.5 8h11M8 2.25c1.55 1.55 2.25 3.35 2.25 5.75S9.55 12.2 8 13.75C6.45 12.2 5.75 10.4 5.75 8S6.45 3.8 8 2.25Z" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-close" viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
@@ -101,6 +103,7 @@
       <a href="#contact">联系</a>
     </nav>
     <div class="top-tools">
+      <a class="icon-btn account-link" href="../account/?lang=zh" data-account="账户" hidden><svg aria-hidden="true"><use href="#i-user"/></svg><span class="account-label">登录</span></a>
       <a class="icon-btn" href="https://github.com/969flash/gorani-plugin" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
       <details class="language-switch">
         <summary aria-label="语言"><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
@@ -240,7 +243,7 @@
             <h3>快速安装</h3>
             <p>Rhino 的 Package Manager 会打开并显示 Gorani 的搜索结果。</p>
           </div>
-          <ul class="install-links"><li><a href="rhino8://package/search?name=gorani" data-release="tag">Rhino 8 Gorani <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="rhino7://package/search?name=gorani" data-release="tag">Rhino 7 Gorani <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+          <ul class="install-links"><li><a href="rhino8://package/search?name=gorani" data-release="tag">Rhino 8 Gorani <span class="ver">0.4.0</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="rhino7://package/search?name=gorani" data-release="tag">Rhino 7 Gorani <span class="ver">0.4.0</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -264,7 +267,7 @@
           </ol>
           <details class="faq-item install-help" id="install-help">
             <summary><h3>安装出错？</h3><span>学校或公司的电脑可能会用防火墙阻止 Rhino 联网。下载文件并拖到 Rhino 窗口中即可安装。</span></summary>
-            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-rh8_0-any.yak" data-release="rhino8">Rhino 8 .yak<svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-rh7_0-win.yak" data-release="rhino7-win">Rhino 7 Windows .yak<svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-rh7_0-mac.yak" data-release="rhino7-mac">Rhino 7 Mac .yak<svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a><details class="q"><summary aria-label="Mac 版 Rhino 7 安装方法">?</summary><div class="q-pop"><p>Mac 版 Rhino 7 无法通过拖放安装。下载后在终端中运行：</p><span class="cmd path"><code>"/Applications/Rhino 7.app/Contents/Resources/bin/yak" install ~/Downloads/Gorani-*-rh7_0-mac.yak</code><button type="button" class="copy" data-copy="&quot;/Applications/Rhino 7.app/Contents/Resources/bin/yak&quot; install ~/Downloads/Gorani-*-rh7_0-mac.yak" data-done="已复制 命令" aria-label="复制 命令"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span></div></details></li></ul>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-0.4.0-rh8_0-any.yak" data-release="rhino8">Rhino 8 .yak<svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-0.4.0-rh7_0-win.yak" data-release="rhino7-win">Rhino 7 Windows .yak<svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-0.4.0-rh7_0-mac.yak" data-release="rhino7-mac">Rhino 7 Mac .yak<svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a><details class="q"><summary aria-label="Mac 版 Rhino 7 安装方法">?</summary><div class="q-pop"><p>Mac 版 Rhino 7 无法通过拖放安装。下载后在终端中运行：</p><span class="cmd path"><code>"/Applications/Rhino 7.app/Contents/Resources/bin/yak" install ~/Downloads/Gorani-*-rh7_0-mac.yak</code><button type="button" class="copy" data-copy="&quot;/Applications/Rhino 7.app/Contents/Resources/bin/yak&quot; install ~/Downloads/Gorani-*-rh7_0-mac.yak" data-done="已复制 命令" aria-label="复制 命令"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span></div></details></li></ul>
           </details>
         </div>
       </div>
@@ -274,7 +277,7 @@
             <h3>快速安装</h3>
             <p>等待 Extension Warehouse 批准</p>
           </div>
-          <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/bsh_gorani-0.3.9.rbz" data-release="sketchup">SketchUp Gorani <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+          <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/bsh_gorani-0.4.0.rbz" data-release="sketchup">SketchUp Gorani <span class="ver">0.4.0</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
         </div>
         <div class="install-card">
           <ol class="steps install-list">
@@ -326,7 +329,7 @@
               <p>等待 Autodesk App Store 批准</p>
             </div>
             <div class="seg os-switch" role="group" aria-label="操作系统"><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">macOS</button></div>
-            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-autocad-win-0.3.6.zip" data-release="autocad-win">Windows Gorani <span class="ver">0.3.6</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-autocad-win-0.3.6.zip" data-release="autocad-win">Windows Gorani <span class="ver">0.3.6</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
           </div>
           <div class="install-card">
             <ol class="steps install-list">
@@ -357,7 +360,7 @@
               <p>等待 Autodesk App Store 批准</p>
             </div>
             <div class="seg os-switch" role="group" aria-label="操作系统"><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">macOS</button></div>
-            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-autocad-mac-0.3.6.zip" data-release="autocad-mac">macOS Gorani <span class="ver">0.3.6</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-autocad-mac-0.3.6.zip" data-release="autocad-mac">macOS Gorani <span class="ver">0.3.6</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
           </div>
           <div class="install-card">
             <ol class="steps install-list">
@@ -391,7 +394,7 @@
               <p>下载与你的 Archicad 版本对应的文件</p>
             </div>
             <div class="seg os-switch" role="group" aria-label="操作系统"><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">macOS</button></div>
-            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad30-win.zip" data-release="archicad-30-win">Archicad 30 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad29-win.zip" data-release="archicad-29-win">Archicad 29 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad28-win.zip" data-release="archicad-28-win">Archicad 28 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad27-win.zip" data-release="archicad-27-win">Archicad 27 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-0.4.0-Archicad30-win.zip" data-release="archicad-30-win">Archicad 30 <span class="ver">0.4.0</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-0.4.0-Archicad29-win.zip" data-release="archicad-29-win">Archicad 29 <span class="ver">0.4.0</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-0.4.0-Archicad28-win.zip" data-release="archicad-28-win">Archicad 28 <span class="ver">0.4.0</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-0.4.0-Archicad27-win.zip" data-release="archicad-27-win">Archicad 27 <span class="ver">0.4.0</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
           </div>
           <div class="install-card">
             <ol class="steps install-list">
@@ -421,7 +424,7 @@
               <p>下载与你的 Archicad 版本对应的文件</p>
             </div>
             <div class="seg os-switch" role="group" aria-label="操作系统"><button type="button" data-os="win" aria-pressed="true">Windows</button><button type="button" data-os="mac" aria-pressed="false">macOS</button></div>
-            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad30-mac.zip" data-release="archicad-30-mac">Archicad 30 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad29-mac.zip" data-release="archicad-29-mac">Archicad 29 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad28-mac.zip" data-release="archicad-28-mac">Archicad 28 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-Archicad27-mac.zip" data-release="archicad-27-mac">Archicad 27 <span class="ver">0.3.9</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
+            <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-0.4.0-Archicad30-mac.zip" data-release="archicad-30-mac">Archicad 30 <span class="ver">0.4.0</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-0.4.0-Archicad29-mac.zip" data-release="archicad-29-mac">Archicad 29 <span class="ver">0.4.0</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-0.4.0-Archicad28-mac.zip" data-release="archicad-28-mac">Archicad 28 <span class="ver">0.4.0</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/Gorani-0.4.0-Archicad27-mac.zip" data-release="archicad-27-mac">Archicad 27 <span class="ver">0.4.0</span><svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li></ul>
           </div>
           <div class="install-card">
             <ol class="steps install-list">
@@ -759,7 +762,7 @@
         <div class="faq">
           <details class="faq-item" open>
             <summary><h3>真的免费吗？</h3></summary>
-            <p>是的，也不需要注册账号。项目依靠赞助运营。</p>
+            <p>是的。基础模型无需账号，高级模型使用 Google 账户登录后免费使用。项目依靠赞助运营。</p>
           </details>
           <details class="faq-item">
             <summary><h3>需要 Grasshopper 或其他软件吗？</h3></summary>
@@ -879,13 +882,14 @@
   <div class="wrap">
     <div class="fine">
       <span class="mark" aria-hidden="true"></span>
-      <p class="credit"><span>Made by <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a></span><a href="mailto:gorani.3d@gmail.com">gorani.3d@gmail.com</a><a href="../en/privacy/" hreflang="en">隐私政策</a><a href="../en/terms/" hreflang="en">使用条款</a><span class="ver-tag">v<span data-release-ver>0.3.9</span></span></p>
+      <p class="credit"><span>Made by <a href="https://github.com/969flash">Hoon</a> and <a href="https://wjcho.com">Cho</a></span><a href="mailto:gorani.3d@gmail.com">gorani.3d@gmail.com</a><a href="../en/privacy/" hreflang="en">隐私政策</a><a href="../en/terms/" hreflang="en">使用条款</a><span class="ver-tag">v<span data-release-ver>0.4.0</span></span></p>
       <p>我们是饿着肚子的研究生。如果 Gorani 帮到了你，请请我们喝杯咖啡。</p>
       <a class="btn" href="https://github.com/sponsors/969flash">在 GitHub 上赞助</a>
     </div>
   </div>
 </footer>
 <p id="live" class="skip" aria-live="polite"></p>
-<script src="../assets/site.js?v=202611091200" defer></script>
+<script src="../assets/account.js?v=202611191800" defer></script>
+<script src="../assets/site.js?v=202611182000" defer></script>
 </body>
 </html>

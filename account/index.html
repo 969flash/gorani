@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>내 계정 · Gorani</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/style.css?v=202611181800">
+<style>
+  /* 계정 페이지 — 웹 로그인(구글)과 계정별 생성 기록(3D 프로그램별). Firebase는 assets/account.js·tools/account, 설계는 gorani-plugin docs/account_plan.md '생성 기록' */
+  [hidden] { display: none !important; }   /* display를 준 칸(.state·.banner·label)도 hidden이면 숨긴다 */
+  .acct { width: min(880px, 100% - 32px); margin: 40px auto 96px; }
+  .state { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 160px; color: var(--ink-2); font-size: 15px; text-align: center; }
+  .state .btn { margin-left: 4px; height: 36px; padding: 0 14px; font-size: 14px; }
+  .err { color: #B3261E; }
+
+  /* 로그인 */
+  .signin { width: min(360px, 100%); margin: 32px auto 0; text-align: center; }   /* 한 칸 — 구글 버튼이 칸 너비만큼이라 글줄 가장자리가 버튼에 맞는다 */
+  .signin .mark { --s: 48px; color: var(--ink); }
+  .signin h1 { margin-top: 16px; font-size: 24px; line-height: 32px; font-weight: 700; letter-spacing: -.02em; }
+  .signin .sub { margin-top: 8px; color: var(--ink-2); font-size: 16px; line-height: 24px; text-wrap: balance; }
+  .signin .gbtn { display: grid; justify-items: center; margin-top: 28px; min-height: 44px; }
+  .signin .msg { margin-top: 20px; color: var(--ink-2); font-size: 14px; line-height: 21px; }
+  .signin .terms-note { margin-top: 16px; color: var(--ink-3); font-size: 12px; line-height: 18px; text-wrap: balance; }   /* 버튼 바로 아래 — 약관 동의·가입 한 문장 */
+  .signin .terms-note a { color: var(--ink-2); white-space: nowrap; }   /* 링크 이름이 줄 사이에서 쪼개지지 않게 */
+
+  /* 계정 머리 */
+  .who { display: flex; align-items: center; gap: 16px; padding-bottom: 28px; border-bottom: 1px solid var(--hair); }
+  .avatar { display: grid; place-items: center; flex: none; width: 48px; height: 48px; border-radius: 999px; background: var(--ink); color: var(--on-ink); font-weight: 700; font-size: 20px; }
+  .who-text { flex: 1; min-width: 0; }
+  .who-email { font-weight: 700; font-size: 18px; line-height: 26px; overflow-wrap: anywhere; }
+  .who-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin-top: 2px; color: var(--ink-3); font-size: 14px; line-height: 20px; }
+  .plan { padding: 0 8px; border: 1px solid var(--hair); border-radius: 999px; color: var(--ink-2); font-size: 12px; line-height: 20px; font-weight: 600; }
+  .who .btn { height: 36px; padding: 0 14px; font-size: 14px; }
+
+  /* 구역 */
+  .sec { margin-top: 48px; }
+  .sec h2 { font-size: 20px; line-height: 28px; font-weight: 700; letter-spacing: -.01em; }
+  .sec-sub { margin-top: 4px; color: var(--ink-3); font-size: 14px; line-height: 21px; }
+  .hist-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; }
+  .tools button img { width: 16px; height: 16px; object-fit: contain; }
+  .tools button .n { color: var(--ink-3); font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .tools button[aria-selected="true"] .n { color: var(--ink-2); }
+  .star-filter { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border: 1px solid var(--hair); border-radius: 8px; background: var(--surface); color: var(--ink-2); font-size: 14px; font-weight: 500; cursor: pointer; }
+  .star-filter:hover { background: var(--press); color: var(--ink); }
+  .star-filter[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
+  .star-filter svg { width: 15px; height: 15px; }
+  .banner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-top: 16px; padding: 12px 16px; border-radius: 8px; background: var(--press); color: var(--ink-2); font-size: 14px; line-height: 21px; }
+  .banner .btn { height: 32px; padding: 0 12px; font-size: 13px; }
+  .hist { margin: 16px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--hair); }
+  .hist > li { border-bottom: 1px solid var(--hair); }
+  .row { display: flex; align-items: center; gap: 8px; }
+  /* 목록 한 줄: 이름과 주소 · 날짜 · ☆ — 프로그램·범위·수준·설정은 펼쳐서 */
+  .open { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 14px; flex: 1; min-width: 0; padding: 12px 4px; border: 0; background: none; text-align: left; cursor: pointer; border-radius: 8px; }
+  .open:hover .name { text-decoration: underline; text-underline-offset: 3px; }
+  .txt { display: grid; min-width: 0; }
+  .name, .addr { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .name { font-weight: 600; font-size: 15px; line-height: 22px; }
+  .addr { color: var(--ink-3); font-size: 13px; line-height: 19px; }
+  .when { color: var(--ink-3); font-size: 13px; line-height: 19px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .star, .edit { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border: 0; border-radius: 8px; background: none; color: var(--ink-3); cursor: pointer; }
+  .star:hover, .edit:hover { background: var(--press); color: var(--ink); }
+  .star[aria-pressed="true"] { color: var(--ink); }
+  .star svg { width: 18px; height: 18px; }
+  .edit svg { width: 16px; height: 16px; }
+  .edit { visibility: hidden; }   /* 이름 바꾸기 — 펼쳤거나 마우스를 올렸을 때만(목록은 단순하게) */
+  .hist > li.is-open .edit, .hist > li:hover .edit, .hist > li:focus-within .edit { visibility: visible; }
+  /* 펼친 정보 — 제목(15px 굵게) 아래 주소 줄과 같은 13px 단계: 항목 이름은 연하게, 값은 한 단계 진하게 */
+  .detail { padding: 0 4px 16px; }
+  .facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 16px; margin: 0; font-size: 13px; line-height: 20px; }
+  .facts dt { color: var(--ink-3); }
+  .facts dd { margin: 0; color: var(--ink-2); overflow-wrap: anywhere; }
+  .facts a { color: var(--ink-2); }
+  /* 이름 바꾸기 — '이름' 줄 그 자리에서 */
+  .rename { display: flex; flex: 1; flex-wrap: wrap; align-items: center; gap: 6px; padding: 10px 0; }
+  .rename .btn { height: 34px; padding: 0 12px; font-size: 13px; }
+  .rename input { flex: 1 1 200px; min-width: 0; height: 34px; padding: 0 8px; border: 1px solid var(--hair); border-radius: 6px; font: inherit; font-size: 15px; font-weight: 600; }   /* 제목과 같은 글자 — 제목을 그 자리에서 고친다 */
+  .rename input:focus { outline: 2px solid var(--ink); outline-offset: -1px; }
+  .empty { margin-top: 16px; padding: 40px 16px; border: 1px dashed var(--hair); border-radius: 12px; text-align: center; }
+  .empty b { display: block; font-size: 15px; line-height: 22px; }
+  .empty p { margin-top: 6px; color: var(--ink-3); font-size: 14px; line-height: 21px; }
+
+  /* 연결·설정 */
+  .lines { margin: 16px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--hair); }
+  .lines > li { display: flex; align-items: center; gap: 12px; padding: 14px 4px; border-bottom: 1px solid var(--hair); }
+  .lines img { width: 24px; height: 24px; object-fit: contain; flex: none; }
+  .lines .grow { flex: 1; min-width: 0; }
+  .lines b { display: block; font-size: 15px; line-height: 22px; }
+  .lines span { display: block; color: var(--ink-3); font-size: 13px; line-height: 19px; }
+  .lines .btn { flex: none; height: 34px; padding: 0 12px; font-size: 13px; }
+  .lines .btn.danger { color: #B3261E; }
+  .lines .btn:disabled { opacity: .45; cursor: default; background: var(--surface); }
+  .acct-foot { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--hair); color: var(--ink-3); font-size: 13px; }
+  .acct-foot a { color: var(--ink-2); }
+
+  /* 확인 창·알림 */
+  .ask { width: min(420px, 100% - 32px); padding: 24px; border: 1px solid var(--hair); border-radius: 12px; background: var(--surface); color: var(--ink); box-shadow: 0 24px 48px -24px rgba(20, 20, 20, .4); }
+  .ask::backdrop { background: rgba(20, 20, 20, .32); }
+  .ask h3 { font-size: 18px; line-height: 26px; font-weight: 700; }
+  .ask p { margin-top: 8px; color: var(--ink-2); font-size: 14px; line-height: 21px; }
+  .ask label { display: flex; align-items: flex-start; gap: 8px; margin-top: 16px; font-size: 14px; line-height: 21px; cursor: pointer; }
+  .ask label input { margin-top: 3px; }
+  .ask .ask-acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px; }
+  .ask .btn { height: 38px; padding: 0 16px; font-size: 14px; }
+  .btn.danger-go { background: #B3261E; border-color: #B3261E; color: #FFFFFF; }
+  .btn.danger-go:hover { background: #9A1F19; }
+  .toast { position: fixed; left: 50%; bottom: 24px; z-index: 20; max-width: calc(100% - 32px); padding: 10px 16px; border-radius: 999px; background: var(--ink); color: var(--on-ink); font-size: 14px; line-height: 20px; transform: translate(-50%, 16px); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+  .toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+  @media (max-width: 640px) {
+    .acct { width: min(880px, 100% - 24px); margin-top: 24px; }
+    .who { flex-wrap: wrap; }
+    .who-text { flex-basis: calc(100% - 64px); }   /* 로그아웃은 다음 줄로 — 메일이 중간에서 끊기지 않게 */
+    .who .btn { margin-left: 64px; }
+    .hist-bar { align-items: stretch; }
+    .seg.tools { grid-template-columns: repeat(2, 1fr); }   /* 탭 넷: 두 칸씩 두 줄(사이트 공통 .seg는 세 칸) */
+    .tools button { justify-content: center; padding: 0 12px; font-size: 14px; }
+    .open { gap: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-star" viewBox="0 0 16 16"><path d="M8 1.9l1.8 3.75 4.1.55-3 2.85.75 4.05L8 11.15 4.35 13.1l.75-4.05-3-2.85 4.1-.55z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+  <symbol id="i-star-on" viewBox="0 0 16 16"><path d="M8 1.9l1.8 3.75 4.1.55-3 2.85.75 4.05L8 11.15 4.35 13.1l.75-4.05-3-2.85 4.1-.55z" fill="currentColor" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 16 16"><path d="M10.6 2.6l2.8 2.8-7.9 7.9-3.4.6.6-3.4z M9.2 4l2.8 2.8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 16 16"><circle cx="8" cy="5.5" r="2.75" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M2.75 13.5c.6-2.6 2.7-4.25 5.25-4.25s4.65 1.65 5.25 4.25" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></symbol>
+  <symbol id="i-user-on" viewBox="0 0 16 16"><circle cx="8" cy="5.5" r="3" fill="currentColor"/><path d="M2.5 13.75c.6-2.85 2.85-4.75 5.5-4.75s4.9 1.9 5.5 4.75z" fill="currentColor"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.75" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M2.5 8h11M8 2.25c1.55 1.55 2.25 3.35 2.25 5.75S9.55 12.2 8 13.75C6.45 12.2 5.75 10.4 5.75 8S6.45 3.8 8 2.25Z" fill="none" stroke="currentColor" stroke-width="1.1"/></symbol>
+  <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+</svg>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" id="home" href="../" aria-label="Gorani"><span class="mark" aria-hidden="true"></span>Gorani</a>
+    <nav class="nav" id="nav"></nav>
+    <div class="top-tools">
+      <a class="icon-btn account-link" id="acct-icon" href="./" aria-current="page"><svg aria-hidden="true"><use href="#i-user"/></svg></a>
+      <a class="icon-btn" href="https://github.com/969flash/gorani-plugin" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
+      <details class="language-switch" id="lang-switch">
+        <summary><svg aria-hidden="true"><use href="#i-globe"/></svg></summary>
+        <div class="language-menu" role="menu" id="lang-menu"></div>
+      </details>
+      <details class="menu-switch" id="menu">
+        <summary><svg aria-hidden="true"><use href="#i-menu"/></svg></summary>
+        <div class="language-menu menu-list" id="menu-list"></div>
+      </details>
+    </div>
+  </div>
+</header>
+
+<main class="acct" id="main">
+  <p class="state" id="state" role="status"><span class="run go" aria-hidden="true"></span><span id="state-text"></span></p>
+  <noscript><p class="state">JavaScript를 켜 주세요. · Please enable JavaScript.</p></noscript>
+
+  <section class="signin" id="signin" hidden>
+    <span class="mark" aria-hidden="true"></span>
+    <h1 id="si-title"></h1>
+    <p class="sub" id="si-sub"></p>
+    <div class="gbtn" id="gbtn"></div>
+    <p class="msg" id="si-msg" role="status" aria-live="polite"></p>
+    <p class="terms-note" id="si-fine"></p>
+  </section>
+
+  <div id="dash" hidden>
+    <section class="who" aria-label="계정">
+      <span class="avatar" id="avatar" aria-hidden="true"></span>
+      <div class="who-text">
+        <h1 class="who-email" id="email"></h1>
+        <p class="who-meta"><span class="plan" id="plan"></span><span id="joined"></span></p>
+      </div>
+      <button type="button" class="btn" id="logout"></button>
+    </section>
+
+    <section class="sec" aria-labelledby="h-history">
+      <h2 id="h-history"></h2>
+      <p class="sec-sub" id="hist-note"></p>
+      <div class="hist-bar">
+        <div class="seg tools" id="tools" role="tablist"></div>
+        <button type="button" class="star-filter" id="star-filter" aria-pressed="false"><svg aria-hidden="true"><use href="#i-star"/></svg><span></span></button>
+      </div>
+      <div id="hist" role="tabpanel"></div>
+    </section>
+
+    <section class="sec" aria-labelledby="h-conn">
+      <h2 id="h-conn"></h2>
+      <p class="sec-sub" id="conn-sub"></p>
+      <ul class="lines" id="conns"></ul>
+    </section>
+
+    <section class="sec" aria-labelledby="h-settings">
+      <h2 id="h-settings"></h2>
+      <ul class="lines">
+        <li>
+          <div class="grow"><b id="clear-label"></b><span id="clear-desc"></span></div>
+          <button type="button" class="btn danger" id="clear"></button>
+        </li>
+        <li>
+          <div class="grow"><b id="del-label"></b><span id="del-desc"></span></div>
+          <button type="button" class="btn danger" id="del"></button>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <footer class="acct-foot" id="foot"></footer>
+</main>
+
+<dialog class="ask" id="ask">
+  <form method="dialog">
+    <h3 id="ask-title"></h3>
+    <p id="ask-body"></p>
+    <div class="ask-acts">
+      <button type="submit" class="btn" value="cancel" id="ask-cancel"></button>
+      <button type="submit" class="btn go" value="ok" id="ask-ok"></button>
+    </div>
+  </form>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../assets/account.js?v=202611191800"></script>
+<script>
+(function () {
+  "use strict";
+  var A = window.GoraniAccount;   // 배포 값·이 브라우저의 로그인·Firebase REST — assets/account.js
+  var q = new URLSearchParams(location.search);
+  var asked = (q.get("lang") || navigator.language || "").slice(0, 2).toLowerCase();
+  var lang = asked === "ko" ? "ko" : "en";   // 계정·처리방침은 한·영(다른 언어는 영어 — account_plan '다국어')
+  var SITE_LANGS = ["ko", "en", "ja", "zh", "es"];
+  var TOOLS = [   // 로그인이 있는 프로그램(Blender판은 스토어 약관상 로그인이 없다)
+    { id: "rhino", name: "Rhino", logo: "../assets/logo-rhino.png" },
+    { id: "sketchup", name: "SketchUp", logo: "../assets/logo-sketchup.png" },
+    { id: "archicad", name: "Archicad", logo: "../assets/logo-archicad.png" }
+  ];
+  var T = {
+    ko: {
+      title: "내 계정 · Gorani", account: "계정", nav: [["install", "설치"], ["usage", "사용법"], ["contact", "문의"]], menu: "메뉴", pageNav: "페이지 안", langPick: "언어 선택", signIn: "로그인", loading: "불러오는 중…", fail: "불러오지 못했습니다.", retry: "다시 시도",
+      siTitle: "Gorani 로그인", siSub: "간편 회원가입 후 고급 모델과 생성 기록을 무료로 이용하세요.",
+      fine: '계속하면 <a href="../terms/">이용약관</a>과 <a href="../privacy/">개인정보 처리방침</a>에 동의하며, 처음이면 바로 가입됩니다.',
+      unready: "로그인 기능을 준비 중입니다.", gis: "Google 로그인 버튼을 불러오지 못했습니다. 광고 차단·추적 방지 설정을 확인해 주세요.",
+      working: "로그인하는 중…", loginFail: "로그인하지 못했습니다. 다시 시도해 주세요.", busy: "시도가 너무 많습니다. 1분 뒤 다시 시도해 주세요.",
+      expired: "로그인이 만료되었습니다. 다시 로그인해 주세요.", welcome: "가입 완료", signedIn: "로그인 완료", net: "연결하지 못했습니다. 잠시 뒤 다시 시도해 주세요.",
+      joined: "{0} 가입", logout: "로그아웃", loggedOut: "로그아웃 완료",
+      history: "생성 기록", all: "전체", tools: "3D 프로그램", starOnly: "즐겨찾기",
+      emptyAll: "아직 생성 기록이 없습니다.", emptyAllSub: "Rhino·SketchUp·Archicad의 Gorani 패널에서 로그인하고 3D 모델을 만들면 여기에 표시됩니다.",
+      emptyTool: "{0}에서 만든 기록이 없습니다.", emptyToolSub: "{0}의 Gorani 패널에서 로그인하고 3D 모델을 만들면 여기에 표시됩니다.",
+      emptyStar: "즐겨찾기한 기록이 없습니다.", emptyStarSub: "기록의 ☆ 버튼을 누르면 여기에 표시됩니다.",
+      note: "결과 파일은 각 PC에 저장되고, Gorani 웹페이지에서는 최근 300개 대상지 생성 기록을 관리합니다.",
+      modes: { lots: "필지", area: "구역", point: "위치" }, rect: "사각형 한 변 {0}", circle: "원 반지름 {0}", adv: "고급 모델", basic: "기본 모델",
+      basemap: "{0} 베이스맵", sheets: "다이어그램 {0}장", tables: "조서",
+      fAddr: "주소", fTarget: "대상", fRange: "범위", fLevel: "수준", fSettings: "3D 설정", f2d: "2D 자료", fMadeIn: "프로그램", fMadeAt: "생성 일시",
+      lots: "필지 {0}", lotsMore: "필지 {0} 외 {1}개", area: "직접 그린 구역(꼭짓점 {0}개)", point: "지도에서 고른 위치", openMap: "지도에서 보기 ↗", noAddr: "주소 없음",
+      smooth: "지형 매끈", step: "지형 계단 {0} m", flat: "대상지 평탄화", minor: "소규모 건물 포함", brep: "Brep 형상", none: "—",
+      rename: "이름 바꾸기", save: "저장", cancel: "취소", star: "즐겨찾기", renamed: "이름 변경 완료",
+      clearLabel: "생성 기록 삭제", clearDesc: "이 계정에 저장된 생성 기록을 모두 삭제합니다.", clearQ: "생성 기록 {0}개를 모두 삭제할까요?",
+      clearBody: "PC의 결과 파일은 삭제되지 않습니다.", cleared: "생성 기록 삭제 완료", del: "삭제",
+      conn: "연결된 프로그램", connSub: "이 계정으로 로그인한 Gorani 패널 목록입니다. 쓰지 않는 PC는 연결을 해제하세요.",
+      connEmpty: "연결된 프로그램이 없습니다. Rhino·SketchUp·Archicad의 Gorani 패널에서 [Google 계정으로 로그인]을 누르세요.",
+      connMeta: "{0} · {1} 연결 · 마지막 확인 {2}", disconnect: "연결 해제", disconnectQ: "{0} 연결을 해제할까요?",
+      disconnectBody: "그 PC의 Gorani는 다음 확인 때 로그아웃됩니다.", disconnected: "연결 해제 완료",
+      settings: "설정",
+      delLabel: "탈퇴", delDesc: "회원 정보·연결된 프로그램·생성 기록을 모두 삭제합니다.", delQ: "Gorani에서 탈퇴할까요?",
+      delBody: "회원 정보, 연결된 프로그램, 생성 기록이 바로 삭제되며 되돌릴 수 없습니다. PC의 결과 파일은 삭제되지 않습니다.", deleted: "탈퇴 완료",
+      reauth: "탈퇴하려면 한 번 더 로그인해 주세요.",
+      privacy: "개인정보 처리방침", terms: "이용약관", home: "Gorani 홈", privacyHref: "../privacy/", termsHref: "../terms/"
+    },
+    en: {
+      title: "Your account · Gorani", account: "Account", nav: [["install", "Install"], ["usage", "How to use"], ["contact", "Contact"]], menu: "Menu", pageNav: "On this site", langPick: "Language", signIn: "Sign in", loading: "Loading…", fail: "Could not load your account.", retry: "Try again",
+      siTitle: "Sign in to Gorani", siSub: "Sign up free to use advanced models and generation history.",
+      fine: 'By continuing you agree to the <a href="../en/terms/">Terms</a> and <a href="../en/privacy/">Privacy Policy</a>, and new users are signed up right away.',
+      unready: "Sign-in is not available yet.", gis: "Could not load the Google sign-in button. Check ad or tracking blockers.",
+      working: "Signing in…", loginFail: "Could not sign in. Please try again.", busy: "Too many attempts. Please try again in a minute.",
+      expired: "Your session ended. Please sign in again.", welcome: "Welcome to Gorani.", signedIn: "Signed in.", net: "Could not connect. Please try again shortly.",
+      joined: "Joined {0}", logout: "Sign out", loggedOut: "Signed out.",
+      history: "Generation history", all: "All", tools: "3D program", starOnly: "Starred",
+      emptyAll: "No generation history yet.", emptyAllSub: "Sign in to the Gorani panel in Rhino, SketchUp or Archicad and generate a 3D model to see it here.",
+      emptyTool: "Nothing generated in {0} yet.", emptyToolSub: "Sign in to the Gorani panel in {0} and generate a 3D model to see it here.",
+      emptyStar: "No starred items.", emptyStarSub: "Star an item to see it here.",
+      note: "Result files stay on each computer. The Gorani website keeps your latest 300 generation records.",
+      modes: { lots: "Parcel", area: "Area", point: "Point" }, rect: "{0} square", circle: "{0} radius circle", adv: "Advanced model", basic: "Basic model",
+      basemap: "{0} base map", sheets: "{0} diagrams", tables: "tables",
+      fAddr: "Address", fTarget: "Target", fRange: "Range", fLevel: "Level", fSettings: "3D settings", f2d: "2D outputs", fMadeIn: "Program", fMadeAt: "Created",
+      lots: "Parcel {0}", lotsMore: "Parcel {0} and {1} more", area: "Drawn area ({0} vertices)", point: "Point picked on the map", openMap: "Open in map ↗", noAddr: "No address",
+      smooth: "Smooth terrain", step: "Stepped terrain {0} m", flat: "Flattened site", minor: "Minor buildings", brep: "Brep geometry", none: "—",
+      rename: "Rename", save: "Save", cancel: "Cancel", star: "Star", renamed: "Renamed.",
+      clearLabel: "Delete generation history", clearDesc: "Deletes all generation history saved to this account.", clearQ: "Delete all {0} generation records?",
+      clearBody: "Result files on your computer are not deleted.", cleared: "Generation history deleted", del: "Delete",
+      conn: "Connected programs", connSub: "Gorani panels signed in with this account. Disconnect computers you no longer use.",
+      connEmpty: "No connected programs. Press [Sign in with Google] in the Gorani panel in Rhino, SketchUp or Archicad.",
+      connMeta: "{0} · connected {1} · last checked {2}", disconnect: "Disconnect", disconnectQ: "Disconnect {0}?",
+      disconnectBody: "Gorani on that computer signs out at its next check.", disconnected: "Disconnected.",
+      settings: "Settings",
+      delLabel: "Delete account", delDesc: "Deletes your account, connections and generation history right away.", delQ: "Delete your Gorani account?",
+      delBody: "Your account, connected programs and generation history are deleted right away and can’t be restored. Result files on your computer are not deleted.", deleted: "Your account was deleted.",
+      reauth: "Sign in once more to delete your account.",
+      privacy: "Privacy Policy", terms: "Terms", home: "Gorani home", privacyHref: "../en/privacy/", termsHref: "../en/terms/"
+    }
+  }[lang];
+
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var fmt = function (s) { var args = [].slice.call(arguments, 1); return s.replace(/\{(\d)\}/g, function (_, i) { return args[i]; }); };
+  var toolOf = function (id) { return TOOLS.filter(function (t) { return t.id === id; })[0] || { id: id, name: id, logo: "" }; };
+
+  // ── 글자·링크 ──
+  document.documentElement.lang = lang;
+  document.title = T.title;
+  $("home").href = SITE_LANGS.indexOf(asked) > 0 ? "../" + asked + "/" : lang === "ko" ? "../" : "../en/";
+  $("home").setAttribute("aria-label", T.home);
+  var navHtml = T.nav.map(function (n) { return '<a href="' + $("home").getAttribute("href") + "#" + n[0] + '">' + esc(n[1]) + "</a>"; }).join("");
+  $("nav").innerHTML = navHtml;
+  $("nav").setAttribute("aria-label", T.pageNav);
+  $("menu-list").innerHTML = navHtml;
+  $("menu").querySelector("summary").setAttribute("aria-label", T.menu);
+  // 머리줄 오른쪽 — 홈과 같은 계정·GitHub·언어 아이콘. 언어는 계정 페이지가 있는 한국어·영어(누를 때 지금 탭을 이어 간다)
+  $("acct-icon").href = "?lang=" + lang;
+  $("lang-switch").querySelector("summary").setAttribute("aria-label", T.langPick);
+  $("lang-menu").innerHTML = [["ko", "한국어"], ["en", "English"]].map(function (l) {
+    return '<a href="?lang=' + l[0] + '" hreflang="' + l[0] + '" lang="' + l[0] + '" role="menuitem"' + (l[0] === lang ? ' aria-current="page"' : "") + ">" + l[1] + "</a>";
+  }).join("");
+  $("lang-menu").addEventListener("click", function (e) { var a = e.target.closest("a"); if (a) a.href = "?lang=" + a.lang + location.hash; });
+  // 펼침 메뉴(언어, 좁은 화면 메뉴): 하나만 열고, 링크·바깥 누르기·Esc로 닫는다 — 홈(site.js)과 같다
+  var pops = [$("lang-switch"), $("menu")];
+  pops.forEach(function (d) { d.addEventListener("toggle", function () { if (d.open) pops.forEach(function (o) { if (o !== d) o.open = false; }); }); });
+  document.addEventListener("click", function (e) { pops.forEach(function (d) { if (!d.contains(e.target) || e.target.closest(".language-menu a")) d.open = false; }); });
+  document.addEventListener("keydown", function (e) {
+    var open = pops.filter(function (d) { return d.open; })[0];
+    if (e.key === "Escape" && open) { open.open = false; open.querySelector("summary").focus(); }
+  });
+  // 계정 아이콘 — 손님은 사람 선, 로그인하면 꽉 찬 사람(홈 머리줄과 같다)
+  function setAccountIcon(email) {
+    var a = $("acct-icon");
+    a.classList.toggle("signed-in", !!email);
+    a.querySelector("use").setAttribute("href", email ? "#i-user-on" : "#i-user");
+    a.setAttribute("aria-label", email ? T.account + " · " + email : T.signIn);
+    a.title = email || T.signIn;
+  }
+  setAccountIcon((A.saved() || {}).email);
+  $("si-title").textContent = T.siTitle;
+  $("si-sub").textContent = T.siSub;
+  $("si-fine").innerHTML = T.fine;
+  $("logout").textContent = T.logout;
+  document.querySelector(".who").setAttribute("aria-label", T.account);
+  $("h-history").textContent = T.history;
+  $("tools").setAttribute("aria-label", T.tools);
+  $("star-filter").querySelector("span").textContent = T.starOnly;
+  $("hist-note").textContent = T.note;
+  $("h-conn").textContent = T.conn;
+  $("conn-sub").textContent = T.connSub;
+  $("h-settings").textContent = T.settings;
+  $("clear-label").textContent = T.clearLabel;
+  $("clear-desc").textContent = T.clearDesc;
+  $("clear").textContent = T.del;
+  $("del-label").textContent = T.delLabel;
+  $("del-desc").textContent = T.delDesc;
+  $("del").textContent = T.delLabel;
+  $("foot").innerHTML = '<a href="' + esc($("home").getAttribute("href")) + '">' + esc(T.home) + '</a><a href="' + T.privacyHref + '">' + esc(T.privacy) + '</a><a href="' + T.termsHref + '">' + esc(T.terms) + "</a>";
+
+  // ── 상태 ──
+  var S = { me: null, items: [], on: true, available: true, tool: "all", starOnly: false, open: {}, editing: "", deleting: "" };   // deleting = 다시 로그인하고 탈퇴할 메일
+  var hashTool = location.hash.slice(1);
+  if (TOOLS.some(function (t) { return t.id === hashTool; })) S.tool = hashTool;
+
+  function show(view, text, retry) {   // view: state | signin | dash
+    $("state").hidden = view !== "state";
+    $("signin").hidden = view !== "signin";
+    $("dash").hidden = view !== "dash";
+    if (view === "state") {
+      $("state").querySelector(".run").hidden = !!retry;
+      $("state-text").textContent = text || T.loading;
+      $("state-text").className = retry ? "err" : "";
+      var old = $("state").querySelector(".btn"); if (old) old.remove();
+      if (retry) { var b = document.createElement("button"); b.type = "button"; b.className = "btn"; b.textContent = T.retry; b.onclick = retry; $("state").appendChild(b); }
+    }
+  }
+  var toastTimer;
+  function toast(text) {
+    var el = $("toast"); el.textContent = text; el.classList.add("show");
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.classList.remove("show"); }, 2600);
+  }
+  // 확인 창 — {title, body, ok, danger} → Promise<{ok}>. <dialog>가 없는 옛 브라우저는 confirm
+  function ask(o) {
+    var d = $("ask");
+    if (typeof d.showModal !== "function") return Promise.resolve({ ok: window.confirm(o.title + "\n\n" + o.body) });
+    $("ask-title").textContent = o.title;
+    $("ask-body").textContent = o.body;
+    $("ask-cancel").textContent = T.cancel;
+    $("ask-ok").textContent = o.ok;
+    $("ask-ok").className = "btn " + (o.danger ? "danger-go" : "go");
+    d.returnValue = "";
+    d.showModal();
+    $("ask-cancel").focus();
+    return new Promise(function (resolve) {
+      d.addEventListener("close", function onClose() { d.removeEventListener("close", onClose); resolve({ ok: d.returnValue === "ok" }); });
+    });
+  }
+
+  // 회원 — Firebase(assets/account.js). 기록·설정·연결은 RTDB users/<uid> 아래(target·options·made_2d는 JSON 글로 들어 있다)
+  function list(obj) { return Object.keys(obj || {}).map(function (k) { var v = obj[k]; v.id = k; return v; }); }
+  function json(text) { try { return text ? JSON.parse(text) : null; } catch (e) { return null; } }
+  var ACTIONS = {
+    me: function () {
+      return Promise.all([A.token(), A.lookup(), A.db("connections")]).then(function (r) {
+        var user = (r[1].users || [])[0] || {};
+        return { email: r[0].claims.email, created: Number(user.createdAt) || null, entitlement: A.plan(r[0].claims),
+          connections: list(r[2]).sort(function (a, b) { return (b.seen || 0) - (a.seen || 0); }) };
+      });
+    },
+    history_list: function () {
+      return A.db("history").then(function (data) {   // 생성 기록은 늘 저장한다 — 끄는 설정 없음(2026-11-19 사용자). 지우기·탈퇴로 지운다
+        var items = list(data).map(function (it) {
+          it.target = json(it.target) || {}; it.options = json(it.options) || {}; it.made_2d = json(it.made_2d) || {}; it.star = !!it.star;
+          return it;
+        }).sort(function (a, b) { return (b.built_at || 0) - (a.built_at || 0); });
+        return { items: items };
+      });
+    },
+    history_update: function (b) {   // 없는 기록이면 규칙(built_at·host 필요)에 막혀 denied — 다시 불러온다
+      var change = { edited: Date.now() };
+      if ("label" in b) change.label = String(b.label).slice(0, 80);
+      if ("star" in b) change.star = !!b.star;
+      return A.db("history/" + encodeURIComponent(b.id), "PATCH", change);
+    },
+    history_delete: function (b) { return A.db(b.all ? "history" : "history/" + encodeURIComponent(b.id), "DELETE"); },
+    logout: function (b) { return A.db("connections/" + encodeURIComponent(b.token_id), "DELETE"); },   // 연결 해제 — 그 PC가 다음 확인 때 스스로 로그아웃한다
+    delete: function () {   // 탈퇴 — 기록·연결·설정(users/<uid>)을 지우고 계정을 지운다. 로그인한 지 오래면 Firebase가 막으니 먼저 다시 로그인
+      return A.token().then(function (t) {
+        if (Date.now() / 1000 - t.claims.auth_time > 270) throw new Error("reauth");
+        return A.db("", "DELETE").then(A.deleteAccount);
+      });
+    }
+  };
+  function call(action, body) {
+    if (!A.saved()) { signOut(T.expired); var gone = new Error("invalid"); gone.handled = true; return Promise.reject(gone); }
+    return ACTIONS[action](body || {}).catch(function (err) {
+      if (err.message === "invalid") { signOut(T.expired); err.handled = true; }   // 열쇠가 거절됐다(사용 중지·탈퇴·만료)
+      else if (err.message === "denied") err.message = "invalid";   // 다른 기기에서 지운 기록·끊은 연결 — failToast가 다시 불러온다
+      throw err;
+    });
+  }
+  function failToast(err) {
+    if (err && err.handled) return;
+    if (err && err.message === "invalid") { load(); return; }   // 다른 기기에서 지운 기록·끊은 연결 — 다시 불러온다(세션이 끝났으면 로그인 화면)
+    toast(err && err.message === "too_fast" ? T.busy : T.net);
+  }
+
+  // ── 날짜 ──
+  var dayFmt = new Intl.DateTimeFormat(lang === "ko" ? "ko-KR" : "en-US", { month: "short", day: "numeric" });
+  var timeFmt = new Intl.DateTimeFormat(lang === "ko" ? "ko-KR" : "en-US", { hour: "numeric", minute: "2-digit" });
+  var fullFmt = new Intl.DateTimeFormat(lang === "ko" ? "ko-KR" : "en-US", { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "2-digit" });
+  var dateFmt = new Intl.DateTimeFormat(lang === "ko" ? "ko-KR" : "en-US", { year: "numeric", month: "long", day: "numeric" });
+  var yearDayFmt = new Intl.DateTimeFormat(lang === "ko" ? "ko-KR" : "en-US", { year: "numeric", month: "short", day: "numeric" });
+  function parse(iso) { var d = new Date(iso); return isNaN(d) ? null : d; }
+  function shortDay(iso) { var d = parse(iso); return d ? dayFmt.format(d) : T.none; }
+  // 목록 오른쪽 날짜 — 오늘이면 시각, 올해면 월·일, 그 전이면 연도까지
+  function listDate(iso) {
+    var d = parse(iso), now = new Date(); if (!d) return "";
+    if (d.toDateString() === now.toDateString()) return timeFmt.format(d);
+    return (d.getFullYear() === now.getFullYear() ? dayFmt : yearDayFmt).format(d);
+  }
+  function meters(m) { return m >= 1000 ? (Math.round(m / 100) / 10) + " km" : Math.round(m) + " m"; }
+
+  // ── 기록 한 줄의 글 ──
+  function rangeText(it) { return it.radius ? fmt(it.shape === "circle" ? T.circle : T.rect, meters(it.shape === "circle" ? it.radius : it.radius * 2)) : ""; }
+  function targetText(it) {
+    var t = it.target || {};
+    if (it.mode === "lots" && t.pnus && t.pnus.length) return t.pnus.length > 1 ? fmt(T.lotsMore, t.pnus[0], t.pnus.length - 1) : fmt(T.lots, t.pnus[0]);
+    if (it.mode === "area" && t.ring) return fmt(T.area, t.ring.length);
+    if (it.mode === "point") return T.point;
+    return T.modes[it.mode] || T.none;
+  }
+  function settingsText(it) {
+    var o = it.options || {}, out = [];
+    if ("terrain_step" in o) out.push(Number(o.terrain_step) > 0 ? fmt(T.step, o.terrain_step) : T.smooth);
+    if (o.flatten_site === true) out.push(T.flat);
+    if (o.include_minor_buildings === true) out.push(T.minor);
+    if (o.geometry_type === "brep") out.push(T.brep);
+    return out.join(" · ") || T.none;
+  }
+  function out2dText(it) {
+    var m = it.made_2d || {}, out = [];
+    if (m.basemap) out.push(fmt(T.basemap, m.basemap));
+    if (Number(m.sheets) > 0) out.push(fmt(T.sheets, m.sheets));
+    if (m.tables === true) out.push(T.tables);
+    return out.join(" · ");
+  }
+  function label(it) { return it.label || targetText(it); }
+  // 주소 — 페이지 언어 것, 없으면 다른 언어 것(플러그인이 {ko, en}으로 보낸다. 옛 기록은 글 하나)
+  function addressOf(it) { var a = it.address || ""; return typeof a === "string" ? a : a[lang] || a.ko || a.en || ""; }
+
+  // ── 그리기 ──
+  function visible() {
+    return S.items.filter(function (it) { return (S.tool === "all" || it.host === S.tool) && (!S.starOnly || it.star); });
+  }
+  function renderTools() {
+    var count = function (id) { return S.items.filter(function (it) { return id === "all" || it.host === id; }).length; };
+    var tabs = [{ id: "all", name: T.all }].concat(TOOLS);
+    $("tools").innerHTML = tabs.map(function (t) {
+      var sel = t.id === S.tool;
+      return '<button type="button" role="tab" id="tab-' + t.id + '" data-tool="' + t.id + '" aria-selected="' + sel + '" aria-controls="hist" tabindex="' + (sel ? 0 : -1) + '">'
+        + (t.logo ? '<img src="' + t.logo + '" alt="">' : "") + esc(t.name) + ' <span class="n">' + count(t.id) + "</span></button>";
+    }).join("");
+    $("hist").setAttribute("aria-labelledby", "tab-" + S.tool);
+    var sf = $("star-filter");
+    sf.setAttribute("aria-pressed", String(S.starOnly));
+    sf.querySelector("use").setAttribute("href", S.starOnly ? "#i-star-on" : "#i-star");
+  }
+  function itemHtml(it) {
+    var tool = toolOf(it.host), open = !!S.open[it.id], id = esc(it.id);
+    var html = '<li data-id="' + id + '"' + (open ? ' class="is-open"' : "") + '><div class="row">';
+    if (S.editing === it.id) {   // 이름 바꾸기 — 제목 자리에서
+      html += '<form class="rename" data-act="save"><input type="text" maxlength="80" aria-label="' + esc(T.rename) + '" value="' + esc(label(it)) + '">'
+        + '<button type="submit" class="btn go">' + esc(T.save) + '</button><button type="button" class="btn" data-act="cancel">' + esc(T.cancel) + "</button></form>";
+    } else {
+      html += '<button type="button" class="open" aria-expanded="' + open + '" aria-controls="d-' + id + '">'
+        + '<span class="txt"><span class="name">' + esc(label(it)) + '</span><span class="addr">' + esc(addressOf(it) || rangeText(it)) + "</span></span>"
+        + '<span class="when">' + esc(listDate(it.built_at)) + "</span></button>"
+        + '<button type="button" class="edit" data-act="rename" aria-label="' + esc(T.rename + ": " + label(it)) + '" title="' + esc(T.rename) + '"><svg aria-hidden="true"><use href="#i-edit"/></svg></button>'
+        + '<button type="button" class="star" data-act="star" aria-pressed="' + !!it.star + '" aria-label="' + esc(T.star + ": " + label(it)) + '"><svg aria-hidden="true"><use href="' + (it.star ? "#i-star-on" : "#i-star") + '"/></svg></button>';
+    }
+    html += "</div>";
+    if (open) {
+      var c = it.center, place = esc(addressOf(it) || T.noAddr)
+        + (c ? ' · <a href="https://www.openstreetmap.org/?mlat=' + c[1] + "&amp;mlon=" + c[0] + "#map=17/" + c[1] + "/" + c[0] + '" target="_blank" rel="noopener">' + esc(T.openMap) + "</a>" : "");
+      var facts = [[T.fAddr, place, true], [T.fTarget, targetText(it)], [T.fRange, rangeText(it) || T.none], [T.fLevel, it.detail === "advanced" ? T.adv : it.detail === "basic" ? T.basic : T.none],
+        [T.fSettings, settingsText(it)], [T.f2d, out2dText(it) || T.none], [T.fMadeIn, tool.name + (it.version ? " " + it.version : "")], [T.fMadeAt, parse(it.built_at) ? fullFmt.format(parse(it.built_at)) : T.none]];
+      html += '<div class="detail" id="d-' + id + '">'   // 펼친 기록 — 글로만(대상지 그림은 지도 없이는 읽기 어려워 뺐다. 위치는 주소와 '지도에서 보기')
+        + '<dl class="facts">' + facts.map(function (f) { return "<dt>" + esc(f[0]) + "</dt><dd>" + (f[2] ? f[1] : esc(f[1])) + "</dd>"; }).join("") + "</dl>"
+        + "</div>";
+    }
+    return html + "</li>";
+  }
+  function renderList() {
+    var list = visible(), html = "";
+    if (!list.length) {
+      var tool = toolOf(S.tool);
+      var e = S.starOnly ? [T.emptyStar, T.emptyStarSub] : S.tool === "all" ? [T.emptyAll, T.emptyAllSub] : [fmt(T.emptyTool, tool.name), fmt(T.emptyToolSub, tool.name)];
+      html = '<div class="empty"><b>' + esc(e[0]) + "</b><p>" + esc(e[1]) + "</p></div>";
+    } else {
+      html = '<ul class="hist">' + list.map(itemHtml).join("") + "</ul>";
+    }
+    $("hist").innerHTML = html;
+    $("clear").disabled = !S.items.length;
+  }
+  function renderConns() {
+    var list = (S.me && S.me.connections) || [];
+    $("conns").innerHTML = list.length ? list.map(function (c) {
+      var tool = toolOf(c.host);
+      return '<li data-conn="' + esc(c.id) + '">' + (tool.logo ? '<img src="' + tool.logo + '" alt="">' : "") + '<div class="grow"><b>' + esc(tool.name) + "</b><span>"
+        + esc(fmt(T.connMeta, c.version || T.none, shortDay(c.created), shortDay(c.seen))) + '</span></div><button type="button" class="btn" data-act="disconnect">' + esc(T.disconnect) + "</button></li>";
+    }).join("") : '<li><div class="grow"><span>' + esc(T.connEmpty) + "</span></div></li>";
+  }
+  function renderAll() {
+    var me = S.me;
+    setAccountIcon(me.email);
+    $("avatar").textContent = me.email.charAt(0).toUpperCase();
+    $("email").textContent = me.email;
+    $("plan").textContent = me.entitlement.plan_name;
+    var joined = parse(me.created);
+    $("joined").textContent = joined ? fmt(T.joined, dateFmt.format(joined)) : "";
+    renderTools(); renderList(); renderConns();
+  }
+
+  // ── 불러오기·로그인 ──
+  function load() {
+    if (!A.saved()) return showSignIn();
+    if ($("dash").hidden) show("state");
+    return Promise.all([call("me"), call("history_list")]).then(function (res) {
+      S.me = res[0];
+      S.items = res[1].items || [];
+      renderAll();
+      show("dash");
+    }).catch(function (err) {
+      if (err && err.handled) return;
+      show("state", T.fail, load);
+    });
+  }
+  function signOut(text) {
+    A.store(null);
+    S.me = null; S.items = []; S.open = {}; S.editing = "";
+    showSignIn(text);
+  }
+  var gisReady = false;
+  function showSignIn(text) {
+    show("signin");
+    setAccountIcon("");
+    $("si-msg").textContent = text || "";
+    $("si-msg").className = "msg";
+    if (!A.ready) { $("si-msg").textContent = T.unready; $("si-msg").className = "msg err"; return; }
+    if (gisReady) return;
+    A.loadGis(function () {
+      gisReady = true;
+      google.accounts.id.initialize({ client_id: A.clientId, callback: onCredential, auto_select: false, context: "signin" });
+      google.accounts.id.renderButton($("gbtn"), { theme: "outline", size: "large", shape: "pill", text: "continue_with", locale: lang,
+        width: Math.min(360, $("gbtn").clientWidth || 360) });   // 칸 너비만큼(구글 버튼은 200~400px)
+    }, function () { $("si-msg").textContent = T.gis; $("si-msg").className = "msg err"; });
+  }
+  function onCredential(resp) {
+    $("si-msg").textContent = T.working; $("si-msg").className = "msg";
+    A.login(resp.credential, lang).then(function (res) {
+      var deleting = S.deleting; S.deleting = "";
+      if (deleting && deleting === res.user.email) return call("delete").then(function () { signOut(T.deleted); }).catch(failToast);   // 같은 계정으로 다시 로그인했으면 탈퇴를 이어 간다
+      toast(res.user && res.user.new ? T.welcome : T.signedIn);
+      load();
+    }).catch(function (err) {
+      $("si-msg").textContent = err && err.message === "too_fast" ? T.busy : T.loginFail;
+      $("si-msg").className = "msg err";
+    });
+  }
+
+  // ── 동작 ──
+  $("logout").addEventListener("click", function () {
+    signOut(T.loggedOut);   // 이 브라우저의 열쇠만 지운다(플러그인 연결은 그대로 — 끊으려면 '연결된 프로그램'에서)
+  });
+  $("tools").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-tool]"); if (!b) return;
+    pickTool(b.getAttribute("data-tool"));
+  });
+  $("tools").addEventListener("keydown", function (e) {   // 탭: 왼쪽·오른쪽 화살표로 옮긴다
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    var ids = ["all"].concat(TOOLS.map(function (t) { return t.id; }));
+    var next = ids[(ids.indexOf(S.tool) + (e.key === "ArrowRight" ? 1 : ids.length - 1)) % ids.length];
+    pickTool(next);
+    $("tab-" + next).focus();
+    e.preventDefault();
+  });
+  function pickTool(id) {
+    S.tool = id; S.editing = "";
+    history.replaceState(null, "", location.pathname + location.search + (id === "all" ? "" : "#" + id));
+    renderTools(); renderList();
+  }
+  $("star-filter").addEventListener("click", function () { S.starOnly = !S.starOnly; renderTools(); renderList(); });
+  function find(id) { return S.items.filter(function (it) { return it.id === id; })[0]; }
+  $("hist").addEventListener("click", function (e) {
+    var li = e.target.closest("li[data-id]"); if (!li) return;
+    var it = find(li.getAttribute("data-id")); if (!it) return;
+    if (e.target.closest(".open")) {
+      S.open[it.id] = !S.open[it.id];
+      if (!S.open[it.id] && S.editing === it.id) S.editing = "";
+      renderList();
+      var again = $("hist").querySelector('li[data-id="' + CSS.escape(it.id) + '"] .open'); if (again) again.focus();
+      return;
+    }
+    var actEl = e.target.closest("[data-act]"), act = actEl ? actEl.getAttribute("data-act") : "";
+    if (act === "star") {
+      it.star = !it.star; renderList();
+      var starBtn = $("hist").querySelector('li[data-id="' + CSS.escape(it.id) + '"] .star'); if (starBtn) starBtn.focus();
+      call("history_update", { id: it.id, star: it.star }).catch(function (err) { it.star = !it.star; renderList(); failToast(err); });
+    } else if (act === "rename") {
+      S.editing = it.id; renderList();
+      var input = $("hist").querySelector(".rename input"); if (input) { input.focus(); input.select(); }
+    } else if (act === "cancel") {
+      S.editing = ""; renderList();
+    }
+  });
+  $("hist").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var li = e.target.closest("li[data-id]"), it = li && find(li.getAttribute("data-id"));
+    var value = e.target.querySelector("input").value.trim();
+    if (!it) return;
+    if (!value || value === label(it)) { S.editing = ""; renderList(); return; }
+    var before = it.label;
+    it.label = value; S.editing = ""; renderList();
+    call("history_update", { id: it.id, label: value }).then(function () { toast(T.renamed); }).catch(function (err) { it.label = before; renderList(); failToast(err); });
+  });
+  $("hist").addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && e.target.closest(".rename")) { S.editing = ""; renderList(); }
+  });
+  $("clear").addEventListener("click", function () {
+    ask({ title: fmt(T.clearQ, S.items.length), body: T.clearBody, ok: T.del, danger: true }).then(function (r) {
+      if (!r.ok) return;
+      call("history_delete", { all: true }).then(function () {
+        S.items = []; S.open = {}; S.editing = "";
+        renderTools(); renderList(); toast(T.cleared);
+      }).catch(failToast);
+    });
+  });
+  $("conns").addEventListener("click", function (e) {
+    var li = e.target.closest("li[data-conn]"); if (!li || !e.target.closest("[data-act=disconnect]")) return;
+    var id = li.getAttribute("data-conn"), c = S.me.connections.filter(function (x) { return x.id === id; })[0];
+    ask({ title: fmt(T.disconnectQ, toolOf(c.host).name), body: T.disconnectBody, ok: T.disconnect, danger: true }).then(function (r) {
+      if (!r.ok) return;
+      call("logout", { token_id: id }).then(function () {
+        S.me.connections = S.me.connections.filter(function (x) { return x.id !== id; });
+        renderConns(); toast(T.disconnected);
+      }).catch(failToast);
+    });
+  });
+  $("del").addEventListener("click", function () {
+    ask({ title: T.delQ, body: T.delBody, ok: T.delLabel, danger: true }).then(function (r) {
+      if (!r.ok) return;
+      call("delete").then(function () { signOut(T.deleted); }).catch(function (err) {
+        if (!err || err.message !== "reauth") return failToast(err);
+        S.deleting = S.me.email;   // 구글로 한 번 더 로그인하면 이어서 지운다
+        A.store(null); S.me = null; S.items = []; S.open = {}; S.editing = "";
+        showSignIn(T.reauth);
+      });
+    });
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>

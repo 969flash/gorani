@@ -47,4 +47,4 @@ ffmpeg -nostdin -v error -y -i $tmp/all.mp4 -an -pix_fmt yuv420p -c:v libx264 -p
 ffmpeg -nostdin -v error -y -i $root/assets/demo.mp4 -frames:v 1 $tmp/poster.png
 cwebp -quiet -q 82 $tmp/poster.png -o $root/assets/demo-poster.webp
 ffprobe -v error -show_entries format=duration,size -of default=nw=1 $root/assets/demo.mp4
-print "크기 ${W}×${H}. 페이지 video의 width·height와 VideoObject duration도 맞출 것"
+print "크기 ${W}×${H}. 페이지 video의 width·height와 VideoObject duration·uploadDate(시각·시간대까지, 예 2026-11-12T00:00:00+09:00)도 5개 언어 페이지 모두 맞출 것"

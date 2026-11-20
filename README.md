@@ -31,4 +31,11 @@ Coverage status on the website was last checked on 2026-10-23. Dataset-specific 
 
 This repository holds the website (GitHub Pages, plain HTML/CSS/JS, no build step) and is where issues and release notes live. Report problems in [Issues](https://github.com/969flash/gorani/issues) with `log.txt` from the result folder (`~/Gorani/result/<site>_<date>/`) attached.
 
+### Demo video structured data
+
+Every language page (`index.html`, `en/`, `es/`, `ja/`, `zh/`) carries a `VideoObject` in its JSON-LD for `assets/demo.mp4`. When the video is replaced, update all five pages together:
+
+- `uploadDate` must be a full ISO 8601 datetime with a time zone, e.g. `2026-11-12T00:00:00+09:00`. A date alone (`2026-11-12`) triggers the Search Console warnings "datetime 속성('uploadDate')에 시간대가 누락됨" and "'uploadDate'의 datetime 값이 잘못됨" (reported 2026-11-20).
+- `duration` (ISO 8601, e.g. `PT49S`), `thumbnailUrl` and the `<video>` `width`/`height` must match the new file. `tools/demo_16x9.sh` prints the size and duration.
+
 Data: © OpenStreetMap contributors (ODbL); Korean public data from MOLIT, NGII and Seoul Metropolitan Government, with sources printed on every drawing. Rhino is a trademark of Robert McNeel & Associates, SketchUp of Trimble Inc., Blender of the Blender Foundation, AutoCAD of Autodesk, Inc., Archicad of Graphisoft SE; this project is not affiliated with them.

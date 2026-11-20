@@ -151,7 +151,7 @@ ok((await text("#title")) === "The sign-in server wandered off to graze" && (awa
 await go(SITE + "/");
 await setTest(TEST);
 await go(SITE + "/login/?port=80&state=x&h=rhino&lang=ko");
-ok((await text("#msg")).indexOf("열어 주세요") >= 0, "잘못된 port·state → 넘기지 않음");
+ok((await text("#title")) === "잘못된 링크" && (await text("#sub")).indexOf("다시 눌러") >= 0, "잘못된 port·state → 넘기지 않음(잘못된 링크 화면)");
 
 
 // ── 계정 페이지 ──

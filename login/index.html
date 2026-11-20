@@ -16,8 +16,12 @@
   body { background: #F6F6F6; }
   .login { width: min(400px, 100% - 32px); margin: max(48px, 12vh) auto 48px; padding: 40px 32px 24px; border: 1px solid var(--hair); border-radius: 20px;
     background: var(--surface); box-shadow: 0 1px 2px rgba(20, 20, 20, .04), 0 16px 40px -20px rgba(20, 20, 20, .16); text-align: center; }
-  .login .home { display: inline-flex; color: var(--ink); }
+  .login .home { position: relative; display: inline-flex; color: var(--ink); }
   .login .mark { --s: 44px; }
+  .login .badge { position: absolute; right: -10px; bottom: -4px; display: grid; place-items: center; width: 22px; height: 22px; border: 2px solid var(--surface); border-radius: 50%;
+    background: #B3261E; color: var(--on-ink); }
+  .login .badge svg { width: 12px; height: 12px; }
+  .login.result { padding-bottom: 36px; }   /* 잘못된 링크 — 완료 페이지의 실패 화면과 같은 꼴 */
   .login h1 { margin-top: 16px; font-size: 22px; line-height: 30px; font-weight: 700; letter-spacing: -.02em; text-wrap: balance; }
   .login .sub { margin-top: 8px; color: var(--ink-2); font-size: 15px; line-height: 22px; white-space: pre-line; }
   .login .acts { display: grid; gap: 12px; margin-top: 28px; min-height: 44px; transition: opacity .2s; }
@@ -38,14 +42,12 @@
   .login .msg { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; color: var(--ink-2); font-size: 14px; line-height: 21px; white-space: pre-line; }
   .login .msg:empty { display: none; }
   .login .msg .run { --w: 24px; --h: 18px; color: var(--ink); }
-  .login .msg.err, .login .msg.info { padding: 10px 14px; border-radius: 12px; }
+  .login .msg.err { padding: 10px 14px; border-radius: 12px; }
   .login .msg.err { background: #FCEEEE; color: #B3261E; }
-  .login .msg.info { margin-top: 28px; background: var(--press); }
   .login .terms-note { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--hair); color: var(--ink-3); font-size: 12px; line-height: 18px; }
   .login .terms-note:empty { display: none; }
   .login .terms-note { text-wrap: balance; }
   .login .terms-note a { color: var(--ink-2); white-space: nowrap; }   /* 링크 이름이 줄 사이에서 쪼개지지 않게 */
-  .login .to-home { margin-top: 16px; }
   @media (max-width: 480px) { .login { margin-top: 24px; padding: 32px 20px 20px; } }
   @media (prefers-reduced-motion: reduce) { .login .acts { transition: none; } .login .msg .run.go { animation: none; } }
 </style>
@@ -70,11 +72,11 @@
   var T = {
     ko: { title: "Gorani 로그인", sub: "구글 계정으로 로그인하면\nGorani 플러그인으로 돌아갑니다.", cont: "이 계정으로 계속", or: "또는",
       fine: '계속하면 <a href="../terms/">이용약관</a>과 <a href="../privacy/">개인정보 처리방침</a>에 동의하며, 처음이면 바로 가입됩니다.',
-      bad: "Gorani 패널의\n[Google 계정으로 로그인]에서 열어 주세요.", home: "Gorani 홈으로", homeUrl: "../",
+      badTitle: "잘못된 링크", bad: "Gorani 패널에서\n[Google 계정으로 로그인]을 다시 눌러 주세요.",
       working: "로그인하는 중…", back: "Gorani로 돌아가는 중…", fail: "로그인하지 못했습니다. 다시 시도해 주세요." },
     en: { title: "Sign in to Gorani", sub: "Sign in with your Google account\nand return to the Gorani plugin.", cont: "Continue with this account", or: "or",
       fine: 'By continuing you agree to the <a href="../en/terms/">Terms</a> and <a href="../en/privacy/">Privacy Policy</a>, and new users are signed up right away.',
-      bad: "Open this page from\n[Sign in with Google] in the Gorani panel.", home: "Go to Gorani home", homeUrl: "../en/",
+      badTitle: "Invalid link", bad: "Press [Sign in with Google]\nin the Gorani panel again.",
       working: "Signing in…", back: "Returning to Gorani…", fail: "Could not sign in. Please try again." }
   }[lang];
   document.documentElement.lang = lang;
@@ -83,7 +85,7 @@
   $("title").textContent = T.title;
   $("sub").textContent = T.sub;
   $("fine").innerHTML = T.fine;
-  // kind: "busy"(달리는 고라니 + 버튼을 잠근다) | "err" | "info" | 없음
+  // kind: "busy"(달리는 고라니 + 버튼을 잠근다) | "err" | 없음
   function msg(text, kind) {
     var m = $("msg");
     m.textContent = "";
@@ -96,11 +98,13 @@
   // 플러그인이 넘긴 값 — 받는 곳은 127.0.0.1의 그 포트뿐(아무 곳으로나 보내는 통로가 되지 않게)
   var port = Number(q.get("port")), state = q.get("state") || "", host = q.get("h") || "";
   if (!q.has("port") && !q.has("state") && !q.has("h")) { location.replace("../account/" + location.search); return; }   // 주소만 열었으면 웹 로그인(계정 페이지)
-  if (!(port >= 1024 && port <= 65535 && /^[A-Za-z0-9_-]{16,64}$/.test(state) && HOSTS.indexOf(host) >= 0)) {
-    msg(T.bad, "info");
+  if (!(port >= 1024 && port <= 65535 && /^[A-Za-z0-9_-]{16,64}$/.test(state) && HOSTS.indexOf(host) >= 0)) {   // 잘못된 링크 — 완료 페이지의 실패 화면과 같은 꼴(마크에 !, 패널에서 다시 누르라는 한 줄)
+    document.title = T.badTitle + " · Gorani";
+    $("title").textContent = T.badTitle;
+    $("sub").textContent = T.bad;
     $("fine").textContent = "";
-    var home = document.createElement("a"); home.className = "btn to-home"; home.href = T.homeUrl; home.textContent = T.home;
-    $("msg").after(home);
+    document.querySelector(".login").classList.add("result");
+    document.querySelector(".login .home").insertAdjacentHTML("beforeend", '<span class="badge err" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2.8v3.8M6 9.2v.01"/></svg></span>');
     return;
   }
 

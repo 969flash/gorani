@@ -148,6 +148,10 @@
       if (d) { e.preventDefault(); pick(tabs[(i + d + tabs.length) % tabs.length], true); }
     });
   });
+  // 설치 오류 칸 링크(#install-help, 자주 묻는 질문에서): Rhino 탭으로 바꾸고 칸을 편다
+  function openInstallHelp() { var d = document.getElementById("install-help"); if (d) { pick(document.getElementById("tab-rhino")); d.open = true; } }
+  if (location.hash === "#install-help") openInstallHelp();
+  document.addEventListener("click", function (e) { if (e.target.closest('a[href="#install-help"]')) openInstallHelp(); });
   // AutoCAD 설치: Windows·macOS 전환(기본 Windows). 블록마다 회색 박스 안에 같은 전환이 있어 함께 맞춘다
   document.querySelectorAll(".os-switch").forEach(function (sw) {
     var panel = sw.closest("[role=tabpanel]");

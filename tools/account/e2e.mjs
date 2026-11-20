@@ -152,7 +152,7 @@ await shot("login/web_done_fallback_en");
 await go(SITE + "/");
 await setTest(TEST);
 await go(SITE + "/login/?port=80&state=x&h=rhino&lang=ko");
-ok((await text("#msg")).indexOf("열어 주세요") >= 0, "잘못된 port·state → 넘기지 않음");
+ok((await text("#title")) === "잘못된 링크입니다" && (await text("#sub")).indexOf("다시 눌러") >= 0, "잘못된 port·state → 넘기지 않음(잘못된 링크 화면)");
 
 const realProblems = problems.filter((p) => !/nope\.js|Failed to load resource/.test(p));
 ok(realProblems.length === 0, "콘솔 오류 없음" + (realProblems.length ? ": " + realProblems.join(" | ") : ""));

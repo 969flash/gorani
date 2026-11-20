@@ -1,0 +1,27 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+        "history": {
+          "$entry": {
+            ".validate": "newData.hasChildren(['built_at', 'host']) && newData.child('built_at').isNumber()",
+            "host": {".validate": "newData.isString() && newData.val().length <= 20"},
+            "version": {".validate": "newData.isString() && newData.val().length <= 40"},
+            "label": {".validate": "newData.isString() && newData.val().length <= 80"},
+            "address": {".validate": "newData.isString() && newData.val().length <= 160"},
+            "target": {".validate": "newData.isString() && newData.val().length <= 20000"},
+            "options": {".validate": "newData.isString() && newData.val().length <= 4000"},
+            "made_2d": {".validate": "newData.isString() && newData.val().length <= 2000"},
+            "star": {".validate": "newData.isBoolean()"}
+          }
+        },
+        "connections": {
+          "$conn": {".validate": "newData.hasChildren(['host', 'created'])"}
+        },
+        "$other": {".validate": false}
+      }
+    }
+  }
+}

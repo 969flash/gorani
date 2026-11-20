@@ -33,7 +33,7 @@ No Grasshopper, no Python packages and no other software are required.
 
 ## Install (SketchUp 2022+)
 
-The Extension Warehouse listing is pending approval. Until it is live, download the installer https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/bsh_gorani-0.4.0.rbz (92 MB), then in SketchUp choose Extensions > Extension Manager > Install Extension, pick the .rbz file and answer Yes. Open the panel from Extensions > Gorani or the Gorani toolbar button.
+The Extension Warehouse listing is pending approval. Until it is live, download the installer https://github.com/969flash/gorani-plugin/releases/download/v0.4.0/bsh_gorani-0.4.0.rbz (89 MB), then in SketchUp choose Extensions > Extension Manager > Install Extension, pick the .rbz file and answer Yes. Open the panel from Extensions > Gorani or the Gorani toolbar button.
 
 ## Install (Blender 4.2+)
 

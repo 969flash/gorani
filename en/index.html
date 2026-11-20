@@ -262,7 +262,7 @@
               <span class="cmd"><code>Gorani</code><button type="button" class="copy" data-copy="Gorani" data-done="Gorani copied" aria-label="Copy Gorani"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span>
             </li>
           </ol>
-          <details class="faq-item install-help">
+          <details class="faq-item install-help" id="install-help">
             <summary><h3>Install error?</h3><span>School and office firewalls can block Rhino. Download the file and drag it onto the Rhino window.</span></summary>
             <ul class="install-links"><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-rh8_0-any.yak" data-release="rhino8">Rhino 8 .yak<svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-rh7_0-win.yak" data-release="rhino7-win">Rhino 7 Windows .yak<svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a></li><li><a href="https://github.com/969flash/gorani-plugin/releases/download/v0.3.9/Gorani-0.3.9-rh7_0-mac.yak" data-release="rhino7-mac">Rhino 7 Mac .yak<svg class="i-dl" width="16" height="16" aria-hidden="true"><use href="#i-dl"/></svg></a><details class="q"><summary aria-label="How to install on Rhino 7 for Mac">?</summary><div class="q-pop"><p>Rhino 7 for Mac can’t install by drag and drop. After downloading, run this in Terminal.</p><span class="cmd path"><code>"/Applications/Rhino 7.app/Contents/Resources/bin/yak" install ~/Downloads/Gorani-*-rh7_0-mac.yak</code><button type="button" class="copy" data-copy="&quot;/Applications/Rhino 7.app/Contents/Resources/bin/yak&quot; install ~/Downloads/Gorani-*-rh7_0-mac.yak" data-done="command copied" aria-label="Copy command"><svg class="i-copy"><use href="#i-copy"/></svg><svg class="i-done"><use href="#i-check"/></svg></button></span></div></details></li></ul>
           </details>
@@ -768,6 +768,10 @@
           <details class="faq-item">
             <summary><h3>Does it work in Rhino 7?</h3></summary>
             <p>Yes. The installation is the same, and PackageManager picks the Rhino 7 build. On Windows the panel opens in an Edge window, and DWG export is not available.</p>
+          </details>
+          <details class="faq-item">
+            <summary><h3>What if Rhino’s Package Manager shows an install error?</h3></summary>
+            <p>Download the install file and drag it onto the Rhino window. The files are under “<a href="#install-help">Install error?</a>” in the install section above. On school and office PCs, a firewall often blocks Rhino’s internet access and causes errors like <code>Failed to fetch packages</code>.</p>
           </details>
           <details class="faq-item">
             <summary><h3>Where are the results saved?</h3></summary>

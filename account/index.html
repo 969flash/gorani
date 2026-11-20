@@ -20,15 +20,25 @@
   .state .btn { margin-left: 4px; height: 36px; padding: 0 14px; font-size: 14px; }
   .err { color: #B3261E; }
 
-  /* 로그인 */
-  .signin { width: min(360px, 100%); margin: 32px auto 0; text-align: center; }   /* 한 칸 — 구글 버튼이 칸 너비만큼이라 글줄 가장자리가 버튼에 맞는다 */
-  .signin .mark { --s: 48px; color: var(--ink); }
-  .signin h1 { margin-top: 16px; font-size: 24px; line-height: 32px; font-weight: 700; letter-spacing: -.02em; }
-  .signin .sub { margin-top: 8px; color: var(--ink-2); font-size: 16px; line-height: 24px; text-wrap: balance; }
-  .signin .gbtn { display: grid; justify-items: center; margin-top: 28px; min-height: 44px; }
-  .signin .msg { margin-top: 20px; color: var(--ink-2); font-size: 14px; line-height: 21px; }
-  .signin .terms-note { margin-top: 16px; color: var(--ink-3); font-size: 12px; line-height: 18px; text-wrap: balance; }   /* 버튼 바로 아래 — 약관 동의·가입 한 문장 */
+  /* 로그인 — 플러그인 로그인 페이지(/login/)와 같은 흰 카드(머리줄·바닥글은 사이트 그대로) */
+  .signin { width: min(400px, 100%); margin: 24px auto 0; padding: 40px 32px 24px; border: 1px solid var(--hair); border-radius: 20px; background: var(--surface);
+    box-shadow: 0 1px 2px rgba(20, 20, 20, .04), 0 16px 40px -20px rgba(20, 20, 20, .16); text-align: center; }
+  .signin .mark { --s: 44px; color: var(--ink); }
+  .signin h1 { margin-top: 16px; font-size: 22px; line-height: 30px; font-weight: 700; letter-spacing: -.02em; text-wrap: balance; }
+  .signin .sub { margin-top: 8px; color: var(--ink-2); font-size: 15px; line-height: 22px; text-wrap: balance; }
+  .signin .gbtn { display: flex; justify-content: center; margin-top: 28px; min-height: 44px; transition: opacity .2s; }
+  .signin .gbtn.busy { opacity: .4; pointer-events: none; }
+  /* 상태 한 줄 — 안내(다시 로그인·로그아웃·탈퇴 완료)는 옅은 회색 칸, 실패는 옅은 빨간 칸, 하는 중은 달리는 고라니 */
+  .signin .msg { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; padding: 10px 14px; border-radius: 12px;
+    background: var(--press); color: var(--ink-2); font-size: 14px; line-height: 21px; }
+  .signin .msg:empty { display: none; }
+  .signin .msg.err { background: #FCEEEE; color: #B3261E; }
+  .signin .msg.busy { padding: 0; background: none; }
+  .signin .msg .run { --w: 24px; --h: 18px; color: var(--ink); }
+  .signin .terms-note { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--hair); color: var(--ink-3); font-size: 12px; line-height: 18px; text-wrap: balance; }
   .signin .terms-note a { color: var(--ink-2); white-space: nowrap; }   /* 링크 이름이 줄 사이에서 쪼개지지 않게 */
+  @media (max-width: 480px) { .signin { margin-top: 8px; padding: 32px 20px 20px; } }
+  @media (prefers-reduced-motion: reduce) { .signin .gbtn { transition: none; } .signin .msg .run.go { animation: none; } }
 
   /* 계정 머리 */
   .who { display: flex; align-items: center; gap: 16px; padding-bottom: 28px; border-bottom: 1px solid var(--hair); }
@@ -588,30 +598,37 @@
     showSignIn(text);
   }
   var gisReady = false;
+  // kind: "err" | "busy"(달리는 고라니 + 구글 버튼을 잠근다) | 없음(안내 칸)
+  function siMsg(text, kind) {
+    var m = $("si-msg");
+    m.textContent = "";
+    m.className = "msg" + (kind ? " " + kind : "");
+    if (kind === "busy") { var r = document.createElement("span"); r.className = "run go"; r.setAttribute("aria-hidden", "true"); m.appendChild(r); }
+    if (text) m.appendChild(document.createTextNode(text));
+    $("gbtn").classList.toggle("busy", kind === "busy");
+  }
   function showSignIn(text) {
     show("signin");
     setAccountIcon("");
-    $("si-msg").textContent = text || "";
-    $("si-msg").className = "msg";
-    if (!A.ready) { $("si-msg").textContent = T.unready; $("si-msg").className = "msg err"; return; }
+    siMsg(text);
+    if (!A.ready) { siMsg(T.unready, "err"); return; }
     if (gisReady) return;
     A.loadGis(function () {
       gisReady = true;
       google.accounts.id.initialize({ client_id: A.clientId, callback: onCredential, auto_select: false, context: "signin" });
-      google.accounts.id.renderButton($("gbtn"), { theme: "outline", size: "large", shape: "pill", text: "continue_with", locale: lang,
-        width: Math.min(360, $("gbtn").clientWidth || 360) });   // 칸 너비만큼(구글 버튼은 200~400px)
-    }, function () { $("si-msg").textContent = T.gis; $("si-msg").className = "msg err"; });
+      google.accounts.id.renderButton($("gbtn"), { theme: "outline", size: "large", shape: "pill", text: "continue_with", logo_alignment: "center", locale: lang,
+        width: Math.min(400, $("gbtn").clientWidth || 320) });   // 카드 폭만큼(구글 버튼은 200~400px)
+    }, function () { siMsg(T.gis, "err"); });
   }
   function onCredential(resp) {
-    $("si-msg").textContent = T.working; $("si-msg").className = "msg";
+    siMsg(T.working, "busy");
     A.login(resp.credential, lang).then(function (res) {
       var deleting = S.deleting; S.deleting = "";
       if (deleting && deleting === res.user.email) return call("delete").then(function () { signOut(T.deleted); }).catch(failToast);   // 같은 계정으로 다시 로그인했으면 탈퇴를 이어 간다
       toast(res.user && res.user.new ? T.welcome : T.signedIn);
       load();
     }).catch(function (err) {
-      $("si-msg").textContent = err && err.message === "too_fast" ? T.busy : T.loginFail;
-      $("si-msg").className = "msg err";
+      siMsg(err && err.message === "too_fast" ? T.busy : T.loginFail, "err");
     });
   }
 

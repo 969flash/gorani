@@ -40,7 +40,7 @@
   var q = new URLSearchParams(location.search), ok = q.get("ok") === "1", fallback = q.get("fallback") === "1", lang = q.get("lang") === "ko" ? "ko" : "en";
   var T = {   // fallback — 로그인 쪽 고장이라 플러그인이 이번 고급을 열었다(계획 문서 '로그인에 기대지 않기', 문구는 패널 토스트와 같다)
     ko: fallback ? ["로그인 서버가 풀 뜯으러 갔습니다", "이번 고급은 그냥 열어 둡니다.\n이 탭을 닫고 Gorani로 돌아가세요."]
-      : ok ? ["로그인했습니다", "이 탭을 닫고 Gorani로 돌아가세요."] : ["로그인하지 못했습니다", "Gorani 패널에서\n[구글로 로그인]을 다시 눌러 주세요."],
+      : ok ? ["로그인했습니다", "이 탭을 닫고 Gorani로 돌아가세요."] : ["로그인하지 못했습니다", "Gorani 패널에서\n[Google 계정으로 로그인]을 다시 눌러 주세요."],
     en: fallback ? ["The sign-in server wandered off to graze", "Advanced is open this time.\nClose this tab and return to Gorani."]
       : ok ? ["You’re signed in", "Close this tab and return to Gorani."] : ["Could not sign in", "Press [Sign in with Google]\nin the Gorani panel again."]
   }[lang];

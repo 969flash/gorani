@@ -31,7 +31,7 @@
 | 탈퇴 | 웹 | RTDB `users/<uid>` 지움 → `accounts:delete`. 로그인한 지 5분이 지났으면 구글로 한 번 더 로그인하고 지운다(`CREDENTIAL_TOO_OLD_LOGIN_AGAIN`) |
 
 - 거절로 보는 오류는 넷(`USER_DISABLED`·`USER_NOT_FOUND`·`TOKEN_EXPIRED`·`INVALID_REFRESH_TOKEN`)뿐이다. 나머지(접속 안 됨·5xx·한도·설정 오류·구글 버튼을 못 받음·키가 비어 있음)는 고장으로 보고 플러그인이 이번 고급을 연다('로그인에 기대지 않기').
-- 열쇠는 폼 본문으로만 오가 주소·방문 기록에 남지 않는다. 웹은 이 브라우저의 열쇠를 localStorage `gorani_session`에 두고 '…(으)로 계속'·계정 페이지에 쓴다(토큰은 메모리에만, 만료 1분 전에 새로 받는다).
+- 열쇠는 폼 본문으로만 오가 주소·방문 기록에 남지 않는다. 웹은 이 브라우저의 열쇠를 localStorage `gorani_session`에 두고 '이 계정으로 계속'·계정 페이지에 쓴다(토큰은 메모리에만, 만료 1분 전에 새로 받는다).
 - 웹의 RTDB 쓰기는 `POST` + `x-http-method-override`(PUT·PATCH·DELETE) + `text/plain` 본문 — 미리 보내기(preflight)가 없는 요청이라 CORS 설정이 필요 없다.
 
 ### 생성 기록 칸(`users/<uid>/history/<entry_id>`)

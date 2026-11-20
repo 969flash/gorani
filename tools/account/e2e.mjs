@@ -91,7 +91,7 @@ let rec = await api("/__received");
 ok(rec.length === 1 && rec[0].state === STATE && rec[0].refresh_token && !rec[0].error, "로그인 → state·refresh_token을 폼 POST");
 ok(await text("#title") === "로그인 완료" && (await text("#sub")).includes("Rhino로"), "완료 화면(ok=1)");
 
-// 2. 이 브라우저에 남은 로그인 → '…(으)로 계속' → 열쇠를 갱신해 넘긴다
+// 2. 이 브라우저에 남은 로그인 → '이 계정으로 계속' → 열쇠를 갱신해 넘긴다
 await go(LOGIN());
 await waitFor("!!document.querySelector('.again')");
 ok((await text(".again")).includes("member@example.com"), "남은 로그인 단추");

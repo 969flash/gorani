@@ -550,6 +550,9 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .os-switch button { padding: 2px 0; font-size: 14px; }
   .install-card { padding: 4px 20px; }
   .install-help { margin: 0 -20px; padding: 0 20px; }
+  .install-help summary { flex-wrap: wrap; gap: 4px 16px; }
+  .install-help summary::after { order: 1; }
+  .install-help summary span { order: 2; flex-basis: 100%; }
   .install-quick { flex-direction: column; align-items: stretch; padding: 20px; }
   .contact { position: static; }
   .contact-form { grid-template-columns: 1fr; padding: 20px; }
@@ -758,4 +761,10 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
 
 /* Rhino 설치 오류 때만 펴는 파일 받기(기본 설치는 패키지 매니저) */
 .install-help { margin: 0 -32px; padding: 0 32px; border-top: 1px solid var(--hair); }
+.install-help summary { justify-content: flex-start; }
+.install-help summary h3 { flex: none; }
+.install-help summary span { font-size: 14px; line-height: 22px; color: var(--ink-2); }
+.install-help summary::after { margin-left: auto; }
 .install-help .install-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0 0 16px; }
+.install-help .cmd { margin: 8px 0 20px; }
+.faq-item.install-help p { padding-bottom: 0; }

@@ -167,7 +167,7 @@
   if ((releaseLinks.length || document.querySelector("[data-release-ver]")) && window.fetch) {
     var applyRelease = function (rel) {
       var tagVer = String(rel.tag_name || "").replace(/^v/, "");
-      var pattern = { "rhino8": /rh8_0-any\.yak$/, "rhino7-win": /rh7_0-win\.yak$/, "sketchup": /\.rbz$/, "autocad-win": /autocad-win.*\.zip$/, "autocad-mac": /autocad-mac.*\.zip$/ };
+      var pattern = { "rhino8": /rh8_0-any\.yak$/, "rhino7-win": /rh7_0-win\.yak$/, "rhino7-mac": /rh7_0-mac\.yak$/, "sketchup": /\.rbz$/, "autocad-win": /autocad-win.*\.zip$/, "autocad-mac": /autocad-mac.*\.zip$/ };
       document.querySelectorAll("[data-release-ver]").forEach(function (el) { if (tagVer) el.textContent = tagVer; });
       releaseLinks.forEach(function (a) {
         var kind = a.getAttribute("data-release"), ver = tagVer;

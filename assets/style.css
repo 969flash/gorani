@@ -550,6 +550,10 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .os-switch { width: auto; display: inline-flex; margin-left: 0; align-self: flex-start; }
   .os-switch button { padding: 2px 0; font-size: 14px; }
   .install-card { padding: 4px 20px; }
+  .install-help { margin: 0 -20px; padding: 0 20px; }
+  .install-help summary { flex-wrap: wrap; gap: 4px 16px; }
+  .install-help summary::after { order: 1; }
+  .install-help summary span { order: 2; flex-basis: 100%; }
   .install-quick { flex-direction: column; align-items: stretch; padding: 20px; }
   .contact { position: static; }
   .contact-form { grid-template-columns: 1fr; padding: 20px; }
@@ -791,3 +795,19 @@ body.motion-ready .reveal.in-view { opacity: 1; transform: none; }
   .doc td:first-child { padding-bottom: 6px; font-size: 15px; }
   .doc td:not(:first-child)::before { content: attr(data-label); display: block; color: var(--ink-3); font-size: 12px; line-height: 18px; }
 }
+
+/* Rhino 설치 오류 때만 펴는 파일 받기(기본 설치는 패키지 매니저) */
+.install-help { margin: 0 -32px; padding: 0 32px; border-top: 1px solid var(--hair); }
+.install-help summary { justify-content: flex-start; }
+.install-help summary h3 { flex: none; }
+.install-help summary span { font-size: 14px; line-height: 22px; color: var(--ink-2); }
+.install-help summary::after { margin-left: auto; }
+.install-help .install-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0 0 16px; }
+.install-help .install-links { position: relative; }
+.install-help .install-links li { display: flex; align-items: center; gap: 8px; }
+.install-help .q summary { display: grid; place-items: center; justify-content: center; width: 20px; height: 20px; padding: 0; border: 1px solid var(--ink-3); border-radius: 999px; font-size: 12px; line-height: 1; font-weight: 600; color: var(--ink-2); }
+.install-help .q summary::after { content: none; }
+.install-help .q[open] summary, .install-help .q summary:hover { background: var(--press); color: var(--ink); }
+.install-help .q-pop { position: absolute; left: 0; top: calc(100% + 8px); z-index: 5; width: min(820px, 100%); padding: 14px 14px 2px; border-radius: 12px; background: var(--surface); border: 1px solid var(--hair); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+.install-help .q-pop p { margin: 0; padding: 0; font-size: 14px; line-height: 22px; }
+.install-help .q-pop .cmd { margin: 10px 0 12px; }

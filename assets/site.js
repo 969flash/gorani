@@ -62,7 +62,7 @@
     if (!a) return;
     if (a.closest(".language-switch")) return track("language_switch", { from: pageLang, to: a.getAttribute("lang") });
     if (a.getAttribute("href") === "#install") return track("install_cta", { place: place(a) });
-    if (a.closest(".install-links")) return track("install_download", { target: a.textContent.trim() });
+    if (a.closest(".install-links") || a.hasAttribute("data-release")) return track("install_download", { target: a.textContent.trim() });
     var href = a.href;
     var target = /\/gorani(-plugin)?\/issues/.test(href) ? "review" : /github\.com\/sponsors\//.test(href) ? "sponsor"
       : /github\.com\/969flash\/gorani(-plugin)?\/?$/.test(href) ? "github" : /wikipedia\.org/.test(href) ? "wikipedia" : "";
@@ -162,12 +162,14 @@
       track("install_os", { os: os });
     });
   });
+  // 물음표 도움말(details.q): 바깥을 누르면 닫는다
+  document.addEventListener("click", function (e) { document.querySelectorAll("details.q[open]").forEach(function (d) { if (!d.contains(e.target)) d.open = false; }); });
   // 설치 받기 링크: 플러그인 저장소의 최신 릴리스를 읽어 파일 주소·버전을 맞춘다(실패하면 페이지에 적힌 값 그대로)
   var releaseLinks = document.querySelectorAll("[data-release]");
   if ((releaseLinks.length || document.querySelector("[data-release-ver]")) && window.fetch) {
     var applyRelease = function (rel) {
       var tagVer = String(rel.tag_name || "").replace(/^v/, "");
-      var pattern = { "sketchup": /\.rbz$/, "autocad-win": /autocad-win.*\.zip$/, "autocad-mac": /autocad-mac.*\.zip$/ };
+      var pattern = { "rhino8": /rh8_0-any\.yak$/, "rhino7-win": /rh7_0-win\.yak$/, "rhino7-mac": /rh7_0-mac\.yak$/, "sketchup": /\.rbz$/, "autocad-win": /autocad-win.*\.zip$/, "autocad-mac": /autocad-mac.*\.zip$/ };
       document.querySelectorAll("[data-release-ver]").forEach(function (el) { if (tagVer) el.textContent = tagVer; });
       releaseLinks.forEach(function (a) {
         var kind = a.getAttribute("data-release"), ver = tagVer;
